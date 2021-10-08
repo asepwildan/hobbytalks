@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background: #254557;
+    opacity: 0.8;
+}
+
+.icon1 {
+    /* position: absolute; */
+    width: 9vw;
+    height: 5vh;
+    margin-top: 20%;
+    margin-bottom: 0px;
+    left: 0px;
+    top: 20%;
+    /* background: red; */
+}
+
+.icon4 {
+    width: 12vw;
+    height: 12vh;
+}
+
+.table {
+    position: absolute;
+    width: 40%;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 4px;
+    padding: 50px 0px;
+}
+
+.t1 {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+    color: #000000;
+    /* background: blueviolet; */
+}
+
+.t2 {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    /* background: red; */
+    margin-top: -5px;
+    /* margin-bottom: -50px; */
+} 
+
+.t3 {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: -10px;
+    /* background: burlywood; */
+}
+
+.t4 {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 30px;
+    /* background: cadetblue; */
+}
+
+.t5 {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin-top: -15px;
+}
+
+@media only screen and (max-width: 768px) and (min-width: 475px) {
+    .table {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 474px) {
+    .table {
+        width: 90%;
+    }
+}
+
