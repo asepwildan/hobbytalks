@@ -1,7 +1,7 @@
 import React from "react";
 import logo1 from '../assets/logo/Group 2.svg';
 import email from '../assets/logo/logoemail.svg'
-import './EmailVerify.css'
+import './EmailVerify.scss'
 
 export default function EmailVerify() {
     return(
