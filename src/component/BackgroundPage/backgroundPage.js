@@ -37,6 +37,18 @@ export default function BackgroundPage() {
                 <li><img src={image8} alt="pctr"/></li>
                 <li><img src={image10} alt="pctr"/></li>
             </ul>
+            {/* <div className={styles.containerBackground}>
+            <img src={image1} alt="pctr"/>
+            <img src={image2} alt="pctr"/>
+            <img src={image3} alt="pctr"/>
+            <img src={image4} alt="pctr"/>
+            <img src={image9} alt="pctr"/>
+            <img src={image5} alt="pctr"/>
+            <img src={image6} alt="pctr"/>
+            <img src={image7} alt="pctr"/>
+            <img src={image8} alt="pctr"/>
+            <img src={image10} alt="pctr"/>
+            </div> */}
         </div>
         </React.Fragment>
         
