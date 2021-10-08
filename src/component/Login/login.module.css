@@ -12,7 +12,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -45%);
+    transform: translate(-50%, -50%);
     width: 35%;
     border-radius: 4px;
     z-index: 10;
@@ -46,7 +46,7 @@
     width: 100%;
     box-sizing: border-box;
     text-align: left;
-    line-height: 35px;
+    line-height: 20px;
     padding-right: 15px;
 }
 
@@ -78,7 +78,7 @@ label {
     border-radius: 5px;
     background-color: #1e8ac6;
     color: #ffffff;
-    box-shadow: 0px 4px 10px rgba(48, 91, 114, 0.2);
+    box-shadow: 0px 4px 10px rgba(48, 91, 114, 0.3);
     margin: 20px 80px;
     font-size: 14px;
     border-color: #1e8ac6;
@@ -87,14 +87,15 @@ label {
 
 .oAuth {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding-bottom: 50px;
     justify-content: space-between;
-    margin: 40px 50px 0px 50px;
+    margin: 20px 60px 0px 60px;
+    gap: 15px;
 }
 
 .authGoogle {
-    width: 45%;
+    width: 50%;
     height: 40px;
     border-radius: 5px;
     background-color: #f5f8fd;
@@ -105,7 +106,7 @@ label {
 }
 
 .authFacebook {
-    width: 45%;
+    width: 50%;
     height: 40px;
     border-radius: 5px;
     background-color: #f5f8fd;
@@ -146,4 +147,3 @@ label {
         width: 90%;
     }
 }
-
