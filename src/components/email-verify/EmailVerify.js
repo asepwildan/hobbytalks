@@ -14,7 +14,7 @@ export default function EmailVerify() {
                 <h3 className="t1">Please verify your email account!</h3>
                 <div>
                     <p className="t2">You’re almost there! We sent an email to</p>
-                    <p className="t3">john.doe@gmail.com</p>
+                    <p className="t3"><b>john.doe@gmail.com</b></p>
                 </div>
                 <div>
                     <p className="t4">Just click on the link in that email to complete your signup.</p>
