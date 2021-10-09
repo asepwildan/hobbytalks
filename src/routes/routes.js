@@ -9,6 +9,7 @@ function Routes() {
                 <Switch>
                     <Route exact path="/" component={Homepage} />
                     <Route path="/login" component={Backgroundpage} />
+                    <Route path="/register" component={Backgroundpage} />
                 </Switch>
             </Router>
         </BrowserRouter>

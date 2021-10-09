@@ -22,7 +22,7 @@ import Login from "../../component/Login/login";
 export default function BackgroundPage() {
     return (
         <React.Fragment>
-            <Login />
+            {window.location.pathname === "/register" ? <Register /> : <Login />}
             <div className={styles.backgroundPageContainer} style={{ backgroundColor: "#254557" }}>
                 <img className={styles.logo} src={logo} alt="hobbytalk" />
                 <ul className={styles.backgroundImage}>

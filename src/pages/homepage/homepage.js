@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "./img/logo.png";
 import Vector from "./img/Vector1.png";
 import Vector2 from "./img/Vector5.png";
@@ -23,8 +24,12 @@ export default function Hompepage() {
                     <nav className={styles.homeNav}>
                         <img src={Logo} alt="logo" />
                         <div className={styles.homeButtonContainer}>
-                            <button>Login</button>
-                            <button>Signup</button>
+                            <Link to={`/login`} style={{ textDecoration: "none" }}>
+                                <button className={styles.buttonLoginHomepage}>Login</button>
+                            </Link>
+                            <Link to={`/register`} style={{ textDecoration: "none" }}>
+                                <button className={styles.buttonSignupHomepage}>Signup</button>
+                            </Link>
                         </div>
                     </nav>
                 </header>

@@ -50,7 +50,7 @@
     padding: 10px 15px;
     width: 100px;
     border-radius: 4px;
-    border: none;
+
     box-shadow: rgba(41, 132, 182, 0.2) 0px 5px 15px;
     font-family: "Nunito", sans-serif;
     font-style: normal;
@@ -59,15 +59,26 @@
     cursor: pointer;
 }
 
-.homeButtonContainer button:first-child {
+.buttonLoginHomepage {
     background-color: #1e8ac6;
     color: #fff;
+    border: none;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.buttonLoginHomepage:active {
+    transform: scale(0.9);
 }
 
-.homeButtonContainer button:last-child {
+.buttonSignupHomepage {
     border: 1px solid #8f9fc9;
     background-color: #f5f8fd;
     color: #333333;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.buttonSignupHomepage:active {
+    transform: scale(0.9);
 }
 
 .homeContent {
