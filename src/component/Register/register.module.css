@@ -20,7 +20,6 @@
 .welcomeBoard {
     padding-top: 10px;
     margin-left: 20px;
-    
 }
 
 .welcomeBoard h3 {
@@ -30,7 +29,6 @@
 .welcomeBoard p {
     font-size: 12px;
     top: -0px;
-    
 }
 
 .formWrapper {
@@ -103,7 +101,7 @@ label {
 }
 
 .authFacebook {
-    width:50%;
+    width: 50%;
     height: 40px;
     border-radius: 5px;
     background-color: #f5f8fd;
@@ -116,14 +114,14 @@ label {
 .authGoogle img {
     position: relative;
     top: 2px;
-    width: 10%;
+    width: 12%;
     padding-right: 5px;
 }
 
 .authFacebook img {
     position: relative;
     top: 2px;
-    width: 6%;
+    width: 8%;
     padding-right: 5px;
 }
 

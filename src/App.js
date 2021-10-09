@@ -1,14 +1,16 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Login from "./component/Login/login";
-import BackgroundPage from "./component/BackgroundPage/backgroundPage";
-import Register from "./component/Register/register";
+import Routes from "./routes/routes";
+import Hompepage from "./pages/homepage/homepage";
+
+import Backgroundpage from "./pages/BackgroundPage/backgroundPage";
 
 function App() {
     return (
         <div className="App">
-            <Register />
-            {/* <Login /> */}
+            <Routes />
+            {/* // <Hompepage/>  
+        // <Footer/> */}
+            {/* <Backgroundpage /> */}
         </div>
     );
 }
