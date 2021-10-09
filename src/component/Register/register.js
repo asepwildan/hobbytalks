@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./register.module.css";
 import { useState } from "react";
-import google from "../Asset/google.png";
-import facebook from "../Asset/facebook.png";
+import google from "../BackgroundPage/Asset/google.png";
+import facebook from "../BackgroundPage/Asset/facebook.png";
 import BackgroundPage from "../BackgroundPage/backgroundPage";
 
 export default function Register() {
@@ -22,7 +22,7 @@ export default function Register() {
 
     return (
         <React.Fragment>
-          <BackgroundPage/>
+            <BackgroundPage />
             <div className={styles.mainContainter}>
                 <div className={styles.registerContainer}>
                     <div className={styles.welcomeBoard}>
@@ -73,7 +73,6 @@ export default function Register() {
                         </button>
                     </div>
                 </div>
-               
             </div>
         </React.Fragment>
     );
