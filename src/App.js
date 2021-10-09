@@ -1,14 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Hompepage from './pages/homepage/homepage'; 
-import Footer from './component/footer/footer';
+import "./App.css";
+import Routes from "./routes/routes";
+import Hompepage from "./pages/homepage/homepage";
+
+import Backgroundpage from "./pages/BackgroundPage/backgroundPage";
+
 function App() {
-  return (
-    <div className="App">
-        <Hompepage/>  
-        <Footer/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Routes />
+            {/* // <Hompepage/>  
+        // <Footer/> */}
+            {/* <Backgroundpage /> */}
+        </div>
+    );
 }
 
 export default App;
