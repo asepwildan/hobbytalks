@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./login.module.css";
 import { useState } from "react";
-import google from "../BackgroundPage/Asset/google.png";
-import facebook from "../BackgroundPage/Asset/facebook.png";
-import BackgroundPage from "../BackgroundPage/backgroundPage";
+import google from "../../pages/BackgroundPage/Asset/google.png";
+import facebook from "../../pages/BackgroundPage/Asset/facebook.png";
+// import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Login() {
     const [values, setValues] = useState({
@@ -21,7 +21,7 @@ export default function Login() {
 
     return (
         <React.Fragment>
-            <BackgroundPage />
+            {/* <BackgroundPage /> */}
             <div className={styles.loginContainer}>
                 <div className={styles.welcomeBoard}>
                     <h3>Welcome back!</h3>

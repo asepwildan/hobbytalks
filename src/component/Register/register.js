@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./register.module.css";
 import { useState } from "react";
-import google from "../BackgroundPage/Asset/google.png";
-import facebook from "../BackgroundPage/Asset/facebook.png";
-import BackgroundPage from "../BackgroundPage/backgroundPage";
+import google from "../../pages/BackgroundPage/Asset/google.png";
+import facebook from "../../pages/BackgroundPage/Asset/facebook.png";
+// import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Register() {
     const [values, setValues] = useState({
@@ -22,7 +22,7 @@ export default function Register() {
 
     return (
         <React.Fragment>
-            <BackgroundPage />
+            {/* <BackgroundPage /> */}
             <div className={styles.mainContainter}>
                 <div className={styles.registerContainer}>
                     <div className={styles.welcomeBoard}>

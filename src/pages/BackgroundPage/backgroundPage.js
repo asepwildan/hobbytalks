@@ -11,6 +11,7 @@ import image7 from "./Asset/image7.png";
 import image8 from "./Asset/image8.png";
 import image9 from "./Asset/image9.png";
 import image10 from "./Asset/image10.png";
+import Register from "../../component/Register/register";
 // import image3 from "../Asset/Rectangle30.png"
 // import image4 from "../Asset/Rectangle31.png"
 // import image8 from "../Asset/rect4.png"
@@ -20,6 +21,7 @@ import image10 from "./Asset/image10.png";
 export default function BackgroundPage() {
     return (
         <React.Fragment>
+            <Register />
             <div className={styles.backgroundPageContainer} style={{ backgroundColor: "#254557" }}>
                 <img className={styles.logo} src={logo} alt="hobbytalk" />
                 <ul className={styles.backgroundImage}>
