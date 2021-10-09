@@ -11,8 +11,11 @@ import styles from "./style/homepage.module.css";
 
 export default function Hompepage() {
     return (
-        <div>
-            <img className={styles.vector1} src={Vector} alt="Vector" />
+        <div className={styles.homepageContainer}>
+            <div className={styles.vector1Container}>
+                <img className={styles.vector1} src={Vector} alt="Vector" />
+            </div>
+
             <header className={styles.homeHeader}>
                 <nav className={styles.homeNav}>
                     <img src={Logo} alt="logo" />

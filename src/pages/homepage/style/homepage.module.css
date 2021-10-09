@@ -1,17 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap");
 
+.homepageContainer {
+    width: 100%;
+
+    /* overflow: hidden; */
+}
+
+.vector1Container {
+    width: 100%;
+
+    position: relative;
+}
 .vector1 {
     position: absolute;
-    right: -100px;
-    top: -50px;
+    right: 0px;
+    top: 0px;
     z-index: -1;
+    overflow: hidden;
 }
 
 .vector2 {
     position: absolute;
     top: 540px;
     z-index: -1;
+    overflow: hidden;
 }
 
 .homeHeader {
