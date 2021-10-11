@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+.footerContainer {
+    position: absolute;
+    width: 100%;
+    margin-top: 45vh;
+    background-color: #3b4d7a;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 40px;
+}
+
+.footerContentContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+}
+
+.footerContentContainer div p {
+    color: #fff;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.footerContentContainer div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footerContentContainer div ul li {
+    color: #fff;
+    font-size: 14px;
+    font-style: normal;
+    font-family: "Nunito", sans-serif;
+    padding-top: 8px;
+    font-weight: normal;
+}
+
+.footerLogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footerLogoContainer {
+    width: 80%;
+}
+.footerLogoContainer img {
+    width: 100%;
+}
+
+.footerLogo p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+}
+
+.sosmedFooter {
+    margin-top: 30px;
+}
+
+.sosmedFooter svg {
+    margin-right: 15px;
+    cursor: pointer;
+}
