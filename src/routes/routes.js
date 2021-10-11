@@ -7,6 +7,7 @@ function Routes() {
         <BrowserRouter>
             <Router>
                 <Switch>
+                    {/* route */}
                     <Route exact path="/" component={Homepage} />
                     <Route path="/login" component={Backgroundpage} />
                     <Route path="/register" component={Backgroundpage} />
