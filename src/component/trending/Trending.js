@@ -1,5 +1,5 @@
 import React from "react";
-import garis from '../../components/assets/logo/garis.svg';
+import garis from '../../component/assets/logo/garis.svg';
 import arrow from '../assets/logo/arrow.svg'
 import './Trending.scss'
 

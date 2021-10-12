@@ -1,0 +1,6 @@
+.thread-detail-user-container {
+    width: 300px;
+    height: 300px;
+    border-style: solid;
+    background: red;
+}
