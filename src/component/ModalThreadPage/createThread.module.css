@@ -1,0 +1,31 @@
+.threadContainer {
+    width: 50%;
+    height: 70%;
+    /* margin: 50px 50px 50px 50px; */
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    background: white;
+    position: absolute;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.threadContainer form {
+    margin-top: 50px;
+    
+} 
+
+.threadContainer input {
+    margin-bottom: 30px;
+    width: 80%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.threadContainer button {
+    background-color: #1e8ac6;
+    border: none;
+    color: white;
+    border-radius: 4px;
+}

@@ -10,11 +10,12 @@ import Content2 from "./img/Content2.png";
 import Content3 from "./img/Content3.png";
 import Content4 from "./img/Content4.png";
 import styles from "./style/homepage.module.css";
-import Footer from "../../component/footer/footer";
+import Footer from "../../component/footer/footer";// import Navbar from "../../component/Navbar/navbar"
 
 export default function Hompepage() {
     return (
         <React.Fragment>
+          
             <div className={styles.homepageContainer}>
                 <div className={styles.vector1Container}>
                     <img className={styles.vector1} src={Vector} alt="Vector" />

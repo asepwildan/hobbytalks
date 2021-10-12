@@ -1,0 +1,189 @@
+.navbarContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    height: 50px;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 0px 20px 0px 30px;
+    background-color: #F5F8FD;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.1);
+    border-bottom: 0.1px solid #BDBDBD;
+}
+
+.leftbar {
+    display: flex;
+    flex: 4;
+    /* flex-wrap: wrap; */
+    margin-top: 5px;
+}
+
+.pictureBar {
+    width: 25%;
+    /* margin-right: 10px; */
+    margin: 5px 10px 5px 0px;
+
+}
+
+.pictureBar img {
+    width: 80%;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    
+}
+
+.searchBar {
+    width: 47%;
+    height: 30px;
+    display: flex;
+    /* flex-wrap: nowrap; */
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    /* border-style: solid; */
+    border: 0.5px solid ;
+    border-color: #9f9f9f;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.searchBar input{
+    border: none;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.navbarInputButton {
+    color: #C5C7CD;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.rightbar { 
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 500px;
+    
+    /* float: right; */
+}
+
+.buttonCreate {
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.buttonCreate button {
+    background-color: #1e8ac6 !important;
+    border: none !important;
+    color: #ffffff !important;
+    height: 25px !important;
+    border-radius: 5px !important;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05) !important;
+    font-size: 12px !important;
+    transition-duration: 0.1s !important;
+    transition-property: transform !important;
+    cursor: pointer !important;
+    /* width: 70% !important; */
+
+}
+.buttonCreate button:active {
+    transform: scale(0.98) !important;
+}
+
+.notifBar {
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    /* border-style: solid; */
+  }
+  
+  .dropdownctn {
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 350px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px 10px ;
+    top: 30px;
+    right: 5%;
+    z-index: 8;
+    border-radius: 5%;
+    
+  }
+  .dropdownNone {
+    display: none;
+    
+  }
+
+  .dropdownctn p{
+    padding: 0px 10px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: capitalize;
+    text-align: left;
+    font-size: 14px;
+    font-weight: normal;
+    border-bottom: 0.2px solid;
+    line-height: 40px;
+  }
+  /* .dropdownctn p:first-child{ */
+    /* font-size: 22px; */
+    /* border-bottom: 2px solid rgb(141, 141, 141); */
+  /* } */
+  /* .dropdownctn p:last-child{
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+  } */
+
+
+.avaBar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    
+}
+
+.userAvatar {
+    width: 25px !important; 
+    height:25px !important;
+    margin-right: 10px;
+}
+
+.nameUser {
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: -10px;
+}
+
+.profilDropdown {
+    cursor: pointer;
+}
+
+.dropdownMenu MenuItem{
+    padding-top: 150px !important;
+}
+
+.Modal {
+    /* position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px; */
+    width: 100%; 
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+
+    z-index: 111;
+}
+
