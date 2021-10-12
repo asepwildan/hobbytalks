@@ -1,0 +1,53 @@
+@import '../assets/color/Color';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+
+.btn {
+    height: 27px;
+    width: 106px;
+    background: rgba(235, 244, 250, 1);
+    border: 1px solid $primary;
+    border-radius: 4px;
+    position: absolute;
+    top: 127px;
+    left: 508px;
+    // display: flex;
+    // align-items: center;
+    cursor: pointer;
+    color: $primary;
+    font-size: 14px;
+    text-align: right;
+
+}
+
+.img {
+    position: absolute;
+    left: 9px;
+    top : 8px
+}
+
+.fp {
+    position: absolute;
+    border-radius: 50%;
+    top: 61px;
+    left: 149px;
+}
+
+.p1 {
+    font-weight: 800;
+    top : 100px;
+    left: 340px;
+    font-size: 24px;
+    font-family: "Nunito", san-serif;
+}
+
+.p1, .p2 {
+    position: absolute;
+}
+
+.p2 {
+    font-size: 18px;
+    font-weight: 400;
+    top: 140px;
+    left: 340px;
+}
