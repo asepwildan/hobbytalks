@@ -8,11 +8,7 @@ import Backgroundpage from "./pages/BackgroundPage/backgroundPage";
 function App() {
     return (
         <div className="App">
-            {/* <Routes /> */}
-            {/* <Hompepage/>   */}
-            {/* <Footer/> */}
-            {/* <Backgroundpage /> */}
-            <Navbar/>
+            <Routes />
         </div>
     );
 }
