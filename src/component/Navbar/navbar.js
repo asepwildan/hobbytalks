@@ -80,7 +80,7 @@ export default function Navbar() {
                     >
                         <Box>
                             {/* <CreateThread /> */}
-<EditProfilUser/>                        
+                            <EditProfilUser />
                         </Box>
                     </Modal>
 
