@@ -78,7 +78,13 @@ label {
     font-size: 14px;
     border-color: #1e8ac6;
     border: none;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
+.buttonRegister:active {
+    transform: scale(0.9);
+}
+
 
 .oAuth {
     display: flex;
