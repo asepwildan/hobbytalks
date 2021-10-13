@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+.container2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background: #254557;
+    opacity: 0.8;
+}
+
+.icon1 {
+    position: absolute;
+    width: 12.6%;
+    height: 4.89%;
+    left: 43.68%;
+    top: 5.7%;
+}
+
+.table {
+    position: absolute;
+    width: 44%;
+    height: 47.09%;
+    left: 27.77%;
+    top: 17.12%;
+    border-radius: 4px;
+    background: white;
+    /* transform: translate(0%, -50%); */
+    padding: 50px 0px;
+}
+
+.icon4 {
+    width: 12vw;
+    height: 12vh;
+}
+
+.tombol {
+    cursor: pointer;
+    /* position: absolute; */
+    width: 133px;
+    height: 36px;
+    background: #1E8AC6;
+    border-radius: 4px;
+    color: white;
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    margin-right: 10px;
+    margin-top: 15px;
+    border: none;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.tombol:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+    margin-top: 17px;
+}
+
+.tombol2:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+    margin-top: 17px;
+}
+
+.tombol2 {
+    width: 134px;
+    height: 36px;
+    background: #FFFFFF;
+    border: 1.5px solid #1E8AC6;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+}
+
+.t1 {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.t2 {
+    font-size: 12px;
+    margin-top: -20px;
+}
+
+@media only screen and (max-width: 700px) {
+    .tombol {
+        width: 115px;
+        height: 30px;
+    }
+    .tombol2 {
+        width: 115px;
+        height: 30px;
+        font-size: small;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .tombol {
+        width: 70px;
+        height: 25px;
+        // margin-left: 0px;
+        font-size: 8px;
+    }
+    .tombol2 {
+        width: 70px;
+        height: 25px;
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .tombol {
+        margin-right: 0px;
+    }
+    .tombol2 {
+        margin-right: 0px;
+    }
+
+    .t1 {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .table {
+        transform: translate(-50% -50%);
+    }
+}
+

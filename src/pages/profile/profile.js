@@ -4,12 +4,14 @@ import styles from "./style/profile.module.css";
 import Likerecomendation from "../../component/like-recomendation/like-recomendation";
 import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
-
+import Banner from "../../component/banner-profile/Banner";
+import Trending from "../../component/trending/Trending";
 export default function Profile() {
     return (
         <React.Fragment>
             <Navbar />
             <div>
+                <Banner />
                 <div className={styles.boxContentProfile}>
                     <div className={styles.threadContanerProfile}>
                         <Thread />
@@ -17,7 +19,7 @@ export default function Profile() {
                     <div className={styles.likeRekomContanerProfile}>
                         <Likerecomendation />
                         <div className={styles.trendingContanerProfile}>
-                            <h3>trending</h3>
+                            <Trending />
                         </div>
                     </div>
                 </div>
