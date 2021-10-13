@@ -3,6 +3,7 @@ import "./Trending.scss";
 
 export default function Trending() {
     return (
+        // tes pull request
         <div className="trendingContainer">
             <div className="trending">
                 <p>Trending</p>
