@@ -43,7 +43,7 @@ export default function Likerekomendasi() {
                                                     fill="#1E8AC6"
                                                 />
                                             </svg>
-                                            <div className={styles.threadActionInfo}>1.5k</div>
+                                            <div className={styles.threadVoteInfo}>1.5k</div>
                                         </div>
                                         <div className={styles.threadAction}>
                                             <svg
@@ -111,7 +111,7 @@ export default function Likerekomendasi() {
                                                     fill="#1E8AC6"
                                                 />
                                             </svg>
-                                            <div className={styles.threadActionInfo}>10.5k</div>
+                                            <div className={styles.threadVoteInfo}>10.5k</div>
                                         </div>
                                         <div className={styles.threadAction}>
                                             <svg

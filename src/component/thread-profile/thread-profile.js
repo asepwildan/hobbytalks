@@ -1,5 +1,4 @@
 import styles from "./style/thread-profile.module.css";
-import img1 from "../like-recomendation/img/aa.jpg";
 import imgthread1 from "./img/imgthread1.png";
 import imgthread2 from "./img/imgthread2.png";
 import ava1 from "./img/ava1.png";

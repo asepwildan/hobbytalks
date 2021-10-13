@@ -1,5 +1,6 @@
 import React from "react";
 // import { Modal } from "react-modal";
+import { Link } from "react-router-dom";
 import styles from "../Navbar/navbar.module.css";
 import logo from "../Navbar/hobbytalk.png";
 import SearchIcon from "@material-ui/icons/Search";
@@ -58,9 +59,9 @@ export default function Navbar() {
         <div className={styles.navbarContainer}>
             <div className={styles.leftbar}>
                 <div className={styles.pictureBar}>
-                    <a href="#">
+                    <Link to={`/`} style={{ textDecoration: "none" }}>
                         <img src={logo} alt="hobbytalk" />
-                    </a>
+                    </Link>
                 </div>
                 <div className={styles.searchBar}>
                     <input type="text" placeholder="What do you want to talk about?" />
@@ -76,8 +77,7 @@ export default function Navbar() {
                         open={isOpen}
                         onClose={closeModal}
                         aria-labelledby="keep-mounted-modal-title"
-                        aria-describedby="keep-mounted-modal-description"
-                    >
+                        aria-describedby="keep-mounted-modal-description">
                         <Box>
                             {/* <CreateThread /> */}
                             <EditProfilUser />
@@ -125,8 +125,7 @@ export default function Navbar() {
                         onClose={handleClose}
                         MenuListProps={{
                             "aria-labelledby": "basic-button",
-                        }}
-                    >
+                        }}>
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={handleClose}>Setting</MenuItem>
                         <MenuItem onClick={handleClose}>Logout</MenuItem>
