@@ -1,14 +1,12 @@
 import React from "react";
 import "./Banner.scss";
-import banner from "../assets/images/banner.png";
-import union from "../assets/logo/Union.svg";
 import fotoprofil from "../assets/images/image 7.png";
 
 export default function Banner() {
     return (
         <div className="bannerContainer">
             <div className="bannerContent">
-                <img className="fp" src={fotoprofil}></img>
+                <img className="fp" src={fotoprofil} alt="profile" />
                 <div className="profileInfo">
                     <div className="username-editBtn">
                         <p className="p1">Justin Junaedi</p>
