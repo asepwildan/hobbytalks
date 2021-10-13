@@ -4,7 +4,7 @@ import styles from "./style/profile.module.css";
 import Likerecomendation from "../../component/like-recomendation/like-recomendation";
 import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
-import MoreUserInfo from "../../component/moreUserInfo/moreUserInfo";
+
 
 export default function Profile() {
     return (
@@ -18,7 +18,7 @@ export default function Profile() {
                     <div className={styles.likeRekomContanerProfile}>
                         <Likerecomendation />
                         <div className={styles.trendingContanerProfile}>
-                            <MoreUserInfo />
+                           <h1>ini trending</h1>
                         </div>
                     </div>
                 </div>

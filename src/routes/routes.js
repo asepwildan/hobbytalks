@@ -14,6 +14,8 @@ function Routes() {
                     <Route path="/login" component={Backgroundpage} />
                     <Route path="/register" component={Backgroundpage} />
                     <Route path="/profile" component={Profile} />
+                    <Route path="/thread-detail" component={ThreadDetail} />
+
                 </Switch>
             </Router>
         </BrowserRouter>
