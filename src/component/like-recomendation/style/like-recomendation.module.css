@@ -65,10 +65,18 @@
     gap: 5px;
     cursor: pointer;
 }
+.threadVoteInfo {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #1e8ac6;
+}
 .threadActionInfo {
     font-size: 12px;
     display: flex;
     align-items: center;
+    color: #828282;
 }
 
 .threadActionContainer .threadAction:nth-child(2) {
