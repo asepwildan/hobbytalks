@@ -35,10 +35,15 @@
                     background-color: #ebf4fa;
                     border: 1px solid #1e8ac6;
                     border-radius: 4px;
+                    transition-duration: 0.1s;
+                    transition-property: transform ;
                     cursor: pointer;
                     p {
                         font-size: 14px;
                     }
+                }
+                .btn:active {
+                    transform: scale(0.98);
                 }
             }
 

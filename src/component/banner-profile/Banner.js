@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Banner.scss";
 import fotoprofil from "../assets/images/image 7.png";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 
 export default function Banner() {
+    const [isOpen, SetIsOpen] = useState();
+
+    const openModal = () => {
+        SetIsOpen(true);
+    };
+
+    const closeModal = () => {
+        SetIsOpen(false);
+    };
+
     return (
         <div className="bannerContainer">
             <div className="bannerContent">
@@ -10,13 +23,14 @@ export default function Banner() {
                 <div className="profileInfo">
                     <div className="username-editBtn">
                         <p className="p1">Justin Junaedi</p>
-                        <button className="btn">
+                        <button className="btn" onClick={openModal}>
                             <svg
                                 width="15"
                                 height="16"
                                 viewBox="0 0 15 16"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
                                 <path
                                     fill-rule="evenodd"
                                     clip-rule="evenodd"
@@ -26,6 +40,17 @@ export default function Banner() {
                             </svg>
                             <p>Edit Profile</p>
                         </button>
+                        <Modal
+                            keepMounted
+                            open={isOpen}
+                            onClose={closeModal}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description"
+                        >
+                            <Box>
+                                <EditProfilUser />
+                            </Box>
+                        </Modal>
                     </div>
                     <div className="bioContainer">
                         <p className="p2">Sprinkling kindness everywhere I go.</p>
