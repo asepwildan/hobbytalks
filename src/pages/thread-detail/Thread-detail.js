@@ -1,6 +1,6 @@
 import React from "react";
 import Thread from "../../component/thread-profile/thread-profile";
-import styles from "./style/Thread-detail.module.css"
+import styles from "./style/Thread-detail.module.css";
 import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import MoreUserInfo from "../../component/moreUserInfo/moreUserInfo";
@@ -14,11 +14,14 @@ export default function ThreadDetail() {
                 <div className={styles.boxContentThreadDetail}>
                     <div className={styles.threadContanerThreadDetail}>
                         <Thread />
-                    <div className={styles.commentLineContainer}>
-                        <Thread />
+                        <div className={styles.formCommentContainer}>
+
+                        </div>
+                        <div className={styles.commentLineContainer}>
+                            <Thread />
+                        </div>
                     </div>
-                    </div>
-                    
+
                     <div className={styles.likeRekomContanerThreadDetail}>
                         <RelatedTopic />
                         <div className={styles.trendingContanerThreadDetail}>
