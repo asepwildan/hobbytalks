@@ -1,32 +1,32 @@
-import styles from "./style/like-recomendation.module.css";
-import img1 from "./img/anya.jpg";
+import styles from "./style/relatedTopic.module.css";
+import img1 from "./img/baifern.jpg";
 import img2 from "./img/lana.jpg";
 import { Avatar } from "@material-ui/core";
 
-export default function Likerekomendasi() {
+export default function RelatedTopic() {
     const runCallback = (cb) => {
         return cb();
     };
 
     return (
-        <div className={styles.likerekomendasicontainer}>
-            <div className={styles.likeRekomendasi}>
-                <p>You might like</p>
+        <div className={styles.relatedTopicContainer}>
+            <div className={styles.relatedTopic}>
+                <p>Related Topic</p>
             </div>
             {runCallback(() => {
                 const row = [];
                 for (var i = 1; i <= 2; i++) {
                     row.push(
                         <div>
-                            <div className={styles.threadInfoLikeContainer}>
-                                <div className={styles.titleThreadLike}>
+                            <div className={styles.threadInfoRelatedTopic}>
+                                <div className={styles.titleThreadTopic}>
                                     <p className={styles.titleInfoText}>
                                         My Journey into Piano: 1 year and still counting
                                     </p>
                                     <div className={styles.threadRekomAkun}>
-                                    {/* <div className={styles.imgLikeContainer}> <img src={img1} alt="img1" /></div> */}
-                                    <Avatar  className={styles.avatarAkun} src={img1} alt="img1"/>
-                                        <p className={styles.threadAccountName}>Ryu Hyo Young</p>
+                                       {/* <div className={styles.imgTopicContainer}> <img src={img1} alt="img1" /></div> */}
+                                        <Avatar  className={styles.avatarAkun} src={img1} alt="img1"/>
+                                        <p className={styles.threadAccountName}>Anya Geraldinho</p>
                                     </div>
                                     <div className={styles.threadActionContainer}>
                                         <div className={styles.threadAction}>
@@ -87,15 +87,14 @@ export default function Likerekomendasi() {
                                     </div>
                                 </div>
                             </div>
-                            <div className={styles.threadInfoLikeContainer}>
-                                <div className={styles.titleThreadLike}>
+                            <div className={styles.threadInfoRelatedTopicContainer}>
+                                <div className={styles.titleThreadTopic}>
                                     <p className={styles.titleInfoText}>
                                         From today I learn to be a botanist
                                     </p>
                                     <div className={styles.threadRekomAkun}>
-                                    {/* <div className={styles.imgLikeContainer}><img src={img2} alt="img2" /></div> */}
-                                    <Avatar  className={styles.avatarAkun} src={img2} alt="img2"/>
-                                        <p className={styles.threadAccountName}>Lana Rhoades</p>
+                                    <div className={styles.imgTopicContainer}> <img src={img2} alt="img2" /></div>
+                                        <p className={styles.threadAccountName}>Ariel Tatum</p>
                                     </div>
                                     <div className={styles.threadActionContainer}>
                                         <div className={styles.threadAction}>
