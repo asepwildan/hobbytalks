@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+.pageContainer {
+    width: 23%;
+}
+.moreUserInfoContainer {
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    /* height: 500px; */
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05);
+}
+
+.headingWrapper {
+    margin-bottom: 7px;
+}
+
+.headingWrapper p {
+    font-weight: bold;
+    font-size: "Nunito", sans-serif;
+}
+
+.listUserInfoContainer {
+    border-top: 1px solid #bdbdbd;
+    padding: 15px 0px;
+}
+
+.imageListUser {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.titleListUser {
+    /* margin-left: 5px; */
+    margin-bottom: 10px;
+}
+.titleUserText {
+    font-size: 14px;
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: underline;
+   
+}
+
+.userInfoActionContainer {
+    display: inline-flex;
+    background-color: #f5f8fd;
+    padding: 5px 0px;
+    border-radius: 8px;
+    margin: 10px 0px 0px 0px;
+}
+
+.userInfoAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 15px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.moreUserActionLike {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.userInfoAction:nth-child(2) {
+    border-left: 1px solid #b4c0de;
+    border-right: 1px solid #b4c0de;
+}

@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+/* @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap"); */
+.likerekomendasicontainer {
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05);
+}
+
+.likeRekomendasi {
+    /* padding: 0px 0px 7px 0px; */
+    margin-bottom: 7px;
+}
+
+.likeRekomendasi p {
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+}
+
+.threadInfoLikeContainer {
+    /* margin: 7px 0px; */
+    border-top: 1px solid #bdbdbd;
+    padding: 15px 0px;
+}
+
+.titleInfoText {
+    font-size: 14px;
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.threadRekomAkun {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 7px 0px;
+}
+.threadRekomAkun img {
+    width: 35px;
+    border-radius: 100%;
+}
+.threadAccountName {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.threadActionContainer {
+    display: inline-flex;
+    background-color: #f5f8fd;
+    padding: 5px 0px;
+    border-radius: 8px;
+    margin: 10px 0px 0px 0px;
+}
+
+.threadAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 15px;
+    gap: 5px;
+    cursor: pointer;
+}
+.threadVoteInfo {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #1e8ac6;
+}
+.threadActionInfo {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #828282;
+}
+
+.threadActionContainer .threadAction:nth-child(2) {
+    border-left: 1px solid #b4c0de;
+    border-right: 1px solid #b4c0de;
+}

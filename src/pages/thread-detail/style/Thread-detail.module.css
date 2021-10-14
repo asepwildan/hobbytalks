@@ -1,0 +1,23 @@
+.boxContentThreadDetail {
+    width: 90%;
+    margin: 50px auto;
+    /* border-style: solid; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.threadContanerThreadDetail {
+    width: 63%;
+}
+
+.likeRekomContanerThreadDetail {
+    width: 23%;
+}
+
+.trendingContanerThreadDetail{
+    width: 100%;
+    margin-top: 40px;
+   
+}

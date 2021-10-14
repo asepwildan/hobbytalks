@@ -1,0 +1,22 @@
+.boxContentProfile {
+    width: 90%;
+    margin: 10px auto;
+    /* border-style: solid; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.threadContanerProfile {
+    width: 63%;
+}
+
+.likeRekomContanerProfile {
+    width: 23%;
+}
+
+.trendingContanerProfile {
+    width: 100%;
+    margin-top: 40px;
+}
