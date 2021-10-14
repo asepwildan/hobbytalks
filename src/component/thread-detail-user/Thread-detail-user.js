@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./thread-detail-user.module.css";
 import plus from './asset/plus.svg'
+import foto from './asset/image 7.png'
 
 export default function ThreadUser() {
     
@@ -33,6 +34,11 @@ export default function ThreadUser() {
                     </button>
                 </div>
             </div>
+            <div className={styles.identitas}>
+                <img className={styles.foto} src={foto}></img>
+                <p className={styles.nama}>Stella Hobart</p>
+            </div>
+            
 
         </div>
         
