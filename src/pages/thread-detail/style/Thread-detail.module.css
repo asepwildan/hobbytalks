@@ -1,4 +1,4 @@
-.boxContentProfile {
+.boxContentThreadDetail {
     width: 90%;
     margin: 50px auto;
     /* border-style: solid; */
@@ -8,15 +8,15 @@
     gap: 5%;
 }
 
-.threadContanerProfile {
+.threadContanerThreadDetail {
     width: 63%;
 }
 
-.likeRekomContanerProfile {
+.likeRekomContanerThreadDetail {
     width: 23%;
 }
 
-.trendingContanerProfile {
+.trendingContanerThreadDetail{
     width: 100%;
     margin-top: 40px;
    

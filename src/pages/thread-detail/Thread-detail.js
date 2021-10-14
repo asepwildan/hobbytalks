@@ -11,13 +11,13 @@ export default function ThreadDetail() {
         <React.Fragment>
             <Navbar />
             <div>
-                <div className={styles.boxContentProfile}>
-                    <div className={styles.threadContanerProfile}>
+                <div className={styles.boxContentThreadDetail}>
+                    <div className={styles.threadContanerThreadDetail}>
                         <Thread />
                     </div>
-                    <div className={styles.likeRekomContanerProfile}>
+                    <div className={styles.likeRekomContanerThreadDetail}>
                         <Likerecomendation />
-                        <div className={styles.trendingContanerProfile}>
+                        <div className={styles.trendingContanerThreadDetail}>
                             <MoreUserInfo />
                         </div>
                     </div>
