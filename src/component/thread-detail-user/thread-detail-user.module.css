@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+.threadDetailUserContainer {
+    width: 60%;
+    height: 400px;
+    border-style: solid;
+}
+
+.buttonActionProfileContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.buttonFIlter1 {
+    display: flex;
+    gap: 20px;
+}
+
+.buttonHot {
+    display: flex;
+    width: 65px;
+    height: 22px;   
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #e06044;
+    padding: 5px 12px;
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+    background-color: #f7daf2;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.buttonMusic {
+    /* display: flex; */
+    width: 65px;
+    height: 22px;
+    /* align-items: center; */
+    /* gap: 5px; */
+    font-size: 12px;
+    color: #070606;
+    padding: 1px 12px;
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+    background-color: #F2F2F2;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.followButtonThread{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    background-color: #F5F8FD;
+    padding: 0px 7px;
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+    color: #607CC5;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 30px;
+    border: none;
+}
+
+.followText {
+    padding: 0px 10px;
+}
+

@@ -5,7 +5,7 @@ export default function ThreadDetail() {
     
     return (
         <>
-            <h1>Ini Page Forum</h1>
+            {/* <h1>Ini Page Thread/detail</h1> */}
             <ThreadUser />
         
         </>
