@@ -14,15 +14,17 @@ export default function Register() {
 
     const handlechange = (e) => {
         const value = e.target.value;
-        const name = e.target.value;
-        setValues({ ...value, [name]: name });
+        const name = e.target.name;
+        setValues({ ...values, [name]: value });
     };
 
-    const handleSubmit = () => {};
+    console.log(values, "values");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <React.Fragment>
-            {/* <BackgroundPage /> */}
             <div className={styles.mainContainter}>
                 <div className={styles.registerContainer}>
                     <div className={styles.welcomeBoard}>
@@ -37,7 +39,7 @@ export default function Register() {
                             <label>Name</label>
                             <input
                                 onChange={handlechange}
-                                type="name"
+                                type="text"
                                 name="name"
                                 value={values.name}
                                 required
