@@ -2,8 +2,7 @@ import { BrowserRouter, BrowserRouter as Router, Route, Switch } from "react-rou
 import Homepage from "../pages/homepage/homepage";
 import Backgroundpage from "../pages/BackgroundPage/backgroundPage";
 import Profile from "../pages/profile/profile";
-import ThreadDetail from "../pages/thread-detail/Thread-detail";
-import MoreUserInfo from "../component/moreUserInfo/moreUserInfo";
+import Category from "../pages/category/Category";
 
 function Routes() {
     return (
@@ -12,10 +11,9 @@ function Routes() {
                 <Switch>
                     <Route exact path="/" component={Homepage} />
                     <Route path="/login" component={Backgroundpage} />
-                    <Route path="/register" component={Backgroundpage} />
                     <Route path="/profile" component={Profile} />
-                    <Route path="/thread-detail" component={ThreadDetail} />
-
+                    <Route path="/category" component={Category} />
+                    <Route path="/:register" component={Backgroundpage} />
                 </Switch>
             </Router>
         </BrowserRouter>
