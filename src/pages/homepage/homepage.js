@@ -10,12 +10,13 @@ import Content2 from "./img/Content2.png";
 import Content3 from "./img/Content3.png";
 import Content4 from "./img/Content4.png";
 import styles from "./style/homepage.module.css";
-import Footer from "../../component/footer/footer";// import Navbar from "../../component/Navbar/navbar"
+import Footer from "../../component/footer/footer"; // import Navbar from "../../component/Navbar/navbar"
 
 export default function Hompepage() {
+    const register = "register";
+
     return (
         <React.Fragment>
-          
             <div className={styles.homepageContainer}>
                 <div className={styles.vector1Container}>
                     <img className={styles.vector1} src={Vector} alt="Vector" />
@@ -28,7 +29,7 @@ export default function Hompepage() {
                             <Link to={`/login`} style={{ textDecoration: "none" }}>
                                 <button className={styles.buttonLoginHomepage}>Login</button>
                             </Link>
-                            <Link to={`/register`} style={{ textDecoration: "none" }}>
+                            <Link to={`/${register}`} style={{ textDecoration: "none" }}>
                                 <button className={styles.buttonSignupHomepage}>Signup</button>
                             </Link>
                         </div>

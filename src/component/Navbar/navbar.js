@@ -15,13 +15,13 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 
-export default function Navbar() {
+export default function Navbar(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [drop, setDrop] = useState(false);
     const [threadModal, setThreadModal] = useState(false);
     const [isOpen, setIsOpen] = useState();
-
+    let Token = localStorage.getItem("tokenLogin");
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -44,7 +44,7 @@ export default function Navbar() {
     //         setThreadModal(false);
     //     }
     // };
-    console.log(threadModal, "in modal");
+    // console.log(threadModal, "in modal");
 
     const dropDown = () => {
         if (drop === false) {
@@ -53,13 +53,13 @@ export default function Navbar() {
             setDrop(false);
         }
     };
-    console.log(drop, "ini dropdown");
+    // console.log(drop, "ini dropdown");
 
     return (
         <div className={styles.navbarContainer}>
             <div className={styles.leftbar}>
                 <div className={styles.pictureBar}>
-                    <Link to={`/`} style={{ textDecoration: "none" }}>
+                    <Link to={Token === null ? "/" : "/profile"} style={{ textDecoration: "none" }}>
                         <img src={logo} alt="hobbytalk" />
                     </Link>
                 </div>
@@ -105,7 +105,7 @@ export default function Navbar() {
                 </div>
                 <div className={styles.avaBar}>
                     <Avatar className={styles.userAvatar} alt="" />
-                    <span className={styles.nameUser}>Wahyu</span>
+                    <span className={styles.nameUser}>{props.nama}</span>
                 </div>
 
                 <div className={styles.profilDropdown}>

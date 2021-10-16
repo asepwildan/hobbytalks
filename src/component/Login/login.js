@@ -3,6 +3,7 @@ import styles from "./login.module.css";
 import { useState } from "react";
 import google from "../../pages/BackgroundPage/Asset/google.png";
 import facebook from "../../pages/BackgroundPage/Asset/facebook.png";
+import axios from "axios";
 // import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Login() {
@@ -13,12 +14,30 @@ export default function Login() {
 
     const handlechange = (e) => {
         const value = e.target.value;
-        const name = e.target.value;
-        setValues({ ...value, [name]: name });
+        const name = e.target.name;
+        setValues({ ...values, [name]: value });
     };
 
-    const handleSubmit = () => {};
+    console.log(values);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios
+            .post("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login", {
+                email: values.email,
+                password: values.password,
+            })
+
+            .then((Response) => {
+                console.log(Response, "login");
+                const token = Response.data.data;
+                localStorage.setItem("tokenLogin", token);
+                window.location = "/profile";
+            })
+            .catch((Error) => {
+                console.log(Error, "wah ini eror login");
+            });
+    };
     return (
         <React.Fragment>
             {/* <BackgroundPage /> */}

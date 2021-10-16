@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./register.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import google from "../../pages/BackgroundPage/Asset/google.png";
 import facebook from "../../pages/BackgroundPage/Asset/facebook.png";
+import { Route, useParams, Link } from "react-router-dom";
+import axios from "axios";
 // import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Register() {
+    let { register } = useParams();
     const [values, setValues] = useState({
         name: "",
         email: "",
@@ -19,9 +22,37 @@ export default function Register() {
     };
 
     console.log(values, "values");
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        axios
+            .post(
+                "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/signup",
+                {
+                    name: values.name,
+                    email: values.email,
+                    password: values.password,
+                },
+                {
+                    headers: {
+                        Authorization: "",
+                    },
+                }
+            )
+
+            .then((Response) => {
+                console.log(Response, "nanananana");
+                window.location = "/login";
+                //  <Link to={`/login`} style={{ textDecoration: "none" }}>
+                //             {/* <button className={styles.buttonLoginHomepage}>Login</button> */}
+                //         </Link>
+            })
+            .catch((Error) => {
+                console.log(Error, "wah ini eror");
+            });
     };
+
+    console.log(register, " get url register");
 
     return (
         <React.Fragment>
