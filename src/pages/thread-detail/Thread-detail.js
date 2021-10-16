@@ -5,6 +5,7 @@ import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import MoreUserInfo from "../../component/moreUserInfo/moreUserInfo";
 import RelatedTopic from "../../component/relatedTopic/relatedTopic";
+import Comment from "../../component/comment/comment";
 
 export default function ThreadDetail() {
     return (
@@ -15,7 +16,7 @@ export default function ThreadDetail() {
                     <div className={styles.threadContanerThreadDetail}>
                         <Thread />
                         <div className={styles.formCommentContainer}>
-
+                        <Comment/>
                         </div>
                         <div className={styles.commentLineContainer}>
                             <Thread />

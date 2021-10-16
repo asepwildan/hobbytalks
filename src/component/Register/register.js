@@ -3,6 +3,7 @@ import styles from "./register.module.css";
 import { useState } from "react";
 import google from "../../pages/BackgroundPage/Asset/google.png";
 import facebook from "../../pages/BackgroundPage/Asset/facebook.png";
+import axios from "axios";
 // import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Register() {
@@ -14,11 +15,25 @@ export default function Register() {
 
     const handlechange = (e) => {
         const value = e.target.value;
-        const name = e.target.value;
-        setValues({ ...value, [name]: name });
+        const name = e.target.name;
+        setValues({ ...values, [name]: value });
     };
 
-    const handleSubmit = () => {};
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios
+        .post("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/signup", {
+            name: values.name,
+            email: values.email,
+            password: values.password
+        })
+        .then((Response) => {
+            console.log(Response, "tst")
+        })
+        .catch((Error) => {
+            console.log(Error, "erroor")
+        })
+    };
 
     return (
         <React.Fragment>
