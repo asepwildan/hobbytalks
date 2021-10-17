@@ -11,7 +11,7 @@ import Category6 from "./img/category6.png";
 import Category7 from "./img/category7.png";
 import Category8 from "./img/category8.jpg";
 import Category9 from "./img/category9.jpg";
-
+import axios from "axios";
 export default function Category() {
     let [category, setCategory] = useState([
         {
@@ -76,14 +76,40 @@ export default function Category() {
     };
 
     console.log(cek, "cek nih");
-
+    let Token = localStorage.getItem("tokenLogin");
     console.log(cek.indexOf("Music") > -1, "bangke"); //true
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios
 
+            .put(
+                "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/likecategories",
+                {
+                    categoryId: [
+                        "6166ef8c98472010a2d7e988",
+                        "6166eed398472010a2d7e97e",
+                        "6166eed998472010a2d7e980",
+                    ],
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                    },
+                }
+            )
+
+            .then((Response) => {
+                console.log(Response, "categori");
+            })
+            .catch((error) => {
+                console.log(error, "wah ini eror login");
+            });
+    };
     return (
         <React.Fragment>
             <Navbar />
             <div className="categoryContainer">
-                <form action="">
+                <form onSubmit={handleSubmit}>
                     <div className="box-category-container">
                         <div className="categoryIntro">Find your</div>
                         {category.map((category) => (
@@ -107,6 +133,9 @@ export default function Category() {
                                 />
                             </div>
                         ))}
+                    </div>
+                    <div className="buttonCategoryContainer">
+                        <button className="buttonCategory">Kirim Topic ke Forum saya</button>
                     </div>
                 </form>
             </div>

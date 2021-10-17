@@ -54,7 +54,10 @@ export default function Navbar(props) {
         }
     };
     // console.log(drop, "ini dropdown");
-
+    const signOut = () => {
+        localStorage.removeItem("tokenLogin");
+        window.location.reload();
+    };
     return (
         <div className={styles.navbarContainer}>
             <div className={styles.leftbar}>
@@ -128,7 +131,7 @@ export default function Navbar(props) {
                         }}>
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={handleClose}>Setting</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={signOut}>Logout</MenuItem>
                     </Menu>
                     {/* <div className={styles.dropdownContent}>
                         <a onClick={"logout"}>Log Out</a>

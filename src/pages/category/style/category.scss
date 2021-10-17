@@ -52,4 +52,18 @@
             }
         }
     }
+    .buttonCategoryContainer {
+        text-align: center;
+        margin: 30px 0px;
+        .buttonCategory {
+            padding: 7px 110px;
+            font-weight: normal;
+            font-size: 22px;
+            background-color: #1e8ac6;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
 }
