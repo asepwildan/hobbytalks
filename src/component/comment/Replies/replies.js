@@ -2,8 +2,8 @@ import { Avatar } from "@material-ui/core";
 import React, { useEffect } from "react";
 import styles from "./style/replies.module.css";
 import { useState } from "react";
-import axios from "axios";
-import SubReplies from "./subReplies/subReplies";
+// import axios from "axios";
+// import SubReplies from "./subReplies/subReplies";
 
 export default function SubComment(props) {
     // const [comment, setComment] = useState([]);
@@ -47,7 +47,7 @@ export default function SubComment(props) {
         <div className={styles.commentContainer}>
           {reply.map((replies) =>(
             //   console.log(replies, "ini repli")
-                <div key={replies.id} className={styles.commentWrapper}>
+                <div className={styles.commentWrapper}>
                     <div className={styles.commentRightPart}>
                         <Avatar className={styles.avatar} alt="A" />
                         <div className={styles.commentAuthor}>{replies.userId}</div>
@@ -117,7 +117,7 @@ export default function SubComment(props) {
                         </div>
                     </div>
                 <button onClick={openReplies}>See all replies child</button>
-                    {isOpen === false ? <SubReplies /> : null}
+                    {/* {isOpen === false ? <SubReplies /> : null} */}
                 </div>
           ))}
         </div>
