@@ -47,8 +47,9 @@ export default function Register() {
                 //             {/* <button className={styles.buttonLoginHomepage}>Login</button> */}
                 //         </Link>
             })
-            .catch((Error) => {
-                console.log(Error, "wah ini eror");
+            .catch((error) => {
+                console.log(error.response.data.message, "wah ini eror register");
+                alert(error.response.data.message);
             });
     };
 
@@ -62,7 +63,9 @@ export default function Register() {
                         <h3>Join our community!</h3>
                         <p>
                             Already have account?
-                            <span style={{ color: "#8AB9D3", cursor: "pointer" }}> Login</span>
+                            <Link to="/login" style={{ textDecoration: "none" }}>
+                                <span style={{ color: "#8AB9D3", cursor: "pointer" }}> Login</span>
+                            </Link>
                         </p>
                     </div>
                     <div className={styles.formWrapper}>

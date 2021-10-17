@@ -13,6 +13,8 @@ import image9 from "./Asset/image9.png";
 import image10 from "./Asset/image10.png";
 import Register from "../../component/Register/register";
 import Login from "../../component/Login/login";
+import Email from "../../component/email-verify/EmailVerify";
+import Welcome from "../../component/email-welcome/EmailWelcome";
 // import image3 from "../Asset/Rectangle30.png"
 // import image4 from "../Asset/Rectangle31.png"
 // import image8 from "../Asset/rect4.png"
@@ -22,7 +24,7 @@ import Login from "../../component/Login/login";
 export default function BackgroundPage() {
     return (
         <React.Fragment>
-            {window.location.pathname === "/register" ? <Register /> : <Login />}
+            {window.location.pathname === "/register" ? <Welcome /> : <Email />}
             <div className={styles.backgroundPageContainer} style={{ backgroundColor: "#254557" }}>
                 <img className={styles.logo} src={logo} alt="hobbytalk" />
                 <ul className={styles.backgroundImage}>
