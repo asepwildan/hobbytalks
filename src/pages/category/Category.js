@@ -16,40 +16,49 @@ export default function Category() {
     let [category, setCategory] = useState([
         {
             img: Category1,
-            value: "Music",
+            value: "6166eed398472010a2d7e97e",
+            title: "Music",
         },
         {
             img: Category2,
-            value: "Games",
+            value: "6166eed998472010a2d7e980",
+            title: "Games",
         },
         ,
         {
             img: Category3,
-            value: "Sports",
+            value: "6166eee898472010a2d7e982",
+            title: "Sports",
         },
         {
             img: Category4,
-            value: "Travel",
+            value: "6166eec398472010a2d7e97c",
+            title: "Travel",
         },
         {
             img: Category5,
-            value: "Arts",
+            value: "6166eeed98472010a2d7e984",
+            title: "Arts",
         },
         {
             img: Category6,
-            value: "DIY",
+            value: "6166eef398472010a2d7e986",
+            title: "DIY",
         },
         {
             img: Category7,
-            value: "Electronics",
+            value: "6166ef8c98472010a2d7e988",
+            title: "Tech",
         },
         {
             img: Category8,
-            value: "Business",
+            value: "6166effb98472010a2d7e98c",
+            title: "Business",
         },
         {
             img: Category9,
-            value: "Cooking",
+            value: "6166f00d98472010a2d7e98e",
+            title: "Cooking",
         },
     ]);
 
@@ -85,11 +94,7 @@ export default function Category() {
             .put(
                 "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/likecategories",
                 {
-                    categoryId: [
-                        "6166ef8c98472010a2d7e988",
-                        "6166eed398472010a2d7e97e",
-                        "6166eed998472010a2d7e980",
-                    ],
+                    categoryId: cek,
                 },
                 {
                     headers: {
@@ -100,6 +105,7 @@ export default function Category() {
 
             .then((Response) => {
                 console.log(Response, "categori");
+                window.location = "/profile";
             })
             .catch((error) => {
                 console.log(error, "wah ini eror login");
@@ -123,7 +129,7 @@ export default function Category() {
                                     src={category.img}
                                     alt="category img"
                                 />
-                                <p>{category.value}</p>
+                                <p>{category.title}</p>
                                 <input
                                     onChange={handleChange}
                                     className="inputCek"

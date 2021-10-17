@@ -24,7 +24,7 @@ import Welcome from "../../component/email-welcome/EmailWelcome";
 export default function BackgroundPage() {
     return (
         <React.Fragment>
-            {window.location.pathname === "/register" ? <Welcome /> : <Email />}
+            {window.location.pathname === "/register" ? <Register /> : <Login />}
             <div className={styles.backgroundPageContainer} style={{ backgroundColor: "#254557" }}>
                 <img className={styles.logo} src={logo} alt="hobbytalk" />
                 <ul className={styles.backgroundImage}>

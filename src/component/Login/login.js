@@ -34,7 +34,7 @@ export default function Login() {
                 console.log(Response, "login");
                 const token = Response.data.data;
                 localStorage.setItem("tokenLogin", token);
-                window.location = "/profile";
+                window.location = "/category";
             })
             .catch((error) => {
                 console.log(error.response.data.message, "wah ini eror login");
