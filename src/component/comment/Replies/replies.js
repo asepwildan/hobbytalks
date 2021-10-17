@@ -5,22 +5,27 @@ import { useState } from "react";
 import axios from "axios";
 import SubReplies from "./subReplies/subReplies";
 
-export default function SubComment() {
-    const [comment, setComment] = useState([]);
+export default function SubComment(props) {
+    // const [comment, setComment] = useState([]);
     //    const [name, setName] = useState();
     const [isOpen, setIsOpen] = useState(false)
-    useEffect(() => {
-        axios.get("https://jsonplaceholder.typicode.com/comments").then((response) => {
-            setComment(response.data);
-            //    setName(response.data)
-            console.log(response.data, "ini commen");
-        });
-    }, []);
-    console.log(comment, "imi response");
+    const comment = props.name;
+    // const reply = comment.map();
+    const reply = comment.reply;
+    console.log(reply, "ini props")
+    // useEffect(() => {
+    //     axios.get("https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328")
+    //     .then((response) => {
+    //         setComment(response.data);
+    //         //    setName(response.data)
+    //         console.log(response.data.data.reply, "ini commen");
+    //     });
+    // }, []);
+    // console.log(comment, "imi response");
 
-    const runCallback = (cb) => {
-        return cb();
-    };
+    // const runCallback = (cb) => {
+    //     return cb();
+    // };
 
     const openReplies = () => {
         if (isOpen === false) {
@@ -29,41 +34,27 @@ export default function SubComment() {
             setIsOpen(false);
         }
     };
+    //     axios.get("https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328")
+    //     .then((response) => {
+    //         setIsData(response.data.data);
+    //         //    setName(response.data)
+    //         console.log(response.data.data, "ini commen");
+    //     });
+    // }, []);
+
+    // console.log(props, "ini props")
     return (
         <div className={styles.commentContainer}>
-            {/* {runCallback(() => {
-                const row = [];
-                for (var i = 1; i <= 3; i++) {
-                    row.push(
-                        <div className={styles.commentWrapper}>
-                        <div className={styles.commentImg}>
-                            <Avatar alt="A" />
-                        </div>
-                        <div className={styles.commentRightPart}>
-                            <div className={styles.commentContent}>
-                                <div className={styles.commentAuthor}></div>
-                                <div className={styles.commentTimes}>| 2 hr</div>
-                                <div className={styles.commentText}>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    )
-                
-                }
-                return row;
-            
-            })} */}
-            {comment.slice(490).map((komen) => (
-                <div className={styles.commentWrapper}>
+          {reply.map((replies) =>(
+            //   console.log(replies, "ini repli")
+                <div key={replies.id} className={styles.commentWrapper}>
                     <div className={styles.commentRightPart}>
                         <Avatar className={styles.avatar} alt="A" />
-                        <div className={styles.commentAuthor}>{komen.name}</div>
-                        <div className={styles.commentTimes}> | 2 hr</div>
+                        <div className={styles.commentAuthor}>{replies.userId}</div>
+                        <div className={styles.commentTimes}> | {replies.date}</div>
                     </div>
                     <div className={styles.commentContent}>
-                        <div className={styles.commentText}>{komen.body}</div>
+                        <div className={styles.commentText}>{replies.content}</div>
                         <div className={styles.commentActionContainer}>
                             <div className={styles.commentAction}>
                                 <svg
@@ -82,7 +73,7 @@ export default function SubComment() {
                                         fill="#1E8AC6"
                                     />
                                 </svg>
-                                <div className={styles.commentVoteInfo}>1.5k</div>
+                                <div className={styles.commentVoteInfo}>{replies.likes.length}</div>
                             </div>
                             <div className={styles.commentAction}>
                                 <svg
@@ -98,7 +89,7 @@ export default function SubComment() {
                                     />
                                 </svg>
 
-                                <div className={styles.commentActionInfo}>0</div>
+                                <div className={styles.commentActionInfo}>{replies.dislike.length}</div>
                             </div>
                             <div className={styles.commentAction}>
                                 <svg
@@ -121,14 +112,14 @@ export default function SubComment() {
                                         fill="#828282"
                                     />
                                 </svg>
-                                <div className={styles.commentActionInfo}>124</div>
+                                <div className={styles.commentActionInfo}>{replies.subReply.length}</div>
                             </div>
                         </div>
                     </div>
-                <button onClick={openReplies}>See all replies</button>
+                <button onClick={openReplies}>See all replies child</button>
                     {isOpen === false ? <SubReplies /> : null}
                 </div>
-            ))}
+          ))}
         </div>
     );
 }

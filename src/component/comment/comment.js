@@ -34,6 +34,7 @@ export default function Comment() {
         } else {
             setIsOpen(false);
         }
+
     };
 
     const closeReplies = () => {
@@ -41,32 +42,9 @@ export default function Comment() {
     };
     return (
         <div className={styles.commentContainer}>
-            {/* {runCallback(() => {
-                const row = [];
-                for (var i = 1; i <= 3; i++) {
-                    row.push(
-                        <div className={styles.commentWrapper}>
-                        <div className={styles.commentImg}>
-                            <Avatar alt="A" />
-                        </div>
-                        <div className={styles.commentRightPart}>
-                            <div className={styles.commentContent}>
-                                <div className={styles.commentAuthor}></div>
-                                <div className={styles.commentTimes}>| 2 hr</div>
-                                <div className={styles.commentText}>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    )
-                
-                }
-                return row;
-            
-            })} */}
+        
             {isData.map((comment) => (
-                <div className={styles.commentWrapper}>
+                <div key={comment._id}className={styles.commentWrapper}>
                     <div className={styles.commentRightPart}>
                         <Avatar className={styles.avatar} alt="A" />
                         <div className={styles.commentAuthor}>{comment.userId.name}</div>
@@ -92,7 +70,7 @@ export default function Comment() {
                                         fill="#1E8AC6"
                                     />
                                 </svg>
-                                <div className={styles.commentVoteInfo}>{comment.likes}</div>
+                                <div className={styles.commentVoteInfo}>{comment.likes.length}</div>
                             </div>
                             <div className={styles.commentAction}>
                                 <svg
@@ -108,7 +86,7 @@ export default function Comment() {
                                     />
                                 </svg>
 
-                                <div className={styles.commentActionInfo}>{comment.dislike}</div>
+                                <div className={styles.commentActionInfo}>{comment.dislike.length}</div>
                             </div>
                             <div className={styles.commentAction}>
                                 <svg
@@ -131,14 +109,15 @@ export default function Comment() {
                                         fill="#828282"
                                     />
                                 </svg>
-                                <div className={styles.commentActionInfo}></div>
+                                <div className={styles.commentActionInfo}>{comment.reply.length}</div>
                             </div>
                         </div>
                     </div>
-                    {/* <button onClick={openReplies}>See all replies</button> */}
-                    {/* {isOpen === false ? <SubComment /> : null} */}
+                    <button onClick={openReplies}>See all replies</button>
+                    {/* {isOpen === false ? <SubComment name={comment}/> : null} */}
+                    {/* <SubComment name={comment}/> */}
                 </div>
-             ))}
+            ))} 
         </div>
     );
 }
