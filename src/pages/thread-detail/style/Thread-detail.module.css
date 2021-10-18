@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
 .boxContentThreadDetail {
     width: 90%;
     margin: 50px auto;
@@ -19,5 +21,50 @@
 .trendingContanerThreadDetail{
     width: 100%;
     margin-top: 40px;
-   
+}
+
+.formCommentDoang {
+    background: #F5F8FD;
+    margin-top: 40px;
+    border: 1px solid #B4C0DE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    padding: 24px 40px;
+}
+
+.nama {
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+    margin:auto 10px;
+}
+
+.identitas {
+    display: flex;
+}
+
+.inputThreadDetail {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px;
+    height: 100px;
+    resize: none;
+}
+
+.tombol {
+    background: #1E8AC6;
+    border-radius: 4px;
+    border: none;
+    color: #F2F2F2;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+    margin: auto;
+    display: block;
+    margin-right: 0px;
+    padding: 10px 20px;
+    margin-top: 18px;
 }
