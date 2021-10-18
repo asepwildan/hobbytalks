@@ -18,9 +18,8 @@ export default function ThreadDetail() {
                 <div className={styles.boxContentThreadDetail}>
                     <div className={styles.threadContanerThreadDetail}>
                         {/* <Thread /> */}
+                        <ThreadUser />
                         <div className={styles.formCommentContainer}>
-                            <ThreadUser />
-                        </div>
                         <div className={styles.formCommentDoang}>
                             <div className={styles.identitas}>
                                 <img src={imgAvatar}></img>
@@ -31,7 +30,9 @@ export default function ThreadDetail() {
                                 <button className={styles.tombol}>Add a comment</button>
                             </form>
                             
+                        </div>  
                         </div>
+                        
                         <div className={styles.commentLineContainer}>
                             {/* <Thread /> */}
                         </div>
