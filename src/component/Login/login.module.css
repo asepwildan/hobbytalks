@@ -114,6 +114,7 @@ label {
     border: none;
     transition-duration: 0.1s;
     transition-property: transform;
+    cursor: pointer;
 }
 .authGoogle:active {
     transform: scale(0.98);

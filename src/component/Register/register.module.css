@@ -80,6 +80,7 @@ label {
     border: none;
     transition-duration: 0.3s;
     transition-property: transform;
+    cursor: pointer;
 }
 .buttonRegister:active {
     transform: scale(0.9);

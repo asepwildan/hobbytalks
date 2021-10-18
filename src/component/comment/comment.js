@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import styles from "./style/comment.module.css";
 import { useState } from "react";
 import axios from "axios";
-import SubComment from "./Replies/replies";
+// import SubComment from "./Replies/replies";
 
 
 
@@ -115,7 +115,7 @@ export default function Comment() {
                     </div>
                     <button onClick={openReplies}>See all replies</button>
                     {/* {isOpen === false ? <SubComment name={comment}/> : null} */}
-                    <SubComment name={comment}/>
+                    {/* <SubComment name={comment}/> */}
                 </div>
             ))} 
         </div>
