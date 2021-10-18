@@ -5,6 +5,7 @@ import Profile from "../pages/profile/profile";
 import Category from "../pages/category/Category";
 import LandingGoogle from "../pages/landingGoogle/landingGoogle";
 import ThreadDetail from "../pages/thread-detail/Thread-detail";
+import AccountDetail from "../pages/account-detail/Account-detail";
 
 function Routes() {
     return (
@@ -17,6 +18,7 @@ function Routes() {
                     <Route path="/category" component={Category} />
                     <Route path="/register" component={Backgroundpage} />
                     <Route path="/thread-detail" component={ThreadDetail} />
+                    <Route path="/account-detail" component={AccountDetail}/>
                     <Route path="/:id" component={LandingGoogle} />
                 </Switch>
             </Router>
