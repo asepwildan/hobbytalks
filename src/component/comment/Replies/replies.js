@@ -3,29 +3,14 @@ import React, { useEffect } from "react";
 import styles from "./style/replies.module.css";
 import { useState } from "react";
 // import axios from "axios";
-// import SubReplies from "./subReplies/subReplies";
+import SubReplies from "./subReplies/subReplies";
 
 export default function SubComment(props) {
-    // const [comment, setComment] = useState([]);
-    //    const [name, setName] = useState();
+
     const [isOpen, setIsOpen] = useState(false)
     const comment = props.name;
-    // const reply = comment.map();
     const reply = comment.reply;
-    console.log(reply, "ini props")
-    // useEffect(() => {
-    //     axios.get("https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328")
-    //     .then((response) => {
-    //         setComment(response.data);
-    //         //    setName(response.data)
-    //         console.log(response.data.data.reply, "ini commen");
-    //     });
-    // }, []);
-    // console.log(comment, "imi response");
-
-    // const runCallback = (cb) => {
-    //     return cb();
-    // };
+    console.log(reply, "ini props yaaaaa")
 
     const openReplies = () => {
         if (isOpen === false) {
@@ -34,23 +19,15 @@ export default function SubComment(props) {
             setIsOpen(false);
         }
     };
-    //     axios.get("https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328")
-    //     .then((response) => {
-    //         setIsData(response.data.data);
-    //         //    setName(response.data)
-    //         console.log(response.data.data, "ini commen");
-    //     });
-    // }, []);
-
-    // console.log(props, "ini props")
+   
     return (
         <div className={styles.commentContainer}>
           {reply.map((replies) =>(
             //   console.log(replies, "ini repli")
-                <div className={styles.commentWrapper}>
+                <div key={replies.id} className={styles.commentWrapper}>
                     <div className={styles.commentRightPart}>
                         <Avatar className={styles.avatar} alt="A" />
-                        <div className={styles.commentAuthor}>{replies.userId}</div>
+                        <div className={styles.commentAuthor}>{replies.userId.name}</div>
                         <div className={styles.commentTimes}> | {replies.date}</div>
                     </div>
                     <div className={styles.commentContent}>
@@ -117,9 +94,9 @@ export default function SubComment(props) {
                         </div>
                     </div>
                 <button onClick={openReplies}>See all replies child</button>
-                    {/* {isOpen === false ? <SubReplies /> : null} */}
+                    {isOpen === false ? <SubReplies /> : null}
                 </div>
-          ))}
+        ))} 
         </div>
     );
 }

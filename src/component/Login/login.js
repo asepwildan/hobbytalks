@@ -42,12 +42,12 @@ export default function Login() {
             });
     };
 
-    const googleSignin = () => {
-        axios
-            .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google")
-            .then((res) => console.log(res, "google"))
-            .catch((err) => console.log(err, "google"));
-    };
+    // const googleSignin = () => {
+    //     axios
+    //         .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google")
+    //         .then((res) => console.log(res, "google"))
+    //         .catch((err) => console.log(err, "google"));
+    // };
     return (
         <React.Fragment>
             {/* <BackgroundPage /> */}
@@ -87,9 +87,9 @@ export default function Login() {
                     </form>
                 </div>
                 <div className={styles.oAuth}>
-                    <button className={styles.authGoogle} onClick={googleSignin}>
+                    <a href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google" className={styles.authGoogle} >
                         <img src={google} alt="google" /> Sign in with Google
-                    </button>
+                    </a>
                     <button className={styles.authFacebook}>
                         <img src={facebook} alt="facebook" /> Login with Facebook
                     </button>

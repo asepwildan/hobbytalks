@@ -6,29 +6,29 @@ import axios from "axios";
 
 
 export default function SubReplies() {
-    const [comment, setComment] = useState([]);
+    // const [comment, setComment] = useState([]);
     //    const [name, setName] = useState();
-    const [isOpen, setIsOpen] = useState(false)
-    useEffect(() => {
-        axios.get("https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328").then((response) => {
-            setComment(response.data);
-            //    setName(response.data)
-            console.log(response.data, "ini commen");
-        });
-    }, []);
-    console.log(comment, "imi response");
+    // const [isOpen, setIsOpen] = useState(false)
+    // useEffect(() => {
+    //     axios.get("https://jsonplaceholder.typicode.com/comments").then((response) => {
+    //         setComment(response.data);
+    //         //    setName(response.data)
+    //         console.log(response.data, "ini commen");
+    //     });
+    // }, []);
+    // console.log(comment, "imi response");
 
-    const runCallback = (cb) => {
-        return cb();
-    };
+    // const runCallback = (cb) => {
+    //     return cb();
+    // };
 
-    const openReplies = () => {
-        if (isOpen === false) {
-            setIsOpen(true);
-        } else {
-            setIsOpen(false);
-        }
-    };
+    // const openReplies = () => {
+    //     if (isOpen === false) {
+    //         setIsOpen(true);
+    //     } else {
+    //         setIsOpen(false);
+    //     }
+    // };
     return (
         <div className={styles.commentContainer}>
             {/* {runCallback(() => {

@@ -14,12 +14,12 @@ export default function ThreadDetail() {
             <div>
                 <div className={styles.boxContentThreadDetail}>
                     <div className={styles.threadContanerThreadDetail}>
-                        <Thread />
+                        
                         <div className={styles.formCommentContainer}>
-                        <Comment/>
+                        
                         </div>
                         <div className={styles.commentLineContainer}>
-                            <Thread />
+                            <Comment/>
                         </div>
                     </div>
 
