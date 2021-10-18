@@ -1,6 +1,6 @@
 import React from "react";
-import garis from '../../components/assets/logo/garis.svg';
-import nothread from '../../components/assets/images/no.png';
+import garis from '../../component/assets/logo/garis.svg';
+import nothread from '../../component/assets/images/no.png';
 import './No-thread.scss';
 
 export default function NoThread () {
