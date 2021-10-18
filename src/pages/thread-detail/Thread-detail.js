@@ -1,5 +1,4 @@
 import React from "react";
-import Thread from "../../component/thread-profile/thread-profile";
 import styles from "./style/Thread-detail.module.css";
 import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
