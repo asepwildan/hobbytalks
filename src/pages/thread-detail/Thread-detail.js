@@ -26,8 +26,11 @@ export default function ThreadDetail() {
                                 <img src={imgAvatar}></img>
                                 <p className={styles.nama}>Kevin Alexander</p>
                             </div>
-                            <textarea className={styles.inputThreadDetail} type="text" placeholder="Add a comment"></textarea>
-                            <button className={styles.tombol}>Add a comment</button>
+                            <form>
+                                <textarea className={styles.inputThreadDetail} type="text" placeholder="Add a comment"></textarea>
+                                <button className={styles.tombol}>Add a comment</button>
+                            </form>
+                            
                         </div>
                         <div className={styles.commentLineContainer}>
                             {/* <Thread /> */}
