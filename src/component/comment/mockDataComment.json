@@ -1,0 +1,51 @@
+{
+    "status": "success",
+    "message": "Comment retrieved successfully",
+    "data": [
+      {
+        "_id": "616a94b827abbfa2c1dab894",
+        "userId": {
+          "_id": "6166e34d04911310aafedac9",
+          "name": "nama saya",
+          "email": "kuromashiro0123@gmail.com"
+        },
+        "threadId": "616a814e2d9ef9e211bb0328",
+        "content": "Saya sih keduanya dijalanin jadi berasa sehat gak ada bedanya haha",
+        "reply": [
+          {
+            "_id": "616a9809f8ee71e6330a64b5",
+            "userId": "6166e34d04911310aafedac9",
+            "commentId": "616a94b827abbfa2c1dab894",
+            "content": "jangan salah sangka ya, gak bermaksud sombong",
+            "subReply": [
+              {
+                "_id": "616a9e374d2b80ab1083d9bb",
+                "userId": "6166e34d04911310aafedac9",
+                "replyId": "616a9809f8ee71e6330a64b5",
+                "content": "terserah dah ya",
+                "likes": [],
+                "dislike": [],
+                "date": "2021-10-16T09:41:11.693Z",
+                "__v": 0,
+                "id": "616a9e374d2b80ab1083d9bb"
+              }
+            ],
+            "likes": [],
+            "dislike": [],
+            "date": "2021-10-16T09:14:49.341Z",
+            "__v": 3,
+            "id": "616a9809f8ee71e6330a64b5"
+          }
+        ],
+        "likes": [],
+        "dislike": [],
+        "date": "2021-10-16T09:00:40.196Z",
+        "__v": 12,
+        "likeCount": 0,
+        "dislikeCount": 0,
+        "id": "616a94b827abbfa2c1dab894"
+      }
+    ],
+    "totalReply": 0,
+    "totalPage": 1
+  }

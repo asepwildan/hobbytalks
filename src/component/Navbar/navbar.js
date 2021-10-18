@@ -2,7 +2,7 @@ import React from "react";
 // import { Modal } from "react-modal";
 import { Link } from "react-router-dom";
 import styles from "../Navbar/navbar.module.css";
-import logo from "../Navbar/hobbytalk.png";
+import logo from "../Navbar/hobbytalks.svg";
 import SearchIcon from "@material-ui/icons/Search";
 import { ArrowDropDown, NotificationsNone } from "@material-ui/icons";
 import { Avatar } from "@material-ui/core";
@@ -14,6 +14,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
+import Login from "../Login/login"
 
 export default function Navbar(props) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -71,7 +72,7 @@ export default function Navbar(props) {
                     <SearchIcon className={styles.navbarInputButton} />
                 </div>
             </div>
-            <div className={styles.rightbar}>
+            {Token !== null ? <div className={styles.rightbar}>
                 <div className={styles.buttonCreate}>
                     {/* <Button onClick={openModal}>Create a thread</Button> */}
                     <button onClick={openModal}>Create a thread</button>
@@ -137,7 +138,22 @@ export default function Navbar(props) {
                         <a onClick={"logout"}>Log Out</a>
                     </div> */}
                 </div>
-            </div>
+             
+            
+            </div>: <div className={styles.rightbar}>
+                <div className={styles.loginButton}><button className={styles.login} onClick={openModal}>Login</button>
+                <Modal
+                        keepMounted
+                        open={isOpen}
+                        onClose={closeModal}
+                        aria-labelledby="keep-mounted-modal-title"
+                        aria-describedby="keep-mounted-modal-description">
+                        <Box>
+                           <Login/>
+                        </Box>
+                    </Modal>
+                    </div>
+            </div> }
         </div>
     );
 }
