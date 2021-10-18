@@ -87,9 +87,12 @@ export default function Login() {
                     </form>
                 </div>
                 <div className={styles.oAuth}>
-                    <button className={styles.authGoogle} onClick={googleSignin}>
-                        <img src={google} alt="google" /> Sign in with Google
-                    </button>
+                    <a href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google">
+                        <button className={styles.authGoogle} onClick={googleSignin}>
+                            <img src={google} alt="google" /> Sign in with Google
+                        </button>
+                    </a>
+
                     <button className={styles.authFacebook}>
                         <img src={facebook} alt="facebook" /> Login with Facebook
                     </button>
