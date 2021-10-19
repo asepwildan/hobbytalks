@@ -62,7 +62,7 @@ export default function Footer() {
                                 />
                             </svg>
                         </a>
-                        <a href="https://www.linkedin.com/" target="_blank">
+                        <a href="https://www.linkedin.com/in/asep-wildan-nugraha/" target="_blank">
                             <svg
                                 width="24"
                                 height="24"
