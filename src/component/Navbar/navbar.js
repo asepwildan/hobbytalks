@@ -6,8 +6,8 @@ import logo from "../Navbar/hobbytalks.svg";
 import SearchIcon from "@material-ui/icons/Search";
 import { ArrowDropDown, NotificationsNone } from "@material-ui/icons";
 import { Avatar } from "@material-ui/core";
-// import { useHistory } from "react-router";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { Menu, MenuItem } from "@material-ui/core";
 import { CreateThread } from "../ModalThreadPage/createThread";
 import Box from "@mui/material/Box";
@@ -16,13 +16,32 @@ import Button from "@mui/material/Button";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 import Login from "../Login/login";
 
-export default function Navbar(props) {
+export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [drop, setDrop] = useState(false);
     const [threadModal, setThreadModal] = useState(false);
     const [isOpen, setIsOpen] = useState();
+    const register = "register";
+    // let Token = localStorage.getItem("tokenLogin");
+
+    const [nama, setNama] = useState("");
     let Token = localStorage.getItem("tokenLogin");
+    useEffect(() => {
+        axios
+            .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
+                headers: {
+                    Authorization: `Bearer ${Token}`,
+                },
+            })
+            .then((Res) => {
+                console.log(Res.data.data.name);
+                setNama(Res.data.data.name);
+                //   setUserName(Res.data.data.name)
+            })
+            .catch((error) => console.log(error));
+    }, [Token]);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -104,7 +123,7 @@ export default function Navbar(props) {
                     </div>
                     <div className={styles.avaBar}>
                         <Avatar className={styles.userAvatar} alt="" />
-                        <span className={styles.nameUser}>{props.nama}</span>
+                        <span className={styles.nameUser}>{nama}</span>
                     </div>
 
                     <div className={styles.profilDropdown}>
@@ -136,21 +155,16 @@ export default function Navbar(props) {
                 </div>
             ) : (
                 <div className={styles.rightbar}>
-                    <div className={styles.loginButton}>
-                        <button className={styles.login} onClick={openModal}>
+                    {/* <div className={styles.loginButton}> */}
+                    <Link to={`/login`} style={{ textDecoration: "none" }}>
+                        <button className={styles.loginBtn} onClick={openModal}>
                             Login
                         </button>
-                        <Modal
-                            keepMounted
-                            open={isOpen}
-                            onClose={closeModal}
-                            aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description">
-                            <Box>
-                                <Login />
-                            </Box>
-                        </Modal>
-                    </div>
+                    </Link>
+                    <Link to={`/${register}`} style={{ textDecoration: "none" }}>
+                        <button className={styles.signUpBtn}>Signup</button>
+                    </Link>
+                    {/* </div> */}
                 </div>
             )}
         </div>

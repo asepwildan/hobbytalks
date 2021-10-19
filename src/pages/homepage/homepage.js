@@ -26,10 +26,10 @@ export default function Hompepage() {
                     <nav className={styles.homeNav}>
                         <img src={Logo} alt="logo" />
                         <div className={styles.homeButtonContainer}>
-                            <Link to={`/login`} style={{ textDecoration: "none" }}>
+                            <Link to={`/account/login`} style={{ textDecoration: "none" }}>
                                 <button className={styles.buttonLoginHomepage}>Login</button>
                             </Link>
-                            <Link to={`/${register}`} style={{ textDecoration: "none" }}>
+                            <Link to={`/account/register`} style={{ textDecoration: "none" }}>
                                 <button className={styles.buttonSignupHomepage}>Signup</button>
                             </Link>
                         </div>
