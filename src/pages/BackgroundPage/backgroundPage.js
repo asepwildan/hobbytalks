@@ -15,6 +15,7 @@ import Register from "../../component/Register/register";
 import Login from "../../component/Login/login";
 import Email from "../../component/email-verify/EmailVerify";
 import Welcome from "../../component/email-welcome/EmailWelcome";
+import { Route, useParams, Link } from "react-router-dom";
 // import image3 from "../Asset/Rectangle30.png"
 // import image4 from "../Asset/Rectangle31.png"
 // import image8 from "../Asset/rect4.png"
@@ -22,9 +23,13 @@ import Welcome from "../../component/email-welcome/EmailWelcome";
 // import image10 from "../Asset/rect.png"
 
 export default function BackgroundPage() {
+    let { id } = useParams();
     return (
         <React.Fragment>
-            {window.location.pathname === "/register" ? <Register /> : <Login />}
+            {/* {window.location.pathname === "/register" ? <Register /> : <Login />} */}
+            <Route path={`/account/welcome`} render={() => <Welcome />} />
+            <Route path={`/account/register`} render={() => <Register />} />
+            <Route path={`/account/login`} render={() => <Login />} />
             <div className={styles.backgroundPageContainer} style={{ backgroundColor: "#254557" }}>
                 <img className={styles.logo} src={logo} alt="hobbytalk" />
                 <ul className={styles.backgroundImage}>

@@ -14,7 +14,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
-import Login from "../Login/login"
+import Login from "../Login/login";
 
 export default function Navbar(props) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -38,15 +38,6 @@ export default function Navbar(props) {
         setIsOpen(false);
     };
 
-    // const openThread = () => {
-    //     if (threadModal === false) {
-    //         setThreadModal(true);
-    //     } else {
-    //         setThreadModal(false);
-    //     }
-    // };
-    // console.log(threadModal, "in modal");
-
     const dropDown = () => {
         if (drop === false) {
             setDrop(true);
@@ -54,7 +45,7 @@ export default function Navbar(props) {
             setDrop(false);
         }
     };
-    // console.log(drop, "ini dropdown");
+
     const signOut = () => {
         localStorage.removeItem("tokenLogin");
         window.location.reload();
@@ -72,88 +63,96 @@ export default function Navbar(props) {
                     <SearchIcon className={styles.navbarInputButton} />
                 </div>
             </div>
-            {Token !== null ? <div className={styles.rightbar}>
-                <div className={styles.buttonCreate}>
-                    {/* <Button onClick={openModal}>Create a thread</Button> */}
-                    <button onClick={openModal}>Create a thread</button>
-                    <Modal
-                        keepMounted
-                        open={isOpen}
-                        onClose={closeModal}
-                        aria-labelledby="keep-mounted-modal-title"
-                        aria-describedby="keep-mounted-modal-description">
-                        <Box>
-                            {/* <CreateThread /> */}
-                            <EditProfilUser />
-                        </Box>
-                    </Modal>
+            {Token !== null ? (
+                <div className={styles.rightbar}>
+                    <div className={styles.buttonCreate}>
+                        {/* <Button onClick={openModal}>Create a thread</Button> */}
+                        <button onClick={openModal}>Create a thread</button>
+                        <Modal
+                            keepMounted
+                            open={isOpen}
+                            onClose={closeModal}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description">
+                            <Box>
+                                {/* <CreateThread /> */}
+                                <EditProfilUser />
+                            </Box>
+                        </Modal>
 
-                    {/* <button onClick={openModal}>Create a thread</button>
+                        {/* <button onClick={openModal}>Create a thread</button>
                     <Modal className={styles.Modal} isOpen={isOpen} onRequestClose={closeModal}>
                         <CreateThread openModal={openModal}/>
                     </Modal> */}
-                </div>
-                <div className={styles.notifBar}>
-                    <NotificationsNone onClick={dropDown} />
-                    <div className={styles.dropdown}>
-                        <div className={drop === false ? styles.dropdownNone : styles.dropdownctn}>
-                            <p style={{ color: "black" }}></p>
-                            <p>My Journey into Piano: 1 year and still counting</p>
-                            <p>My Journey into Piano: 1 year and still counting</p>
-                            <p>My Journey into Piano: 1 year and still counting</p>
-                            <p>My Journey into Piano: 1 year and still counting</p>
-                            <p>My Journey into Piano: 1 year and still counting</p>
-                            <p>My Journey into Piano: 1 year and still counting</p>
+                    </div>
+                    <div className={styles.notifBar}>
+                        <NotificationsNone onClick={dropDown} />
+                        <div className={styles.dropdown}>
+                            <div
+                                className={
+                                    drop === false ? styles.dropdownNone : styles.dropdownctn
+                                }>
+                                <p style={{ color: "black" }}></p>
+                                <p>My Journey into Piano: 1 year and still counting</p>
+                                <p>My Journey into Piano: 1 year and still counting</p>
+                                <p>My Journey into Piano: 1 year and still counting</p>
+                                <p>My Journey into Piano: 1 year and still counting</p>
+                                <p>My Journey into Piano: 1 year and still counting</p>
+                                <p>My Journey into Piano: 1 year and still counting</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className={styles.avaBar}>
-                    <Avatar className={styles.userAvatar} alt="" />
-                    <span className={styles.nameUser}>{props.nama}</span>
-                </div>
+                    <div className={styles.avaBar}>
+                        <Avatar className={styles.userAvatar} alt="" />
+                        <span className={styles.nameUser}>{props.nama}</span>
+                    </div>
 
-                <div className={styles.profilDropdown}>
-                    <ArrowDropDown
-                        // className={styles.dropdown}
-                        aria-controls="basic-menu"
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleClick}
-                    />
-                    <Menu
-                        className={styles.dropdownMenu}
-                        // id="basic-menu"
+                    <div className={styles.profilDropdown}>
+                        <ArrowDropDown
+                            // className={styles.dropdown}
+                            aria-controls="basic-menu"
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            onClick={handleClick}
+                        />
+                        <Menu
+                            className={styles.dropdownMenu}
+                            // id="basic-menu"
 
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                        MenuListProps={{
-                            "aria-labelledby": "basic-button",
-                        }}>
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>Setting</MenuItem>
-                        <MenuItem onClick={signOut}>Logout</MenuItem>
-                    </Menu>
-                    {/* <div className={styles.dropdownContent}>
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                "aria-labelledby": "basic-button",
+                            }}>
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={handleClose}>Setting</MenuItem>
+                            <MenuItem onClick={signOut}>Logout</MenuItem>
+                        </Menu>
+                        {/* <div className={styles.dropdownContent}>
                         <a onClick={"logout"}>Log Out</a>
                     </div> */}
-                </div>
-             
-            
-            </div>: <div className={styles.rightbar}>
-                <div className={styles.loginButton}><button className={styles.login} onClick={openModal}>Login</button>
-                <Modal
-                        keepMounted
-                        open={isOpen}
-                        onClose={closeModal}
-                        aria-labelledby="keep-mounted-modal-title"
-                        aria-describedby="keep-mounted-modal-description">
-                        <Box>
-                           <Login/>
-                        </Box>
-                    </Modal>
                     </div>
-            </div> }
+                </div>
+            ) : (
+                <div className={styles.rightbar}>
+                    <div className={styles.loginButton}>
+                        <button className={styles.login} onClick={openModal}>
+                            Login
+                        </button>
+                        <Modal
+                            keepMounted
+                            open={isOpen}
+                            onClose={closeModal}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description">
+                            <Box>
+                                <Login />
+                            </Box>
+                        </Modal>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
