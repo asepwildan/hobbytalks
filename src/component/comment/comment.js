@@ -4,7 +4,7 @@ import styles from "./style/comment.module.css";
 import { useState } from "react";
 import axios from "axios";
 import SubComment from "./Replies/replies";
-import { ClassNames } from "@emotion/react";
+// import { ClassNames } from "@emotion/react";
 
 export default function Comment() {
         const [isData, setIsData] = useState([]);
@@ -14,10 +14,10 @@ export default function Comment() {
                     axios.get(`https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328?page=${page}&limit=10`)
                     .then((response) => {
                         setIsData(response.data.data);
-                        setTotalPage(response.data.data.totalPage)
+                        setTotalPage(response.data.totalPage)
                         //    setName(response.data)
                         console.log(response.data.data, "ini commen");
-                        // const totalPage = response.data.data.totalPage
+                        console.log(totalPage, "tess total page")
                     });
                 }, [page]);
                 console.log(isData, "imi response");
@@ -111,7 +111,7 @@ export default function Comment() {
           <CommentItem key={comment._id} {...comment}/>
       ))}
       {/* {page === totalPage || page < totalPage ? <button>test</button> : <button onClick={loadMore}>Load More</button>} */}
-     <button className={page === totalPage || totalPage === 0? styles.loadMoreBtnNone : styles.loadMoreBtn}onClick={loadMore}>Load More</button>S
+     <button className={page === totalPage || totalPage === 0 ? styles.loadMoreBtnNone : styles.loadMoreBtn  } onClick={loadMore}>Load More</button>
      </div>
     )
 }
