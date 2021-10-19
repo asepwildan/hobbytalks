@@ -52,3 +52,11 @@
     gap: 5px;
     cursor: pointer;
 }
+
+.loadMoreBtn {
+    display: block;
+}
+
+.loadMoreBtnNone {
+    display: none;
+}
