@@ -34,7 +34,7 @@ export default function Login() {
                 console.log(Response, "login");
                 const token = Response.data.data;
                 localStorage.setItem("tokenLogin", token);
-                window.location = "/category";
+                window.location = "/account/welcome";
             })
             .catch((error) => {
                 console.log(error.response.data.message, "wah ini eror login");
@@ -56,7 +56,7 @@ export default function Login() {
                     <h3>Welcome back!</h3>
                     <p>
                         New user?{" "}
-                        <Link to="/register" style={{ textDecoration: "none" }}>
+                        <Link to="/account/register" style={{ textDecoration: "none" }}>
                             <span style={{ color: "#8AB9D3", cursor: "pointer" }}>
                                 Create an account
                             </span>

@@ -3,7 +3,7 @@
 .footerContainer {
     position: absolute;
     width: 100%;
-    margin-top: 45vh;
+    margin-top: 100px;
     background-color: #3b4d7a;
     display: flex;
     justify-content: space-between;

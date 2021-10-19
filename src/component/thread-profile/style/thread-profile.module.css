@@ -24,7 +24,7 @@
 }
 .buttonFIlter1 {
     display: flex;
-    gap: 20px;
+    /* gap: 20px; */
 }
 .buttonPopular {
     display: flex;
@@ -39,6 +39,7 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .buttonFIlter1 button:last-child {
@@ -65,6 +66,7 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
+    margin-right: 20px;
 }
 
 .editButtonThread {
@@ -95,11 +97,22 @@
 
 .threadInfo div:first-child {
     width: 60%;
-}
+    height: 150px;
 
-.threadInfo div:last-child img {
+    overflow: hidden;
+}
+.imgThread {
+    width: 300px;
+    overflow: hidden;
+    height: 200px;
+    text-align: right;
+}
+.imgThread img {
     height: 100%;
 }
+/* .threadInfo div:last-child img {
+    height: 100%;
+} */
 
 .titleInfoText {
     font-size: 14px;

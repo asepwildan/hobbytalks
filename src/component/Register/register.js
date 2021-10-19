@@ -68,7 +68,7 @@ export default function Register() {
                             <h3>Join our community!</h3>
                             <p>
                                 Already have account?
-                                <Link to="/login" style={{ textDecoration: "none" }}>
+                                <Link to="/account/login" style={{ textDecoration: "none" }}>
                                     <span style={{ color: "#8AB9D3", cursor: "pointer" }}>
                                         {" "}
                                         Login

@@ -6,7 +6,7 @@ import logo from "../Navbar/hobbytalks.svg";
 import SearchIcon from "@material-ui/icons/Search";
 import { ArrowDropDown, NotificationsNone } from "@material-ui/icons";
 import { Avatar } from "@material-ui/core";
-import axios from "axios"
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Menu, MenuItem } from "@material-ui/core";
 import { CreateThread } from "../ModalThreadPage/createThread";
@@ -57,15 +57,6 @@ export default function Navbar() {
         setIsOpen(false);
     };
 
-    // const openThread = () => {
-    //     if (threadModal === false) {
-    //         setThreadModal(true);
-    //     } else {
-    //         setThreadModal(false);
-    //     }
-    // };
-    // console.log(threadModal, "in modal");
-
     const dropDown = () => {
         if (drop === false) {
             setDrop(true);
@@ -73,7 +64,7 @@ export default function Navbar() {
             setDrop(false);
         }
     };
-    // console.log(drop, "ini dropdown");
+
     const signOut = () => {
         localStorage.removeItem("tokenLogin");
         window.location.reload();
@@ -101,8 +92,7 @@ export default function Navbar() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description"
-                        >
+                            aria-describedby="keep-mounted-modal-description">
                             <Box>
                                 {/* <CreateThread /> */}
                                 <EditProfilUser />
@@ -120,8 +110,7 @@ export default function Navbar() {
                             <div
                                 className={
                                     drop === false ? styles.dropdownNone : styles.dropdownctn
-                                }
-                            >
+                                }>
                                 <p style={{ color: "black" }}></p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
@@ -154,8 +143,7 @@ export default function Navbar() {
                             onClose={handleClose}
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
-                            }}
-                        >
+                            }}>
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                             <MenuItem onClick={handleClose}>Setting</MenuItem>
                             <MenuItem onClick={signOut}>Logout</MenuItem>
@@ -168,14 +156,14 @@ export default function Navbar() {
             ) : (
                 <div className={styles.rightbar}>
                     {/* <div className={styles.loginButton}> */}
-                        <Link to={`/login`} style={{ textDecoration: "none" }}>
-                            <button className={styles.loginBtn} onClick={openModal}>
-                                Login
-                            </button>
-                        </Link>
-                        <Link to={`/${register}`} style={{ textDecoration: "none" }}>
-                                <button className={styles.signUpBtn}>Signup</button>
-                            </Link>
+                    <Link to={`/login`} style={{ textDecoration: "none" }}>
+                        <button className={styles.loginBtn} onClick={openModal}>
+                            Login
+                        </button>
+                    </Link>
+                    <Link to={`/${register}`} style={{ textDecoration: "none" }}>
+                        <button className={styles.signUpBtn}>Signup</button>
+                    </Link>
                     {/* </div> */}
                 </div>
             )}
