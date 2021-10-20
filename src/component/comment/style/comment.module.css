@@ -60,3 +60,13 @@
 .loadMoreBtnNone {
     display: none;
 }
+
+.repliesBtn {
+    width: 95%;
+    display: flex;
+    border: 1px solid #B4C0DE;
+    padding: 10px 10px;
+    margin: 10px 40px 0px 40px;
+    background-color: #FCFDFF;
+    color: #3B4D7A;
+}

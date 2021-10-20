@@ -10,6 +10,8 @@ export default function Comment() {
     const [isData, setIsData] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
+   
+
     useEffect(() => {
         axios
             .get(
@@ -103,15 +105,16 @@ export default function Comment() {
                         </div>
                     </div>
                 </div>
-                <button onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? "hide" : "view"} replies
-                </button>
-                {isOpen && <SubComment replies={comment} />}
+                {comment.reply.length !== 0 ? <button className={styles.repliesBtn} onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? "Hide" : "See"} all {comment.reply.length} replies...
+                </button> : null }
+                {isOpen && <SubComment replies={comment} />} 
             </div>
         );
     };
     return (
         <div className={styles.commentContainer}>
+          
             {isData.map((comment) => (
                 <CommentItem key={comment._id} {...comment} />
             ))}

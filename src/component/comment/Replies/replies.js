@@ -8,6 +8,12 @@ import SubReplies from "./subReplies/subReplies";
 export default function SubComment({ replies }) {
     const reply = replies.reply;
     console.log(reply, "ini props oyyy");
+    const [login, setLogin] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("tokenLogin");
+        setLogin(token);
+    }, []);
     const RepliesItem = ({ ...rep }) => {
         const [isOpen, setIsOpen] = useState(false);
         return (
@@ -80,7 +86,7 @@ export default function SubComment({ replies }) {
                         </div>
                     </div>
                 </div>
-                <button onClick={() => setIsOpen(!isOpen)}>
+                <button className={styles.subRepliesBtn} onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? "hide" : "view"} replies
                 </button>
                 {isOpen && <SubReplies subReplies={rep} />}
@@ -90,6 +96,17 @@ export default function SubComment({ replies }) {
 
     return (
         <div className={styles.commentContainer}>
+            {login ? (
+                <form className={styles.formReplies}>
+                    <Avatar className={styles.avaReplies} src=""/>
+                    <textarea
+                        className={styles.inputReplies}
+                        type="text"
+                        placeholder="Add a comment"
+                    ></textarea>
+                    <button className={styles.postBtn}>Post</button>
+                </form>
+            ) : null}
             {reply.map((rep) => (
                 <RepliesItem key={rep.id} {...rep} />
             ))}

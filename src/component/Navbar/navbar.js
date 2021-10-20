@@ -156,12 +156,12 @@ export default function Navbar() {
             ) : (
                 <div className={styles.rightbar}>
                     {/* <div className={styles.loginButton}> */}
-                    <Link to={`/login`} style={{ textDecoration: "none" }}>
+                    <Link to={`/account/login`} style={{ textDecoration: "none" }}>
                         <button className={styles.loginBtn} onClick={openModal}>
                             Login
                         </button>
                     </Link>
-                    <Link to={`/${register}`} style={{ textDecoration: "none" }}>
+                    <Link to={`/account/register`} style={{ textDecoration: "none" }}>
                         <button className={styles.signUpBtn}>Signup</button>
                     </Link>
                     {/* </div> */}
