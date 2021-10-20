@@ -86,7 +86,6 @@ label {
     transform: scale(0.9);
 }
 
-
 .oAuth {
     display: flex;
     flex-wrap: nowrap;
@@ -130,6 +129,19 @@ label {
     top: 2px;
     width: 8%;
     padding-right: 5px;
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55%;
+    height: 30px;
+    margin: 20px 80px;
+}
+
+.loaderContainer img {
+    width: 40px;
 }
 
 @media screen and (max-width: 1080px) and (min-width: 720px) {

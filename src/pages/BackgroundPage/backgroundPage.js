@@ -34,7 +34,9 @@ export default function BackgroundPage() {
             <Route path={`/account/loading`} render={() => <LandingGoogle />} />
 
             <div className={styles.backgroundPageContainer} style={{ backgroundColor: "#254557" }}>
-                <img className={styles.logo} src={logo} alt="hobbytalk" />
+                <Link to="/" style={{ textDecoration: "none" }}>
+                    <img className={styles.logo} src={logo} alt="hobbytalk" />
+                </Link>
                 <ul className={styles.backgroundImage}>
                     <li>
                         <img src={image1} alt="pctr" />
