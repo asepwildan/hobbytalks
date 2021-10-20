@@ -12,11 +12,10 @@ function Routes() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Homepage} />
-                    {/* <Route path="/login" component={Backgroundpage} /> */}
                     <Route path="/profile" component={Profile} />
                     <Route path="/category" component={Category} />
-                    {/* <Route path="/register" component={Backgroundpage} /> */}
                     <Route path="/thread-detail" component={ThreadDetail} />
+
                     <Route path="/account/:id" component={Backgroundpage} />
                 </Switch>
             </Router>

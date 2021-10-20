@@ -4,7 +4,7 @@ import imgthread2 from "./img/imgthread2.png";
 import ava1 from "./img/ava1.png";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import { Route, useParams, Link } from "react-router-dom";
 export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
     const [name, setName] = useState("");
@@ -96,21 +96,23 @@ export default function Thread() {
                     </div>
                     <div key={thread.userId} className={styles.threadListProfile}>
                         <div className={styles.titleThreadProfile}>
-                            <div className={styles.threadInfo}>
-                                <div>
-                                    <p className={styles.titleInfoText}>{thread.title}</p>
-                                    <div className={styles.threadProfileInfo}>
-                                        <img src={ava1} alt="img1" />
-                                        <p className={styles.threadAccountName}>{name}</p>
+                            <Link to="/thread-detail" style={{ textDecoration: "none" }}>
+                                <div className={styles.threadInfo}>
+                                    <div>
+                                        <p className={styles.titleInfoText}>{thread.title}</p>
+                                        <div className={styles.threadProfileInfo}>
+                                            <img src={ava1} alt="img1" />
+                                            <p className={styles.threadAccountName}>{name}</p>
+                                        </div>
+
+                                        <p className={styles.threadTextAnchor}>{thread.content}</p>
                                     </div>
 
-                                    <p className={styles.threadTextAnchor}>{thread.content}</p>
+                                    <div className={styles.imgThread}>
+                                        <img src={thread.image} alt="imgthread" />
+                                    </div>
                                 </div>
-
-                                <div className={styles.imgThread}>
-                                    <img src={thread.image} alt="imgthread" />
-                                </div>
-                            </div>
+                            </Link>
                             <div className={styles.threadActionContainer}>
                                 <div className={styles.threadAction}>
                                     <svg
