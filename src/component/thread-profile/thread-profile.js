@@ -12,14 +12,14 @@ export default function Thread() {
         axios
             .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
                 headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt1cm9tYXNoaXJvMDEyM0BnbWFpbC5jb20iLCJpZCI6IjYxNjZlMzRkMDQ5MTEzMTBhYWZlZGFjOSIsImlhdCI6MTYzNDY1NTI4NCwiZXhwIjoxNjM0NzQxNjg0fQ.taz8Tom3ew5gTA_HweOkbGyZClfMDrezaIBZPmKnICE`,
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt1cm9tYXNoaXJvMDEyM0BnbWFpbC5jb20iLCJpZCI6IjYxNjZlMzRkMDQ5MTEzMTBhYWZlZGFjOSIsImlhdCI6MTYzNDc0MjA3MywiZXhwIjoxNjM0ODI4NDczfQ.rAhIWGHsfDM7obKfJqRy9OLCTHXlScFuPR-Xb-j8BPE`,
                 },
             })
             .then((response) => {
                 setThreadUser(response.data.data.threads);
                 setName(response.data.data.name);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error, "error"));
     }, []);
 
     return (

@@ -15,7 +15,6 @@ function Routes() {
                     <Route path="/profile" component={Profile} />
                     <Route path="/category" component={Category} />
                     <Route path="/thread-detail" component={ThreadDetail} />
-
                     <Route path="/account/:id" component={Backgroundpage} />
                 </Switch>
             </Router>
