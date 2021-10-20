@@ -4,13 +4,13 @@ import styles from "./style/comment.module.css";
 import { useState } from "react";
 import axios from "axios";
 import SubComment from "./Replies/replies";
-// import { ClassNames } from "@emotion/react";
+import Loader from "./loaderComment.gif";
 
 export default function Comment() {
     const [isData, setIsData] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPage, setTotalPage] = useState(1);
-   
+    const [load, setLoad] = useState(false);
 
     useEffect(() => {
         axios
@@ -23,6 +23,7 @@ export default function Comment() {
                 console.log(response.data.totalPage, "useefek");
                 //    setName(response.data)
                 console.log(response.data.data, "ini commen");
+                setLoad(false);
                 // const totalPage = response.data.data.totalPage
             });
     }, [page]);
@@ -30,6 +31,7 @@ export default function Comment() {
     console.log(isData, "imi response");
     const loadMore = () => {
         setPage(page + 1);
+        setLoad(true);
     };
 
     const loadLess = () => {
@@ -105,27 +107,41 @@ export default function Comment() {
                         </div>
                     </div>
                 </div>
-                {comment.reply.length !== 0 ? <button className={styles.repliesBtn} onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? "Hide" : "See"} all {comment.reply.length} replies...
-                </button> : null }
-                {isOpen && <SubComment replies={comment} />} 
+                {comment.reply.length !== 0 ? (
+                    <button className={styles.repliesBtn} onClick={() => setIsOpen(!isOpen)}>
+                        {isOpen ? "Hide" : "See"} all {comment.reply.length} replies...
+                    </button>
+                ) : null}
+                {isOpen && <SubComment replies={comment} />}
             </div>
         );
     };
     return (
         <div className={styles.commentContainer}>
-          
             {isData.map((comment) => (
                 <CommentItem key={comment._id} {...comment} />
             ))}
+            <div className={styles.loaderContainer}>
+                {load === true ? (
+                    <img src={Loader} alt="Load" className={styles.loaderComment} />
+                ) : (
+                    <div></div>
+                )}
+            </div>
 
-            {page < totalPage ? (
-                <button onClick={loadMore}>Loadmore</button>
-            ) : totalPage === 1 ? (
-                <div></div>
-            ) : (
-                <button onClick={loadLess}>Loadless</button>
-            )}
+            <div className={styles.loadButtonContainer}>
+                {page < totalPage ? (
+                    <button onClick={loadMore} className={styles.loadComment}>
+                        Load more comments
+                    </button>
+                ) : totalPage === 1 ? (
+                    <div></div>
+                ) : (
+                    <button onClick={loadLess} className={styles.loadComment}>
+                        Load less comments
+                    </button>
+                )}
+            </div>
         </div>
     );
 }

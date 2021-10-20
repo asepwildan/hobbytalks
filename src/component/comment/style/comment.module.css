@@ -41,7 +41,6 @@
     padding: 5px 0px;
     border-radius: 8px;
     margin: 10px 0px 0px 40px;
-
 }
 
 .commentAction {
@@ -64,9 +63,41 @@
 .repliesBtn {
     width: 95%;
     display: flex;
-    border: 1px solid #B4C0DE;
+    border: 1px solid #b4c0de;
     padding: 10px 10px;
     margin: 10px 40px 0px 40px;
-    background-color: #FCFDFF;
-    color: #3B4D7A;
+    background-color: #fcfdff;
+    color: #3b4d7a;
+    cursor: pointer;
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+.loaderComment {
+    margin: 0 auto;
+}
+.loadButtonContainer {
+    text-align: center;
+    /* margin-top: 40px; */
+    margin-bottom: 20px;
+    transition-duration: 0.1s;
+    transition-property: transform;
+}
+.loadButtonContainer:active {
+    transform: scale(0.9);
+}
+
+.loadComment {
+    border: none;
+    background-color: #f2f2f2;
+    font-size: 12px;
+    padding: 7px 20px;
+    color: #607cc5;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
 }
