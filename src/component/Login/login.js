@@ -5,9 +5,11 @@ import google from "../../pages/BackgroundPage/Asset/google.png";
 import facebook from "../../pages/BackgroundPage/Asset/facebook.png";
 import axios from "axios";
 import { Route, useParams, Link } from "react-router-dom";
+import Loader from "./loader.gif";
 // import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Login() {
+    const [load, setLoad] = useState(false);
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -23,6 +25,7 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoad(true);
         axios
 
             .post("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login", {
@@ -34,11 +37,14 @@ export default function Login() {
                 console.log(Response, "login");
                 const token = Response.data.data;
                 localStorage.setItem("tokenLogin", token);
+                setLoad(false);
                 window.location = "/account/welcome";
             })
             .catch((error) => {
                 console.log(error.response.data.message, "wah ini eror login");
+
                 alert(error.response.data.message);
+                setLoad(false);
             });
     };
 
@@ -55,9 +61,10 @@ export default function Login() {
                 <div className={styles.welcomeBoard}>
                     <h3>Welcome back!</h3>
                     <p>
-                        New user?{" "}
+                        New user?
                         <Link to="/account/register" style={{ textDecoration: "none" }}>
                             <span style={{ color: "#8AB9D3", cursor: "pointer" }}>
+                                {" "}
                                 Create an account
                             </span>
                         </Link>
@@ -81,9 +88,15 @@ export default function Login() {
                             value={values.password}
                             required
                         />
-                        <button className={styles.buttonLogin} type="Submit">
-                            Login
-                        </button>
+                        {load === true ? (
+                            <div className={styles.loaderContainer}>
+                                <img src={Loader} alt="Loader" />
+                            </div>
+                        ) : (
+                            <button className={styles.buttonLogin} type="Submit">
+                                Login
+                            </button>
+                        )}
                     </form>
                 </div>
                 <div className={styles.oAuth}>
