@@ -7,6 +7,7 @@ import RelatedTopic from "../../component/relatedTopic/relatedTopic";
 import Comment from "../../component/comment/comment";
 import imgAvatar from "./img/imgAvatar.png";
 import ThreadUser from "../../component/thread-detail-user/Thread-detail-user";
+import { Link } from "react-router-dom";
 
 export default function ThreadDetail() {
     const [login, setLogin] = useState(false);
@@ -24,7 +25,7 @@ export default function ThreadDetail() {
                     <div className={styles.threadContanerThreadDetail}>
                         <ThreadUser />
                         <div className={styles.formCommentContainer}>
-                        {login ?       <div className={styles.formCommentDoang}>
+                        {login ? <div className={styles.formCommentDoang}>
                                 <div className={styles.identitas}>
                                     <img src={imgAvatar} alt="img"></img>
                                     <p className={styles.nama}>Kevin Alexander</p>
@@ -39,7 +40,7 @@ export default function ThreadDetail() {
                                     <button className={styles.tombol}>Add a comment</button>
                                 </form> 
                             </div> : <div className={styles.formCommentNoLogin}>
-                                <button className={styles.tombolThreadNoLogin}>Login to add comment</button>
+                            <Link to={`/account/login`} style={{ textDecoration: "none" }}><button className={styles.tombolThreadNoLogin}>Login to add comment</button></Link>
                             </div>}
                             
                         </div>
