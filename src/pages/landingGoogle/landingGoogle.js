@@ -15,17 +15,18 @@ import image9 from "../BackgroundPage/Asset/image9.png";
 import image10 from "../BackgroundPage/Asset/image10.png";
 
 export default function LandingGoogle() {
-    let { id } = useParams();
-    console.log(id, "url");
+    const queryParams = new URLSearchParams(window.location.search);
+
+    const token = queryParams.get("token");
+
     let [triger, setTriger] = useState(true);
     let Token = localStorage.getItem("tokenLogin");
     useEffect(() => {
         const interval = setInterval(() => {
-            console.log("contoh interval");
-            // window.location = "/profile";
+            localStorage.setItem("tokenLogin", token);
+            window.location = "/profile";
         }, 5000);
         return function cleanup() {
-            console.log("cleanup; terjadi saat component akan unmount/hilang dari halaman web");
             clearInterval(interval);
         };
     }, []);

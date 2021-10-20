@@ -15,6 +15,7 @@ import Register from "../../component/Register/register";
 import Login from "../../component/Login/login";
 import Email from "../../component/email-verify/EmailVerify";
 import Welcome from "../../component/email-welcome/EmailWelcome";
+import LandingGoogle from "../landingGoogle/landingGoogle";
 import { Route, useParams, Link } from "react-router-dom";
 // import image3 from "../Asset/Rectangle30.png"
 // import image4 from "../Asset/Rectangle31.png"
@@ -30,6 +31,8 @@ export default function BackgroundPage() {
             <Route path={`/account/welcome`} render={() => <Welcome />} />
             <Route path={`/account/register`} render={() => <Register />} />
             <Route path={`/account/login`} render={() => <Login />} />
+            <Route path={`/account/loading`} render={() => <LandingGoogle />} />
+
             <div className={styles.backgroundPageContainer} style={{ backgroundColor: "#254557" }}>
                 <img className={styles.logo} src={logo} alt="hobbytalk" />
                 <ul className={styles.backgroundImage}>
