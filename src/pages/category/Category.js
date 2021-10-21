@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./style/category.scss";
 import Navbar from "../../component/Navbar/navbar";
-import Category1 from "./img/category1.png";
-import Category2 from "./img/category2.png";
-import Category3 from "./img/category3.png";
-import Category4 from "./img/category4.png";
-import Category5 from "./img/category5.png";
-import Category6 from "./img/category6.png";
-import Category7 from "./img/category7.png";
+import Music from "./img/music.jpg";
+import Game from "./img/game.jpg";
+import Sport from "./img/sport.jpg";
+import Travel from "./img/travel.jpg";
+import Arts from "./img/arts.jpg";
+import Diy from "./img/diy.jpg";
+import Tech from "./img/tech.jpg";
 import Category8 from "./img/category8.jpg";
 import Category9 from "./img/category9.jpg";
 import axios from "axios";
@@ -15,14 +15,14 @@ import axios from "axios";
 export default function Category() {
     let [category, setCategory] = useState([
         {
-            img: Category1,
+            img: Music,
             value: "6166eed398472010a2d7e97e",
             title: "Music",
             isCheck: false,
             id: "1a",
         },
         {
-            img: Category2,
+            img: Game,
             value: "6166eed998472010a2d7e980",
             title: "Games",
             isCheck: false,
@@ -30,35 +30,35 @@ export default function Category() {
         },
         ,
         {
-            img: Category3,
+            img: Sport,
             value: "6166eee898472010a2d7e982",
             title: "Sports",
             isCheck: false,
             id: "3a",
         },
         {
-            img: Category4,
+            img: Travel,
             value: "6166eec398472010a2d7e97c",
             title: "Travel",
             isCheck: false,
             id: "4a",
         },
         {
-            img: Category5,
+            img: Arts,
             value: "6166eeed98472010a2d7e984",
             title: "Arts",
             isCheck: false,
             id: "5a",
         },
         {
-            img: Category6,
+            img: Diy,
             value: "6166eef398472010a2d7e986",
             title: "DIY",
             isCheck: false,
             id: "6a",
         },
         {
-            img: Category7,
+            img: Tech,
             value: "6166ef8c98472010a2d7e988",
             title: "Tech",
             isCheck: false,
