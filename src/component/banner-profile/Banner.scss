@@ -1,7 +1,6 @@
 // @import '../assets/color/Color';
 // @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
 
-
 // .btn {
 //     height: 27px;
 //     width: 106px;
@@ -62,9 +61,18 @@
         display: inline-flex;
         gap: 30px;
         align-items: center;
-        img {
+
+        .profileAva {
+            height: 150px;
+            width: 150px;
+
             border-radius: 50%;
+            overflow: hidden;
+            img {
+                width: 100%;
+            }
         }
+
         .profileInfo {
             margin-top: 55px;
             .username-editBtn {
@@ -90,7 +98,7 @@
                     border: 1px solid #1e8ac6;
                     border-radius: 4px;
                     transition-duration: 0.1s;
-                    transition-property: transform ;
+                    transition-property: transform;
                     cursor: pointer;
                     p {
                         font-size: 14px;

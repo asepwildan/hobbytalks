@@ -1,5 +1,22 @@
 import { combineReducers } from "redux";
+import getProfileReducer from "./getProfile";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+    getProfileReducer,
+});
 
 export default rootReducer;
+
+// import { combineReducers } from "redux";
+
+// import getProfileReducer from "./getprofile"
+
+// import userReducer from "./user";
+// import todoReducer from "./todo";
+
+// const rootReducer = combineReducers({
+//   userReducer,
+//   todoReducer
+// })
+
+// export default rootReducer;
