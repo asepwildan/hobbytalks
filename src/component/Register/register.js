@@ -9,7 +9,7 @@ import axios from "axios";
 // import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Register() {
-    let { register } = useParams();
+    // let { register } = useParams();
     let [linkWelcome, setLinkWelcome] = useState("");
     let [emailValue, setEmailvalue] = useState("");
     const [values, setValues] = useState({
@@ -55,7 +55,7 @@ export default function Register() {
         setEmailvalue(values.email);
     };
 
-    console.log(register, " get url register");
+    // console.log(register, " get url register");
 
     return (
         <React.Fragment>

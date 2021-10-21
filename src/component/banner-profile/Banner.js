@@ -76,6 +76,7 @@ export default function Banner() {
                     <div className="bioContainer">
                         <p className="p2">Sprinkling kindness everywhere I go.</p>
                     </div>
+                    <button className="update-cover">Update Cover</button>
                 </div>
             </div>
         </div>
