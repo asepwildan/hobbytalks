@@ -12,7 +12,7 @@ export default function Thread() {
         axios
             .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
                 headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt1cm9tYXNoaXJvMDEyM0BnbWFpbC5jb20iLCJpZCI6IjYxNjZlMzRkMDQ5MTEzMTBhYWZlZGFjOSIsImlhdCI6MTYzNDc0MjA3MywiZXhwIjoxNjM0ODI4NDczfQ.rAhIWGHsfDM7obKfJqRy9OLCTHXlScFuPR-Xb-j8BPE`,
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt1cm9tYXNoaXJvMDEyM0BnbWFpbC5jb20iLCJpZCI6IjYxNjZlMzRkMDQ5MTEzMTBhYWZlZGFjOSIsImlhdCI6MTYzNDgzMTk3NCwiZXhwIjoxNjM0OTE4Mzc0fQ.u3EVfQQlqkD8gtpWNT3RIGurmSIxArPGIGANbwD068w`,
                 },
             })
             .then((response) => {

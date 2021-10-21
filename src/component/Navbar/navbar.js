@@ -15,6 +15,9 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 import Login from "../Login/login";
+import { getProfileInfoAsync } from "../../redux/actions";
+import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -23,24 +26,14 @@ export default function Navbar() {
     const [threadModal, setThreadModal] = useState(false);
     const [isOpen, setIsOpen] = useState();
     const register = "register";
-    // let Token = localStorage.getItem("tokenLogin");
+    const dispatch = useDispatch();
+    const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
 
-    const [nama, setNama] = useState("");
     let Token = localStorage.getItem("tokenLogin");
+
     useEffect(() => {
-        axios
-            .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
-                headers: {
-                    Authorization: `Bearer ${Token}`,
-                },
-            })
-            .then((Res) => {
-                console.log(Res.data.data.name);
-                setNama(Res.data.data.name);
-                //   setUserName(Res.data.data.name)
-            })
-            .catch((error) => console.log(error));
-    }, [Token]);
+        dispatch(getProfileInfoAsync());
+    }, [dispatch]);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -122,8 +115,8 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div className={styles.avaBar}>
-                        <Avatar className={styles.userAvatar} alt="" />
-                        <span className={styles.nameUser}>{nama}</span>
+                        <Avatar className={styles.userAvatar} src={profileInfo.avatar} alt="" />
+                        <span className={styles.nameUser}>{profileInfo.name}</span>
                     </div>
 
                     <div className={styles.profilDropdown}>
@@ -144,7 +137,11 @@ export default function Navbar() {
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
                             }}>
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <Link to="/profile" style={{ textDecoration: "none" }}>
+                                <MenuItem onClick={handleClose} className={styles.dropdownProfile}>
+                                    Profile
+                                </MenuItem>
+                            </Link>
                             <MenuItem onClick={handleClose}>Setting</MenuItem>
                             <MenuItem onClick={signOut}>Logout</MenuItem>
                         </Menu>

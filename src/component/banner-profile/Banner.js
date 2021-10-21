@@ -7,6 +7,8 @@ import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileInfoAsync } from "../../redux/actions";
 import { connect } from "react-redux";
+import AvaDefault from "./ava.png";
+import { Avatar } from "@material-ui/core";
 
 function Banner() {
     const dispatch = useDispatch();
@@ -25,11 +27,17 @@ function Banner() {
         SetIsOpen(false);
     };
 
+    console.log(profileInfo.avatar, "ava");
     return (
         <div className="bannerContainer">
             <div className="bannerContent">
                 <div className="profileAva">
-                    <img className="fp" src={profileInfo.avatar} alt="profile" />
+                    {profileInfo.avatar === undefined ? (
+                        <img className="fp" src={AvaDefault} alt="profile" />
+                    ) : (
+                        // <img className="avaProfile" src={profileInfo.avatar} alt="profile" />
+                        <img src={profileInfo.avatar} className="avaProfile" alt="ava" />
+                    )}
                 </div>
 
                 <div className="profileInfo">

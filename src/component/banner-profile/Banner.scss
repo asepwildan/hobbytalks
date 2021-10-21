@@ -57,6 +57,8 @@
 .bannerContainer {
     padding: 60px 124px;
     background-image: url("../assets/images/banner.png");
+    background-repeat: no-repeat;
+
     .bannerContent {
         display: inline-flex;
         gap: 30px;
@@ -65,11 +67,20 @@
         .profileAva {
             height: 150px;
             width: 150px;
-
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid rgb(255, 255, 255);
             border-radius: 50%;
             overflow: hidden;
-            img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .fp {
+                width: 80%;
+            }
+            .avaProfile {
                 width: 100%;
+                margin-top: 60px;
             }
         }
 
