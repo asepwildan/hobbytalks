@@ -7,13 +7,45 @@ import SubReplies from "./subReplies/subReplies";
 
 export default function SubComment({ replies }) {
     const reply = replies.reply;
-    console.log(reply, "ini props oyyy");
+    console.log(reply, "ini props guys");
     const [login, setLogin] = useState(false);
+    const token = localStorage.getItem("tokenLogin");
+    const [postReplie, setPostReplie] = useState()
+    const [values, setValues] = useState({ content: "" });
+    const [status, setStatus] = useState()
 
+    function handleChange(e) {
+        const value = e.target.value;
+        const name = e.target.name;
+        setValues({ ...value, [name]: value });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        document.querySelector("form").reset();
+        axios.post(
+            `https://hobbytalk-be-glints.herokuapp.com/api/v1/reply/${replies.id}`,
+            {
+                content: values.content,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        .then((response) => {
+            setPostReplie(response)
+            console.log(response, "ini comment")
+        },[postReplie])
+        .catch((message) => {
+            setStatus(message);
+            console.log(message, "ini error")
+          },[])
+    }
     useEffect(() => {
-        const token = localStorage.getItem("tokenLogin");
         setLogin(token);
-    }, []);
+    }, [token]);
     const RepliesItem = ({ ...rep }) => {
         const [isOpen, setIsOpen] = useState(false);
         return (
@@ -97,14 +129,17 @@ export default function SubComment({ replies }) {
     return (
         <div className={styles.commentContainer}>
             {login ? (
-                <form className={styles.formReplies}>
+                <form onSubmit={handleSubmit} className={styles.formReplies}>
                     <Avatar className={styles.avaReplies} src=""/>
                     <textarea
+                        onChange={handleChange}
                         className={styles.inputReplies}
+                        name="content"
                         type="text"
                         placeholder="Add a comment"
+                        required
                     ></textarea>
-                    <button className={styles.postBtn}>Post</button>
+                    <button type="submit" className={styles.postBtn}>Post</button>
                 </form>
             ) : null}
             {reply.map((rep) => (

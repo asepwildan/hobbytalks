@@ -4,7 +4,7 @@ import imgthread2 from "./img/imgthread2.png";
 import ava1 from "./img/ava1.png";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import { Route, useParams, Link } from "react-router-dom";
 export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
     const [name, setName] = useState("");
@@ -12,14 +12,14 @@ export default function Thread() {
         axios
             .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
                 headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt1cm9tYXNoaXJvMDEyM0BnbWFpbC5jb20iLCJpZCI6IjYxNjZlMzRkMDQ5MTEzMTBhYWZlZGFjOSIsImlhdCI6MTYzNDY1NTI4NCwiZXhwIjoxNjM0NzQxNjg0fQ.taz8Tom3ew5gTA_HweOkbGyZClfMDrezaIBZPmKnICE`,
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt1cm9tYXNoaXJvMDEyM0BnbWFpbC5jb20iLCJpZCI6IjYxNjZlMzRkMDQ5MTEzMTBhYWZlZGFjOSIsImlhdCI6MTYzNDc0MjA3MywiZXhwIjoxNjM0ODI4NDczfQ.rAhIWGHsfDM7obKfJqRy9OLCTHXlScFuPR-Xb-j8BPE`,
                 },
             })
             .then((response) => {
                 setThreadUser(response.data.data.threads);
                 setName(response.data.data.name);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log(error, "error"));
     }, []);
 
     return (
@@ -96,21 +96,23 @@ export default function Thread() {
                     </div>
                     <div key={thread.userId} className={styles.threadListProfile}>
                         <div className={styles.titleThreadProfile}>
-                            <div className={styles.threadInfo}>
-                                <div>
-                                    <p className={styles.titleInfoText}>{thread.title}</p>
-                                    <div className={styles.threadProfileInfo}>
-                                        <img src={ava1} alt="img1" />
-                                        <p className={styles.threadAccountName}>{name}</p>
+                            <Link to="/thread-detail" style={{ textDecoration: "none" }}>
+                                <div className={styles.threadInfo}>
+                                    <div>
+                                        <p className={styles.titleInfoText}>{thread.title}</p>
+                                        <div className={styles.threadProfileInfo}>
+                                            <img src={ava1} alt="img1" />
+                                            <p className={styles.threadAccountName}>{name}</p>
+                                        </div>
+
+                                        <p className={styles.threadTextAnchor}>{thread.content}</p>
                                     </div>
 
-                                    <p className={styles.threadTextAnchor}>{thread.content}</p>
+                                    <div className={styles.imgThread}>
+                                        <img src={thread.image} alt="imgthread" />
+                                    </div>
                                 </div>
-
-                                <div className={styles.imgThread}>
-                                    <img src={thread.image} alt="imgthread" />
-                                </div>
-                            </div>
+                            </Link>
                             <div className={styles.threadActionContainer}>
                                 <div className={styles.threadAction}>
                                     <svg

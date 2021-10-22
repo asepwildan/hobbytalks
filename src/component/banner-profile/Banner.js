@@ -1,33 +1,21 @@
-// import React from "react";
-// import './Banner.scss';
-// import banner from '../assets/images/banner.png';
-// import union from '../assets/logo/Union.svg';
-// import fotoprofil from '../assets/images/image 7.png'
-
-// export default function Banner() {
-//     return(
-//         <banner>
-//             <img className="fp" src={ fotoprofil }></img>
-//             <p className="p1">Justin Junaedi</p>
-//             <p className="p2">Sprinkling kindness everywhere I go.</p>
-//             <img src={ banner }></img>
-//             <button className="btn">Edit Profile
-//                 <img className="img" src={ union }></img>
-//             </button>
-//         </banner>
-
-//     )
-// }
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Banner.scss";
 import fotoprofil from "../assets/images/image 7.png";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileInfoAsync } from "../../redux/actions";
+import { connect } from "react-redux";
 
-export default function Banner() {
+function Banner() {
+    const dispatch = useDispatch();
+    const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
     const [isOpen, SetIsOpen] = useState();
+
+    useEffect(() => {
+        dispatch(getProfileInfoAsync());
+    }, [dispatch]);
 
     const openModal = () => {
         SetIsOpen(true);
@@ -40,18 +28,20 @@ export default function Banner() {
     return (
         <div className="bannerContainer">
             <div className="bannerContent">
-                <img className="fp" src={fotoprofil} alt="profile" />
+                <div className="profileAva">
+                    <img className="fp" src={profileInfo.avatar} alt="profile" />
+                </div>
+
                 <div className="profileInfo">
                     <div className="username-editBtn">
-                        <p className="p1">Justin Junaedi</p>
+                        <p className="p1">{profileInfo.name}</p>
                         <button className="btn" onClick={openModal}>
                             <svg
                                 width="15"
                                 height="16"
                                 viewBox="0 0 15 16"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     fill-rule="evenodd"
                                     clip-rule="evenodd"
@@ -66,8 +56,7 @@ export default function Banner() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description"
-                        >
+                            aria-describedby="keep-mounted-modal-description">
                             <Box>
                                 <EditProfilUser />
                             </Box>
@@ -81,3 +70,5 @@ export default function Banner() {
         </div>
     );
 }
+
+export default Banner;

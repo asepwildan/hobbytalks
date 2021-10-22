@@ -15,7 +15,7 @@ export default function Comment() {
     useEffect(() => {
         axios
             .get(
-                `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328?page=${page}&limit=5`
+                `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328?page=${page}&limit=10`
             )
             .then((response) => {
                 setIsData(response.data.data);
@@ -43,7 +43,7 @@ export default function Comment() {
         return (
             <div key={comment._id} className={styles.commentWrapper}>
                 <div className={styles.commentRightPart}>
-                    <Avatar className={styles.avatar} alt="A" />
+                    <Avatar className={styles.avatar} src={comment.avatar}alt="A" />
                     <div className={styles.commentAuthor}>{comment.userId.name}</div>
                     <div className={styles.commentTimes}> | {comment.date}</div>
                 </div>
@@ -107,11 +107,12 @@ export default function Comment() {
                         </div>
                     </div>
                 </div>
-                {comment.reply.length !== 0 ? (
+                {/* {comment.reply.length !== 0 ? ( */}
                     <button className={styles.repliesBtn} onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? "Hide" : "See"} all {comment.reply.length} replies...
                     </button>
-                ) : null}
+                
+                {/* : null} */}
                 {isOpen && <SubComment replies={comment} />}
             </div>
         );

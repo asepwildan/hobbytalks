@@ -1,12 +1,52 @@
 import { Avatar } from "@material-ui/core";
-// import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "./style/subReplies.module.css";
-// import { useState } from "react";
-// import axios from "axios";
+import { useState } from "react";
+import axios from "axios";
 
 export default function SubReplies({ subReplies }) {
     const subReplay = subReplies.subReply;
     console.log(subReplay, "iniprop subreplay");
+    const [login, setLogin] = useState(false);
+    const token = localStorage.getItem("tokenLogin")
+    const [postReplie, setPostReplie] = useState()
+    const [values, setValues] = useState({ content: "" });
+    const [status, setStatus] = useState()
+
+    function handleChange(e) {
+        const value = e.target.value;
+        const name = e.target.name;
+        setValues({ ...value, [name]: value });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        document.querySelector("form").reset();
+        axios.post(
+            `https://hobbytalk-be-glints.herokuapp.com/api/v1/subReply/${subReplies.id}`,
+            {
+                content: values.content,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        .then((response) => {
+            setPostReplie(response)
+            console.log(response, "ini comment")
+        },[postReplie])
+        .catch((message) => {
+            setStatus(message);
+            console.log(message, "ini error")
+          },[])
+    }
+
+    useEffect(() => {
+        setLogin(token);
+    }, [token]);
+
     const SubRepliesItem = ({ ...subRep }) => {
         // const [isOpen, setIsOpen] = useState(false);
         return (
@@ -61,6 +101,20 @@ export default function SubReplies({ subReplies }) {
     };
     return (
         <div className={styles.commentContainer}>
+             {login ? (
+                <form onSubmit={handleSubmit} className={styles.formReplies}>
+                    <Avatar className={styles.avaReplies} src=""/>
+                    <textarea
+                        onChange={handleChange}
+                        className={styles.inputReplies}
+                        name="content"
+                        type="text"
+                        placeholder="Add a comment"
+                        required
+                    ></textarea>
+                    <button type="submit" className={styles.postBtn}>Post</button>
+                </form>
+            ) : null}
             {subReplay.map((subRep) => (
                 <SubRepliesItem key={subRep.id} {...subRep} />
             ))}
