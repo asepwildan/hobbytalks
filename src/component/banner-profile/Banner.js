@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Banner.scss";
 import fotoprofil from "../assets/images/image 7.png";
 import Modal from "@mui/material/Modal";
@@ -6,16 +6,25 @@ import Box from "@mui/material/Box";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileInfoAsync } from "../../redux/actions";
-import { connect } from "react-redux";
+import AvaDefault from "./ava.png";
+import { Avatar } from "@material-ui/core";
+import axios from "axios";
+import iconUpload from "./assets/upload.svg";
 
 function Banner() {
+    let Token = localStorage.getItem("tokenLogin");
+    const inputFile = useRef(null);
     const dispatch = useDispatch();
     const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
     const [isOpen, SetIsOpen] = useState();
+    const [response, setResponse] = useState({});
+    const [imageTes, setImageTes] = useState(null);
+
+    const [picture, setPicture] = useState([]);
 
     useEffect(() => {
         dispatch(getProfileInfoAsync());
-    }, [dispatch]);
+    }, [dispatch, response]);
 
     const openModal = () => {
         SetIsOpen(true);
@@ -25,13 +34,89 @@ function Banner() {
         SetIsOpen(false);
     };
 
+    const handlechangeAva = (e) => {
+        const value = e.target.files[0];
+        const name = e.target.name;
+        setImageTes(e.target.files[0]);
+        setPicture(URL.createObjectURL(e.target.files[0]));
+    };
+
+    const submitImg = (e) => {
+        e.preventDefault();
+        let formdata = new FormData();
+
+        formdata.append("avatar", imageTes);
+
+        console.log(formdata, "formdata");
+        axios
+            .put(
+                "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/profile",
+
+                formdata,
+
+                {
+                    headers: {
+                        AUTHORIZATION: `Bearer ${Token}`,
+                    },
+                }
+            )
+            .then((response) => {
+                console.log(response.data, "image banner");
+                setResponse(response.data);
+                setImageTes(null);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+    const onButtonClick = () => {
+        inputFile.current.click();
+    };
+    console.log(profileInfo.avatar, "ava");
+
     return (
         <div className="bannerContainer">
             <div className="bannerContent">
                 <div className="profileAva">
-                    <img className="fp" src={profileInfo.avatar} alt="profile" />
+                    {imageTes === null ? (
+                        <div></div>
+                    ) : (
+                        <img src={picture} alt="preview" className="avaPreview" />
+                    )}
+
+                    {profileInfo.avatar === undefined ? (
+                        <img className="fp" src={AvaDefault} alt="profile" />
+                    ) : (
+                        // <img className="avaProfile" src={profileInfo.avatar} alt="profile" />
+                        <img src={profileInfo.avatar} className="avaProfile" alt="ava" />
+                    )}
+                    <div id="buttonUploadContainer">
+                        <button className="buttonUpload" onClick={onButtonClick}>
+                            {" "}
+                            <img src={iconUpload} alt="" />
+                            <p>Edit</p>
+                        </button>
+                    </div>
                 </div>
 
+                <form onSubmit={submitImg} className="formImg">
+                    <input
+                        type="file"
+                        name="image"
+                        id="customfileinput"
+                        onChange={handlechangeAva}
+                        ref={inputFile}
+                    />
+                    <br />
+                    <br />
+                    {imageTes === null ? (
+                        <div></div>
+                    ) : (
+                        <button type="submit" name="upload" className="submitAva">
+                            Save
+                        </button>
+                    )}
+                </form>
                 <div className="profileInfo">
                     <div className="username-editBtn">
                         <p className="p1">{profileInfo.name}</p>
@@ -63,7 +148,7 @@ function Banner() {
                         </Modal>
                     </div>
                     <div className="bioContainer">
-                        <p className="p2">Sprinkling kindness everywhere I go.</p>
+                        <p className="p2">{profileInfo.bio}</p>
                     </div>
                 </div>
             </div>

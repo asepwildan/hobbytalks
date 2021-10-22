@@ -25,9 +25,9 @@ export default function ThreadDetail() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        document.querySelector("form").reset();
+        
         axios.post(
-            "https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328",
+            "https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616bc20a15f73f8d5d5bbeab",
             {
                 content: values.content,
             },
@@ -40,6 +40,8 @@ export default function ThreadDetail() {
         .then((response) => {
             setComment(response)
             console.log(response, "ini comment")
+            e.target.reset();
+            window.location.reload();
         },[comment])
         .catch((message) => {
             setStatus(message);

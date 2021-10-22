@@ -210,6 +210,9 @@
     padding-top: 150px !important;
 }
 
+.dropdownProfile {
+    color: black !important;
+}
 .Modal {
     /* position: absolute;
     top: 0px;

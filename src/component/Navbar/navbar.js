@@ -14,8 +14,10 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { EditProfilUser } from "../ModalEditUser/editProfilUser";
-import { useSelector, useDispatch } from "react-redux";
+import Login from "../Login/login";
 import { getProfileInfoAsync } from "../../redux/actions";
+import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -24,13 +26,10 @@ export default function Navbar() {
     const [threadModal, setThreadModal] = useState(false);
     const [isOpen, setIsOpen] = useState();
     const register = "register";
-    // let Token = localStorage.getItem("tokenLogin");
-
-    const [nama, setNama] = useState("");
-    let Token = localStorage.getItem("tokenLogin");
-
     const dispatch = useDispatch();
     const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
+
+    let Token = localStorage.getItem("tokenLogin");
 
     useEffect(() => {
         dispatch(getProfileInfoAsync());
@@ -129,9 +128,12 @@ export default function Navbar() {
                             onClose={handleClose}
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
-                            }}
-                        >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            }}>
+                            <Link to="/profile" style={{ textDecoration: "none" }}>
+                                <MenuItem onClick={handleClose} className={styles.dropdownProfile}>
+                                    Profile
+                                </MenuItem>
+                            </Link>
                             <MenuItem onClick={handleClose}>Setting</MenuItem>
                             <MenuItem onClick={signOut}>Logout</MenuItem>
                         </Menu>

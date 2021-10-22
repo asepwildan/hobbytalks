@@ -1,4 +1,4 @@
-import { getProfileInfo } from "../../services";
+import { getProfileInfo, editProfile } from "../../services";
 
 export const getProfileInfoAsync = () => {
     return (dispatch, getState) => {
@@ -27,4 +27,31 @@ export const getProfileFailed = (error) => ({
     payload: {
         error,
     },
+});
+
+export const editProfileAsync = (name, bio) => {
+    return async (dispatch) => {
+        dispatch({ type: "editProfile/start" });
+        try {
+            const response = await editProfile(name, bio);
+            console.log(response, "dari edit profile");
+            if (response.data) {
+                dispatch(editProfileSuccsess());
+            }
+            return response;
+        } catch (error) {
+            console.log(error.response.data.message, "dari edit eror propil");
+            dispatch(editProfileFailed(error.response.data));
+            return error;
+        }
+    };
+};
+
+export const editProfileSuccsess = () => ({
+    type: "editProfile/succsess",
+});
+
+export const editProfileFailed = (error) => ({
+    type: "editProfile/failed",
+    payload: { error },
 });

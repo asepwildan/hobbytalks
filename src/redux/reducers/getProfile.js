@@ -1,5 +1,5 @@
 const initialState = {
-    profileInfo: [],
+    profileInfo: {},
     loading: false,
     error: "",
 };

@@ -1,62 +1,11 @@
-// @import '../assets/color/Color';
-// @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
-
-// .btn {
-//     height: 27px;
-//     width: 106px;
-//     background: rgba(235, 244, 250, 1);
-//     border: 1px solid $primary;
-//     border-radius: 4px;
-//     position: absolute;
-//     top: 127px;
-//     left: 508px;
-//     // display: flex;
-//     // align-items: center;
-//     cursor: pointer;
-//     color: $primary;
-//     font-size: 14px;
-//     text-align: right;
-
-// }
-
-// .img {
-//     position: absolute;
-//     left: 9px;
-//     top : 8px
-// }
-
-// .fp {
-//     position: absolute;
-//     border-radius: 50%;
-//     top: 61px;
-//     left: 149px;
-// }
-
-// .p1 {
-//     font-weight: 800;
-//     top : 100px;
-//     left: 340px;
-//     font-size: 24px;
-//     font-family: "Nunito", san-serif;
-// }
-
-// .p1, .p2 {
-//     position: absolute;
-// }
-
-// .p2 {
-//     font-size: 18px;
-//     font-weight: 400;
-//     top: 140px;
-//     left: 340px;
-// }
-
 @import "../assets/color/Color";
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
 
 .bannerContainer {
     padding: 60px 124px;
     background-image: url("../assets/images/banner.png");
+    background-repeat: no-repeat;
+
     .bannerContent {
         display: inline-flex;
         gap: 30px;
@@ -65,14 +14,73 @@
         .profileAva {
             height: 150px;
             width: 150px;
-
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid rgb(255, 255, 255);
             border-radius: 50%;
             overflow: hidden;
-            img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            &:hover #buttonUploadContainer {
+                display: block;
+            }
+            .avaPreview {
+                position: absolute;
+            }
+            .fp {
+                width: 80%;
+            }
+            .avaProfile {
                 width: 100%;
+                // margin-top: 60px;
+            }
+
+            #buttonUploadContainer {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(255, 255, 255, 0.5);
+                display: none;
+            }
+            .buttonUpload {
+                position: absolute;
+                display: flex;
+                gap: 10px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+
+                p {
+                    font-weight: bold;
+                }
             }
         }
-
+        .formImg {
+            // visibility: hidden;
+            position: absolute;
+            #customfileinput {
+                display: none;
+            }
+            .submitAva {
+                position: absolute;
+                left: 247px;
+                top: -15px;
+                width: 111px;
+                padding: 5px;
+                border: 1px solid #1e8ac6;
+                border-radius: 4px;
+                background-color: #ebf4fa;
+                color: #1e8ac6;
+                cursor: pointer;
+            }
+        }
         .profileInfo {
             margin-top: 55px;
             .username-editBtn {

@@ -15,7 +15,7 @@ export default function Comment() {
     useEffect(() => {
         axios
             .get(
-                `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328?page=${page}&limit=10`
+                `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616bc20a15f73f8d5d5bbeab?page=${page}&limit=10`
             )
             .then((response) => {
                 setIsData(response.data.data);
