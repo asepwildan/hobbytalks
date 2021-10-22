@@ -10,7 +10,6 @@ export function EditProfilUser() {
     let Token = localStorage.getItem("tokenLogin");
     const [values, setValues] = useState({
         name: "",
-        email: "",
         bio: "",
     });
 
@@ -24,8 +23,8 @@ export function EditProfilUser() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const response = dispatch(editProfileAsync(values.name));
-        console.log(response, "signUp");
+        const response = dispatch(editProfileAsync(values.name, values.bio));
+        console.log(response, "edit profile");
     };
 
     return (
@@ -36,11 +35,10 @@ export function EditProfilUser() {
             <div className={styles.formEditWrapper}>
                 <form className={styles.formEditProfile} onSubmit={handleSubmit}>
                     <label>Name</label>
-                    <input onChange={handlechange} type="name" value={values.name} name="name" />
-                    <label>Email</label>
-                    <input onChange={handlechange} type="email" value={values.email} name="email" />
+                    <input onChange={handlechange} type="text" value={values.name} name="name" />
+
                     <label>Bio</label>
-                    <input onChange={handlechange} type="bio" value={values.bio} name="bio" />
+                    <input onChange={handlechange} type="text" value={values.bio} name="bio" />
                     <button>Save</button>
                 </form>
             </div>

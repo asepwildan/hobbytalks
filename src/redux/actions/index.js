@@ -29,14 +29,14 @@ export const getProfileFailed = (error) => ({
     },
 });
 
-export const editProfileAsync = (name) => {
+export const editProfileAsync = (name, bio) => {
     return async (dispatch) => {
         dispatch({ type: "editProfile/start" });
         try {
-            const response = await editProfile(name);
+            const response = await editProfile(name, bio);
             console.log(response, "dari edit profile");
             if (response.data) {
-                dispatch(editProfileSuccsess(response.data));
+                dispatch(editProfileSuccsess());
             }
             return response;
         } catch (error) {
@@ -47,9 +47,8 @@ export const editProfileAsync = (name) => {
     };
 };
 
-export const editProfileSuccsess = (name) => ({
+export const editProfileSuccsess = () => ({
     type: "editProfile/succsess",
-    payload: { name },
 });
 
 export const editProfileFailed = (error) => ({

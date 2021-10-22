@@ -6,8 +6,6 @@ import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import Banner from "../../component/banner-profile/Banner";
 import Trending from "../../component/trending/Trending";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 export default function Profile() {
     let Token = localStorage.getItem("tokenLogin");

@@ -9,12 +9,15 @@ export const getProfileInfo = () => {
     });
 };
 
-export const editProfile = (ujang) => {
+export const editProfile = (name, bio) => {
     return axios.put(
         "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/profile",
+
         {
-            name: ujang,
+            name: name,
+            bio: bio,
         },
+
         {
             headers: {
                 AUTHORIZATION: `Bearer ${Token}`,
@@ -22,5 +25,3 @@ export const editProfile = (ujang) => {
         }
     );
 };
-
-console.log(Token, "dari service");
