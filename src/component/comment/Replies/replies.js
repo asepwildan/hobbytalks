@@ -4,15 +4,23 @@ import styles from "./style/replies.module.css";
 import { useState } from "react";
 import axios from "axios";
 import SubReplies from "./subReplies/subReplies";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfileInfoAsync } from "../../../redux/actions";
 
 export default function SubComment({ replies }) {
     const reply = replies.reply;
     console.log(reply, "ini props guys");
     const [login, setLogin] = useState(false);
     const token = localStorage.getItem("tokenLogin");
-    const [postReplie, setPostReplie] = useState()
+    const [postReplie, setPostReplie] = useState();
     const [values, setValues] = useState({ content: "" });
-    const [status, setStatus] = useState()
+    const [status, setStatus] = useState();
+    const dispatch = useDispatch();
+    const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
+
+    useEffect(() => {
+        dispatch(getProfileInfoAsync());
+    }, [dispatch]);
 
     function handleChange(e) {
         const value = e.target.value;
@@ -22,43 +30,55 @@ export default function SubComment({ replies }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        document.querySelector("form").reset();
-        axios.post(
-            `https://hobbytalk-be-glints.herokuapp.com/api/v1/reply/${replies.id}`,
-            {
-                content: values.content,
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
+
+        axios
+            .post(
+                `https://hobbytalk-be-glints.herokuapp.com/api/v1/reply/${replies.id}`,
+                {
+                    content: values.content,
                 },
-            }
-        )
-        .then((response) => {
-            setPostReplie(response)
-            console.log(response, "ini comment")
-        },[postReplie])
-        .catch((message) => {
-            setStatus(message);
-            console.log(message, "ini error")
-          },[])
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            .then(
+                (response) => {
+                    setPostReplie(response);
+                    console.log(response, "ini comment");
+                    e.target.reset();
+                    window.location.reload();
+                },
+                [postReplie]
+            )
+            .catch((message) => {
+                setStatus(message);
+                console.log(message, "ini error");
+            }, []);
+       
     }
     useEffect(() => {
         setLogin(token);
     }, [token]);
+
     const RepliesItem = ({ ...rep }) => {
         const [isOpen, setIsOpen] = useState(false);
         return (
-            <div className={styles.commentWrapper}>
-                <div className={styles.commentRightPart}>
-                    <Avatar className={styles.avatar} alt="A" />
-                    <div className={styles.commentAuthor}>{rep.userId.name}</div>
-                    <div className={styles.commentTimes}> | {rep.date}</div>
+            <div className={styles.repliesWrapper}>
+                <div className={styles.repliestRightPart}>
+                    <Avatar className={styles.repAvatar} alt="A" />
+                    {rep.userId === null ? (
+                        <div className={styles.repliesAuthor}>Anonim</div>
+                    ) : (
+                        <div className={styles.repliesAuthor}>{rep.userId.name}</div>
+                    )}
+                    <div className={styles.repliesTimes}> | {rep.date}</div>
                 </div>
-                <div className={styles.commentContent}>
-                    <div className={styles.commentText}>{rep.content}</div>
-                    <div className={styles.commentActionContainer}>
-                        <div className={styles.commentAction}>
+                <div className={styles.repliesContent}>
+                    <div className={styles.repliesText}>{rep.content}</div>
+                    <div className={styles.repliesActionContainer}>
+                        <div className={styles.repliesAction}>
                             <svg
                                 width="14"
                                 height="16"
@@ -75,9 +95,9 @@ export default function SubComment({ replies }) {
                                     fill="#1E8AC6"
                                 />
                             </svg>
-                            <div className={styles.commentVoteInfo}>{rep.likes.length}</div>
+                            <div className={styles.repliesVoteInfo}>{rep.likes.length}</div>
                         </div>
-                        <div className={styles.commentAction}>
+                        <div className={styles.repliesAction}>
                             <svg
                                 width="14"
                                 height="16"
@@ -91,9 +111,9 @@ export default function SubComment({ replies }) {
                                 />
                             </svg>
 
-                            <div className={styles.commentActionInfo}>{rep.dislike.length}</div>
+                            <div className={styles.repliesActionInfo}>{rep.dislike.length}</div>
                         </div>
-                        <div className={styles.commentAction}>
+                        <div className={styles.repliesAction}>
                             <svg
                                 width="16"
                                 height="15"
@@ -114,23 +134,23 @@ export default function SubComment({ replies }) {
                                     fill="#828282"
                                 />
                             </svg>
-                            <div className={styles.commentActionInfo}>{rep.subReply.length}</div>
+                            <div className={styles.repliesActionInfo}>{rep.subReply.length}</div>
                         </div>
                     </div>
                 </div>
                 <button className={styles.subRepliesBtn} onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? "hide" : "view"} replies
                 </button>
-                {isOpen && <SubReplies subReplies={rep} />}
+                {isOpen && <SubReplies subReplies={rep} ava={profileInfo.avatar} />}
             </div>
         );
     };
 
     return (
-        <div className={styles.commentContainer}>
+        <div className={styles.repliesContainer}>
             {login ? (
                 <form onSubmit={handleSubmit} className={styles.formReplies}>
-                    <Avatar className={styles.avaReplies} src=""/>
+                    <Avatar src={profileInfo.avatar} className={styles.avaReplies} />
                     <textarea
                         onChange={handleChange}
                         className={styles.inputReplies}
@@ -139,7 +159,9 @@ export default function SubComment({ replies }) {
                         placeholder="Add a comment"
                         required
                     ></textarea>
-                    <button type="submit" className={styles.postBtn}>Post</button>
+                    <button type="submit" className={styles.postBtn}>
+                        Post
+                    </button>
                 </form>
             ) : null}
             {reply.map((rep) => (

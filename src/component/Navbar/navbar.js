@@ -79,24 +79,18 @@ export default function Navbar() {
             {Token !== null ? (
                 <div className={styles.rightbar}>
                     <div className={styles.buttonCreate}>
-                        {/* <Button onClick={openModal}>Create a thread</Button> */}
                         <button onClick={openModal}>Create a thread</button>
                         <Modal
                             keepMounted
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description">
+                            aria-describedby="keep-mounted-modal-description"
+                        >
                             <Box>
-                                {/* <CreateThread /> */}
                                 <EditProfilUser />
                             </Box>
                         </Modal>
-
-                        {/* <button onClick={openModal}>Create a thread</button>
-                    <Modal className={styles.Modal} isOpen={isOpen} onRequestClose={closeModal}>
-                        <CreateThread openModal={openModal}/>
-                    </Modal> */}
                     </div>
                     <div className={styles.notifBar}>
                         <NotificationsNone onClick={dropDown} />
@@ -104,7 +98,8 @@ export default function Navbar() {
                             <div
                                 className={
                                     drop === false ? styles.dropdownNone : styles.dropdownctn
-                                }>
+                                }
+                            >
                                 <p style={{ color: "black" }}></p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
@@ -122,7 +117,6 @@ export default function Navbar() {
 
                     <div className={styles.profilDropdown}>
                         <ArrowDropDown
-                            // className={styles.dropdown}
                             aria-controls="basic-menu"
                             aria-haspopup="true"
                             aria-expanded={open ? "true" : undefined}
@@ -130,26 +124,21 @@ export default function Navbar() {
                         />
                         <Menu
                             className={styles.dropdownMenu}
-                            // id="basic-menu"
-
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleClose}
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
-                            }}>
+                            }}
+                        >
                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                             <MenuItem onClick={handleClose}>Setting</MenuItem>
                             <MenuItem onClick={signOut}>Logout</MenuItem>
                         </Menu>
-                        {/* <div className={styles.dropdownContent}>
-                        <a onClick={"logout"}>Log Out</a>
-                    </div> */}
                     </div>
                 </div>
             ) : (
                 <div className={styles.rightbar}>
-                    {/* <div className={styles.loginButton}> */}
                     <Link to={`/account/login`} style={{ textDecoration: "none" }}>
                         <button className={styles.loginBtn} onClick={openModal}>
                             Login
@@ -158,7 +147,6 @@ export default function Navbar() {
                     <Link to={`/account/register`} style={{ textDecoration: "none" }}>
                         <button className={styles.signUpBtn}>Signup</button>
                     </Link>
-                    {/* </div> */}
                 </div>
             )}
         </div>

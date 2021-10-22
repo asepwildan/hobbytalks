@@ -3,15 +3,17 @@ import React, { useEffect } from "react";
 import styles from "./style/subReplies.module.css";
 import { useState } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfileInfoAsync } from "../../../../redux/actions";
 
-export default function SubReplies({ subReplies }) {
+export default function SubReplies({ subReplies, ava }) {
     const subReplay = subReplies.subReply;
     console.log(subReplay, "iniprop subreplay");
     const [login, setLogin] = useState(false);
-    const token = localStorage.getItem("tokenLogin")
-    const [postReplie, setPostReplie] = useState()
+    const token = localStorage.getItem("tokenLogin");
+    const [postSubReplie, setPostSubReplie] = useState();
     const [values, setValues] = useState({ content: "" });
-    const [status, setStatus] = useState()
+    const [status, setStatus] = useState();
 
     function handleChange(e) {
         const value = e.target.value;
@@ -21,26 +23,31 @@ export default function SubReplies({ subReplies }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        document.querySelector("form").reset();
-        axios.post(
-            `https://hobbytalk-be-glints.herokuapp.com/api/v1/subReply/${subReplies.id}`,
-            {
-                content: values.content,
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
+        axios
+            .post(
+                `https://hobbytalk-be-glints.herokuapp.com/api/v1/subReply/${subReplies._id}`,
+                {
+                    content: values.content,
                 },
-            }
-        )
-        .then((response) => {
-            setPostReplie(response)
-            console.log(response, "ini comment")
-        },[postReplie])
-        .catch((message) => {
-            setStatus(message);
-            console.log(message, "ini error")
-          },[])
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            .then(
+                (response) => {
+                    setPostSubReplie(response);
+                    console.log(response, "ini post sub replie");
+                    e.target.reset();
+                    window.location.reload();
+                },
+                [postSubReplie]
+            )
+            .catch((message) => {
+                setStatus(message);
+                console.log(message, "ini error");
+            }, []);
     }
 
     useEffect(() => {
@@ -48,18 +55,21 @@ export default function SubReplies({ subReplies }) {
     }, [token]);
 
     const SubRepliesItem = ({ ...subRep }) => {
-        // const [isOpen, setIsOpen] = useState(false);
         return (
-            <div className={styles.commentWrapper}>
-                <div className={styles.commentRightPart}>
-                    <Avatar className={styles.avatar} alt="A" />
-                    <div className={styles.commentAuthor}>{subRep.userId.name}</div>
-                    <div className={styles.commentTimes}> | {subRep.date}</div>
+            <div className={styles.subRepliesWrapper}>
+                <div className={styles.subRepliesRightPart}>
+                    <Avatar className={styles.subRepavatar} src={subRep.userId.avatar} alt="A" />
+                    {subRep.userId === null ? (
+                        <div className={styles.commentAuthor}>Anonim</div>
+                    ) : (
+                        <div className={styles.subRepliesAuthor}>{subRep.userId.name}</div>
+                    )}
+                    <div className={styles.subRepliesTimes}> | {subRep.date}</div>
                 </div>
-                <div className={styles.commentContent}>
-                    <div className={styles.commentText}>{subRep.content}</div>
-                    <div className={styles.commentActionContainer}>
-                        <div className={styles.commentAction}>
+                <div className={styles.subRepliesContent}>
+                    <div className={styles.subRepliesText}>{subRep.content}</div>
+                    <div className={styles.subRepliesActionContainer}>
+                        <div className={styles.subRepliesAction}>
                             <svg
                                 width="14"
                                 height="16"
@@ -76,9 +86,9 @@ export default function SubReplies({ subReplies }) {
                                     fill="#1E8AC6"
                                 />
                             </svg>
-                            <div className={styles.commentVoteInfo}>{subRep.likes.length}</div>
+                            <div className={styles.subRepliesVoteInfo}>{subRep.likes.length}</div>
                         </div>
-                        <div className={styles.commentAction}>
+                        <div className={styles.subRepliesAction}>
                             <svg
                                 width="14"
                                 height="16"
@@ -92,7 +102,9 @@ export default function SubReplies({ subReplies }) {
                                 />
                             </svg>
 
-                            <div className={styles.commentActionInfo}>{subRep.dislike.length}</div>
+                            <div className={styles.subRepliesActionInfo}>
+                                {subRep.dislike.length}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,19 +112,21 @@ export default function SubReplies({ subReplies }) {
         );
     };
     return (
-        <div className={styles.commentContainer}>
-             {login ? (
-                <form onSubmit={handleSubmit} className={styles.formReplies}>
-                    <Avatar className={styles.avaReplies} src=""/>
+        <div className={styles.subRepliesContainer}>
+            {login ? (
+                <form onSubmit={handleSubmit} className={styles.formSubReplies}>
+                    <Avatar className={styles.avaSubReplies} src={ava} />
                     <textarea
                         onChange={handleChange}
-                        className={styles.inputReplies}
+                        className={styles.inputSubReplies}
                         name="content"
                         type="text"
                         placeholder="Add a comment"
                         required
                     ></textarea>
-                    <button type="submit" className={styles.postBtn}>Post</button>
+                    <button type="submit" className={styles.postBtn}>
+                        Post
+                    </button>
                 </form>
             ) : null}
             {subReplay.map((subRep) => (

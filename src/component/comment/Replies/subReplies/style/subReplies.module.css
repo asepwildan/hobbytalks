@@ -1,4 +1,4 @@
-.commentContainer {
+.subRepliesContainer {
     /* border: 1px solid #B4C0DE; */
     width: 100%;
     padding: 15px;
@@ -8,7 +8,7 @@
     border-left: 2px solid #E0E0E0;
 }
 
-.commentWrapper {
+.subRepliesWrapper {
     margin: 15px 0px 0px 0px;
     /* border-bottom: 1px solid #B4C0DE; */
 }
@@ -16,28 +16,28 @@
 .commentImg {
     width: 20%;
 }
-.avatar {
+.subRepavatar {
     width: 5% !important;
     height: 32px !important;
     margin-right: 10px;
 }
 
-.commentRightPart {
+.subRepliesRightPart {
     display: flex;
     align-items: center;
 }
 
-.commentAuthor {
+.subRepliesAuthor {
     font-weight: bold;
     margin-right: 10px;
 }
 
-.commentText {
+.subRepliesText {
     margin-left: 40px;
     margin-top: 5px;
 }
 
-.commentActionContainer {
+.subRepliesActionContainer {
     display: inline-flex;
     background-color: #f5f8fd;
     padding: 5px 0px;
@@ -46,11 +46,62 @@
 
 }
 
-.commentAction {
+.subRepliesAction {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 3px 15px;
     gap: 5px;
+    cursor: pointer;
+}
+
+.formSubReplies {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avaSubReplies {
+    width: 5.5% !important;
+    height: 32px !important;
+}
+
+.inputSubReplies {
+    width: 72%;
+    border: 1px solid #e0e0e0;
+    /* justify-content: center; */
+    padding: 10px 5px;
+    top: 16px;
+    height: 40px;
+    border-radius: 4px;
+
+}
+
+.postBtn {
+    padding: 8px 10px;
+    width: 80px;
+    border-radius: 4px;
+    /* margin-bottom: 15px; */
+    box-shadow: rgba(41, 132, 182, 0.1) 0px 5px 15px;
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    cursor: pointer;
+    /* margin-left: 35px; */
+    background-color: #1e8ac6;
+    border: none;
+    color: #fff;
+    margin-right: 15px;
+}
+
+.subRepliesBtn {
+    width: 90%;
+    display: flex;
+    border: 1px solid #b4c0de;
+    padding: 10px 10px;
+    margin: 10px 40px 0px 40px;
+    background-color: #fcfdff;
+    color: #3b4d7a;
     cursor: pointer;
 }
