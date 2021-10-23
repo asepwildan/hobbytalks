@@ -3,28 +3,75 @@ import "./Banner.scss";
 import fotoprofil from "../assets/images/image 7.png";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { EditProfilUser } from "../ModalEditUser/editProfilUser";
+// import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileInfoAsync } from "../../redux/actions";
 import AvaDefault from "./ava.png";
 import { Avatar } from "@material-ui/core";
 import axios from "axios";
 import iconUpload from "./assets/upload.svg";
+import Loader from "../Login/loader.gif";
+import styles from "../ModalEditUser/editProfilUser.module.css";
 
-function Banner() {
+function Banner(props) {
     let Token = localStorage.getItem("tokenLogin");
     const inputFile = useRef(null);
     const dispatch = useDispatch();
     const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
     const [isOpen, SetIsOpen] = useState();
     const [response, setResponse] = useState({});
-    const [imageTes, setImageTes] = useState(null);
 
+    const [imageTes, setImageTes] = useState(null);
+    const [loader, setLoader] = useState(false);
     const [picture, setPicture] = useState([]);
+
+    // edit nama user dan bio
+    const [loaderUserEdit, setLoaderUserEdit] = useState(false);
+    const [responseBioName, setResponseBioName] = useState("");
+    const [values, setValues] = useState({
+        name: "",
+        bio: "",
+    });
+
+    const handlechange = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setValues({ ...values, [name]: value });
+    };
+
+    const submitBioName = (e) => {
+        e.preventDefault();
+        setLoaderUserEdit(true);
+        axios
+            .put(
+                "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/profile",
+
+                {
+                    name: values.name,
+                    bio: values.bio,
+                },
+
+                {
+                    headers: {
+                        AUTHORIZATION: `Bearer ${Token}`,
+                    },
+                }
+            )
+            .then((response) => {
+                setResponseBioName(response.data.status);
+                SetIsOpen(false);
+                setLoaderUserEdit(false);
+            })
+            .catch((error) => {
+                console.log(error, "error bio and name");
+            });
+    };
+
+    // edit nama user dan bio end
 
     useEffect(() => {
         dispatch(getProfileInfoAsync());
-    }, [dispatch, response]);
+    }, [dispatch, response, loaderUserEdit]);
 
     const openModal = () => {
         SetIsOpen(true);
@@ -43,11 +90,10 @@ function Banner() {
 
     const submitImg = (e) => {
         e.preventDefault();
+        setLoader(true);
         let formdata = new FormData();
-
         formdata.append("avatar", imageTes);
 
-        console.log(formdata, "formdata");
         axios
             .put(
                 "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/profile",
@@ -61,18 +107,25 @@ function Banner() {
                 }
             )
             .then((response) => {
-                console.log(response.data, "image banner");
                 setResponse(response.data);
                 setImageTes(null);
+                setPicture([]);
+                setLoader(false);
             })
             .catch((error) => {
-                console.log(error);
+                console.log(error, "error image upload");
+                setLoader(false);
             });
+        e.target.reset();
     };
     const onButtonClick = () => {
         inputFile.current.click();
     };
-    console.log(profileInfo.avatar, "ava");
+
+    const cancelUpload = () => {
+        setImageTes(null);
+        setPicture([]);
+    };
 
     return (
         <div className="bannerContainer">
@@ -87,16 +140,26 @@ function Banner() {
                     {profileInfo.avatar === undefined ? (
                         <img className="fp" src={AvaDefault} alt="profile" />
                     ) : (
-                        // <img className="avaProfile" src={profileInfo.avatar} alt="profile" />
                         <img src={profileInfo.avatar} className="avaProfile" alt="ava" />
                     )}
-                    <div id="buttonUploadContainer">
-                        <button className="buttonUpload" onClick={onButtonClick}>
-                            {" "}
-                            <img src={iconUpload} alt="" />
-                            <p>Edit</p>
-                        </button>
+
+                    <div
+                        id="loaderContainer"
+                        style={loader === true ? { display: "flex" } : { display: "none" }}>
+                        <img src={Loader} alt="loader" />
                     </div>
+
+                    {!picture.length ? (
+                        <div id="buttonUploadContainer" style={{ textDecoration: "none" }}>
+                            <button className="buttonUpload" onClick={onButtonClick}>
+                                {" "}
+                                <img src={iconUpload} alt="" />
+                                <p>Edit</p>
+                            </button>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
 
                 <form onSubmit={submitImg} className="formImg">
@@ -112,9 +175,14 @@ function Banner() {
                     {imageTes === null ? (
                         <div></div>
                     ) : (
-                        <button type="submit" name="upload" className="submitAva">
-                            Save
-                        </button>
+                        <div className="buttonUploadCancelContainer">
+                            <button type="submit" name="upload" className="submitAva">
+                                Save
+                            </button>
+                            <button onClick={cancelUpload} className="submitAva">
+                                cancel
+                            </button>
+                        </div>
                     )}
                 </form>
                 <div className="profileInfo">
@@ -143,7 +211,44 @@ function Banner() {
                             aria-labelledby="keep-mounted-modal-title"
                             aria-describedby="keep-mounted-modal-description">
                             <Box>
-                                <EditProfilUser />
+                                <div className={styles.profileUserContainer}>
+                                    <div className={styles.profileTitle}>
+                                        <h4>Edit Profile</h4>
+                                    </div>
+                                    <div className={styles.formEditWrapper}>
+                                        <form
+                                            className={styles.formEditProfile}
+                                            onSubmit={submitBioName}>
+                                            <label>Name</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                value={values.name}
+                                                onChange={handlechange}
+                                                placeholder={profileInfo.name}
+                                            />
+                                            <label>Bio</label>
+                                            <input
+                                                type="text"
+                                                name="bio"
+                                                value={values.bio}
+                                                onChange={handlechange}
+                                                placeholder={profileInfo.bio}
+                                            />
+                                            {loaderUserEdit ? (
+                                                <div className={styles.loaderUserEditContainer}>
+                                                    <img
+                                                        className={styles.loaderUserEdit}
+                                                        src={Loader}
+                                                        alt="loader"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <button>Save</button>
+                                            )}
+                                        </form>
+                                    </div>
+                                </div>
                             </Box>
                         </Modal>
                     </div>

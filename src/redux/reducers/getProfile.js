@@ -25,6 +25,7 @@ function getProfileReducer(state = initialState, action) {
                 loading: false,
                 error: payload.error,
             };
+
         default:
             return state;
     }
