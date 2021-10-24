@@ -25,3 +25,9 @@ export const editProfile = (name, bio) => {
         }
     );
 };
+
+export const commentList = (id, page, limit) => {
+    return axios.get(
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/${id}?page=${page}&limit=${limit}`,
+    )
+}
