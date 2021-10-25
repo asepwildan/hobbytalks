@@ -4,8 +4,6 @@ import styles from "./style/replies.module.css";
 import { useState } from "react";
 import axios from "axios";
 import SubReplies from "./subReplies/subReplies";
-import { useSelector, useDispatch } from "react-redux";
-import { getCommentAsync } from "../../../redux/actions";
 import Loader from "../../comment/loaderComment.gif";
 
 export default function SubComment({ replies, ava, updateComment }) {
@@ -17,11 +15,6 @@ export default function SubComment({ replies, ava, updateComment }) {
     const [values, setValues] = useState({ content: "" });
     const [status, setStatus] = useState();
     const [load, setLoad] = useState(false);
-    const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(getCommentAsync());
-    // }, [ postReplie ]);
 
     function handleChange(e) {
         const value = e.target.value;
@@ -51,10 +44,7 @@ export default function SubComment({ replies, ava, updateComment }) {
                     e.target.reset();
                     setLoad(false);
                     updateComment();
-
-                    // window.location.reload(false);
                 },
-                [postReplie]
             )
             .catch((message) => {
                 setStatus(message);

@@ -1,31 +1,24 @@
 import React from "react";
-// import { Modal } from "react-modal";
 import { Link } from "react-router-dom";
-import styles from "../Navbar/navbar.module.css";
-import logo from "../Navbar/hobbytalks.svg";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileInfoAsync } from "../../redux/actions";
+
 import SearchIcon from "@material-ui/icons/Search";
 import { ArrowDropDown, NotificationsNone } from "@material-ui/icons";
 import { Avatar } from "@material-ui/core";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Menu, MenuItem } from "@material-ui/core";
-import { CreateThread } from "../ModalThreadPage/createThread";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import { EditProfilUser } from "../ModalEditUser/editProfilUser";
-import Login from "../Login/login";
-import { getProfileInfoAsync } from "../../redux/actions";
-import { connect } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
+
+import logo from "../Navbar/hobbytalks.svg";
+import styles from "../Navbar/navbar.module.css";
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [drop, setDrop] = useState(false);
-    const [threadModal, setThreadModal] = useState(false);
     const [isOpen, setIsOpen] = useState();
-    const register = "register";
     const dispatch = useDispatch();
     const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
 
@@ -87,7 +80,7 @@ export default function Navbar() {
                             aria-describedby="keep-mounted-modal-description"
                         >
                             <Box>
-                                <EditProfilUser />
+                               
                             </Box>
                         </Modal>
                     </div>

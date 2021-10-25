@@ -8,7 +8,6 @@ export default function MoreUserInfo() {
     };
 
     return (
-        // <div className={styles.pageContainer}>
         <div className={styles.moreUserInfoContainer}>
             <div className={styles.headingWrapper}>
                 <p>More From Stella</p>
@@ -94,6 +93,5 @@ export default function MoreUserInfo() {
                 return row;
             })}
         </div>
-        // </div>
     );
 }

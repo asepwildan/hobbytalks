@@ -99,6 +99,11 @@
     border: none;
     color: #fff;
     margin-right: 15px;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.postBtn:active {
+    transform: scale(0.97);
 }
 
 .subRepliesBtn {

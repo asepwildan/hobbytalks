@@ -103,7 +103,11 @@
     background-color: #1e8ac6;
     border: none;
     color: #fff;
-    /* margin-left: 10px; */
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.postBtn:active {
+    transform: scale(0.97);
 }
 
 .subRepliesBtn {

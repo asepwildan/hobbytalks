@@ -41,7 +41,6 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
                     setPostSubReplie(response);
                     console.log(response, "ini post sub replie");
                     e.target.reset();
-                    // window.location.reload(false);
                     updateComment();
                     setLoad(false)
                 },
@@ -50,7 +49,7 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
             .catch((message) => {
                 setStatus(message);
                 console.log(message, "ini error");
-            }, []);
+            }, [status]);
     }
 
     useEffect(() => {

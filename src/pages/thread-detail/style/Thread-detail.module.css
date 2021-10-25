@@ -81,6 +81,11 @@
     padding: 10px 20px;
     margin-top: 18px;
     cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.tombol:active {
+    transform: scale(0.97);
 }
 
 .tombolThreadNoLogin {
@@ -94,6 +99,11 @@
     padding: 10px 20px;
     margin-top: 18px;
     cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.tombolThreadNoLogin:active {
+    transform: scale(0.9);
 }
 
 .commentLineContainer {
