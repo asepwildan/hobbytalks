@@ -40,7 +40,7 @@ export default function ThreadDetail() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setLoad(true)
+        setLoad(true);
         axios
             .post(
                 "https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616bc20a15f73f8d5d5bbeab",
@@ -59,8 +59,7 @@ export default function ThreadDetail() {
                     console.log(response, "ini comment");
                     setLoad(false);
                     e.target.reset();
-                    window.location.reload();
-                    
+                    window.location.reload();                  
                 },
                 [comment]
             )
@@ -95,8 +94,7 @@ export default function ThreadDetail() {
                                             className={styles.inputThreadDetail}
                                             type="text"
                                             placeholder="Add a comment"
-                                            required
-                                        ></textarea>
+                                            required></textarea>
                                         {load === true ? (
                                             <button type="submit" className={styles.tombol}>
                                                 Add a comment <img src={Loading} alt="gif" />

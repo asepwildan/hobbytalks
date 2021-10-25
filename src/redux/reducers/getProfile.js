@@ -2,6 +2,7 @@ const initialState = {
     profileInfo: {},
     loading: false,
     error: "",
+    bio: "",
 };
 
 function getProfileReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ function getProfileReducer(state = initialState, action) {
                 profileInfo: payload.getprofile,
                 loading: false,
                 error: "",
+                bio: payload.getprofile.bio,
             };
         case "getprofile/get-failed":
             return {
@@ -25,6 +27,7 @@ function getProfileReducer(state = initialState, action) {
                 loading: false,
                 error: payload.error,
             };
+
         default:
             return state;
     }

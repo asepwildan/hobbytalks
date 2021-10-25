@@ -75,8 +75,19 @@
     border: none;
     transition-duration: 0.1s;
     transition-property: transform;
+    cursor: pointer;
 }
 
+.loaderUserEditContainer {
+    text-align: center;
+    float: right;
+    width: 35%;
+    margin: 20px 0px;
+}
+
+.loaderUserEdit {
+    width: 50px;
+}
 .formEditProfile button:active {
     transform: scale(0.98);
 }

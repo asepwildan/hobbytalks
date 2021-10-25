@@ -13,6 +13,7 @@ import Modal from "@mui/material/Modal";
 
 import logo from "../Navbar/hobbytalks.svg";
 import styles from "../Navbar/navbar.module.css";
+import CreateThread from "../createThread/createThread";
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -77,11 +78,12 @@ export default function Navbar() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description"
-                        >
-                            <Box>
-                               
-                            </Box>
+                            aria-describedby="keep-mounted-modal-description">
+                            <div className={styles.createThreadContainer}>
+                                <Box>
+                                    <CreateThread />
+                                </Box>
+                            </div>
                         </Modal>
                     </div>
                     <div className={styles.notifBar}>
@@ -90,8 +92,7 @@ export default function Navbar() {
                             <div
                                 className={
                                     drop === false ? styles.dropdownNone : styles.dropdownctn
-                                }
-                            >
+                                }>
                                 <p style={{ color: "black" }}></p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
