@@ -5,7 +5,7 @@ import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import Banner from "../../component/banner-profile/Banner";
 import Trending from "../../component/trending/Trending";
-import './style/Account-detail.scss';
+import "./style/Account-detail.scss";
 
 export default function AccountDetail() {
     return (

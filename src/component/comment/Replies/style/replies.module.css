@@ -1,5 +1,5 @@
 .commentContainer {
-    border: 1px solid #B4C0DE;
+    border: 1px solid #b4c0de;
     width: 100%;
     padding: 15px;
     border-radius: 2px;
@@ -9,7 +9,7 @@
 
 .commentWrapper {
     margin: 15px 0px 0px 0px;
-    border-bottom: 1px solid #B4C0DE;
+    /* border-bottom: 1px solid #B4C0DE; */
 }
 
 .commentImg {
@@ -42,7 +42,6 @@
     padding: 5px 0px;
     border-radius: 8px;
     margin: 10px 0px 0px 40px;
-
 }
 
 .commentAction {
@@ -52,4 +51,49 @@
     padding: 3px 15px;
     gap: 5px;
     cursor: pointer;
+}
+
+.formReplies {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avaReplies {
+    width: 5% !important;
+    height: 32px !important;
+}
+
+.inputReplies {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    /* justify-content: center; */
+    padding: 10px 5px;
+}
+
+.postBtn {
+    padding: 8px 10px;
+    width: 90px;
+    border-radius: 4px;
+    /* margin-bottom: 15px; */
+    box-shadow: rgba(41, 132, 182, 0.1) 0px 5px 15px;
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    cursor: pointer;
+    /* margin-left: 35px; */
+    background-color: #1e8ac6;
+    border: none;
+    color: #fff;
+}
+
+.subRepliesBtn {
+    width: 90%;
+    display: flex;
+    border: 1px solid #b4c0de;
+    padding: 10px 10px;
+    margin: 10px 40px 0px 40px;
+    background-color: #fcfdff;
+    color: #3b4d7a;
 }

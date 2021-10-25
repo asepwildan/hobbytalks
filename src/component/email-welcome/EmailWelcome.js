@@ -4,6 +4,7 @@ import icon1 from "../assets/logo/Group 2.svg";
 import centang from "../assets/logo/logocentang.svg";
 import btn from "../assets/logo/Frame 12.svg";
 import "./EmailWelcome.scss";
+import { Route, useParams, Link } from "react-router-dom";
 
 export default function EmailWelcome() {
     return (
@@ -12,8 +13,12 @@ export default function EmailWelcome() {
             <p className="welcomeBoard">Welcome board!</p>
             <p className="emailInfo">Email verification success</p>
             <div className="buttonwelcomeAction">
-                <button>Browse Hobby</button>
-                <button>Go to Dashboard</button>
+                <Link to="/category" style={{ textDecoration: "none" }}>
+                    <button>Browse Hobby</button>
+                </Link>
+                <Link to="/profile" style={{ textDecoration: "none" }}>
+                    <button>Go to Dashboard</button>
+                </Link>
             </div>
         </div>
     );

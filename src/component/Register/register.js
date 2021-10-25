@@ -6,10 +6,12 @@ import facebook from "../../pages/BackgroundPage/Asset/facebook.png";
 import { Route, useParams, Link } from "react-router-dom";
 import Email from "../email-verify/EmailVerify";
 import axios from "axios";
+import Loader from "../Login/loader.gif";
 // import BackgroundPage from "../../pages/BackgroundPage/backgroundPage";
 
 export default function Register() {
-    // let { register } = useParams();
+    let { register } = useParams();
+    const [load, setLoad] = useState(false);
     let [linkWelcome, setLinkWelcome] = useState("");
     let [emailValue, setEmailvalue] = useState("");
     const [values, setValues] = useState({
@@ -29,6 +31,7 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoad(true);
         axios
             .post(
                 "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/signup",
@@ -47,10 +50,12 @@ export default function Register() {
             .then((Response) => {
                 console.log(Response.data.message, "nanananana");
                 setLinkWelcome(Response.data.message);
+                setLoad(false);
             })
             .catch((error) => {
                 console.log(error.response.data.message, "wah ini eror register");
                 alert(error.response.data.message);
+                setLoad(false);
             });
         setEmailvalue(values.email);
     };
@@ -68,7 +73,7 @@ export default function Register() {
                             <h3>Join our community!</h3>
                             <p>
                                 Already have account?
-                                <Link to="/login" style={{ textDecoration: "none" }}>
+                                <Link to="/account/login" style={{ textDecoration: "none" }}>
                                     <span style={{ color: "#8AB9D3", cursor: "pointer" }}>
                                         {" "}
                                         Login
@@ -103,9 +108,15 @@ export default function Register() {
                                     value={values.password}
                                     required
                                 />
-                                <button className={styles.buttonRegister} type="Submit">
-                                    Sign Up
-                                </button>
+                                {load === true ? (
+                                    <div className={styles.loaderContainer}>
+                                        <img src={Loader} alt="Loader" />
+                                    </div>
+                                ) : (
+                                    <button className={styles.buttonRegister} type="Submit">
+                                        Sign Up
+                                    </button>
+                                )}
                             </form>
                         </div>
                         <div className={styles.oAuth}>
