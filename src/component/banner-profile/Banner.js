@@ -12,7 +12,7 @@ import axios from "axios";
 import iconUpload from "./assets/upload.svg";
 import Loader from "../Login/loader.gif";
 import styles from "../ModalEditUser/editProfilUser.module.css";
-import ModalUpdateCover from '../modalUpdateCover/ModalUpdateCover'
+import Basic from '../modalUpdateCover/Dropzone'
 
 function Banner(props) {
     let Token = localStorage.getItem("tokenLogin");
@@ -128,12 +128,17 @@ function Banner(props) {
         setImageTes(null);
         setPicture([]);
     };
+    const [updateOn, setUpdateOn] = useState();
+    const updateCover = () => {setUpdateOn(true)};
+    const closeCover = () => {setUpdateOn(false)};
+
+    
 
     return (
         <div className="bannerContainer">
-            <div className="update-cover">
+            {/* <div className="update-cover">
                 <ModalUpdateCover />
-            </div>
+            </div> */}
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (
@@ -268,6 +273,19 @@ function Banner(props) {
                     </div>
                 </div>
             </div>
+            <Modal
+                            keepMounted
+                            open={updateOn}
+                            onClose={closeCover}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description">
+                            <Box>
+                                <div className="basic-container"><Basic /></div>
+                            </Box>
+                        </Modal>
+            <button className="btn-update-cover" onClick={updateCover}>
+            <img src={iconUpload} alt="" />
+            <p>Update Cover</p></button>
         </div>
     );
 }

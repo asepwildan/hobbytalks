@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import "./Dropzone.scss";
@@ -8,7 +8,7 @@ import "./Dropzone.scss";
 
 export default function Basic() {
   const [values, setValues] = useState({
-    name: ""
+    name: "",
   });
 
   const [avatar, setAvatar] = useState(null);
@@ -30,54 +30,56 @@ export default function Basic() {
 
     const formData = new FormData();
 
-    formData.append("name", values.name);
-    formData.append("avatar", avatar);
+    // formData.append("name", values.name);
+    formData.append("banner", avatar);
 
     axios({
       method: "PUT",
-      url:
-        "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/profile",
+      url: "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/banner",
       data: formData,
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt1cm9tYXNoaXJvMDEyM0BnbWFpbC5jb20iLCJpZCI6IjYxNjZlMzRkMDQ5MTEzMTBhYWZlZGFjOSIsImlhdCI6MTYzNTE2NzkwMSwiZXhwIjoxNjM1MjU0MzAxfQ.vHqCaiY2X7tHjmXPED15A_ULfmSqWYPFpP58PucqgdY"
-      }
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hZndhbmFsZmlhbnN5YWg3M0BnbWFpbC5jb20iLCJpZCI6IjYxNmVjMTU3ODdhZTE0OGZjNGNmYWViOSIsImlhdCI6MTYzNTE4ODA4NiwiZXhwIjoxNjM1Mjc0NDg2fQ.Dp_oOAwQvZvYjOVP787ihXP5QVXnUH0ziRtaZQhp0iI",
+      },
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(JSON.stringify(err)));
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(JSON.stringify(err));
+        alert("gambar gagal di upload");
+      });
   };
 
   console.log(avatar);
 
   return (
     <div className="container-dropzone">
-
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
-
         <div className="field">
           <h6>Pilih Gambar: </h6>
-          <input className='btn-upload' type="file" name="avatar" onChange={handleAvatar} />
+          <input
+            className="btn-upload"
+            type="file"
+            name="avatar"
+            onChange={handleAvatar}
+          />
         </div>
 
         <div className="field">
-          <input
-            className="btn-upload-submit"
-            type="submit"
-            value="Simpan"
-          />
+          <input className="btn-upload-submit" type="submit" value="Simpan" />
         </div>
       </form>
     </div>
   );
 }
 
-
-
 // import {useDropzone} from 'react-dropzone';
 
 // export default function Basic(props) {
 //   const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
-  
+
 //   const files = acceptedFiles.map(file => (
 //     <li key={file.path}>
 //       {file.path} - {file.size} bytes
@@ -98,4 +100,6 @@ export default function Basic() {
 //   );
 // }
 
-{/* <Basic /> */}
+{
+  /* <Basic /> */
+}
