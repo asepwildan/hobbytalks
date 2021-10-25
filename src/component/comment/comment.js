@@ -7,40 +7,43 @@ import Loader from "./loaderComment.gif";
 import { useSelector, useDispatch } from "react-redux";
 import { getCommentAsync } from "../../redux/actions";
 
-export default function Comment({ava}) {
+export default function Comment({ ava }) {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
-    const {commentList, commentDetail, loading, error} = useSelector((state) => state.getCommentReducer);
+    const { commentList, commentDetail, loading, error } = useSelector(
+        (state) => state.getCommentReducer
+    );
     const id = "616bc20a15f73f8d5d5bbeab";
-    const limit = 10;
-    
+    const limit = 5;
 
-    console.log(loading, "ini loading list redux")
+    console.log(loading, "ini loading list redux");
 
-    
     useEffect(() => {
-        updateComment()
+        updateComment();
     }, [dispatch, page]);
-   
+
     const loadMore = () => {
         setPage(page + 1);
-        
     };
 
     const loadLess = () => {
-        setPage(1);
+        setPage(0);
     };
 
     const updateComment = () => {
-        dispatch(getCommentAsync(id, page, limit ));
-    }
+        dispatch(getCommentAsync(id, page, limit));
+    };
 
     const CommentItem = ({ ...comment }) => {
         const [isOpen, setIsOpen] = useState(false);
         return (
             <div key={comment._id} className={styles.commentWrapper}>
                 <div className={styles.commentRightPart}>
-                    <Avatar className={styles.avatar} src={comment.userId.avatar} alt="A" />
+                    {comment.userId === null ? (
+                        <Avatar className={styles.avatar} alt="A" />
+                    ) : (
+                        <Avatar className={styles.avatar} src={comment.userId.avatar} alt="A" />
+                    )}
                     {comment.userId === null ? (
                         <div className={styles.commentAuthor}>Anonim</div>
                     ) : (
@@ -88,6 +91,7 @@ export default function Comment({ava}) {
                         </div>
                         <div className={styles.commentAction}>
                             <svg
+                                onClick={() => setIsOpen(!isOpen)}
                                 width="16"
                                 height="15"
                                 viewBox="0 0 16 15"

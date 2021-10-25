@@ -20,6 +20,7 @@
     width: 5% !important;
     height: 32px !important;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .subRepliesRightPart {
@@ -30,6 +31,7 @@
 .subRepliesAuthor {
     font-weight: bold;
     margin-right: 5px;
+    cursor: pointer;
 }
 .subRepliesTimes {
     color: #bdbdbd;

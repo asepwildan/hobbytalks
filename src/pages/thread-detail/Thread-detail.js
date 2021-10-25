@@ -26,6 +26,8 @@ export default function ThreadDetail() {
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
 
+   
+
     useEffect(() => {
         dispatch(getProfileInfoAsync());
     }, [dispatch]);
@@ -57,7 +59,7 @@ export default function ThreadDetail() {
                     console.log(response, "ini comment");
                     setLoad(false);
                     e.target.reset();
-                    // window.location.reload(false);
+                    window.location.reload();
                     
                 },
                 [comment]
@@ -69,7 +71,7 @@ export default function ThreadDetail() {
     }
     useEffect(() => {
         setLogin(Token);
-    }, []);
+    }, [Token]);
 
     return (
         <React.Fragment>

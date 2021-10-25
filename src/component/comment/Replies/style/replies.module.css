@@ -19,6 +19,7 @@
     width: 5% !important;
     height: 32px !important;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .repliestRightPart {
@@ -29,6 +30,7 @@
 .repliesAuthor {
     font-weight: bold;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .repliesTimes {
@@ -56,7 +58,13 @@
     padding: 3px 15px;
     gap: 5px;
     cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
+.repliesAction:active {
+    transform: scale(0.9);
+}
+
 
 .formReplies {
     display: flex;

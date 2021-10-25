@@ -61,7 +61,8 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
         return (
             <div className={styles.subRepliesWrapper}>
                 <div className={styles.subRepliesRightPart}>
-                    <Avatar className={styles.subRepavatar} src={subRep.userId.avatar} alt="A" />
+                {subRep.userId === null ? <Avatar className={styles.subRepavatar} alt="A" /> :
+                    <Avatar className={styles.subRepavatar} src={subRep.userId.avatar} alt="A" />}
                     {subRep.userId === null ? (
                         <div className={styles.commentAuthor}>Anonim</div>
                     ) : (

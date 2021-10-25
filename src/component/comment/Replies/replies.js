@@ -19,7 +19,6 @@ export default function SubComment({ replies, ava, updateComment }) {
     const [load, setLoad] = useState(false);
     const dispatch = useDispatch();
 
-
     // useEffect(() => {
     //     dispatch(getCommentAsync());
     // }, [ postReplie ]);
@@ -51,8 +50,8 @@ export default function SubComment({ replies, ava, updateComment }) {
                     console.log(response, "ini comment");
                     e.target.reset();
                     setLoad(false);
-                    updateComment()
-                    
+                    updateComment();
+
                     // window.location.reload(false);
                 },
                 [postReplie]
@@ -71,7 +70,11 @@ export default function SubComment({ replies, ava, updateComment }) {
         return (
             <div className={styles.repliesWrapper}>
                 <div className={styles.repliestRightPart}>
-                    <Avatar className={styles.repAvatar} src={rep.userId.avatar} alt="A" />
+                    {rep.userId === null ? (
+                        <Avatar className={styles.repAvatar} alt="A" />
+                    ) : (
+                        <Avatar className={styles.repAvatar} src={rep.userId.avatar} alt="A" />
+                    )}
                     {rep.userId === null ? (
                         <div className={styles.repliesAuthor}>Anonim</div>
                     ) : (
@@ -89,6 +92,7 @@ export default function SubComment({ replies, ava, updateComment }) {
                                 viewBox="0 0 14 16"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
+                                onClick={() => setIsBuka(!isBuka)}
                             >
                                 <path
                                     d="M13.3896 6.36L7.38965 0.240002C7.22965 0.0800025 7.02965 0 6.80965 0C6.58965 0 6.38965 0.0800025 6.22965 0.240002L0.229649 6.36C0.00964881 6.58 -0.0703512 6.98 0.0696488 7.26C0.189649 7.56 0.489649 7.78 0.809649 7.78H3.40965V15.18C3.40965 15.62 3.86965 15.98 4.30965 15.98H9.30965C9.74965 15.98 10.2096 15.62 10.2096 15.18V7.78H12.8096C13.1296 7.78 13.4296 7.54 13.5496 7.26C13.6696 6.98 13.6096 6.6 13.3896 6.36ZM9.30965 6.2C8.86965 6.2 8.60965 6.48 8.60965 6.92V14.4H5.00965V6.92C5.00965 6.48 4.74965 6.2 4.30965 6.2H2.70965L6.80965 2.02L10.9096 6.2H9.30965Z"
@@ -119,6 +123,7 @@ export default function SubComment({ replies, ava, updateComment }) {
                         </div>
                         <div className={styles.repliesAction}>
                             <svg
+                                onClick={() => setIsBuka(!isBuka)}
                                 width="16"
                                 height="15"
                                 viewBox="0 0 16 15"
@@ -143,9 +148,9 @@ export default function SubComment({ replies, ava, updateComment }) {
                     </div>
                 </div>
                 <button className={styles.subRepliesBtn} onClick={() => setIsBuka(!isBuka)}>
-                    {isBuka ? "hide" : "view"} replies
+                    {isBuka ? "Hide" : "View"} {rep.subReply.length} replies...
                 </button>
-                {isBuka && <SubReplies subReplies={rep} ava={ava} updateComment={updateComment}/>}
+                {isBuka && <SubReplies subReplies={rep} ava={ava} updateComment={updateComment} />}
             </div>
         );
     };

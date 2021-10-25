@@ -19,6 +19,7 @@
     width: 5% !important;
     height: 32px !important;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .commentRightPart {
@@ -29,6 +30,7 @@
 .commentAuthor {
     font-weight: bold;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 
@@ -57,7 +59,13 @@
     padding: 3px 15px;
     gap: 5px;
     cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
+.commentAction:active {
+    transform: scale(0.9);
+}
+
 
 .loadMoreBtn {
     display: block;
@@ -76,6 +84,11 @@
     background-color: #fcfdff;
     color: #3b4d7a;
     cursor: pointer;
+}
+
+.repliesBtn:hover {
+    background-color: #e8ebf1;
+
 }
 
 .loaderContainer {
