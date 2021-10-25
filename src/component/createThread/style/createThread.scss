@@ -1,0 +1,21 @@
+.textEditorContainer {
+    // height: 500px;  // display: none;
+    // z-index: 100;
+    box-sizing: content-box !important;
+    width: 100%;
+    margin: 0 auto;
+    border-style: solid;
+    background-color: rgb(255, 255, 255);
+    h1 {
+        z-index: 999;
+    }
+
+    // #rdw-wrapper-2218 {
+    //     background-color: blue;
+    // }
+}
+
+.toolbarClassName {
+    padding: 20px !important;
+    visibility: unset !important;
+}

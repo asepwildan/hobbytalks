@@ -135,7 +135,16 @@
 .signUpBtn:active {
     transform: scale(0.9);
 }
-
+.createThreadContainer {
+    /* width: 45%; */
+    border: 3px solid blue;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: content-box !important;
+    /* display: none; */
+}
 .notifBar {
     align-items: center;
     margin-bottom: 5px;

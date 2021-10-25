@@ -1,5 +1,4 @@
 import React from "react";
-// import { Modal } from "react-modal";
 import { Link } from "react-router-dom";
 import styles from "../Navbar/navbar.module.css";
 import logo from "../Navbar/hobbytalks.svg";
@@ -9,15 +8,16 @@ import { Avatar } from "@material-ui/core";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Menu, MenuItem } from "@material-ui/core";
-import { CreateThread } from "../ModalThreadPage/createThread";
+// import { CreateThread } from "../ModalThreadPage/createThread";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import { EditProfilUser } from "../ModalEditUser/editProfilUser";
+// import { EditProfilUser } from "../ModalEditUser/editProfilUser";
 import Login from "../Login/login";
 import { getProfileInfoAsync } from "../../redux/actions";
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
+import CreateThread from "../createThread/createThread";
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -84,11 +84,12 @@ export default function Navbar() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description"
-                        >
-                            <Box>
-                                <EditProfilUser />
-                            </Box>
+                            aria-describedby="keep-mounted-modal-description">
+                            <div className={styles.createThreadContainer}>
+                                <Box>
+                                    <CreateThread />
+                                </Box>
+                            </div>
                         </Modal>
                     </div>
                     <div className={styles.notifBar}>
@@ -97,8 +98,7 @@ export default function Navbar() {
                             <div
                                 className={
                                     drop === false ? styles.dropdownNone : styles.dropdownctn
-                                }
-                            >
+                                }>
                                 <p style={{ color: "black" }}></p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
