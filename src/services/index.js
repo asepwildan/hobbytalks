@@ -9,23 +9,6 @@ export const getProfileInfo = () => {
     });
 };
 
-// export const editProfile = (name, bio) => {
-//     return axios.put(
-//         "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/profile",
-
-//         {
-//             name: name,
-//             bio: bio,
-//         },
-
-//         {
-//             headers: {
-//                 AUTHORIZATION: `Bearer ${Token}`,
-//             },
-//         }
-//     );
-// };
-
 export const commentList = (id, page, limit) => {
     return axios.get(
         `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/${id}?page=${page}&limit=${limit}`

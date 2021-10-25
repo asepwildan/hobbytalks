@@ -1,3 +1,5 @@
+// TIDAK TERPAKAI
+
 import React, { useEffect } from "react";
 import styles from "../ModalEditUser/editProfilUser.module.css";
 import { useState, useCallback } from "react";
@@ -11,16 +13,6 @@ export function EditProfilUser({ modal, ceking }) {
     const [testing, setTesting] = useState(false);
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
-
-    // const closeEditUser = useCallback(() => {
-    //     modal("tidak");
-    // }, [modal]);
-
-    // useEffect(() => {
-    //     const closeEditUser = useCallback(() => {
-    //         modal("tidak");
-    //     }, [modal]);
-    // }, []);
 
     console.log(ceking, "modal");
     useEffect(() => {
@@ -84,6 +76,14 @@ export function EditProfilUser({ modal, ceking }) {
                         type="text"
                         value={values.name}
                         name="name"
+                        placeholder={profileInfo.name}
+                    />
+                    <label>Email</label>
+                    <input
+                        onChange={handlechange}
+                        type="Email"
+                        // value={values.name}
+                        name="email"
                         placeholder={profileInfo.name}
                     />
 

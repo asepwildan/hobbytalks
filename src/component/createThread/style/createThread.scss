@@ -1,21 +1,100 @@
 .textEditorContainer {
-    // height: 500px;  // display: none;
-    // z-index: 100;
-    box-sizing: content-box !important;
     width: 100%;
     margin: 0 auto;
-    border-style: solid;
     background-color: rgb(255, 255, 255);
-    h1 {
-        z-index: 999;
+    .createThread-Title-Container {
+        display: flex;
+        border-bottom: 1px solid #e0e0e0;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0px 15px 0px;
+        p {
+            font-weight: bold;
+            font-size: 16px;
+        }
     }
+    form {
+        .createThread-title-container {
+            padding: 15px 0px;
+            label {
+                font-size: 14px;
+            }
+        }
+        label {
+            font-size: 14px;
+        }
 
-    // #rdw-wrapper-2218 {
-    //     background-color: blue;
-    // }
+        input {
+            border: 1px solid #e0e0e0;
+        }
+        .label-createThread-category-container {
+            margin-top: 20px;
+        }
+
+        .createThread-option-container {
+            border: 1px solid #e0e0e0;
+            padding: 5px 10px;
+            width: 300px;
+            border-radius: 4px;
+
+            #category {
+                cursor: pointer;
+                width: 100%;
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+                option {
+                    cursor: pointer;
+                }
+            }
+        }
+        .createThread-PostButton {
+            text-align: right;
+            margin: 40px 0 10px 0;
+            button {
+                padding: 8px 10px;
+                width: 90px;
+                border-radius: 4px;
+
+                box-shadow: rgba(41, 132, 182, 0.1) 0px 5px 15px;
+                font-family: "Nunito", sans-serif;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                cursor: pointer;
+                margin-left: 35px;
+                background-color: #1e8ac6;
+                color: #fff;
+                border: none;
+                transition-duration: 0.3s;
+                transition-property: transform;
+                &:active {
+                    transform: scale(0.9);
+                }
+            }
+        }
+    }
 }
 
 .toolbarClassName {
-    padding: 20px !important;
     visibility: unset !important;
+    background-color: red;
+    box-sizing: content-box !important;
+    border-radius: 4px;
+}
+
+.rdw-option-wrapper {
+    padding: 15px !important;
+    border-radius: 4px;
+}
+.rdw-editor-toolbar {
+    border-radius: 4px;
+}
+.rdw-editor-main {
+    border: 1px solid #e0e0e0 !important;
+    min-height: 150px;
+    max-height: 200px;
+    border-radius: 4px;
+    padding: 0px 10px;
 }

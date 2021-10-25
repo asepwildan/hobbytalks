@@ -138,7 +138,7 @@ function Banner(props) {
                         <img src={picture} alt="preview" className="avaPreview" />
                     )}
 
-                    {profileInfo.avatar === undefined ? (
+                    {profileInfo.avatar === "" ? (
                         <img className="fp" src={AvaDefault} alt="profile" />
                     ) : (
                         <img src={profileInfo.avatar} className="avaProfile" alt="ava" />
@@ -227,6 +227,12 @@ function Banner(props) {
                                                 value={values.name}
                                                 onChange={handlechange}
                                                 placeholder={profileInfo.name}
+                                            />
+                                            <label>Email</label>
+                                            <input
+                                                type="text"
+                                                placeholder={profileInfo.email}
+                                                disabled
                                             />
                                             <label>Bio</label>
                                             <input
