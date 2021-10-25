@@ -2,40 +2,36 @@ import { Avatar } from "@material-ui/core";
 import React, { useEffect } from "react";
 import styles from "./style/comment.module.css";
 import { useState } from "react";
-import axios from "axios";
 import SubComment from "./Replies/replies";
 import Loader from "./loaderComment.gif";
+import { useSelector, useDispatch } from "react-redux";
+import { getCommentAsync } from "../../redux/actions";
 
-export default function Comment() {
-    const [isData, setIsData] = useState([]);
+export default function Comment({ ava }) {
     const [page, setPage] = useState(1);
-    const [totalPage, setTotalPage] = useState(1);
-    const [load, setLoad] = useState(false);
+    const dispatch = useDispatch();
+    const { commentList, commentDetail, loading, error } = useSelector(
+        (state) => state.getCommentReducer
+    );
+    const id = "616bc20a15f73f8d5d5bbeab";
+    const limit = 5;
+
+    console.log(loading, "ini loading list redux");
 
     useEffect(() => {
-        axios
-            .get(
-                `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616a814e2d9ef9e211bb0328?page=${page}&limit=5`
-            )
-            .then((response) => {
-                setIsData(response.data.data);
-                setTotalPage(response.data.totalPage);
-                console.log(response.data.totalPage, "useefek");
-                //    setName(response.data)
-                console.log(response.data.data, "ini commen");
-                setLoad(false);
-                // const totalPage = response.data.data.totalPage
-            });
-    }, [page]);
+        updateComment();
+    }, [dispatch, page]);
 
-    console.log(isData, "imi response");
     const loadMore = () => {
         setPage(page + 1);
-        setLoad(true);
     };
 
     const loadLess = () => {
-        setPage(1);
+        setPage(0);
+    };
+
+    const updateComment = () => {
+        dispatch(getCommentAsync(id, page, limit));
     };
 
     const CommentItem = ({ ...comment }) => {
@@ -43,9 +39,17 @@ export default function Comment() {
         return (
             <div key={comment._id} className={styles.commentWrapper}>
                 <div className={styles.commentRightPart}>
-                    <Avatar className={styles.avatar} alt="A" />
-                    <div className={styles.commentAuthor}>{comment.userId.name}</div>
-                    <div className={styles.commentTimes}> | {comment.date}</div>
+                    {comment.userId === null ? (
+                        <Avatar className={styles.avatar} alt="A" />
+                    ) : (
+                        <Avatar className={styles.avatar} src={comment.userId.avatar} alt="A" />
+                    )}
+                    {comment.userId === null ? (
+                        <div className={styles.commentAuthor}>Anonim</div>
+                    ) : (
+                        <div className={styles.commentAuthor}>{comment.userId.name}</div>
+                    )}
+                    <div className={styles.commentTimes}>| {comment.date}</div>
                 </div>
                 <div className={styles.commentContent}>
                     <div className={styles.commentText}>{comment.content}</div>
@@ -85,6 +89,7 @@ export default function Comment() {
                         </div>
                         <div className={styles.commentAction}>
                             <svg
+                                onClick={() => setIsOpen(!isOpen)}
                                 width="16"
                                 height="15"
                                 viewBox="0 0 16 15"
@@ -107,22 +112,20 @@ export default function Comment() {
                         </div>
                     </div>
                 </div>
-                {comment.reply.length !== 0 ? (
-                    <button className={styles.repliesBtn} onClick={() => setIsOpen(!isOpen)}>
-                        {isOpen ? "Hide" : "See"} all {comment.reply.length} replies...
-                    </button>
-                ) : null}
-                {isOpen && <SubComment replies={comment} />}
+                <button className={styles.repliesBtn} onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? "Hide" : "See"} all {comment.reply.length} replies...
+                </button>
+                {isOpen && <SubComment ava={ava} replies={comment} updateComment={updateComment} />}
             </div>
         );
     };
     return (
         <div className={styles.commentContainer}>
-            {isData.map((comment) => (
+            {commentDetail.map((comment) => (
                 <CommentItem key={comment._id} {...comment} />
             ))}
             <div className={styles.loaderContainer}>
-                {load === true ? (
+                {loading === true ? (
                     <img src={Loader} alt="Load" className={styles.loaderComment} />
                 ) : (
                     <div></div>
@@ -130,11 +133,11 @@ export default function Comment() {
             </div>
 
             <div className={styles.loadButtonContainer}>
-                {page < totalPage ? (
+                {page < commentList.totalPage ? (
                     <button onClick={loadMore} className={styles.loadComment}>
                         Load more comments
                     </button>
-                ) : totalPage === 1 ? (
+                ) : commentList.totalPage === 1 ? (
                     <div></div>
                 ) : (
                     <button onClick={loadLess} className={styles.loadComment}>

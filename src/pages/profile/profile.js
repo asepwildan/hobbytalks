@@ -6,29 +6,16 @@ import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import Banner from "../../component/banner-profile/Banner";
 import Trending from "../../component/trending/Trending";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 export default function Profile() {
-    const [nama, setNama] = useState("");
     let Token = localStorage.getItem("tokenLogin");
-    useEffect(() => {
-        axios
-            .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
-                headers: {
-                    Authorization: `Bearer ${Token}`,
-                },
-            })
-            .then((Res) => {
-                console.log(Res.data.data.name);
-                setNama(Res.data.data.name);
-                //   setUserName(Res.data.data.name)
-            })
-            .catch((error) => console.log(error));
-    }, [Token]);
+    if (Token === null) {
+        return (window.location = "/");
+    }
+
     return (
         <React.Fragment>
-            <Navbar nama={nama} />
+            <Navbar />
             <div>
                 <Banner />
                 <div className={styles.boxContentProfile}>

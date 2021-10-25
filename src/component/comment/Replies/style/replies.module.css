@@ -1,4 +1,4 @@
-.commentContainer {
+.repliesContainer {
     border: 1px solid #b4c0de;
     width: 100%;
     padding: 15px;
@@ -7,7 +7,7 @@
     margin-left: 40px;
 }
 
-.commentWrapper {
+.repliesWrapper {
     margin: 15px 0px 0px 0px;
     /* border-bottom: 1px solid #B4C0DE; */
 }
@@ -15,28 +15,35 @@
 .commentImg {
     width: 20%;
 }
-.avatar {
+.repAvatar {
     width: 5% !important;
     height: 32px !important;
     margin-right: 10px;
+    cursor: pointer;
 }
 
-.commentRightPart {
+.repliestRightPart {
     display: flex;
     align-items: center;
 }
 
-.commentAuthor {
+.repliesAuthor {
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 5px;
+    cursor: pointer;
 }
 
-.commentText {
+.repliesTimes {
+ color: #BDBDBD;
+ font-size: 14px;
+}
+
+.repliesText {
     margin-left: 40px;
     margin-top: 5px;
 }
 
-.commentActionContainer {
+.repliesActionContainer {
     display: inline-flex;
     background-color: #f5f8fd;
     padding: 5px 0px;
@@ -44,14 +51,20 @@
     margin: 10px 0px 0px 40px;
 }
 
-.commentAction {
+.repliesAction {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 3px 15px;
     gap: 5px;
     cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
+.repliesAction:active {
+    transform: scale(0.9);
+}
+
 
 .formReplies {
     display: flex;
@@ -69,6 +82,10 @@
     border: 1px solid #e0e0e0;
     /* justify-content: center; */
     padding: 10px 5px;
+    top: 16px;
+    height: 40px;
+    border-radius: 4px;
+
 }
 
 .postBtn {
@@ -86,6 +103,11 @@
     background-color: #1e8ac6;
     border: none;
     color: #fff;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+.postBtn:active {
+    transform: scale(0.97);
 }
 
 .subRepliesBtn {
@@ -96,4 +118,18 @@
     margin: 10px 40px 0px 40px;
     background-color: #fcfdff;
     color: #3b4d7a;
+    cursor: pointer;
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 20px;
+    margin: 20px 80px;
+}
+
+.loaderContainer img {
+    width: 40px;
 }

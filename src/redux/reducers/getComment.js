@@ -1,36 +1,36 @@
 const initialState = {
-    profileInfo: {},
+    commentList: {},
+    commentDetail: [],
     loading: false,
     error: "",
-    bio: "",
+    
 };
 
-function getProfileReducer(state = initialState, action) {
+function getCommentReducer(state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
-        case "getprofile/get-start":
+        case  "getcomment/get-start":
             return {
                 ...state,
                 loading: true,
             };
-        case "getprofile/get-succsess":
+        case "getcomment/get-succsess":
             return {
                 ...state,
-                profileInfo: payload.getprofile,
+                commentList: payload.getComment,
+                commentDetail: payload.getComment.data,
                 loading: false,
                 error: "",
-                bio: payload.getprofile.bio,
             };
-        case "getprofile/get-failed":
+        case "getcomment/get-failed":
             return {
                 ...state,
                 loading: false,
                 error: payload.error,
             };
-
         default:
             return state;
     }
 }
 
-export default getProfileReducer;
+export default getCommentReducer;

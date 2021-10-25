@@ -31,6 +31,7 @@
     font-style: normal;
     font-weight: normal;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .threadRekomAkun {
@@ -38,6 +39,7 @@
     align-items: center;
     gap: 10px;
     margin: 7px 0px;
+    cursor: pointer;
 }
 /* .threadRekomAkun img {
     width: 35px;
@@ -64,6 +66,7 @@
     font-weight: bold;
     text-decoration: none;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .threadActionContainer {

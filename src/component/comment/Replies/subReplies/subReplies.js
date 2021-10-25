@@ -1,25 +1,78 @@
 import { Avatar } from "@material-ui/core";
-// import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import styles from "./style/subReplies.module.css";
-// import { useState } from "react";
-// import axios from "axios";
+import { useState } from "react";
+import axios from "axios";
+import Loader from "../../../comment/loaderComment.gif"
 
-export default function SubReplies({ subReplies }) {
+export default function SubReplies({ subReplies, ava, updateComment }) {
     const subReplay = subReplies.subReply;
     console.log(subReplay, "iniprop subreplay");
+    const [login, setLogin] = useState(false);
+    const token = localStorage.getItem("tokenLogin");
+    const [postSubReplie, setPostSubReplie] = useState();
+    const [values, setValues] = useState({ content: "" });
+    const [status, setStatus] = useState();
+    const [load, setLoad] = useState(false)
+
+    function handleChange(e) {
+        const value = e.target.value;
+        const name = e.target.name;
+        setValues({ ...value, [name]: value });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setLoad(true)
+        axios
+            .post(
+                `https://hobbytalk-be-glints.herokuapp.com/api/v1/subReply/${subReplies._id}`,
+                {
+                    content: values.content,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            .then(
+                (response) => {
+                    setPostSubReplie(response);
+                    console.log(response, "ini post sub replie");
+                    e.target.reset();
+                    updateComment();
+                    setLoad(false)
+                },
+                [postSubReplie]
+            )
+            .catch((message) => {
+                setStatus(message);
+                console.log(message, "ini error");
+            }, [status]);
+    }
+
+    useEffect(() => {
+        setLogin(token);
+    }, [token]);
+
     const SubRepliesItem = ({ ...subRep }) => {
-        // const [isOpen, setIsOpen] = useState(false);
         return (
-            <div className={styles.commentWrapper}>
-                <div className={styles.commentRightPart}>
-                    <Avatar className={styles.avatar} alt="A" />
-                    <div className={styles.commentAuthor}>{subRep.userId.name}</div>
-                    <div className={styles.commentTimes}> | {subRep.date}</div>
+            <div className={styles.subRepliesWrapper}>
+                <div className={styles.subRepliesRightPart}>
+                {subRep.userId === null ? <Avatar className={styles.subRepavatar} alt="A" /> :
+                    <Avatar className={styles.subRepavatar} src={subRep.userId.avatar} alt="A" />}
+                    {subRep.userId === null ? (
+                        <div className={styles.commentAuthor}>Anonim</div>
+                    ) : (
+                        <div className={styles.subRepliesAuthor}>{subRep.userId.name}</div>
+                    )}
+                    <div className={styles.subRepliesTimes}> | {subRep.date}</div>
                 </div>
-                <div className={styles.commentContent}>
-                    <div className={styles.commentText}>{subRep.content}</div>
-                    <div className={styles.commentActionContainer}>
-                        <div className={styles.commentAction}>
+                <div className={styles.subRepliesContent}>
+                    <div className={styles.subRepliesText}>{subRep.content}</div>
+                    <div className={styles.subRepliesActionContainer}>
+                        <div className={styles.subRepliesAction}>
                             <svg
                                 width="14"
                                 height="16"
@@ -36,9 +89,9 @@ export default function SubReplies({ subReplies }) {
                                     fill="#1E8AC6"
                                 />
                             </svg>
-                            <div className={styles.commentVoteInfo}>{subRep.likes.length}</div>
+                            <div className={styles.subRepliesVoteInfo}>{subRep.likes.length}</div>
                         </div>
-                        <div className={styles.commentAction}>
+                        <div className={styles.subRepliesAction}>
                             <svg
                                 width="14"
                                 height="16"
@@ -52,7 +105,9 @@ export default function SubReplies({ subReplies }) {
                                 />
                             </svg>
 
-                            <div className={styles.commentActionInfo}>{subRep.dislike.length}</div>
+                            <div className={styles.subRepliesActionInfo}>
+                                {subRep.dislike.length}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +115,29 @@ export default function SubReplies({ subReplies }) {
         );
     };
     return (
-        <div className={styles.commentContainer}>
+        <div className={styles.subRepliesContainer}>
+            {login ? (
+                <form onSubmit={handleSubmit} className={styles.formSubReplies}>
+                    <Avatar className={styles.avaSubReplies} src={ava} />
+                    <textarea
+                        onChange={handleChange}
+                        className={styles.inputSubReplies}
+                        name="content"
+                        type="text"
+                        placeholder="Add a comment"
+                        required
+                    ></textarea>
+                   {load === true ? (
+                        <button type="submit" className={styles.postBtn}>
+                            Post <img src={Loader} alt="Loader" />
+                        </button>
+                    ) : (
+                        <button type="submit" className={styles.postBtn}>
+                            Post
+                        </button>
+                    )}
+                </form>
+            ) : null}
             {subReplay.map((subRep) => (
                 <SubRepliesItem key={subRep.id} {...subRep} />
             ))}

@@ -1,46 +1,33 @@
 import React from "react";
-// import { Modal } from "react-modal";
 import { Link } from "react-router-dom";
-import styles from "../Navbar/navbar.module.css";
-import logo from "../Navbar/hobbytalks.svg";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileInfoAsync } from "../../redux/actions";
+
 import SearchIcon from "@material-ui/icons/Search";
 import { ArrowDropDown, NotificationsNone } from "@material-ui/icons";
 import { Avatar } from "@material-ui/core";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { Menu, MenuItem } from "@material-ui/core";
-import { CreateThread } from "../ModalThreadPage/createThread";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import { EditProfilUser } from "../ModalEditUser/editProfilUser";
-import Login from "../Login/login";
+
+import logo from "../Navbar/hobbytalks.svg";
+import styles from "../Navbar/navbar.module.css";
+import CreateThread from "../createThread/createThread";
 
 export default function Navbar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [drop, setDrop] = useState(false);
-    const [threadModal, setThreadModal] = useState(false);
     const [isOpen, setIsOpen] = useState();
-    const register = "register";
-    // let Token = localStorage.getItem("tokenLogin");
+    const dispatch = useDispatch();
+    const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
 
-    const [nama, setNama] = useState("");
     let Token = localStorage.getItem("tokenLogin");
+
     useEffect(() => {
-        axios
-            .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
-                headers: {
-                    Authorization: `Bearer ${Token}`,
-                },
-            })
-            .then((Res) => {
-                console.log(Res.data.data.name);
-                setNama(Res.data.data.name);
-                //   setUserName(Res.data.data.name)
-            })
-            .catch((error) => console.log(error));
-    }, [Token]);
+        dispatch(getProfileInfoAsync());
+    }, [dispatch]);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -85,7 +72,6 @@ export default function Navbar() {
             {Token !== null ? (
                 <div className={styles.rightbar}>
                     <div className={styles.buttonCreate}>
-                        {/* <Button onClick={openModal}>Create a thread</Button> */}
                         <button onClick={openModal}>Create a thread</button>
                         <Modal
                             keepMounted
@@ -93,16 +79,12 @@ export default function Navbar() {
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
                             aria-describedby="keep-mounted-modal-description">
-                            <Box>
-                                {/* <CreateThread /> */}
-                                <EditProfilUser />
-                            </Box>
+                            <div className={styles.createThreadContainer}>
+                                <Box>
+                                    <CreateThread />
+                                </Box>
+                            </div>
                         </Modal>
-
-                        {/* <button onClick={openModal}>Create a thread</button>
-                    <Modal className={styles.Modal} isOpen={isOpen} onRequestClose={closeModal}>
-                        <CreateThread openModal={openModal}/>
-                    </Modal> */}
                     </div>
                     <div className={styles.notifBar}>
                         <NotificationsNone onClick={dropDown} />
@@ -122,13 +104,12 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div className={styles.avaBar}>
-                        <Avatar className={styles.userAvatar} alt="" />
-                        <span className={styles.nameUser}>{nama}</span>
+                        <Avatar className={styles.userAvatar} src={profileInfo.avatar} alt="" />
+                        <span className={styles.nameUser}>{profileInfo.name}</span>
                     </div>
 
                     <div className={styles.profilDropdown}>
                         <ArrowDropDown
-                            // className={styles.dropdown}
                             aria-controls="basic-menu"
                             aria-haspopup="true"
                             aria-expanded={open ? "true" : undefined}
@@ -136,26 +117,24 @@ export default function Navbar() {
                         />
                         <Menu
                             className={styles.dropdownMenu}
-                            // id="basic-menu"
-
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleClose}
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
                             }}>
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <Link to="/profile" style={{ textDecoration: "none" }}>
+                                <MenuItem onClick={handleClose} className={styles.dropdownProfile}>
+                                    Profile
+                                </MenuItem>
+                            </Link>
                             <MenuItem onClick={handleClose}>Setting</MenuItem>
                             <MenuItem onClick={signOut}>Logout</MenuItem>
                         </Menu>
-                        {/* <div className={styles.dropdownContent}>
-                        <a onClick={"logout"}>Log Out</a>
-                    </div> */}
                     </div>
                 </div>
             ) : (
                 <div className={styles.rightbar}>
-                    {/* <div className={styles.loginButton}> */}
                     <Link to={`/account/login`} style={{ textDecoration: "none" }}>
                         <button className={styles.loginBtn} onClick={openModal}>
                             Login
@@ -164,7 +143,6 @@ export default function Navbar() {
                     <Link to={`/account/register`} style={{ textDecoration: "none" }}>
                         <button className={styles.signUpBtn}>Signup</button>
                     </Link>
-                    {/* </div> */}
                 </div>
             )}
         </div>

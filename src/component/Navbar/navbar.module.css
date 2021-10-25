@@ -135,7 +135,17 @@
 .signUpBtn:active {
     transform: scale(0.9);
 }
-
+.createThreadContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #fff;
+    width: 50%;
+    border-radius: 4px;
+    overflow: hidden;
+}
 .notifBar {
     align-items: center;
     margin-bottom: 5px;
@@ -210,6 +220,9 @@
     padding-top: 150px !important;
 }
 
+.dropdownProfile {
+    color: black !important;
+}
 .Modal {
     /* position: absolute;
     top: 0px;
