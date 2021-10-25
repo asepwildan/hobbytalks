@@ -12,13 +12,16 @@ import axios from "axios";
 import iconUpload from "./assets/upload.svg";
 import Loader from "../Login/loader.gif";
 import styles from "../ModalEditUser/editProfilUser.module.css";
-import ModalUpdateCover from '../modalUpdateCover/ModalUpdateCover'
+import CoverBanner from "../assets/images/banner.png";
+// import ModalUpdateCover from '../modalUpdateCover/ModalUpdateCover'
 
 function Banner(props) {
     let Token = localStorage.getItem("tokenLogin");
     const inputFile = useRef(null);
     const dispatch = useDispatch();
-    const { profileInfo, loading, error, bio } = useSelector((state) => state.getProfileReducer);
+    const { profileInfo, loading, error, bio, banner } = useSelector(
+        (state) => state.getProfileReducer
+    );
     const [isOpen, SetIsOpen] = useState();
     const [response, setResponse] = useState({});
 
@@ -131,9 +134,10 @@ function Banner(props) {
 
     return (
         <div className="bannerContainer">
-            <div className="update-cover">
+            {/* <div className="update-cover">
                 <ModalUpdateCover />
-            </div>
+            </div> */}
+            <img className="cover-banner" src={banner} alt="cover banner" />
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (
