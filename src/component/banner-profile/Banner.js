@@ -17,7 +17,7 @@ function Banner(props) {
     let Token = localStorage.getItem("tokenLogin");
     const inputFile = useRef(null);
     const dispatch = useDispatch();
-    const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
+    const { profileInfo, loading, error, bio } = useSelector((state) => state.getProfileReducer);
     const [isOpen, SetIsOpen] = useState();
     const [response, setResponse] = useState({});
 
@@ -42,14 +42,14 @@ function Banner(props) {
     const submitBioName = (e) => {
         e.preventDefault();
         setLoaderUserEdit(true);
+        let formdata = new FormData();
+        formdata.append("name", values.name);
+        formdata.append("bio", values.bio);
         axios
             .put(
                 "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/profile",
 
-                {
-                    name: values.name,
-                    bio: values.bio,
-                },
+                formdata,
 
                 {
                     headers: {
@@ -64,6 +64,7 @@ function Banner(props) {
             })
             .catch((error) => {
                 console.log(error, "error bio and name");
+                setLoaderUserEdit(false);
             });
     };
 
@@ -233,7 +234,7 @@ function Banner(props) {
                                                 name="bio"
                                                 value={values.bio}
                                                 onChange={handlechange}
-                                                placeholder={profileInfo.bio}
+                                                placeholder={bio}
                                             />
                                             {loaderUserEdit ? (
                                                 <div className={styles.loaderUserEditContainer}>

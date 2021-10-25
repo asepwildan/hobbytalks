@@ -2,52 +2,51 @@ import { Avatar } from "@material-ui/core";
 import React, { useEffect } from "react";
 import styles from "./style/comment.module.css";
 import { useState } from "react";
-import axios from "axios";
 import SubComment from "./Replies/replies";
 import Loader from "./loaderComment.gif";
+import { useSelector, useDispatch } from "react-redux";
+import { getCommentAsync } from "../../redux/actions";
 
-export default function Comment() {
-    const [isData, setIsData] = useState([]);
+export default function Comment({ava}) {
     const [page, setPage] = useState(1);
-    const [totalPage, setTotalPage] = useState(1);
-    const [load, setLoad] = useState(false);
+    const dispatch = useDispatch();
+    const {commentList, commentDetail, loading, error} = useSelector((state) => state.getCommentReducer);
+    const id = "616bc20a15f73f8d5d5bbeab";
+    const limit = 10;
+    
 
+    console.log(loading, "ini loading list redux")
+
+    
     useEffect(() => {
-        axios
-            .get(
-                `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616bc20a15f73f8d5d5bbeab?page=${page}&limit=10`
-            )
-            .then((response) => {
-                setIsData(response.data.data);
-                setTotalPage(response.data.totalPage);
-                console.log(response.data.totalPage, "useefek");
-                console.log(response.data.data, "ini commen");
-                setLoad(false);
-            });
-    }, [page]);
-
-    console.log(isData, "imi response");
+        updateComment()
+    }, [dispatch, page]);
+   
     const loadMore = () => {
         setPage(page + 1);
-        setLoad(true);
+        
     };
 
     const loadLess = () => {
         setPage(1);
     };
 
+    const updateComment = () => {
+        dispatch(getCommentAsync(id, page, limit ));
+    }
+
     const CommentItem = ({ ...comment }) => {
         const [isOpen, setIsOpen] = useState(false);
         return (
             <div key={comment._id} className={styles.commentWrapper}>
                 <div className={styles.commentRightPart}>
-                    <Avatar className={styles.avatar} src={comment.avatar} alt="A" />
+                    <Avatar className={styles.avatar} src={comment.userId.avatar} alt="A" />
                     {comment.userId === null ? (
                         <div className={styles.commentAuthor}>Anonim</div>
                     ) : (
                         <div className={styles.commentAuthor}>{comment.userId.name}</div>
                     )}
-                    <div className={styles.commentTimes}> | {comment.date}</div>
+                    <div className={styles.commentTimes}>| {comment.date}</div>
                 </div>
                 <div className={styles.commentContent}>
                     <div className={styles.commentText}>{comment.content}</div>
@@ -115,17 +114,17 @@ export default function Comment() {
                 <button className={styles.repliesBtn} onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? "Hide" : "See"} all {comment.reply.length} replies...
                 </button>
-                {isOpen && <SubComment replies={comment} />}
+                {isOpen && <SubComment ava={ava} replies={comment} updateComment={updateComment} />}
             </div>
         );
     };
     return (
         <div className={styles.commentContainer}>
-            {isData.map((comment) => (
+            {commentDetail.map((comment) => (
                 <CommentItem key={comment._id} {...comment} />
             ))}
             <div className={styles.loaderContainer}>
-                {load === true ? (
+                {loading === true ? (
                     <img src={Loader} alt="Load" className={styles.loaderComment} />
                 ) : (
                     <div></div>
@@ -133,11 +132,11 @@ export default function Comment() {
             </div>
 
             <div className={styles.loadButtonContainer}>
-                {page < totalPage ? (
+                {page < commentList.totalPage ? (
                     <button onClick={loadMore} className={styles.loadComment}>
                         Load more comments
                     </button>
-                ) : totalPage === 1 ? (
+                ) : commentList.totalPage === 1 ? (
                     <div></div>
                 ) : (
                     <button onClick={loadLess} className={styles.loadComment}>

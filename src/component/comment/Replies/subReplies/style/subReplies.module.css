@@ -29,7 +29,11 @@
 
 .subRepliesAuthor {
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 5px;
+}
+.subRepliesTimes {
+    color: #bdbdbd;
+    font-size: 14px;
 }
 
 .subRepliesText {

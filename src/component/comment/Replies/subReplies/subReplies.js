@@ -3,10 +3,9 @@ import React, { useEffect } from "react";
 import styles from "./style/subReplies.module.css";
 import { useState } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { getProfileInfoAsync } from "../../../../redux/actions";
+import Loader from "../../../comment/loaderComment.gif"
 
-export default function SubReplies({ subReplies, ava }) {
+export default function SubReplies({ subReplies, ava, updateComment }) {
     const subReplay = subReplies.subReply;
     console.log(subReplay, "iniprop subreplay");
     const [login, setLogin] = useState(false);
@@ -14,6 +13,7 @@ export default function SubReplies({ subReplies, ava }) {
     const [postSubReplie, setPostSubReplie] = useState();
     const [values, setValues] = useState({ content: "" });
     const [status, setStatus] = useState();
+    const [load, setLoad] = useState(false)
 
     function handleChange(e) {
         const value = e.target.value;
@@ -23,6 +23,7 @@ export default function SubReplies({ subReplies, ava }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setLoad(true)
         axios
             .post(
                 `https://hobbytalk-be-glints.herokuapp.com/api/v1/subReply/${subReplies._id}`,
@@ -40,7 +41,9 @@ export default function SubReplies({ subReplies, ava }) {
                     setPostSubReplie(response);
                     console.log(response, "ini post sub replie");
                     e.target.reset();
-                    window.location.reload();
+                    // window.location.reload(false);
+                    updateComment();
+                    setLoad(false)
                 },
                 [postSubReplie]
             )
@@ -124,9 +127,15 @@ export default function SubReplies({ subReplies, ava }) {
                         placeholder="Add a comment"
                         required
                     ></textarea>
-                    <button type="submit" className={styles.postBtn}>
-                        Post
-                    </button>
+                   {load === true ? (
+                        <button type="submit" className={styles.postBtn}>
+                            Post <img src={Loader} alt="Loader" />
+                        </button>
+                    ) : (
+                        <button type="submit" className={styles.postBtn}>
+                            Post
+                        </button>
+                    )}
                 </form>
             ) : null}
             {subReplay.map((subRep) => (

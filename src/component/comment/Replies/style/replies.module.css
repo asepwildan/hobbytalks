@@ -28,7 +28,7 @@
 
 .repliesAuthor {
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .repliesTimes {
@@ -107,4 +107,17 @@
     background-color: #fcfdff;
     color: #3b4d7a;
     cursor: pointer;
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 20px;
+    margin: 20px 80px;
+}
+
+.loaderContainer img {
+    width: 40px;
 }

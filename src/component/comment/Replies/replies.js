@@ -5,9 +5,10 @@ import { useState } from "react";
 import axios from "axios";
 import SubReplies from "./subReplies/subReplies";
 import { useSelector, useDispatch } from "react-redux";
-import { getProfileInfoAsync } from "../../../redux/actions";
+import { getCommentAsync } from "../../../redux/actions";
+import Loader from "../../comment/loaderComment.gif";
 
-export default function SubComment({ replies }) {
+export default function SubComment({ replies, ava, updateComment }) {
     const reply = replies.reply;
     console.log(reply, "ini props guys");
     const [login, setLogin] = useState(false);
@@ -15,12 +16,13 @@ export default function SubComment({ replies }) {
     const [postReplie, setPostReplie] = useState();
     const [values, setValues] = useState({ content: "" });
     const [status, setStatus] = useState();
+    const [load, setLoad] = useState(false);
     const dispatch = useDispatch();
-    const { profileInfo, loading, error } = useSelector((state) => state.getProfileReducer);
 
-    useEffect(() => {
-        dispatch(getProfileInfoAsync());
-    }, [dispatch]);
+
+    // useEffect(() => {
+    //     dispatch(getCommentAsync());
+    // }, [ postReplie ]);
 
     function handleChange(e) {
         const value = e.target.value;
@@ -30,7 +32,7 @@ export default function SubComment({ replies }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-
+        setLoad(true);
         axios
             .post(
                 `https://hobbytalk-be-glints.herokuapp.com/api/v1/reply/${replies.id}`,
@@ -48,7 +50,10 @@ export default function SubComment({ replies }) {
                     setPostReplie(response);
                     console.log(response, "ini comment");
                     e.target.reset();
-                    window.location.reload();
+                    setLoad(false);
+                    updateComment()
+                    
+                    // window.location.reload(false);
                 },
                 [postReplie]
             )
@@ -56,18 +61,17 @@ export default function SubComment({ replies }) {
                 setStatus(message);
                 console.log(message, "ini error");
             }, []);
-       
     }
     useEffect(() => {
         setLogin(token);
     }, [token]);
 
     const RepliesItem = ({ ...rep }) => {
-        const [isOpen, setIsOpen] = useState(false);
+        const [isBuka, setIsBuka] = useState(false);
         return (
             <div className={styles.repliesWrapper}>
                 <div className={styles.repliestRightPart}>
-                    <Avatar className={styles.repAvatar} alt="A" />
+                    <Avatar className={styles.repAvatar} src={rep.userId.avatar} alt="A" />
                     {rep.userId === null ? (
                         <div className={styles.repliesAuthor}>Anonim</div>
                     ) : (
@@ -138,10 +142,10 @@ export default function SubComment({ replies }) {
                         </div>
                     </div>
                 </div>
-                <button className={styles.subRepliesBtn} onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? "hide" : "view"} replies
+                <button className={styles.subRepliesBtn} onClick={() => setIsBuka(!isBuka)}>
+                    {isBuka ? "hide" : "view"} replies
                 </button>
-                {isOpen && <SubReplies subReplies={rep} ava={profileInfo.avatar} />}
+                {isBuka && <SubReplies subReplies={rep} ava={ava} updateComment={updateComment}/>}
             </div>
         );
     };
@@ -150,7 +154,7 @@ export default function SubComment({ replies }) {
         <div className={styles.repliesContainer}>
             {login ? (
                 <form onSubmit={handleSubmit} className={styles.formReplies}>
-                    <Avatar src={profileInfo.avatar} className={styles.avaReplies} />
+                    <Avatar src={ava} className={styles.avaReplies} />
                     <textarea
                         onChange={handleChange}
                         className={styles.inputReplies}
@@ -159,9 +163,15 @@ export default function SubComment({ replies }) {
                         placeholder="Add a comment"
                         required
                     ></textarea>
-                    <button type="submit" className={styles.postBtn}>
-                        Post
-                    </button>
+                    {load === true ? (
+                        <button type="submit" className={styles.postBtn}>
+                            Post <img src={Loader} alt="Loader" />
+                        </button>
+                    ) : (
+                        <button type="submit" className={styles.postBtn}>
+                            Post
+                        </button>
+                    )}
                 </form>
             ) : null}
             {reply.map((rep) => (

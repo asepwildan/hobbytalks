@@ -9,13 +9,26 @@ import imgAvatar from "./img/imgAvatar.png";
 import ThreadUser from "../../component/thread-detail-user/Thread-detail-user";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import getProfileReducer from "../../redux/reducers/getProfile";
+import { getProfileInfoAsync } from "../../redux/actions";
+import { Avatar } from "@material-ui/core";
+import Loading from "./img/loaderComment.gif";
 
 export default function ThreadDetail() {
     const [login, setLogin] = useState(false);
     const [comment, setComment] = useState();
     const [values, setValues] = useState({ content: "" });
     const Token = localStorage.getItem("tokenLogin");
-    const [status, setStatus] = useState()
+    const [status, setStatus] = useState();
+    const [load, setLoad] = useState(false);
+
+    const dispatch = useDispatch();
+    const { profileInfo } = useSelector((state) => state.getProfileReducer);
+
+    useEffect(() => {
+        dispatch(getProfileInfoAsync());
+    }, [dispatch]);
 
     function handleChange(e) {
         const value = e.target.value;
@@ -25,32 +38,37 @@ export default function ThreadDetail() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        
-        axios.post(
-            "https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616bc20a15f73f8d5d5bbeab",
-            {
-                content: values.content,
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${Token}`,
+        setLoad(true)
+        axios
+            .post(
+                "https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616bc20a15f73f8d5d5bbeab",
+                {
+                    content: values.content,
                 },
-            }
-        )
-        .then((response) => {
-            setComment(response)
-            console.log(response, "ini comment")
-            e.target.reset();
-            window.location.reload();
-        },[comment])
-        .catch((message) => {
-            setStatus(message);
-            console.log(message, "ini error")
-          })
+                {
+                    headers: {
+                        Authorization: `Bearer ${Token}`,
+                    },
+                }
+            )
+            .then(
+                (response) => {
+                    setComment(response);
+                    console.log(response, "ini comment");
+                    setLoad(false);
+                    e.target.reset();
+                    // window.location.reload(false);
+                    
+                },
+                [comment]
+            )
+            .catch((message) => {
+                setStatus(message);
+                console.log(message, "ini error");
+            });
     }
     useEffect(() => {
-        const token = localStorage.getItem("tokenLogin");
-        setLogin(token);
+        setLogin(Token);
     }, []);
 
     return (
@@ -64,8 +82,8 @@ export default function ThreadDetail() {
                             {login ? (
                                 <div className={styles.formCommentDoang}>
                                     <div className={styles.identitas}>
-                                        <img src={imgAvatar} alt="img"></img>
-                                        <p className={styles.nama}>Kevin Alexander</p>
+                                        <Avatar src={profileInfo.avatar} alt="img" />
+                                        <p className={styles.nama}>{profileInfo.name}</p>
                                     </div>
 
                                     <form onSubmit={handleSubmit}>
@@ -77,7 +95,15 @@ export default function ThreadDetail() {
                                             placeholder="Add a comment"
                                             required
                                         ></textarea>
-                                        <button type="submit" className={styles.tombol}>Add a comment</button>
+                                        {load === true ? (
+                                            <button type="submit" className={styles.tombol}>
+                                                Add a comment <img src={Loading} alt="gif" />
+                                            </button>
+                                        ) : (
+                                            <button type="submit" className={styles.tombol}>
+                                                Add a comment
+                                            </button>
+                                        )}
                                     </form>
                                 </div>
                             ) : (
@@ -91,7 +117,7 @@ export default function ThreadDetail() {
                             )}
                         </div>
                         <div className={styles.commentLineContainer}>
-                            <Comment />
+                            <Comment ava={profileInfo.avatar} />
                         </div>
                     </div>
 
