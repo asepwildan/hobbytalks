@@ -38,7 +38,7 @@ export default function Category() {
         },
         {
             img: Travel,
-            value: "6166eec398472010a2d7e97c",
+            value: "6177f8721ffa070699dd876e",
             title: "Travel",
             isCheck: false,
             id: "4a",
@@ -73,7 +73,7 @@ export default function Category() {
         },
         {
             img: Category9,
-            value: "6166f00d98472010a2d7e98e",
+            value: "6172d7ef0f79346bbb9db5ca",
             title: "Cooking",
             isCheck: false,
             id: "9a",

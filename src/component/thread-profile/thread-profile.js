@@ -9,6 +9,7 @@ export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
     const [name, setName] = useState("");
     const token = localStorage.getItem("tokenLogin");
+    const [thread, setThread] = useState([]);
     useEffect(() => {
         axios
             .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
@@ -19,6 +20,7 @@ export default function Thread() {
             .then((response) => {
                 setThreadUser(response.data.data.threads);
                 setName(response.data.data.name);
+                setThread(response.data.data.threads);
             })
             .catch((error) => console.log(error, "error"));
     }, []);
@@ -106,7 +108,12 @@ export default function Thread() {
                                             <p className={styles.threadAccountName}>{name}</p>
                                         </div>
 
-                                        <p className={styles.threadTextAnchor}>{thread.content}</p>
+                                        <p
+                                            key={thread.content._id}
+                                            className={styles.threadTextAnchor}
+                                            dangerouslySetInnerHTML={{
+                                                __html: thread.content,
+                                            }}></p>
                                     </div>
 
                                     <div className={styles.imgThread}>
