@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import "./Dropzone.scss";
-import LoaderGIf from "../Login/loader.gif";
+import LoaderGif from "../Login/loader.gif";
 
 // 1. Form handling
 // 2. API integration
@@ -64,8 +64,8 @@ export default function Basic() {
   return (
     <div className="container-dropzone">
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <div className="field">
-          <h6>Pilih Gambar: </h6>
+        <h4>Pilih Gambar: </h4>
+        <div className="field tambahBorder">
           <input
             className="btn-upload"
             type="file"
@@ -74,9 +74,13 @@ export default function Basic() {
           />
         </div>
 
-        <div className="field">
-          <input className="btn-upload-submit" type="submit" value="Simpan" />
-        </div>
+        {loaderCover ? (
+          <img className="loader-cover" src={LoaderGif} />
+        ) : (
+          <div className="field">
+            <input className="btn-upload-submit" type="submit" value="Simpan" />
+          </div>
+        )}
       </form>
     </div>
   );
