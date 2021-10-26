@@ -1,27 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;1,200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;1,200&display=swap");
 
 .container-dropzone {
-    font-family: "Nunito", sans-serif;
-  }
-  
-  form {
-    // max-width: 500px;
-    // margin: auto;
-    padding: 2rem;
-  }
-  
-  .field {
-    margin-bottom: 1em;
-  }
+  font-family: "Nunito", sans-serif;
+}
 
+form {
+  // max-width: 500px;
+  // margin: auto;
+  padding: 2rem;
+}
 
-  .btn-upload {
-      border: none;
-  }
+.field {
+  margin-bottom: 1em;
+}
 
-  .btn-upload-submit {
-      background: #1e8ac6;
-      margin-left: 12px;
-      max-width: 100px;
-      color: azure;
-  }
+.btn-upload {
+  border: none;
+}
+
+.btn-upload-submit {
+  background: #1e8ac6;
+  margin-left: 12px;
+  max-width: 100px;
+  color: azure;
+  transition-duration: 0.1s;
+  transition-property: transform;
+  cursor: pointer;
+}
+
+.btn-upload-submit:active {
+  transform: scale(0.97);
+}
