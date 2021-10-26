@@ -1,4 +1,4 @@
-import { getProfileInfo, editProfile, commentList } from "../../services";
+import { getProfileInfo, editProfile, commentList, getThreadDetail } from "../../services";
 
 export const getProfileInfoAsync = () => {
     return (dispatch, getState) => {
@@ -54,6 +54,35 @@ export const getCommentSucces = (getComment) => ({
 
 export const getCommentFailed = (error) => ({
     type: "getcomment/get-failed",
+    payload: {
+        error,
+    },
+});
+
+export const getThreadDetailAsync = (idThread) => {
+    return (dispatch, getState) => {
+        dispatch({ type: "getThreadDetail/get-start" });
+        getThreadDetail(idThread)
+            .then((response) => {
+                console.log(response.data.data, "action get thread Detail");
+                dispatch(getThreadDetailSuccess(response.data.data));
+            })
+            .catch((error) => {
+                console.log(error, "error get thread detail");
+                dispatch(getThreadDetailFailed(error));
+            });
+    };
+};
+
+export const getThreadDetailSuccess = (getThreadDetail) => ({
+    type: "getThreadDetail/get-succsess",
+    payload: {
+        getThreadDetail,
+    },
+});
+
+export const getThreadDetailFailed = (error) => ({
+    type: "getThreadDetail/get-failed",
     payload: {
         error,
     },

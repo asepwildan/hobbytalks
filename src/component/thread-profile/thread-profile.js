@@ -9,7 +9,7 @@ export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
     const [name, setName] = useState("");
     const token = localStorage.getItem("tokenLogin");
-    const [thread, setThread] = useState([]);
+    const [info, setInfo] = useState({});
     useEffect(() => {
         axios
             .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
@@ -20,11 +20,12 @@ export default function Thread() {
             .then((response) => {
                 setThreadUser(response.data.data.threads);
                 setName(response.data.data.name);
-                setThread(response.data.data.threads);
+                setInfo(response.data.data);
+                console.log(response.data.data, "user");
             })
             .catch((error) => console.log(error, "error"));
     }, []);
-
+    console.log(threadUser, "user");
     return (
         <div className={styles.threadContainer}>
             <div className={styles.threadTitle}>
@@ -99,12 +100,14 @@ export default function Thread() {
                     </div>
                     <div key={thread.userId} className={styles.threadListProfile}>
                         <div className={styles.titleThreadProfile}>
-                            <Link to="/thread-detail" style={{ textDecoration: "none" }}>
+                            <Link
+                                to={`/thread-detail/?xyz=${thread._id}`}
+                                style={{ textDecoration: "none" }}>
                                 <div className={styles.threadInfo}>
                                     <div>
                                         <p className={styles.titleInfoText}>{thread.title}</p>
                                         <div className={styles.threadProfileInfo}>
-                                            <img src={ava1} alt="img1" />
+                                            <img src={info.avatar} alt="img1" />
                                             <p className={styles.threadAccountName}>{name}</p>
                                         </div>
 

@@ -120,6 +120,7 @@
     font-family: "Nunito", sans-serif;
     font-style: normal;
     font-weight: bold;
+    color: black;
 }
 
 .threadProfileInfo {
@@ -136,6 +137,7 @@
     font-weight: bold;
     text-decoration: none;
     font-size: 14px;
+    color: black;
 }
 
 .threadTextAnchor {
