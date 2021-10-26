@@ -103,7 +103,7 @@ export default class TextEditor extends Component {
                     </div>
                 </form>
 
-                {/* <textarea disabled value={JSON.stringify(contentState, null, 4)} /> */}
+                <textarea disabled value={JSON.stringify(contentState, null, 4)} />
             </div>
         );
     }

@@ -6,6 +6,7 @@ import Category from "../pages/category/Category";
 import LandingGoogle from "../pages/landingGoogle/landingGoogle";
 import ThreadDetail from "../pages/thread-detail/Thread-detail";
 import AccountDetail from "../pages/account-detail/account-detail";
+import Forum from "../pages/forum/Forum";
 
 function Routes() {
     return (
@@ -13,6 +14,7 @@ function Routes() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Homepage} />
+                    <Route path="/forum" component={Forum} />
                     <Route path="/profile" component={Profile} />
                     <Route path="/category" component={Category} />
                     <Route path="/thread-detail" component={ThreadDetail} />
