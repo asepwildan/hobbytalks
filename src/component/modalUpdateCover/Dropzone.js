@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import "./Dropzone.scss";
+import LoaderGIf from "../Login/loader.gif";
 
 // 1. Form handling
 // 2. API integration
@@ -10,6 +11,9 @@ export default function Basic() {
   const [values, setValues] = useState({
     name: "",
   });
+
+  //state untuk loader halaman
+  const [loaderCover, setLoaderCover] = useState(false);
 
   const [avatar, setAvatar] = useState(null);
 
@@ -32,6 +36,7 @@ export default function Basic() {
 
     // formData.append("name", values.name);
     formData.append("banner", avatar);
+    setLoaderCover(true);
 
     axios({
       method: "PUT",
@@ -45,10 +50,12 @@ export default function Basic() {
       .then((res) => {
         console.log(res);
         window.location.reload();
+        setLoaderCover(false);
       })
       .catch((err) => {
         console.log(JSON.stringify(err));
         alert("gambar gagal di upload");
+        setLoaderCover(false);
       });
   };
 
@@ -73,33 +80,4 @@ export default function Basic() {
       </form>
     </div>
   );
-}
-
-// import {useDropzone} from 'react-dropzone';
-
-// export default function Basic(props) {
-//   const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
-
-//   const files = acceptedFiles.map(file => (
-//     <li key={file.path}>
-//       {file.path} - {file.size} bytes
-//     </li>
-//   ));
-
-//   return (
-//     <section className="container">
-//       <div {...getRootProps({className: 'dropzone'})}>
-//         <input {...getInputProps()} />
-//         <p>Tarik dan letakkan disini, atau <b>klik</b> untuk memilih</p>
-//       </div>
-//       <aside>
-//         <h6>Document:</h6>
-//         <ul>{files}</ul>
-//       </aside>
-//     </section>
-//   );
-// }
-
-{
-  /* <Basic /> */
 }
