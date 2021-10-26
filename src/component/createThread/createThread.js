@@ -27,10 +27,15 @@ export default class TextEditor extends Component {
         // this.buttonRef = React.createRef();
         const contentState = convertFromRaw(content);
         this.state = {
+            title: "",
             contentState,
+
             file: null,
+            category: "default",
         };
         this.handleChangeImg = this.handleChangeImg.bind(this);
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     state = {
@@ -42,22 +47,33 @@ export default class TextEditor extends Component {
     //     });
     // };
 
+    handleChange(e) {
+        const value = e.target.value;
+        const name = e.target.name;
+        console.log(e.target.value, "target");
+        this.setState({ ...this.state, [name]: value });
+    }
+
     onContentStateChange: Function = (contentState) => {
         this.setState({
             contentState,
         });
     };
 
-    onSubmit = (e) => {
-        e.preventDefault();
-    };
     handleChangeImg(img) {
         this.setState({
             file: URL.createObjectURL(img.target.files[0]),
         });
     }
+    onSubmit = (e) => {
+        e.preventDefault();
+        const item = {};
+        item.category = this.state.category;
+        console.log(item.category, "submit");
+    };
 
     render() {
+        console.log(this.state, "hasil");
         // const { editorState } = this.state;
         const { contentState } = this.state;
         // console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
@@ -73,7 +89,14 @@ export default class TextEditor extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="createThread-title-container">
                         <label>Title</label>
-                        <input type="text" placeholder="Thread title" required />
+                        <input
+                            type="text"
+                            name="title"
+                            value={this.state.title}
+                            onChange={this.handleChange}
+                            placeholder="Thread title"
+                            required
+                        />
                     </div>
                     <label>Image Thread</label>
                     <div className="createThread-img-container">
@@ -109,16 +132,20 @@ export default class TextEditor extends Component {
                     </div>
                     <div className="createthrea-optionPost-container">
                         <div className="createThread-option-container">
-                            <select id="category" className="createThread-option" required>
-                                <option value="" selected="selected">
-                                    Pilih Category
-                                </option>
-                                <option value="">Travel</option>
-                                <option value="">Game</option>
-                                <option value="">Cooking</option>
-                                <option value="">DIY</option>
-                                <option value="">Sport</option>
-                                <option value="">Music</option>
+                            <select
+                                id="category"
+                                className="createThread-option"
+                                name="category"
+                                value={this.state.category}
+                                onChange={this.handleChange}
+                                required>
+                                <option value="">Pilih Category</option>
+                                <option value="travel">Travel</option>
+                                <option value="Game">Game</option>
+                                <option value="Cooking">Cooking</option>
+                                <option value="DIY">DIY</option>
+                                <option value="Sport">Sport</option>
+                                <option value="Music">Music</option>
                             </select>
                         </div>
                         <div className="createThread-PostButton">
