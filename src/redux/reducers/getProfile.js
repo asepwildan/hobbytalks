@@ -3,6 +3,7 @@ const initialState = {
     loading: false,
     error: "",
     bio: "",
+    banner: "",
 };
 
 function getProfileReducer(state = initialState, action) {
@@ -20,6 +21,7 @@ function getProfileReducer(state = initialState, action) {
                 loading: false,
                 error: "",
                 bio: payload.getprofile.bio,
+                banner: payload.getprofile.banner,
             };
         case "getprofile/get-failed":
             return {

@@ -60,7 +60,7 @@ export default function Register() {
         setEmailvalue(values.email);
     };
 
-    console.log(register, " get url register");
+    // console.log(register, " get url register");
 
     return (
         <React.Fragment>

@@ -13,7 +13,7 @@ export default function Comment({ ava }) {
     const { commentList, commentDetail, loading, error } = useSelector(
         (state) => state.getCommentReducer
     );
-    const id = "616bc20a15f73f8d5d5bbeab";
+    const id = "61782bfee7505e41d9418a1e";
     const limit = 5;
 
     console.log(loading, "ini loading list redux");

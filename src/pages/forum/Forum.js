@@ -5,53 +5,189 @@ import Navbar from "../../component/Navbar/navbar";
 import Trending from "../../component/trending/Trending";
 import { getProfileInfoAsync } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import getProfileReducer from "../../redux/reducers/getProfile";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
+import Thread from "../../component/thread-profile/thread-profile";
+import Search from "@material-ui/icons/Search";
+import { Menu, MenuItem } from "@material-ui/core";
+import Modal from "@mui/material/Modal";
+import CreateThread from "../../component/createThread/createThread"
 
 export default function Forum() {
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
-    // const category = profileInfo.categoryLike;
+    const [isOpen, setIsOpen] = useState();
+    const [buttonActive, setButtonActive] = useState();
+    const [buttonTopActive, setButtonTopActive] = useState();
+
+
+    const openModal = () => {
+        setIsOpen(true)
+    }
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+    const buttonSelected = (e) => {
+        setButtonActive(e.target.innerHTML);
+    };
+
+    const buttonTopSelected = (e) => {
+        setButtonTopActive(e.target.innerHTML);
+    };
 
     useEffect(() => {
         dispatch(getProfileInfoAsync());
     }, [dispatch]);
 
-   
-      
-   
     return (
         <React.Fragment>
             <Navbar />
-            <div>
+            <div className={styles.boxContentForum}>
                 <div className={styles.boxContainerLeftSide}>
                     <div className={styles.navTop}>
-                        <button className={styles.navTopBtn}>Home</button>
-                        <button className={styles.navTopBtn}>Following</button>
+                        <ul>
+                            <li
+                                className={
+                                    buttonTopActive === "Home"
+                                        ? styles.navTopBtnActive
+                                        : styles.navTopBtn
+                                }
+                                onClick={buttonTopSelected}
+                            >
+                                Home
+                            </li>
+                            <li
+                                className={
+                                    buttonTopActive === "Following"
+                                        ? styles.navTopBtnActive
+                                        : styles.navTopBtn
+                                }
+                                onClick={buttonTopSelected}
+                            >
+                                Following
+                            </li>
+                        </ul>
                     </div>
                     <div className={styles.navBottom}>
                         <div className={styles.headingNavBottom}>
                             <h4>Category</h4>
                         </div>
-                        <div>
-                            <button className={styles.navBottomBtn}>Electronics</button>
-                            <button className={styles.navBottomBtn}>Sport</button>
-                            <button className={styles.navBottomBtn}>DIY</button>
-                            <button className={styles.navBottomBtn}>Travel</button>
-                            <button className={styles.navBottomBtn}>Music</button>
+                        <br />
+                        <div clasName={styles.category}>
+                            <ul>
+                                <li
+                                    className={
+                                        buttonActive === "Electronics"
+                                            ? styles.navBottomBtnActive
+                                            : styles.navBottomBtn
+                                    }
+                                    onClick={buttonSelected}
+                                >
+                                    Electronics
+                                </li>
+                                <li
+                                    className={
+                                        buttonActive === "Sport"
+                                            ? styles.navBottomBtnActive
+                                            : styles.navBottomBtn
+                                    }
+                                    onClick={buttonSelected}
+                                >
+                                    Sport
+                                </li>
+                                <li
+                                    className={
+                                        buttonActive === "DIY"
+                                            ? styles.navBottomBtnActive
+                                            : styles.navBottomBtn
+                                    }
+                                    onClick={buttonSelected}
+                                >
+                                    DIY
+                                </li>
+                                <li
+                                    className={
+                                        buttonActive === "Travel"
+                                            ? styles.navBottomBtnActive
+                                            : styles.navBottomBtn
+                                    }
+                                    onClick={buttonSelected}
+                                >
+                                    Travel
+                                </li>
+                                <li
+                                    className={
+                                        buttonActive === "Music"
+                                            ? styles.navBottomBtnActive
+                                            : styles.navBottomBtn
+                                    }
+                                    onClick={buttonSelected}
+                                >
+                                    Music
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div className={styles.boxMiddleContainer}>
-                        <div className={styles.wrapperCreateThread}>
-                            <h4>Share your hobby</h4>
-                            <button>Create Thread</button>
-                        </div>
-                        <div className={styles.wrapperSearchBar}>
-                            <div className={styles.search}>
+                </div>
+                <div className={styles.boxMiddleContainer}>
+                    <div className={styles.wrapperCreateThread}>
+                        <h4>Share your hobby</h4>
+                        <button onClick={openModal}>Create Thread</button>
+                        <Modal
+                            keepMounted
+                            open={isOpen}
+                            onClose={closeModal}
+                            aria-labelledby="keep-mounted-modal-title"
+                            aria-describedby="keep-mounted-modal-description"
+                        >
+                            <div className={styles.createThreadContainer}>
+                                <Box>
+                                    <CreateThread />
+                                </Box>
+                            </div>
+                        </Modal>
+                    </div>
+                    <div className={styles.wrapperSearchBar}>
+                        <div className={styles.searchForum}>
+                            <form className={styles.formForum}>
                                 <input placeholder="What do you want to talk about" type="text" />
+                                <button>
+                                    <Search />
+                                </button>
+                            </form>
+                            <div className={styles.dropdownBar}>
+                                <Box sx={{ minWidth: 120 }}>
+                                    <FormControl>
+                                        <InputLabel
+                                            className={styles.inputLabel}
+                                            variant="standart"
+                                            htmlFor="uncontrolled-native"
+                                        ></InputLabel>
+                                        <NativeSelect
+                                            className={styles.selectInput}
+                                            defaultValue={"30"}
+                                            
+                                        >
+                                            <option value="text">Newest</option>
+                                            <option value="tes">Most Popular</option>
+                                            <option value="text">Oldest</option>
+                                        </NativeSelect>
+                                    </FormControl>
+                                </Box>
                             </div>
                         </div>
                     </div>
+                    <div className={styles.threaForumContainer}>
+                        <Thread />
+                    </div>
+                </div>
+                <div className={styles.boxRightContainer}>
+                    <Trending />
                 </div>
             </div>
             <Footer />

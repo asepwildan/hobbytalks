@@ -10,14 +10,18 @@ import AvaDefault from "./ava.png";
 import { Avatar } from "@material-ui/core";
 import axios from "axios";
 import iconUpload from "./assets/upload.svg";
+import iconPanahUpload from "./assets/panahUpload.svg";
 import Loader from "../Login/loader.gif";
 import styles from "../ModalEditUser/editProfilUser.module.css";
+import Basic from "../modalUpdateCover/Dropzone";
 
 function Banner(props) {
     let Token = localStorage.getItem("tokenLogin");
     const inputFile = useRef(null);
     const dispatch = useDispatch();
-    const { profileInfo, loading, error, bio } = useSelector((state) => state.getProfileReducer);
+    const { profileInfo, loading, error, bio, banner } = useSelector(
+        (state) => state.getProfileReducer
+    );
     const [isOpen, SetIsOpen] = useState();
     const [response, setResponse] = useState({});
 
@@ -127,9 +131,20 @@ function Banner(props) {
         setImageTes(null);
         setPicture([]);
     };
+    const [updateOn, setUpdateOn] = useState();
+    const updateCover = () => {
+        setUpdateOn(true);
+    };
+    const closeCover = () => {
+        setUpdateOn(false);
+    };
 
     return (
         <div className="bannerContainer">
+            {/* <div className="update-cover">
+                <ModalUpdateCover />
+            </div> */}
+            <img className="cover-banner" src={banner} alt="cover banner" />
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (
@@ -264,6 +279,22 @@ function Banner(props) {
                     </div>
                 </div>
             </div>
+            <Modal
+                keepMounted
+                open={updateOn}
+                onClose={closeCover}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description">
+                <Box>
+                    <div className="basic-container">
+                        <Basic />
+                    </div>
+                </Box>
+            </Modal>
+            <button className="btn-update-cover" onClick={updateCover}>
+                <img className="ubah-warna-btn" src={iconPanahUpload} alt="" />
+                <p>Update Cover</p>
+            </button>
         </div>
     );
 }

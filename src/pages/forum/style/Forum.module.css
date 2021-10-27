@@ -1,0 +1,252 @@
+.boxContentForum {
+    width: 90%;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    /* border-style: solid; */
+    justify-content: space-between;
+}
+
+
+.boxContainerLeftSide {
+    /* position: absolute; */
+    width: 15%;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* margin-top: 50px; */
+    /* border-style: solid; */
+}
+.navTop {
+    /* display: flex;
+    flex-wrap: wrap; */
+    width: 100%;
+    margin-bottom: 20px;
+    /* height: 20vh; */
+    /* cursor: pointer; */
+    /* justify-content: space-between; */
+
+}
+
+.navTopBtn{
+    list-style: none;
+    line-height: 40px;
+    cursor: pointer;
+    margin-left: -40px;
+    padding-left: 20px;
+    width: 170px;
+    transition-duration: 0.3s ease;
+    transition-property: transform;
+}
+.navTopBtn:active {
+    transform: scale(0.98);
+}
+.navTopBtn:hover {
+    background-color: #f5f8fd;
+    border-radius: 8px;
+    font-size: 16.5px;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.1);
+   
+}
+
+.navTopBtnActive {
+    background-color: #f5f8fd;
+    border-radius: 8px;
+    font-size: 16.5px;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.1);    
+    list-style: none;
+    /* height: 35px;     */
+    line-height: 40px;
+    cursor: pointer;
+    align-content: center;
+    padding-left: 20px;
+    width: 170px;
+    margin-left: -40px;
+}
+
+
+.navBottom {
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+
+.hedingNavbarBottom {
+     display: flex;
+    flex-wrap: wrap;
+} 
+
+.category {
+    /* display: flex;
+    flex-wrap: wrap; */
+}
+
+/* .category ul {
+    width: 100%;
+    padding-right: 10px;
+} */
+.navBottomBtn {
+    list-style: none;
+    /* height: 35px;     */
+    line-height: 40px;
+    cursor: pointer;
+    align-content: center;
+    margin-left: -40px;
+    padding-left: 20px;
+    width: 170px; 
+    transition-duration: 0.3s ease;
+    transition-property: transform;
+}
+.navBottomBtn:active {
+    transform: scale(0.98);
+}
+
+.navBottomBtn:hover {
+    background-color: #f5f8fd;
+    border-radius: 8px;
+    font-size: 16.5px;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.1);
+    
+}
+
+.navBottomBtnActive {
+    background-color: #f5f8fd;
+    border-radius: 8px;
+    font-size: 16.5px;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.1);    
+    list-style: none;
+    /* height: 35px;     */
+    line-height: 40px;
+    cursor: pointer;
+    align-content: center;
+    padding-left: 20px;
+    width: 170px;
+    margin-left: -40px;
+}
+
+
+
+.boxMiddleContainer {
+    width: 55%;
+    /* display: flex; */
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    /* position: absolute; */ 
+    margin-bottom: 20px;
+}
+
+.wrapperCreateThread {
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f8fd;
+    height: 50px;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05);
+}
+
+.wrapperCreateThread button {
+    background-color: #1e8ac6;
+    color: #fff;
+    border-style: none;
+    border-radius: 4px;
+    height: 30px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition-duration: 0.1s !important;
+    transition-property: transform !important;
+    cursor: pointer !important;
+    /* width: 70% !important; */
+}
+.wrapperCreateThread button:active {
+    transform: scale(0.98) !important;
+}
+
+.wrapperCreateThread h4 {
+    margin-left: 20px;
+    color: #3B4D7A;
+}
+
+.createThreadContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #fff;
+    width: 50%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.searchForum {
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    /* border-style: solid; */
+    justify-content: space-between;
+    height: 80px;
+    background-color: white !important;
+
+
+}
+
+.formForum {
+    width: 75%;
+    display: flex;
+    /* border-style: solid; */
+    /* justify-content: space-between; */
+}
+
+.formForum input {
+    border: 0.5px solid;
+    border-color: #9f9f9f;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
+    height: 40px;
+    margin-left: -30px;
+}
+
+.formForum button {
+    /* position:absolute; */
+    margin-left: -40px;
+    color:#9f9f9f ;
+    background-color: transparent;
+    height: 40px;
+    border: none;
+    margin-top: 4px;
+
+}
+
+.dropdownBar {
+    /* border-style: solid; */
+    height: 80px;
+    margin-right: 5px;
+
+    /* font-size: 14px !important; */
+}
+
+.selectInput {
+    font-size: 14px !important;
+    border-style: solid !important;
+    border-radius: 4px;
+    border-color: #E0E0E0;
+    /* border- */
+    height: 40px;
+    text-decoration: none;
+    
+}
+ .selectInput option {
+    font-size: 14px !important;
+    font-family: "Nunito", sans-serif;
+    padding-left: 20px !important;
+    text-decoration: none;
+    margin-left: 20px;
+ }
+
+.boxRightContainer {
+    /* position: absolute; */
+    /* display: flex;
+    flex-wrap: wrap; */
+    width: 20%;
+    /* height: auto; */
+}

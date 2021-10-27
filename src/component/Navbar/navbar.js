@@ -11,6 +11,7 @@ import { Menu, MenuItem } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
+import searchLogo from "../Navbar/search-solid.svg";
 import logo from "../Navbar/hobbytalks.svg";
 import styles from "../Navbar/navbar.module.css";
 import CreateThread from "../createThread/createThread";
@@ -65,8 +66,12 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <div className={styles.searchBar}>
-                    <input type="text" placeholder="What do you want to talk about?" />
-                    <SearchIcon className={styles.navbarInputButton} />
+                    <form className={styles.formSearchBar}>
+                        <input type="text" placeholder="What do you want to talk about?" />
+                        <button>
+                            <SearchIcon className={styles.navbarInputButton} />
+                        </button>
+                    </form>
                 </div>
             </div>
             {Token !== null ? (
@@ -78,7 +83,8 @@ export default function Navbar() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description">
+                            aria-describedby="keep-mounted-modal-description"
+                        >
                             <div className={styles.createThreadContainer}>
                                 <Box>
                                     <CreateThread />
@@ -92,7 +98,8 @@ export default function Navbar() {
                             <div
                                 className={
                                     drop === false ? styles.dropdownNone : styles.dropdownctn
-                                }>
+                                }
+                            >
                                 <p style={{ color: "black" }}></p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
@@ -122,7 +129,8 @@ export default function Navbar() {
                             onClose={handleClose}
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
-                            }}>
+                            }}
+                        >
                             <Link to="/profile" style={{ textDecoration: "none" }}>
                                 <MenuItem onClick={handleClose} className={styles.dropdownProfile}>
                                     Profile
