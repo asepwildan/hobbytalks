@@ -1,15 +1,18 @@
 .boxContentProfile {
     width: 90%;
     margin: 10px auto;
-    /* border-style: solid; */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 5%;
 }
 
+.containerNoThread {
+    width: 60%;
+}
+
 .threadContanerProfile {
-    width: 63%;
+    width: 60%;
 }
 
 .likeRekomContanerProfile {
