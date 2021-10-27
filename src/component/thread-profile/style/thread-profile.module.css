@@ -84,6 +84,17 @@
     cursor: pointer;
 }
 
+.createThreadContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #fff;
+    width: 50%;
+    border-radius: 4px;
+    overflow: hidden;
+}
 .threadListProfile {
     margin: 7px 0px;
     padding: 5px 0px;
@@ -103,13 +114,19 @@
     overflow: hidden;
 }
 .imgThread {
-    width: 300px;
+    width: 250px;
     overflow: hidden;
     height: 200px;
     text-align: right;
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 .imgThread img {
-    height: 100%;
+    /* height: 100%; */
+    /* width: 90%; */
+    max-height: 100%;
 }
 /* .threadInfo div:last-child img {
     height: 100%;
@@ -129,9 +146,20 @@
     gap: 10px;
     margin: 7px 0px 10px 0px;
 }
-.threadProfileInfo img {
+/* .threadProfileInfo img {
     width: 30px;
     border-radius: 100%;
+} */
+
+.threadProfileInfo .imgAvatarcontainer {
+    width: 50px !important;
+    height: 50px !important;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.imgAvatarcontainer img {
+    width: 100%;
 }
 .threadAccountName {
     font-weight: bold;

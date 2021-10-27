@@ -87,3 +87,8 @@ export const getThreadDetailFailed = (error) => ({
         error,
     },
 });
+
+export const addIndexThread = (indexThread) => ({
+    type: "add-index-thread",
+    payload: { indexThread },
+});

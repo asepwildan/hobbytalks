@@ -60,7 +60,7 @@ export default function Category() {
         {
             img: Tech,
             value: "6166ef8c98472010a2d7e988",
-            title: "Tech",
+            title: "Electronics",
             isCheck: false,
             id: "7a",
         },

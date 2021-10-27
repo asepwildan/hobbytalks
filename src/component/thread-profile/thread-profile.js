@@ -4,34 +4,44 @@ import imgthread2 from "./img/imgthread2.png";
 import ava1 from "./img/ava1.png";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, useParams, Link } from "react-router-dom";
+import { addIndexThread } from "../../redux/actions";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import CreateThread from "../createThread/createThread";
 export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
     const [name, setName] = useState("");
     const token = localStorage.getItem("tokenLogin");
     const [info, setInfo] = useState({});
-    useEffect(() => {
-        axios
-            .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                setThreadUser(response.data.data.threads);
-                setName(response.data.data.name);
-                setInfo(response.data.data);
-                console.log(response.data.data, "user");
-            })
-            .catch((error) => console.log(error, "error"));
-    }, []);
-    console.log(threadUser, "user");
+    const dispatch = useDispatch();
+    const { profileInfo, threadListProfile, loading, error, bio, banner } = useSelector(
+        (state) => state.getProfileReducer
+    );
+
+    const [isOpen, setIsOpen] = useState();
+    console.log(profileInfo.threads, "ini thread");
+
+    const openModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+    const kirimData = (value) => {
+        dispatch(addIndexThread(value));
+        setIsOpen(true);
+    };
+
     return (
         <div className={styles.threadContainer}>
             <div className={styles.threadTitle}>
                 <p>Thread</p>
             </div>
-            {threadUser.map((thread) => (
+            {threadListProfile.map((thread, index) => (
                 <>
                     <div key={thread._id} className={styles.buttonActionProfileContainer}>
                         <div className={styles.buttonFIlter1}>
@@ -80,7 +90,9 @@ export default function Thread() {
                             <button>{thread.category.name}</button>
                         </div>
                         <div className={styles.buttonFIlter2}>
-                            <button className={styles.editButtonThread}>
+                            <button
+                                className={styles.editButtonThread}
+                                onClick={() => kirimData(index)}>
                                 <svg
                                     width="15"
                                     height="16"
@@ -96,6 +108,18 @@ export default function Thread() {
                                 </svg>
                                 <p>Edit</p>
                             </button>
+                            <Modal
+                                keepMounted
+                                open={isOpen}
+                                onClose={closeModal}
+                                aria-labelledby="keep-mounted-modal-title"
+                                aria-describedby="keep-mounted-modal-description">
+                                <div className={styles.createThreadContainer}>
+                                    <Box>
+                                        <CreateThread />
+                                    </Box>
+                                </div>
+                            </Modal>
                         </div>
                     </div>
                     <div key={thread.userId} className={styles.threadListProfile}>
@@ -107,8 +131,13 @@ export default function Thread() {
                                     <div>
                                         <p className={styles.titleInfoText}>{thread.title}</p>
                                         <div className={styles.threadProfileInfo}>
-                                            <img src={info.avatar} alt="img1" />
-                                            <p className={styles.threadAccountName}>{name}</p>
+                                            <div className={styles.imgAvatarcontainer}>
+                                                <img src={profileInfo.avatar} alt="img1" />
+                                            </div>
+
+                                            <p className={styles.threadAccountName}>
+                                                {profileInfo.name}
+                                            </p>
                                         </div>
 
                                         <p

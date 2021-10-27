@@ -2,7 +2,7 @@ import axios from "axios";
 let Token = localStorage.getItem("tokenLogin");
 
 export const getProfileInfo = () => {
-    return axios.get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me", {
+    return axios.get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/profile/me?page=1", {
         headers: {
             Authorization: `Bearer ${Token}`,
         },
