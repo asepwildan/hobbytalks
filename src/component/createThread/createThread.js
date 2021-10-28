@@ -24,6 +24,7 @@ const content = {
         },
     ],
 };
+
 let Token = localStorage.getItem("tokenLogin");
 
 class TextEditor extends Component {
@@ -31,13 +32,13 @@ class TextEditor extends Component {
         super(props);
         // this.buttonRef = React.createRef();
         //     const contentState = convertFromRaw(content);
+        console.log(props.threads.getProfileReducer.threadListProfile, "testing");
 
-        // const bahaya = props.abcd.getProfileReducer.bahaya;
         // const abcd = props.abcd.getProfileReducer.abcd;
         let editorState = EditorState.createEmpty();
 
-        // const indexThread = 0;
-
+        const indexThread = props.indexThread;
+        const bahaya = props.threads.getProfileReducer.threadListProfile[0];
         // const thread = props.threads[0].content;
         // if (indexThread !== null) {
         // const indexThread = props.indexThread;
@@ -52,28 +53,32 @@ class TextEditor extends Component {
         //     ));
         // }
 
+        // this.state = {
+        //     title: "",
+        //     editorState,
+        //     img: null,
+        //     file: null,
+        //     category: "default",
+        //     loading: false,
+        //     // konten: abcd,
+        // };
+        // } else {
         this.state = {
             title: "",
+            // editorState: EditorState.createWithContent(
+            //     ContentState.createFromBlockArray(convertFromHTML(bahaya.content))
+            // ),
+            // editorState:
+            //     props.threads.getProfileReducer.threadListProfile.length !== null
+            //         ? EditorState.createWithContent("<p>testing</p>")
+            //         : null,
             editorState,
             img: null,
             file: null,
             category: "default",
             loading: false,
-            // konten: abcd,
+            // nilai: indexThread,
         };
-        // } else {
-        //     this.state = {
-        //         title: "",
-        //         // editorState: EditorState.createWithContent(
-        //         //     ContentState.createFromBlockArray(convertFromHTML(abcd))
-        //         // ),
-        //         editorState,
-        //         img: null,
-        //         file: null,
-        //         category: "default",
-        //         loading: false,
-        //         nilai: indexThread,
-        //     };
         // }
         // if (abcd !== null) {
         //     editorState = EditorState.createWithContent(
@@ -86,6 +91,13 @@ class TextEditor extends Component {
 
         this.handleChange = this.handleChange.bind(this);
     }
+    // componentDidMount() {
+    //     this.setState({
+    //         editorState: EditorState.createWithContent(
+    //             this.props.threads.getProfileReducer.threadListProfile[1].content
+    //         ),
+    //     });
+    // }
 
     // state = {
     //     editorState: EditorState.createEmpty(),
@@ -193,6 +205,7 @@ class TextEditor extends Component {
 
                     <label>Story</label>
                     <Editor
+                        defaultEditorState={this.state.editorState}
                         // editorState={this.state.editorState}
                         toolbar={{
                             options: ["inline", "list", "textAlign", "link"],
