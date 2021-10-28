@@ -1,20 +1,18 @@
 import React from "react";
 import styles from "./thread-detail-user.module.css";
-import plus from './asset/plus.svg';
-import foto from './asset/image 7.png';
-import piano from './asset/piano.png';
-import garis from './asset/garis.svg'
+import plus from "./asset/plus.svg";
+import foto from "./asset/image 7.png";
+import piano from "./asset/piano.png";
+import garis from "./asset/garis.svg";
 import { style } from "@mui/system";
-import panahnya from './asset/panahnya.svg'
-import garisVote from './asset/garisVote.svg'
-import panahBawah from './asset/panahbawah.svg'
-import chat from './asset/Chat.svg'
-import { useParams } from "react-router";
+import panahnya from "./asset/panahnya.svg";
+import garisVote from "./asset/garisVote.svg";
+import panahBawah from "./asset/panahbawah.svg";
+import chat from "./asset/Chat.svg";
+import { useSelector } from "react-redux";
 
 export default function ThreadUser() {
-    const queryParams = new URLSearchParams(window.location.search);
-
-    const idThread = queryParams.get("xyz");
+    const { name, avatar, title, content, image } = useSelector((state) => state.getThreadDetail);
     return (
         <div className={styles.threadDetailUserContainer}>
             <div className={styles.buttonActionProfileContainer}>
@@ -38,39 +36,38 @@ export default function ThreadUser() {
                 </div>
                 <div className={styles.buttonFIlter2}>
                     <button className={styles.followButtonThread}>
-                        <img className="gambarPlus" src={ plus }/>
+                        <img className="gambarPlus" src={plus} />
                         <p className={styles.followText}>Follow Thread</p>
                     </button>
                 </div>
             </div>
             <div className={styles.identitas}>
-                <img className={styles.foto} src={foto}></img>
-                <p className={styles.nama}>Stella Hobart</p>
+                <img className={styles.foto} src={avatar}></img>
+                <p className={styles.nama}>{name}</p>
+                {/* {threadDetail.userId.name} */}
             </div>
-                <p className={styles.keterangan}>My Journey into Piano: 1 year and still counting</p>
-                <img src={piano} className={styles.piano}></img>
-                <div>
-                    <p className={styles.caption}>I did not learn the pieces entirely guys, obviously. And did not learn to read sheet music. I was an absolute beginner in the first video. I have no intention to trick anyone</p>
-                    <p className={styles.caption}>Viverra suscipit risus feugiat sodales egestas est tortor fermentum dictum. Sit tempus id sed et. Ipsum egestas augue leo augue sed et. Interdum risus nunc in ac. Risus mi velit donec senectus. In consequat lectus pellentesque tempus et nec integer. Ullamcorper ut magna fames sit pharetra, ornare vitae orci. Vitae, pellentesque tristique turpis turpis pretium libero proin. Ultrices viverra amet sit egestas.</p>
-                    <p className={styles.caption}>Pellentesque egestas viverra lacinia mi mattis eget. Odio massa elit, sem convallis posuere magna felis.
-                    Purus lectus consectetur mattis luctus sed bibendum. Ultrices congue augue magna gravida sed. Nisl netus suscipit feugiat nunc, ipsum. Lectus leo egestas metus nisl posuere tempus amet scelerisque libero. Augue diam tellus fringilla non aliquet. Accumsan aliquet egestas facilisis duis. Vestibulum, erat tristique egestas sit nunc, sed pellentesque.</p>
-                </div>
-                <img src={garis} className={styles.garis}></img>
-                <div className={styles.bawah}>
-                    <div className={styles.btnVote}>
-                        <img className={styles.panahnya} src={panahnya}/>
-                        <p className={styles.angkaPanah}>1.5k</p>
-                        <div className={styles.dislikeGroup}>
-                            <img src={panahBawah} className={styles.panahBawah}/>
-                            <p className={styles.dislike}>0</p>
-                        </div>
-                        <img src={chat} className={styles.commentImage}></img>
-                        <p className={styles.comment}>124</p>
+            <p className={styles.keterangan}>{title}</p>
+            {/* {threadDetail.title} */}
+            <img src={image} className={styles.piano}></img>
+
+            <div
+                dangerouslySetInnerHTML={{
+                    __html: content,
+                }}></div>
+            <img src={garis} className={styles.garis}></img>
+            <div className={styles.bawah}>
+                <div className={styles.btnVote}>
+                    <img className={styles.panahnya} src={panahnya} />
+                    <p className={styles.angkaPanah}>1.5k</p>
+                    <div className={styles.dislikeGroup}>
+                        <img src={panahBawah} className={styles.panahBawah} />
+                        <p className={styles.dislike}>0</p>
                     </div>
-                    <date className={styles.tanggal}>28 June 2021</date>
+                    <img src={chat} className={styles.commentImage}></img>
+                    <p className={styles.comment}>124</p>
                 </div>
+                <date className={styles.tanggal}>28 June 2021</date>
+            </div>
         </div>
-            
-    
-    )
+    );
 }

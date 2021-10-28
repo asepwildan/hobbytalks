@@ -6,6 +6,7 @@ import SubComment from "./Replies/replies";
 import Loader from "./loaderComment.gif";
 import { useSelector, useDispatch } from "react-redux";
 import { getCommentAsync } from "../../redux/actions";
+import { Link, useParams } from "react-router-dom";
 
 export default function Comment({ ava }) {
     const [page, setPage] = useState(1);
@@ -13,9 +14,11 @@ export default function Comment({ ava }) {
     const { commentList, commentDetail, loading, error } = useSelector(
         (state) => state.getCommentReducer
     );
-    const id = "61782bfee7505e41d9418a1e";
-    const limit = 5;
 
+    const limit = 5;
+    const queryParams = new URLSearchParams(window.location.search);
+    const idThread = queryParams.get("xyz");
+    // console.log(idThread, "komen id thread");
     console.log(loading, "ini loading list redux");
 
     useEffect(() => {
@@ -31,7 +34,7 @@ export default function Comment({ ava }) {
     };
 
     const updateComment = () => {
-        dispatch(getCommentAsync(id, page, limit));
+        dispatch(getCommentAsync(idThread, page, limit));
     };
 
     const CommentItem = ({ ...comment }) => {
