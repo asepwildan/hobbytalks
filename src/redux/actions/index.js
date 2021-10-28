@@ -1,12 +1,12 @@
 import { getProfileInfo, editProfile, commentList, getThreadList, getThreadDetail, getUser } from "../../services";
 
-export const getProfileInfoAsync = () => {
+export const getProfileInfoAsync = (page) => {
     return (dispatch, getState) => {
         dispatch({ type: "getprofile/get-start" });
-        getProfileInfo()
+        getProfileInfo(page)
             .then((response) => {
                 console.log(response.data.data, "action");
-                dispatch(getProfileSuccsess(response.data.data));
+                dispatch(getProfileSuccsess(response.data));
             })
             .catch((error) => {
                 console.log(error);
@@ -59,7 +59,6 @@ export const getCommentFailed = (error) => ({
     },
 });
 
-
 export const getThreadListAsync = (shorting, page) => {
     return (dispatch, getState) => {
         dispatch({ type: "getthread/get-start" });
@@ -88,7 +87,6 @@ export const getThreadListFailed = (error) => ({
         error,
     },
 });
-
 
 export const getThreadDetailAsync = (idThread) => {
     return (dispatch, getState) => {

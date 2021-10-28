@@ -1,4 +1,5 @@
 const initialState = {
+    profileData: {},
     profileInfo: {},
     threadListProfile: [],
     loading: false,
@@ -20,12 +21,13 @@ function getProfileReducer(state = initialState, action) {
         case "getprofile/get-succsess":
             return {
                 ...state,
-                profileInfo: payload.getprofile,
-                threadListProfile: payload.getprofile.threads,
+                profileData: payload.getprofile,
+                profileInfo: payload.getprofile.data,
+                threadListProfile: payload.getprofile.data.threads,
                 loading: false,
                 error: "",
-                bio: payload.getprofile.bio,
-                banner: payload.getprofile.banner,
+                bio: payload.getprofile.data.bio,
+                banner: payload.getprofile.data.banner,
             };
         case "getprofile/get-failed":
             return {

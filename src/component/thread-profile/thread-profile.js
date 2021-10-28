@@ -6,18 +6,29 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, useParams, Link } from "react-router-dom";
-import { addIndexThread } from "../../redux/actions";
+import { addIndexThread, getProfileInfoAsync } from "../../redux/actions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import CreateThread from "../createThread/createThread";
+import EditThread from "../edit-thread/editThread";
+import Pagination from "@mui/material/Pagination";
+
 export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
     const [name, setName] = useState("");
     const token = localStorage.getItem("tokenLogin");
     const [info, setInfo] = useState({});
+    const [page, setPage] = useState("");
     const dispatch = useDispatch();
-    const { profileInfo, threadListProfile, loading, error, bio, banner, indexThreadUser } =
-        useSelector((state) => state.getProfileReducer);
+    const {
+        profileData,
+        profileInfo,
+        threadListProfile,
+        loading,
+        error,
+        bio,
+        banner,
+        indexThreadUser,
+    } = useSelector((state) => state.getProfileReducer);
 
     const [isOpen, setIsOpen] = useState();
     console.log(profileInfo.threads, "ini thread");
@@ -36,6 +47,17 @@ export default function Thread() {
         console.log(indexThreadUser, "index dari profile");
     };
     console.log(threadListProfile, "ini thread p");
+
+    const handleChange = (e, value) => {
+        setPage(value);
+
+        console.log(value, "test page");
+    };
+    useEffect(() => {
+        dispatch(getProfileInfoAsync(page));
+    }, [dispatch, page]);
+
+    console.log(profileInfo, "total");
     return (
         <div className={styles.threadContainer}>
             <div className={styles.threadTitle}>
@@ -223,7 +245,7 @@ export default function Thread() {
                 aria-describedby="keep-mounted-modal-description">
                 <div className={styles.createThreadContainer}>
                     <Box>
-                        <CreateThread
+                        <EditThread
                             indexThread={indexThreadUser}
                             threadListProfile={threadListProfile}
                         />
@@ -231,6 +253,17 @@ export default function Thread() {
                 </div>
             </Modal>
             {/* )} */}
+            {profileData.totalPage === 1 ? (
+                <div></div>
+            ) : (
+                <div className={styles.paginationContainer}>
+                    <Pagination
+                        count={profileData.totalPage}
+                        page={profileData.curentPage}
+                        onChange={handleChange}
+                    />
+                </div>
+            )}
         </div>
     );
 }

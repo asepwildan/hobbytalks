@@ -6,7 +6,7 @@ import Navbar from "../../component/Navbar/navbar";
 import Banner from "../../component/banner-profile/Banner";
 import Trending from "../../component/trending/Trending";
 import "./style/Account-detail.scss";
-import ThreadUser from "../../component/thread-detail-user/Thread-detail-user";
+import ThreadListAccountDetail from "../../component/threadListAccountDetail/threadListAccountDetail";
 
 export default function AccountDetail() {
     return (
@@ -16,7 +16,7 @@ export default function AccountDetail() {
                 <Banner />
                 <div className="boxContentProfile">
                     <div className="threadContanerProfile">
-                        <ThreadUser/>
+                        <ThreadListAccountDetail />
                     </div>
                     <div className="likeRekomContanerProfile">
                         <Likerecomendation />

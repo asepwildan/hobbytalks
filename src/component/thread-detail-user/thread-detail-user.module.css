@@ -1,31 +1,45 @@
-.threadContainer {
-    border: 1px solid #e0e0e0;
-    width: 100%;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
 
-    padding: 20px 45px;
+.threadDetailUserContainer {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
     box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
-    font-family: "Nunito", sans-serif;
-}
-
-.threadTitle {
-    /* border-top: 1px solid #e0e0e0; */
-    padding: 10px 0px;
-    font-family: "Nunito", sans-serif;
-    font-weight: bold;
+    padding: 24px 40px;
 }
 
 .buttonActionProfileContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0px;
-    border-top: 1px solid #e0e0e0;
+    margin-bottom: 24px;
 }
+
 .buttonFIlter1 {
     display: flex;
-    /* gap: 20px; */
+    /* gap: 7px; */
 }
+
+.buttonHot {
+    display: flex;
+    width: 65px;
+    height: 22px;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #e06044;
+    padding: 5px 12px;
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+    background-color: #f7daf2;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
 .buttonPopular {
     display: flex;
     align-items: center;
@@ -39,10 +53,10 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
-.buttonFIlter1 button:last-child {
+.buttonMusic {
     font-size: 12px;
     background-color: #f2f2f2;
     padding: 5px 15px;
@@ -53,149 +67,145 @@
     border-radius: 12px;
 }
 
-.buttonHot {
+.followButtonThread {
     display: flex;
     align-items: center;
-    gap: 5px;
     font-size: 12px;
-    color: #e06044;
-    padding: 5px 12px;
+    background-color: #f5f8fd;
+    padding: 0px 7px;
     font-weight: bold;
     font-family: "Nunito", sans-serif;
-    background-color: #f7daf2;
+    color: #607cc5;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 30px;
     border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-right: 20px;
 }
 
-.editButtonThread {
+.followText {
+    padding: 0px 10px;
+}
+
+.foto {
+    border-radius: 50%;
+    margin-right: 12px;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+}
+
+.identitas {
     display: flex;
     align-items: center;
-    gap: 3px;
-    font-size: 12px;
-    color: #1e8ac6;
-    padding: 7px 12px;
-    font-weight: normal;
-    font-family: "Nunito", sans-serif;
-    background-color: #ebf4fa;
-    border: 1px solid #1e8ac6;
-    border-radius: 4px;
-    cursor: pointer;
+    margin-bottom: 14px;
 }
 
-.createThreadContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background-color: #fff;
-    width: 50%;
-    border-radius: 4px;
-    overflow: hidden;
-}
-.threadListProfile {
-    margin: 7px 0px;
-    padding: 5px 0px;
-}
-
-.threadInfo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.threadInfo div:first-child {
-    width: 60%;
-    height: 150px;
-
-    overflow: hidden;
-}
-.imgThread {
-    width: 250px;
-    overflow: hidden;
-    height: 200px;
-    text-align: right;
-
-    display: flex;
-    align-items: center;
-    justify-content: end;
-}
-.imgThread img {
-    /* height: 100%; */
-    /* width: 90%; */
-    max-height: 100%;
-}
-/* .threadInfo div:last-child img {
-    height: 100%;
-} */
-
-.titleInfoText {
-    font-size: 14px;
+.nama {
+    left: 87px;
     font-family: "Nunito", sans-serif;
     font-style: normal;
     font-weight: bold;
-    color: black;
+    font-size: 15px;
+    top: 6px;
 }
 
-.threadProfileInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 7px 0px 10px 0px;
-}
-/* .threadProfileInfo img {
-    width: 30px;
-    border-radius: 100%;
-} */
-
-.threadProfileInfo .imgAvatarcontainer {
-    width: 50px !important;
-    height: 50px !important;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-.imgAvatarcontainer img {
-    width: 100%;
-}
-.threadAccountName {
+.keterangan {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
     font-weight: bold;
-    text-decoration: none;
-    font-size: 14px;
-    color: black;
+    font-size: 18px;
+    line-height: 26px;
+    color: #000000;
+    margin-bottom: 14px;
 }
 
-.threadTextAnchor {
-    font-size: 12px;
-    color: #828282;
+.piano {
+    width: 74%;
+    margin: auto;
+    display: block;
+    margin-bottom: 20px;
 }
 
-.threadActionContainer {
-    display: inline-flex;
-    background-color: #f5f8fd;
-    padding: 5px 0px;
-    border-radius: 8px;
-    margin: 10px 0px;
+.caption {
+    font-family: "Nunito", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    margin-bottom: 20px;
 }
 
-.threadAction {
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.bawah {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 15px;
-    gap: 5px;
+    margin-top: 20px;
+}
+
+.btnVote {
+    width: 31%;
+    height: 30px;
+    font-size: 12px;
+    color: #070606;
+    padding: 1px 12px;
+    font-weight: bold;
+    font-family: "Nunito", sans-serif;
+    background-color: #f5f8fd;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+}
+
+.angkaPanah {
+    color: #1e8ac6;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 8px;
+}
+
+.dislike {
+    margin: auto;
+    color: #828282;
+    font-size: 12px;
+    padding-right: 10px;
+    padding-left: 0px;
+}
+
+.panahBawah {
+    margin-left: 6px;
+    width: 28px;
     cursor: pointer;
 }
-.threadActionInfo {
-    font-size: 12px;
-    display: flex;
-    align-items: center;
+
+.panahnya {
+    cursor: pointer;
 }
 
-.threadActionContainer .threadAction:nth-child(2) {
-    border-left: 1px solid #b4c0de;
+.comment {
+    margin: auto 0px;
+    color: #828282;
+    margin-right: 0px;
+}
+
+.dislikeGroup {
+    display: flex;
     border-right: 1px solid #b4c0de;
+    border-left: 1px solid #b4c0de;
+   
+}
+
+.commentImage {
+    padding-left: 8px;
+}
+
+.tanggal {
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #828282;
+    margin: auto;
+    margin-left: 360px;
 }

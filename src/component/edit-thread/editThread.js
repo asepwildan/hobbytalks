@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-// import { useEffect, useState, useRef } from "react";
 import { EditorState, convertToRaw, convertFromRaw, ContentState, convertFromHTML } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-import "./style/createThread.scss";
+import "./style/editThread.scss";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import CloseIcon from "./close.svg";
+import CloseIcon from "../createThread/close.svg";
 import axios from "axios";
 import Loader from "../Login/loader.gif";
 import { connect } from "react-redux";
@@ -27,20 +26,25 @@ const content = {
 
 let Token = localStorage.getItem("tokenLogin");
 
-class TextEditor extends Component {
+class EditTextEditor extends Component {
     constructor(props) {
         super(props);
 
         let editorState = EditorState.createEmpty();
+        const indexThread = props?.indexThread;
+        const threadKonten = props?.threadListProfile ? props?.threadListProfile[indexThread] : "";
+        const idThread = props?.threadListProfile ? props?.threadListProfile[indexThread]._id : "";
 
         this.state = {
-            title: "",
-
-            editorState,
-            img: null,
-            file: null,
+            title: threadKonten?.title,
+            editorState: EditorState.createWithContent(
+                ContentState.createFromBlockArray(convertFromHTML(threadKonten?.content || " "))
+            ),
+            img: threadKonten?.image,
+            file: threadKonten?.image,
             category: "default",
             loading: false,
+            id: idThread,
         };
 
         this.handleChangeImg = this.handleChangeImg.bind(this);
@@ -83,8 +87,8 @@ class TextEditor extends Component {
         testing.append("category", this.state.category);
 
         axios({
-            method: "POST",
-            url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/create`,
+            method: "PUT",
+            url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/edit/${this.state.id}`,
             data: testing,
             headers: {
                 Authorization: `Bearer ${Token} `,
@@ -131,7 +135,6 @@ class TextEditor extends Component {
                             placeholder="image"
                             onChange={this.handleChangeImg}
                             className="custom-file-input"
-                            required
                         />
                         <img src={this.state.file} style={{ width: "130px" }} />
                     </div>
@@ -152,7 +155,6 @@ class TextEditor extends Component {
                         editorClassName="editorClassName"
                         onEditorStateChange={this.onEditorStateChange}
                         className="toolbarClassName"
-                        // onContentStateChange={this.onContentStateChange}
                     />
                     <div className="label-createThread-category-container">
                         <label>Category</label>
@@ -164,8 +166,7 @@ class TextEditor extends Component {
                                 className="createThread-option"
                                 name="category"
                                 value={this.state.category}
-                                onChange={this.handleChange}
-                                required>
+                                onChange={this.handleChange}>
                                 <option value="">Pilih Category</option>
                                 <option value="6177f8721ffa070699dd876e">Travel</option>
                                 <option value="6166eed998472010a2d7e980">Game</option>
@@ -193,4 +194,4 @@ class TextEditor extends Component {
     }
 }
 
-export default TextEditor;
+export default EditTextEditor;
