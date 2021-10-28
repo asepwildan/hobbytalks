@@ -9,9 +9,12 @@ import panahnya from './asset/panahnya.svg'
 import garisVote from './asset/garisVote.svg'
 import panahBawah from './asset/panahbawah.svg'
 import chat from './asset/Chat.svg'
+import { useParams } from "react-router";
 
 export default function ThreadUser() {
-    
+    const queryParams = new URLSearchParams(window.location.search);
+
+    const idThread = queryParams.get("xyz");
     return (
         <div className={styles.threadDetailUserContainer}>
             <div className={styles.buttonActionProfileContainer}>

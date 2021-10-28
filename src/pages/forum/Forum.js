@@ -11,11 +11,14 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-import Thread from "../../component/thread-profile/thread-profile";
+// import Thread from "../../component/thread-profile/thread-profile";
 import Search from "@material-ui/icons/Search";
-import { Menu, MenuItem } from "@material-ui/core";
+// import { Menu, MenuItem } from "@material-ui/core";
 import Modal from "@mui/material/Modal";
-import CreateThread from "../../component/createThread/createThread"
+import CreateThread from "../../component/createThread/createThread";
+import ThreadForum from "../../component/threadForum/ThreadForum";
+import {getThreadListAsync} from "../../redux/actions"
+import { Pagination } from "@mui/material";
 
 export default function Forum() {
     const dispatch = useDispatch();
@@ -23,15 +26,37 @@ export default function Forum() {
     const [isOpen, setIsOpen] = useState();
     const [buttonActive, setButtonActive] = useState();
     const [buttonTopActive, setButtonTopActive] = useState();
+    const [values, setValues] = useState("newest");
+    // const [laman, setlaman] = useState(1);
+    // const {totalPage, nextPage, currentPage, loading, error } = useSelector(
+        // (state) => state.getThreadListReducer);
 
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setValues(value);
+    }
+
+    // const handleChangePage = (e) => {
+    //     const nilai = e.target.value;
+    //     setlaman(nilai)
+    // }
+
+
+    useEffect(() => {
+        dispatch(getThreadListAsync(values));
+    }, [dispatch, values])
+    
+    // console.log(laman, "test page")
+    console.log(values, "ini newest")
+    
 
     const openModal = () => {
-        setIsOpen(true)
-    }
+        setIsOpen(true);
+    };
 
     const closeModal = () => {
-        setIsOpen(false)
-    }
+        setIsOpen(false);
+    };
     const buttonSelected = (e) => {
         setButtonActive(e.target.innerHTML);
     };
@@ -161,8 +186,21 @@ export default function Forum() {
                                 </button>
                             </form>
                             <div className={styles.dropdownBar}>
-                                <Box sx={{ minWidth: 120 }}>
-                                    <FormControl>
+                                <form >
+                                    <select
+                                        id="category"
+                                        className={styles.createThreadOption}
+                                        name="category"
+                                        value={values.shorting}
+                                        onChange={handleChange}
+                                        required
+                                    >
+                                        <option value="newest">Newest</option>
+                                        <option value="mostpopular">Most Popular</option>
+                                        <option value="oldest">Oldest</option>
+                                    </select>
+                                    {/* <Box sx={{ minWidth: 120 }}> */}
+                                    {/* <FormControl>
                                         <InputLabel
                                             className={styles.inputLabel}
                                             variant="standart"
@@ -178,12 +216,14 @@ export default function Forum() {
                                             <option value="text">Oldest</option>
                                         </NativeSelect>
                                     </FormControl>
-                                </Box>
+                                </Box> */}
+                                </form>
                             </div>
                         </div>
                     </div>
                     <div className={styles.threaForumContainer}>
-                        <Thread />
+                        <ThreadForum shorting={values}/>
+                       
                     </div>
                 </div>
                 <div className={styles.boxRightContainer}>
