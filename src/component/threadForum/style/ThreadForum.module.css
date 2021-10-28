@@ -95,17 +95,16 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-
 }
 
 .threadInfo div:first-child {
-    width: 60%;
+    width: 89%;
     height: 150px;
 
     overflow: hidden;
 }
 .imgThread {
-    width: 174px;
+    width: 194px;
     overflow: hidden;
     height: 107px;
     text-align: right;
@@ -130,7 +129,7 @@
     align-items: center;
     gap: 10px;
     margin: 7px 0px 10px 0px;
-    color: black ;
+    color: black;
 }
 /* .threadProfileInfo  {
     width: 30px;
