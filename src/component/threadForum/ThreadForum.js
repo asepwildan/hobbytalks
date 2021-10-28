@@ -143,7 +143,7 @@ export default function ThreadForum({ shorting }) {
                                     </div>
 
                                     <Link
-                                        to={`/thread-detail/${thread._id}`}
+                                        to={`/thread-detail/?xyz=${thread._id}`}
                                         style={{ textDecoration: "none" }}>
                                         {" "}
                                         <div

@@ -1,0 +1,144 @@
+.textEditorContainer {
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    .createThread-Title-Container {
+        display: flex;
+        border-bottom: 1px solid #e0e0e0;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0px 15px 0px;
+        p {
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+    form {
+        .createThread-title-container {
+            padding: 15px 0px;
+            label {
+                font-size: 14px;
+            }
+        }
+        label {
+            font-size: 14px;
+        }
+
+        input {
+            border: 1px solid #e0e0e0;
+        }
+        .createThread-img-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .custom-file-input {
+                border: none;
+                color: transparent;
+                margin-top: 10px;
+                &::-webkit-file-upload-button {
+                    visibility: hidden;
+                }
+                &::before {
+                    content: "Select Image";
+                    color: rgb(255, 255, 255);
+                    display: inline-block;
+                    background-color: #1e8ac6;
+                    border: 1px solid #1e8ac6;
+                    border-radius: 4px;
+                    padding: 5px 8px;
+                    outline: none;
+                    white-space: nowrap;
+                    -webkit-user-select: none;
+                    cursor: pointer;
+                    font-size: 10pt;
+                }
+                &:hover::before {
+                    border-color: rgb(23, 213, 238);
+                }
+                &:active {
+                    outline: 0;
+                }
+                &:active::before {
+                    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+                }
+            }
+        }
+
+        .label-createThread-category-container {
+            margin-top: 20px;
+        }
+        .createthrea-optionPost-container {
+            display: flex;
+            justify-content: space-between;
+            height: 50px;
+            align-items: center;
+
+            .createThread-option-container {
+                border: 1px solid #e0e0e0;
+                padding: 5px 10px;
+                width: 300px;
+                border-radius: 4px;
+                display: flex;
+
+                #category {
+                    cursor: pointer;
+                    width: 100%;
+                    border: none;
+                    &:focus {
+                        outline: none;
+                    }
+                    option {
+                        cursor: pointer;
+                    }
+                }
+            }
+            .createThread-PostButton {
+                img {
+                    width: 46px;
+                }
+                button {
+                    padding: 8px 10px;
+                    width: 90px;
+                    border-radius: 4px;
+
+                    box-shadow: rgba(41, 132, 182, 0.1) 0px 5px 15px;
+                    font-family: "Nunito", sans-serif;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    cursor: pointer;
+                    margin-left: 35px;
+                    background-color: #1e8ac6;
+                    color: #fff;
+                    border: none;
+                    transition-duration: 0.3s;
+                    transition-property: transform;
+                    &:active {
+                        transform: scale(0.9);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.toolbarClassName {
+    visibility: unset !important;
+    box-sizing: content-box !important;
+    border-radius: 4px;
+}
+
+.rdw-option-wrapper {
+    padding: 15px !important;
+    border-radius: 4px;
+}
+.rdw-editor-toolbar {
+    border-radius: 4px;
+}
+.rdw-editor-main {
+    border: 1px solid #e0e0e0 !important;
+    min-height: 150px;
+    max-height: 200px;
+    border-radius: 4px;
+    padding: 0px 10px;
+}

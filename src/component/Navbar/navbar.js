@@ -61,7 +61,7 @@ export default function Navbar() {
         <div className={styles.navbarContainer}>
             <div className={styles.leftbar}>
                 <div className={styles.pictureBar}>
-                    <Link to={Token === null ? "/" : "/profile"} style={{ textDecoration: "none" }}>
+                    <Link to={"/forum"} style={{ textDecoration: "none" }}>
                         <img src={logo} alt="hobbytalk" />
                     </Link>
                 </div>
@@ -83,8 +83,7 @@ export default function Navbar() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description"
-                        >
+                            aria-describedby="keep-mounted-modal-description">
                             <div className={styles.createThreadContainer}>
                                 <Box>
                                     <CreateThread />
@@ -98,8 +97,7 @@ export default function Navbar() {
                             <div
                                 className={
                                     drop === false ? styles.dropdownNone : styles.dropdownctn
-                                }
-                            >
+                                }>
                                 <p style={{ color: "black" }}></p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
                                 <p>My Journey into Piano: 1 year and still counting</p>
@@ -110,8 +108,11 @@ export default function Navbar() {
                             </div>
                         </div>
                     </div>
+
                     <div className={styles.avaBar}>
-                        <Avatar className={styles.userAvatar} src={profileInfo.avatar} alt="" />
+                        <Link to={"/profile"} style={{ textDecoration: "none" }}>
+                            <Avatar className={styles.userAvatar} src={profileInfo.avatar} alt="" />
+                        </Link>
                         <span className={styles.nameUser}>{profileInfo.name}</span>
                     </div>
 
@@ -129,8 +130,7 @@ export default function Navbar() {
                             onClose={handleClose}
                             MenuListProps={{
                                 "aria-labelledby": "basic-button",
-                            }}
-                        >
+                            }}>
                             <Link to="/profile" style={{ textDecoration: "none" }}>
                                 <MenuItem onClick={handleClose} className={styles.dropdownProfile}>
                                     Profile

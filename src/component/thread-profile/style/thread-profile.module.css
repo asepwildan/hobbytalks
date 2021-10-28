@@ -94,6 +94,9 @@
     width: 50%;
     border-radius: 4px;
     overflow: hidden;
+    height: 95vh;
+
+    overflow: scroll;
 }
 .threadListProfile {
     margin: 7px 0px;
@@ -198,4 +201,9 @@
 .threadActionContainer .threadAction:nth-child(2) {
     border-left: 1px solid #b4c0de;
     border-right: 1px solid #b4c0de;
+}
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
 }
