@@ -16,9 +16,8 @@ export default function Thread() {
     const token = localStorage.getItem("tokenLogin");
     const [info, setInfo] = useState({});
     const dispatch = useDispatch();
-    const { profileInfo, threadListProfile, loading, error, bio, banner } = useSelector(
-        (state) => state.getProfileReducer
-    );
+    const { profileInfo, threadListProfile, loading, error, bio, banner, indexThreadUser } =
+        useSelector((state) => state.getProfileReducer);
 
     const [isOpen, setIsOpen] = useState();
     console.log(profileInfo.threads, "ini thread");
@@ -34,8 +33,9 @@ export default function Thread() {
     const kirimData = (value) => {
         dispatch(addIndexThread(value));
         setIsOpen(true);
+        console.log(indexThreadUser, "index dari profile");
     };
-
+    console.log(threadListProfile, "ini thread p");
     return (
         <div className={styles.threadContainer}>
             <div className={styles.threadTitle}>
@@ -111,22 +111,6 @@ export default function Thread() {
                                     </svg>
                                     <p>Edit</p>
                                 </button>
-                                {threadListProfile[index] === null ? (
-                                    <div></div>
-                                ) : (
-                                    <Modal
-                                        // keepMounted
-                                        open={isOpen}
-                                        onClose={closeModal}
-                                        aria-labelledby="keep-mounted-modal-title"
-                                        aria-describedby="keep-mounted-modal-description">
-                                        <div className={styles.createThreadContainer}>
-                                            <Box>
-                                                <CreateThread />
-                                            </Box>
-                                        </div>
-                                    </Modal>
-                                )}
                             </div>
                         </div>
                         <div key={thread.userId} className={styles.threadListProfile}>
@@ -228,6 +212,25 @@ export default function Thread() {
                     </>
                 ))
             )}
+            {/* {threadListProfile[index] === null ? (
+                <div></div>
+            ) : ( */}
+            <Modal
+                // keepMounted
+                open={isOpen}
+                onClose={closeModal}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description">
+                <div className={styles.createThreadContainer}>
+                    <Box>
+                        <CreateThread
+                            indexThread={indexThreadUser}
+                            threadListProfile={threadListProfile}
+                        />
+                    </Box>
+                </div>
+            </Modal>
+            {/* )} */}
         </div>
     );
 }

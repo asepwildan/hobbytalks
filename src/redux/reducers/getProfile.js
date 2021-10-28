@@ -34,10 +34,9 @@ function getProfileReducer(state = initialState, action) {
                 error: payload.error,
             };
         case "add-index-thread":
-            return {
-                ...state,
+            return Object.assign({}, state, {
                 indexThreadUser: payload.indexThread,
-            };
+            });
 
         default:
             return state;

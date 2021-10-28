@@ -30,15 +30,21 @@ let Token = localStorage.getItem("tokenLogin");
 class TextEditor extends Component {
     constructor(props) {
         super(props);
+
         // this.buttonRef = React.createRef();
         //     const contentState = convertFromRaw(content);
-        console.log(props.threads.getProfileReducer.threadListProfile, "testing");
+        // console.log(props.threads.getProfileReducer.threadListProfile, "testing");
 
         // const abcd = props.abcd.getProfileReducer.abcd;
         let editorState = EditorState.createEmpty();
 
-        const indexThread = props.indexThread;
-        const bahaya = props.threads.getProfileReducer.threadListProfile[0];
+        const indexThread = props?.indexThread;
+        console.log(indexThread, "index thread create");
+        const bahaya = props?.threadListProfile ? props?.threadListProfile[indexThread] : "";
+        const idThread = props?.threadListProfile ? props?.threadListProfile[indexThread]._id : "";
+        console.log(idThread, "id");
+        // console.log(props.indexThread, "indexThread");
+        // console.log(props, "ini props");
         // const thread = props.threads[0].content;
         // if (indexThread !== null) {
         // const indexThread = props.indexThread;
@@ -65,18 +71,25 @@ class TextEditor extends Component {
         // } else {
         this.state = {
             title: "",
-            // editorState: EditorState.createWithContent(
-            //     ContentState.createFromBlockArray(convertFromHTML(bahaya.content))
-            // ),
+            editorState: EditorState.createWithContent(
+                ContentState.createFromBlockArray(convertFromHTML(bahaya?.content || " "))
+            ),
+            // editorState:
+            //     props.threads.getProfileReducer.threadListProfile.length !== null
+            //         ? EditorState.createFromBlockArray(
+            //               ContentState.createFromBlockArray(convertFromHTML(bahaya.content))
+            //           )
+            //         : null,
             // editorState:
             //     props.threads.getProfileReducer.threadListProfile.length !== null
             //         ? EditorState.createWithContent("<p>testing</p>")
             //         : null,
-            editorState,
+            // editorState,
             img: null,
             file: null,
             category: "default",
             loading: false,
+            id: idThread,
             // nilai: indexThread,
         };
         // }
@@ -144,8 +157,8 @@ class TextEditor extends Component {
         testing.append("category", this.state.category);
 
         axios({
-            method: "POST",
-            url: "https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/create",
+            method: "PUT",
+            url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/edit/${this.state.id}`,
             data: testing,
             headers: {
                 Authorization: `Bearer ${Token} `,
@@ -159,16 +172,16 @@ class TextEditor extends Component {
                 window.location.reload();
             })
             .catch((err) => {
-                console.log(err, "error create thread");
+                console.log(err.data, "error create thread");
                 alert("error create thread");
             });
     };
 
     render() {
-        console.log(this.state, "hasil");
+        // console.log(this.state, "hasil");
         const { editorState } = this.state;
         // console.log(this.state.konten, "abcd");
-        console.log(this.state.nilai, "abcd2");
+        // console.log(this.state.nilai, "abcd2");
 
         return (
             <div className="textEditorContainer">
@@ -265,9 +278,9 @@ class TextEditor extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    threads: state,
-    indexThread: state.getProfileReducer.indexThreadUser,
-});
+// const mapStateToProps = (state) => ({
+//     threads: state,
+//     indexThread: state.getProfileReducer.indexThreadUser,
+// });
 
-export default connect(mapStateToProps)(TextEditor);
+export default TextEditor;
