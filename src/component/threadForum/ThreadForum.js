@@ -124,7 +124,7 @@ export default function ThreadForum({ shorting }) {
                                                 alt="img1"
                                             />
                                         ) : (
-                                            <Link to={""}>
+                                            <Link to={`/account-detail/?xyz=${thread.userId._id}`}>
                                                 {" "}
                                                 <Avatar
                                                     className={styles.avatarForum}
@@ -143,7 +143,7 @@ export default function ThreadForum({ shorting }) {
                                     </div>
 
                                     <Link
-                                        to={`/thread-detail/${thread._id}`}
+                                        to={`/thread-detail/?xyz=${thread._id}`}
                                         style={{ textDecoration: "none" }}>
                                         {" "}
                                         <div

@@ -18,7 +18,7 @@ import Modal from "@mui/material/Modal";
 import CreateThread from "../../component/createThread/createThread";
 import ThreadForum from "../../component/threadForum/ThreadForum";
 import {getThreadListAsync} from "../../redux/actions"
-import { Pagination } from "@mui/material";
+
 
 export default function Forum() {
     const dispatch = useDispatch();
