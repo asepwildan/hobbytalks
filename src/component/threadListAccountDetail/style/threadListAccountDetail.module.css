@@ -188,7 +188,14 @@
     padding: 3px 15px;
     gap: 5px;
     cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
+
+.threadAction:active {
+    transform: scale(0.9);
+}
+
 .threadActionInfo {
     font-size: 12px;
     display: flex;
@@ -198,4 +205,9 @@
 .threadActionContainer .threadAction:nth-child(2) {
     border-left: 1px solid #b4c0de;
     border-right: 1px solid #b4c0de;
+}
+
+.paginationContainer {
+    display: flex;
+    justify-content: center;
 }

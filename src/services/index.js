@@ -32,5 +32,5 @@ export const getThreadDetail = (idThread) => {
 
 //-----Service-get User------//
 export const getUser = (id, page) => {
-    return axios.get(`https://hobbytalk-be-glints.herokuapp.com/api/v1//users/user/${id}?page=1`);
+    return axios.get(`https://hobbytalk-be-glints.herokuapp.com/api/v1//users/user/${id}?page=${page}`);
 };
