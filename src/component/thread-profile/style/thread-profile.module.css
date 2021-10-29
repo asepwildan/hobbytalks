@@ -93,10 +93,8 @@
     background-color: #fff;
     width: 50%;
     border-radius: 4px;
-    overflow: hidden;
     height: 95vh;
-
-    overflow: scroll;
+    overflow-y: scroll;
 }
 .threadListProfile {
     margin: 7px 0px;

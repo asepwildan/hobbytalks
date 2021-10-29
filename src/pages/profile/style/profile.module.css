@@ -8,8 +8,12 @@
     gap: 5%;
 }
 
+.containerNoThread {
+    width: 60%;
+}
+
 .threadContanerProfile {
-    width: 63%;
+    width: 60%;
 }
 
 .likeRekomContanerProfile {

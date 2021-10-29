@@ -5,27 +5,44 @@
 }
 
 form {
-  // max-width: 500px;
-  // margin: auto;
   padding: 2rem;
 }
 
 .field {
-  margin-bottom: 1em;
+  // margin-bottom: 1em;
+}
+
+.tambahBorder {
+  border: 1px solid black;
+  margin-top: 20px;
 }
 
 .btn-upload {
   border: none;
+  margin-top: 20px;
 }
 
 .btn-upload-submit {
-  background: #1e8ac6;
-  margin-left: 12px;
   max-width: 100px;
-  color: azure;
   transition-duration: 0.1s;
   transition-property: transform;
+  margin-left: 284px;
+  color: rgb(0, 0, 0);
+  margin-top: 20px;
+  border: 1px solid #1e8ac6;
+  border-radius: 4px;
+  background-color: transparent;
   cursor: pointer;
+  &:hover {
+    background-color: #1e8ac6;
+    color: #fff;
+  }
+}
+
+.loader-cover {
+  max-width: 40px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .btn-upload-submit:active {

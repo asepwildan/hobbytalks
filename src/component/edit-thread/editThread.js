@@ -34,6 +34,7 @@ class EditTextEditor extends Component {
         const indexThread = props?.indexThread;
         const threadKonten = props?.threadListProfile ? props?.threadListProfile[indexThread] : "";
         const idThread = props?.threadListProfile ? props?.threadListProfile[indexThread]._id : "";
+        // this.myRef = React.createRef();
 
         this.state = {
             title: threadKonten?.title,
@@ -51,6 +52,10 @@ class EditTextEditor extends Component {
 
         this.handleChange = this.handleChange.bind(this);
     }
+    // setEditorReference = (ref) => {
+    //     this.editorReferece = ref;
+    //     ref.focus();
+    // };
 
     handleChange(e) {
         const value = e.target.value;
@@ -76,10 +81,12 @@ class EditTextEditor extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         console.log(this.state.loading, "loading");
+
         this.setState({
             loading: true,
         });
-        console.log(this.state.loading, "loading");
+
+        console.log(this.state.editorState, "editorstate");
         const testing = new FormData();
         testing.append("title", this.state.title);
         testing.append("content", this.state.editorState);
@@ -102,18 +109,28 @@ class EditTextEditor extends Component {
                 window.location.reload();
             })
             .catch((err) => {
-                console.log(err.data, "error create thread");
-                alert("error create thread");
+                console.log(err.data, "error edit thread");
+                alert("error edit thread");
             });
     };
 
+    componentDidMount = () => {
+        this.editorReference.focus();
+    };
+    setEditorReference = (ref) => {
+        this.editorReference = ref;
+    };
     render() {
         const { editorState } = this.state;
+        // const setEditorReference = (ref) => {
+        //     this.editorReference = ref;
+        //     ref.focusEditor();
+        // };
 
         return (
             <div className="textEditorContainer">
                 <div className="createThread-Title-Container">
-                    <p>Create a Thread</p>
+                    <p>Edit a Thread</p>
                 </div>
 
                 <form onSubmit={this.onSubmit}>
@@ -124,8 +141,6 @@ class EditTextEditor extends Component {
                             name="title"
                             value={this.state.title}
                             onChange={this.handleChange}
-                            placeholder=""
-                            required
                         />
                     </div>
                     <label>Image Thread</label>
@@ -155,6 +170,8 @@ class EditTextEditor extends Component {
                         editorClassName="editorClassName"
                         onEditorStateChange={this.onEditorStateChange}
                         className="toolbarClassName"
+                        editorRef={this.setEditorReference}
+                        // ref={this.myRef}
                     />
                     <div className="label-createThread-category-container">
                         <label>Category</label>
