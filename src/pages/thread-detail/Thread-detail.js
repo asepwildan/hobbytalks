@@ -7,11 +7,11 @@ import RelatedTopic from "../../component/relatedTopic/relatedTopic";
 import Comment from "../../component/comment/comment";
 import imgAvatar from "./img/imgAvatar.png";
 import ThreadUser from "../../component/thread-detail-user/Thread-detail-user";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import getProfileReducer from "../../redux/reducers/getProfile";
-import { getProfileInfoAsync } from "../../redux/actions";
+import { getProfileInfoAsync, getThreadDetailAsync } from "../../redux/actions";
 import { Avatar } from "@material-ui/core";
 import Loading from "./img/loaderComment.gif";
 
@@ -22,12 +22,17 @@ export default function ThreadDetail() {
     const Token = localStorage.getItem("tokenLogin");
     const [status, setStatus] = useState();
     const [load, setLoad] = useState(false);
+    // let { id } = useParams();
+
+    const queryParams = new URLSearchParams(window.location.search);
+
+    const idThread = queryParams.get("xyz");
+
+    console.log(idThread, "wayaghe");
 
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
-
-   
-
+    // console.log(id, "id thread");
     useEffect(() => {
         dispatch(getProfileInfoAsync());
     }, [dispatch]);
@@ -43,7 +48,7 @@ export default function ThreadDetail() {
         setLoad(true);
         axios
             .post(
-                "https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/616bc20a15f73f8d5d5bbeab",
+                `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/${idThread}`,
                 {
                     content: values.content,
                 },
@@ -59,7 +64,7 @@ export default function ThreadDetail() {
                     console.log(response, "ini comment");
                     setLoad(false);
                     e.target.reset();
-                    window.location.reload();                  
+                    window.location.reload();
                 },
                 [comment]
             )
@@ -71,6 +76,10 @@ export default function ThreadDetail() {
     useEffect(() => {
         setLogin(Token);
     }, [Token]);
+
+    useEffect(() => {
+        dispatch(getThreadDetailAsync(idThread));
+    }, [dispatch]);
 
     return (
         <React.Fragment>

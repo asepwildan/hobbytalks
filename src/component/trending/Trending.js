@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./Trending.scss";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Trending() {
     const [trending, setTrending] = useState([]);
+    const [idThread, setIdThread] = useState("");
     useEffect(() => {
         axios
             .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/trending")
             .then((response) => {
                 console.log(response.data.data, "trending");
                 setTrending(response.data.data);
+                setIdThread(response.data.data._id);
+                console.log(response.data._id, "id thread trending");
             });
     }, []);
-
+    // console.log(idThread, "id thread trending");
     return (
         // tes pull request
         <div className="trendingContainer">
@@ -40,9 +44,13 @@ export default function Trending() {
 
                         <div className="trendingVoteInfo">{trending.likeCount}</div>
                     </div>
-                    <div className="trendingTitle">
-                        <p className="trendingTitleInfo">{trending.title}</p>
-                    </div>
+                    <Link
+                        to={`/thread-detail/?xyz=${trending._id}`}
+                        style={{ textDecoration: "none" }}>
+                        <div className="trendingTitle">
+                            <p className="trendingTitleInfo">{trending.title}</p>
+                        </div>
+                    </Link>
                 </div>
             ))}
             {/*             

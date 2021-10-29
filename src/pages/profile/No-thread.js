@@ -17,7 +17,9 @@ export default function NoThread() {
   return (
     <div className="container">
       <div className="no-thread">
-        <p className="text">Thread</p>
+        <div className="text">
+          <p>Thread</p>
+        </div>
         <div className="garis">
           <img src={garis}></img>
         </div>

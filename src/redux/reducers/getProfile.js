@@ -1,8 +1,13 @@
 const initialState = {
+    profileData: {},
     profileInfo: {},
+    threadListProfile: [],
     loading: false,
     error: "",
     bio: "",
+    banner: "",
+    bahaya: "nande",
+    indexThreadUser: null,
 };
 
 function getProfileReducer(state = initialState, action) {
@@ -16,10 +21,13 @@ function getProfileReducer(state = initialState, action) {
         case "getprofile/get-succsess":
             return {
                 ...state,
-                profileInfo: payload.getprofile,
+                profileData: payload.getprofile,
+                profileInfo: payload.getprofile.data,
+                threadListProfile: payload.getprofile.data.threads,
                 loading: false,
                 error: "",
-                bio: payload.getprofile.bio,
+                bio: payload.getprofile.data.bio,
+                banner: payload.getprofile.data.banner,
             };
         case "getprofile/get-failed":
             return {
@@ -27,6 +35,10 @@ function getProfileReducer(state = initialState, action) {
                 loading: false,
                 error: payload.error,
             };
+        case "add-index-thread":
+            return Object.assign({}, state, {
+                indexThreadUser: payload.indexThread,
+            });
 
         default:
             return state;

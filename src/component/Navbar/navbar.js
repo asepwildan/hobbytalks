@@ -11,6 +11,7 @@ import { Menu, MenuItem } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
+import searchLogo from "../Navbar/search-solid.svg";
 import logo from "../Navbar/hobbytalks.svg";
 import styles from "../Navbar/navbar.module.css";
 import CreateThread from "../createThread/createThread";
@@ -60,13 +61,17 @@ export default function Navbar() {
         <div className={styles.navbarContainer}>
             <div className={styles.leftbar}>
                 <div className={styles.pictureBar}>
-                    <Link to={Token === null ? "/" : "/profile"} style={{ textDecoration: "none" }}>
+                    <Link to={"/forum"} style={{ textDecoration: "none" }}>
                         <img src={logo} alt="hobbytalk" />
                     </Link>
                 </div>
                 <div className={styles.searchBar}>
-                    <input type="text" placeholder="What do you want to talk about?" />
-                    <SearchIcon className={styles.navbarInputButton} />
+                    <form className={styles.formSearchBar}>
+                        <input type="text" placeholder="What do you want to talk about?" />
+                        <button>
+                            <SearchIcon className={styles.navbarInputButton} />
+                        </button>
+                    </form>
                 </div>
             </div>
             {Token !== null ? (
@@ -103,8 +108,11 @@ export default function Navbar() {
                             </div>
                         </div>
                     </div>
+
                     <div className={styles.avaBar}>
-                        <Avatar className={styles.userAvatar} src={profileInfo.avatar} alt="" />
+                        <Link to={"/profile"} style={{ textDecoration: "none" }}>
+                            <Avatar className={styles.userAvatar} src={profileInfo.avatar} alt="" />
+                        </Link>
                         <span className={styles.nameUser}>{profileInfo.name}</span>
                     </div>
 

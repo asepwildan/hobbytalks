@@ -46,19 +46,51 @@
     margin-bottom: 10px;
     margin-top: 5px;
     box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
+    /* justify-content: space-between; */
 }
 
-.searchBar input {
+.formSearchBar {
+    display: flex;
+    /* justify-content: space-between; */
+    width: 100%;
+}
+
+.formSearchBar input {
     border: none;
     height: 20px;
     margin-top: 10px;
+    margin-left: -30px;
+    width: 130%;
+    
 }
 
-.navbarInputButton {
+.formSearchBar button {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
     color: #c5c7cd;
-    margin-right: 5px;
+    margin-top: 8px;
+    margin-right: -25px;
+    border-style: none;
     cursor: pointer;
+    /* padding-left: 30px; */
+    /* position: absolute;
+    align-items: center; */
+    
+
+    
+
+
 }
+
+/* .navbarInputButton {
+    color: #c5c7cd;
+    /* margin-right: 5px; */
+    /* cursor: pointer; */
+    /* margin-top: 10px; */
+    /* width: 30px !important; */
+    /* margin-right: -70px; */ 
+/* } */
 
 .rightbar {
     flex: 2;

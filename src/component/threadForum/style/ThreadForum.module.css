@@ -20,7 +20,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 0px;
-    border-top: 1px solid #e0e0e0;
+    /* border-bottom: 1px solid #e0e0e0; */
 }
 .buttonFIlter1 {
     display: flex;
@@ -84,21 +84,10 @@
     cursor: pointer;
 }
 
-.createThreadContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    background-color: #fff;
-    width: 50%;
-    border-radius: 4px;
-    height: 95vh;
-    overflow-y: scroll;
-}
 .threadListProfile {
     margin: 7px 0px;
     padding: 5px 0px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .threadInfo {
@@ -109,25 +98,19 @@
 }
 
 .threadInfo div:first-child {
-    width: 60%;
+    width: 89%;
     height: 150px;
 
     overflow: hidden;
 }
 .imgThread {
-    width: 250px;
+    width: 194px;
     overflow: hidden;
-    height: 200px;
+    height: 107px;
     text-align: right;
-
-    display: flex;
-    align-items: center;
-    justify-content: end;
 }
 .imgThread img {
-    /* height: 100%; */
-    /* width: 90%; */
-    max-height: 100%;
+    height: 100%;
 }
 /* .threadInfo div:last-child img {
     height: 100%;
@@ -146,27 +129,21 @@
     align-items: center;
     gap: 10px;
     margin: 7px 0px 10px 0px;
+    color: black;
 }
-/* .threadProfileInfo img {
+/* .threadProfileInfo  {
     width: 30px;
     border-radius: 100%;
 } */
 
-.threadProfileInfo .imgAvatarcontainer {
-    width: 50px !important;
-    height: 50px !important;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-.imgAvatarcontainer img {
-    width: 100%;
+.avatarForum {
+    width: 30px !important;
+    height: 30px !important ;
 }
 .threadAccountName {
     font-weight: bold;
     text-decoration: none;
     font-size: 14px;
-    color: black;
 }
 
 .threadTextAnchor {
@@ -189,7 +166,14 @@
     padding: 3px 15px;
     gap: 5px;
     cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
+
+.threadAction:active {
+    transform: scale(0.9);
+}
+
 .threadActionInfo {
     font-size: 12px;
     display: flex;
@@ -200,8 +184,8 @@
     border-left: 1px solid #b4c0de;
     border-right: 1px solid #b4c0de;
 }
+
 .paginationContainer {
     display: flex;
     justify-content: center;
-    margin: 30px auto;
 }

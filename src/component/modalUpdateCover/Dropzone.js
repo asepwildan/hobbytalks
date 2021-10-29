@@ -11,7 +11,7 @@ export default function Basic() {
   const [values, setValues] = useState({
     name: "",
   });
-
+  let Token = localStorage.getItem("tokenLogin");
   //state untuk loader halaman
   const [loaderCover, setLoaderCover] = useState(false);
 
@@ -43,12 +43,11 @@ export default function Basic() {
       url: "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/banner",
       data: formData,
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hZndhbmFsZmlhbnN5YWg3M0BnbWFpbC5jb20iLCJpZCI6IjYxNmVjMTU3ODdhZTE0OGZjNGNmYWViOSIsImlhdCI6MTYzNTE4ODA4NiwiZXhwIjoxNjM1Mjc0NDg2fQ.Dp_oOAwQvZvYjOVP787ihXP5QVXnUH0ziRtaZQhp0iI",
+        Authorization: `Bearer ${Token} `,
       },
     })
       .then((res) => {
-        console.log(res);
+        console.log(res, "ini banner");
         window.location.reload();
         setLoaderCover(false);
       })
@@ -64,8 +63,8 @@ export default function Basic() {
   return (
     <div className="container-dropzone">
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <h4>Pilih Gambar: </h4>
-        <div className="field tambahBorder">
+        <div className="field">
+          <h6>Pilih Gambar: </h6>
           <input
             className="btn-upload"
             type="file"
@@ -74,13 +73,9 @@ export default function Basic() {
           />
         </div>
 
-        {loaderCover ? (
-          <img className="loader-cover" src={LoaderGif} />
-        ) : (
-          <div className="field">
-            <input className="btn-upload-submit" type="submit" value="Simpan" />
-          </div>
-        )}
+        <div className="field">
+          <input className="btn-upload-submit" type="submit" value="Simpan" />
+        </div>
       </form>
     </div>
   );
