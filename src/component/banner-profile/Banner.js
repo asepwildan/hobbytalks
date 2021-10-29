@@ -14,6 +14,7 @@ import iconPanahUpload from "./assets/panahUpload.svg";
 import Loader from "../Login/loader.gif";
 import styles from "../ModalEditUser/editProfilUser.module.css";
 import Basic from "../modalUpdateCover/Dropzone";
+import bannerDefault from "./assets/bannerDefault.png";
 
 function Banner(props) {
     let Token = localStorage.getItem("tokenLogin");
@@ -22,6 +23,7 @@ function Banner(props) {
     const { profileInfo, loading, error, bio, banner } = useSelector(
         (state) => state.getProfileReducer
     );
+    console.log(banner, "ini banner");
     const [isOpen, SetIsOpen] = useState();
     const [response, setResponse] = useState({});
 
@@ -144,7 +146,12 @@ function Banner(props) {
             {/* <div className="update-cover">
                 <ModalUpdateCover />
             </div> */}
-            <img className="cover-banner" src={banner} alt="cover banner" />
+            {banner === undefined || loading === true ? (
+                <img className="cover-banner" src={bannerDefault} alt="cover banner" />
+            ) : (
+                <img className="cover-banner" src={banner} alt="cover banner" />
+            )}
+
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (
@@ -237,6 +244,7 @@ function Banner(props) {
                                             onSubmit={submitBioName}>
                                             <label>Name</label>
                                             <input
+                                                style={{ color: "#333333" }}
                                                 type="text"
                                                 name="name"
                                                 value={values.name}
@@ -245,12 +253,15 @@ function Banner(props) {
                                             />
                                             <label>Email</label>
                                             <input
+                                                className={styles.emailDisabled}
                                                 type="text"
+                                                value={profileInfo.email}
                                                 placeholder={profileInfo.email}
                                                 disabled
                                             />
                                             <label>Bio</label>
                                             <input
+                                                style={{ color: "#333333" }}
                                                 type="text"
                                                 name="bio"
                                                 value={values.bio}

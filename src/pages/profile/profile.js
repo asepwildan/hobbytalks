@@ -12,43 +12,44 @@ import Banner from "../../component/banner-profile/Banner";
 import Trending from "../../component/trending/Trending";
 
 export default function Profile() {
-  const dispatch = useDispatch();
-  const { profileInfo } = useSelector((state) => state.getProfileReducer);
-  console.log(profileInfo);
-  let Token = localStorage.getItem("tokenLogin");
+    const dispatch = useDispatch();
+    const { profileInfo } = useSelector((state) => state.getProfileReducer);
+    console.log(profileInfo);
+    let Token = localStorage.getItem("tokenLogin");
 
-  useEffect(() => {
-    dispatch(getProfileInfoAsync());
-  }, []);
+    useEffect(() => {
+        dispatch(getProfileInfoAsync());
+    }, []);
 
-  if (Token === null) {
-    return (window.location = "/");
-  }
-  return (
-    <React.Fragment>
-      <Navbar />
-      <div>
-        <Banner />
-        <div className={styles.boxContentProfile}>
-          <div className={styles.threadContanerProfile}>
-            <div classNmae="containerNoThread">
-              {profileInfo.threads && profileInfo.threads.length ? (
-                <Thread />
-              ) : (
-                <NoThread />
-              )}
+    if (Token === null) {
+        return (window.location = "/");
+    }
+
+    return (
+        <React.Fragment>
+            <Navbar />
+            <div>
+                <Banner />
+                <div className={styles.boxContentProfile}>
+                    <div className={styles.threadContanerProfile}>
+                        <div classNmae="containerNoThread">
+                            {(profileInfo.threads && profileInfo.threads.length) || "" ? (
+                                <Thread />
+                            ) : (
+                                <NoThread />
+                            )}
+                        </div>
+                        {/* <Thread /> */}
+                    </div>
+                    <div className={styles.likeRekomContanerProfile}>
+                        <Likerecomendation />
+                        <div className={styles.trendingContanerProfile}>
+                            <Trending />
+                        </div>
+                    </div>
+                </div>
             </div>
-            {/* <Thread /> */}
-          </div>
-          <div className={styles.likeRekomContanerProfile}>
-            <Likerecomendation />
-            <div className={styles.trendingContanerProfile}>
-              <Trending />
-            </div>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </React.Fragment>
-  );
+            <Footer />
+        </React.Fragment>
+    );
 }

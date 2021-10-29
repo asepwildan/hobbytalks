@@ -6,7 +6,7 @@ const initialState = {
     error: "",
     bio: "",
     banner: "",
-    bahaya: "nande",
+
     indexThreadUser: null,
 };
 

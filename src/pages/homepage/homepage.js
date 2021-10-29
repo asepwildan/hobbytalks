@@ -58,7 +58,7 @@ export default function Hompepage() {
                                 <img className={styles.iconSearch} src={Search} alt="searc icon" />
                             </div>
                         </div>
-                        <Link to="/account/login" style={{ textDecoration: "none" }}>
+                        <Link to="/forum" style={{ textDecoration: "none" }}>
                             <div className={styles.displayForum}>
                                 <img src={Display} alt="display forum" />
 

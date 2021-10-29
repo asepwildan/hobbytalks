@@ -1,7 +1,9 @@
+import React, { useState, useEffect } from "react";
 import styles from "./style/like-recomendation.module.css";
 import img1 from "./img/anya.jpg";
 import img2 from "./img/lana.jpg";
 import { Avatar } from "@material-ui/core";
+import axios from "axios";
 
 export default function Likerekomendasi() {
     const runCallback = (cb) => {
@@ -24,8 +26,12 @@ export default function Likerekomendasi() {
                                         My Journey into Piano: 1 year and still counting
                                     </p>
                                     <div className={styles.threadRekomAkun}>
-                                    {/* <div className={styles.imgLikeContainer}> <img src={img1} alt="img1" /></div> */}
-                                    <Avatar  className={styles.avatarAkun} src={img1} alt="img1"/>
+                                        {/* <div className={styles.imgLikeContainer}> <img src={img1} alt="img1" /></div> */}
+                                        <Avatar
+                                            className={styles.avatarAkun}
+                                            src={img1}
+                                            alt="img1"
+                                        />
                                         <p className={styles.threadAccountName}>Ryu Hyo Young</p>
                                     </div>
                                     <div className={styles.threadActionContainer}>
@@ -93,8 +99,12 @@ export default function Likerekomendasi() {
                                         From today I learn to be a botanist
                                     </p>
                                     <div className={styles.threadRekomAkun}>
-                                    {/* <div className={styles.imgLikeContainer}><img src={img2} alt="img2" /></div> */}
-                                    <Avatar  className={styles.avatarAkun} src={img2} alt="img2"/>
+                                        {/* <div className={styles.imgLikeContainer}><img src={img2} alt="img2" /></div> */}
+                                        <Avatar
+                                            className={styles.avatarAkun}
+                                            src={img2}
+                                            alt="img2"
+                                        />
                                         <p className={styles.threadAccountName}>Lana Rhoades</p>
                                     </div>
                                     <div className={styles.threadActionContainer}>
