@@ -194,7 +194,7 @@ img {
     display: flex;
     border-right: 1px solid #b4c0de;
     border-left: 1px solid #b4c0de;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .commentImage {

@@ -104,7 +104,7 @@ export default function ThreadUser() {
                     <img src={chat} className={styles.commentImage}></img>
                     <p className={styles.comment}>{commentCount}</p>
                 </div>
-                <date className={styles.tanggal}>{date}}</date>
+                <date className={styles.tanggal}>{date}</date>
             </div>
         </div>
     );
