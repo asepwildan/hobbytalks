@@ -106,7 +106,7 @@ class EditTextEditor extends Component {
                 this.setState({
                     loading: false,
                 });
-                window.location.reload();
+                window.location = `/thread-detail/?xyz=${this.state.id}`;
             })
             .catch((err) => {
                 console.log(err.data, "error edit thread");

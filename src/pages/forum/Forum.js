@@ -3,7 +3,7 @@ import styles from "./style/Forum.module.css";
 import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import Trending from "../../component/trending/Trending";
-import { getProfileInfoAsync } from "../../redux/actions";
+import { getProfileInfoAsync, getThreadCategoryAsync } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import getProfileReducer from "../../redux/reducers/getProfile";
@@ -17,38 +17,100 @@ import Search from "@material-ui/icons/Search";
 import Modal from "@mui/material/Modal";
 import CreateThread from "../../component/createThread/createThread";
 import ThreadForum from "../../component/threadForum/ThreadForum";
-import {getThreadListAsync} from "../../redux/actions"
-import { Pagination } from "@mui/material";
+import { getThreadListAsync } from "../../redux/actions";
+import axios from "axios";
+//  import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 export default function Forum() {
+    let [category, setCategory] = useState([
+        {
+            value: "6166eed398472010a2d7e97e",
+            title: "Music",
+            isCheck: false,
+            id: "1a",
+        },
+        {
+            value: "6166eed998472010a2d7e980",
+            title: "Games",
+            isCheck: false,
+            id: "2a",
+        },
+        ,
+        {
+            value: "6166eee898472010a2d7e982",
+            title: "Sports",
+            isCheck: false,
+            id: "3a",
+        },
+        {
+            value: "6177f8721ffa070699dd876e",
+            title: "Travel",
+            isCheck: false,
+            id: "4a",
+        },
+        {
+            value: "6166eeed98472010a2d7e984",
+            title: "Arts",
+            isCheck: false,
+            id: "5a",
+        },
+        {
+            value: "6166eef398472010a2d7e986",
+            title: "DIY",
+            isCheck: false,
+            id: "6a",
+        },
+        {
+            value: "6166ef8c98472010a2d7e988",
+            title: "Tech",
+            isCheck: false,
+            id: "7a",
+        },
+        {
+            value: "6166effb98472010a2d7e98c",
+            title: "Business",
+            isCheck: false,
+            id: "8a",
+        },
+        {
+            value: "6172d7ef0f79346bbb9db5ca",
+            title: "Cooking",
+            isCheck: false,
+            id: "9a",
+        },
+    ]);
+
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
     const [isOpen, setIsOpen] = useState();
     const [buttonActive, setButtonActive] = useState();
     const [buttonTopActive, setButtonTopActive] = useState();
     const [values, setValues] = useState("newest");
+    // const [category, setCategory] = useState
+    console.log(profileInfo, "test profil");
+    // const categoryLike = profileInfo.categoryLike;
     // const [laman, setlaman] = useState(1);
     // const {totalPage, nextPage, currentPage, loading, error } = useSelector(
-        // (state) => state.getThreadListReducer);
-
+    // (state) => state.getThreadListReducer);
+    // console.log(categoryLike, "testcategory")
     const handleChange = (e) => {
         const value = e.target.value;
         setValues(value);
-    }
+    };
 
-    // const handleChangePage = (e) => {
-    //     const nilai = e.target.value;
-    //     setlaman(nilai)
-    // }
-
+    const handleChangePage = (e) => {
+        dispatch(getThreadListAsync(values));
+    };
+    const buttonSelectedTesting = (e) => {
+        dispatch(getThreadCategoryAsync(e));
+    };
 
     useEffect(() => {
         dispatch(getThreadListAsync(values));
-    }, [dispatch, values])
-    
+    }, [dispatch, values]);
+
     // console.log(laman, "test page")
-    console.log(values, "ini newest")
-    
+    console.log(values, "ini newest");
 
     const openModal = () => {
         setIsOpen(true);
@@ -69,7 +131,22 @@ export default function Forum() {
         dispatch(getProfileInfoAsync());
     }, [dispatch]);
 
+    // useEffect(() => {
+    //     axios.get('https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/threadscategory/6166ef8c98472010a2d7e988?page=1')
+    //     .then((response) => {
+    //         console.log(response.data.data, "test category")
+
+    //     })
+    //     .catch((error) => {
+    //         console.log(error, "test eror")
+    //     })
+
+    // },[])
+
+    // const temporary = category.map((category))
+
     return (
+        // <Router >
         <React.Fragment>
             <Navbar />
             <div className={styles.boxContentForum}>
@@ -77,25 +154,14 @@ export default function Forum() {
                     <div className={styles.navTop}>
                         <ul>
                             <li
-                                className={
-                                    buttonTopActive === "Home"
-                                        ? styles.navTopBtnActive
-                                        : styles.navTopBtn
-                                }
-                                onClick={buttonTopSelected}
+                                tabIndex="-1"
+                                className={styles.navTopBtn}
+                                onClick={handleChangePage}
+                                // onClick={buttonTopSelected}
                             >
                                 Home
                             </li>
-                            <li
-                                className={
-                                    buttonTopActive === "Following"
-                                        ? styles.navTopBtnActive
-                                        : styles.navTopBtn
-                                }
-                                onClick={buttonTopSelected}
-                            >
-                                Following
-                            </li>
+                            <li className={styles.navTopBtn}>Following</li>
                         </ul>
                     </div>
                     <div className={styles.navBottom}>
@@ -104,58 +170,17 @@ export default function Forum() {
                         </div>
                         <br />
                         <div clasName={styles.category}>
-                            <ul>
-                                <li
-                                    className={
-                                        buttonActive === "Electronics"
-                                            ? styles.navBottomBtnActive
-                                            : styles.navBottomBtn
-                                    }
-                                    onClick={buttonSelected}
-                                >
-                                    Electronics
-                                </li>
-                                <li
-                                    className={
-                                        buttonActive === "Sport"
-                                            ? styles.navBottomBtnActive
-                                            : styles.navBottomBtn
-                                    }
-                                    onClick={buttonSelected}
-                                >
-                                    Sport
-                                </li>
-                                <li
-                                    className={
-                                        buttonActive === "DIY"
-                                            ? styles.navBottomBtnActive
-                                            : styles.navBottomBtn
-                                    }
-                                    onClick={buttonSelected}
-                                >
-                                    DIY
-                                </li>
-                                <li
-                                    className={
-                                        buttonActive === "Travel"
-                                            ? styles.navBottomBtnActive
-                                            : styles.navBottomBtn
-                                    }
-                                    onClick={buttonSelected}
-                                >
-                                    Travel
-                                </li>
-                                <li
-                                    className={
-                                        buttonActive === "Music"
-                                            ? styles.navBottomBtnActive
-                                            : styles.navBottomBtn
-                                    }
-                                    onClick={buttonSelected}
-                                >
-                                    Music
-                                </li>
-                            </ul>
+                            {category.map((category) => (
+                                <ul>
+                                    <li
+                                        tabindex="-1"
+                                        className={styles.navBottomBtn}
+                                        onClick={() => buttonSelectedTesting(category.value)}
+                                    >
+                                        {category.title}
+                                    </li>
+                                </ul>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -186,7 +211,7 @@ export default function Forum() {
                                 </button>
                             </form>
                             <div className={styles.dropdownBar}>
-                                <form >
+                                <form>
                                     <select
                                         id="category"
                                         className={styles.createThreadOption}
@@ -222,8 +247,7 @@ export default function Forum() {
                         </div>
                     </div>
                     <div className={styles.threaForumContainer}>
-                        <ThreadForum shorting={values}/>
-                       
+                        <ThreadForum shorting={values} />
                     </div>
                 </div>
                 <div className={styles.boxRightContainer}>

@@ -29,3 +29,17 @@ export const getThreadList = (shorting, page) => {
 export const getThreadDetail = (idThread) => {
     return axios.get(`https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/get/${idThread}`);
 };
+
+//-----Service-get User------//
+export const getUser = (id, page) => {
+    return axios.get(
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1//users/user/${id}?page=${page}`
+    );
+};
+
+//--- Service-get-categoryList------//
+export const getThreadCategory = (category, page) => {
+    return axios.get(
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/threadscategory/${category}?page=${page}`
+    );
+};

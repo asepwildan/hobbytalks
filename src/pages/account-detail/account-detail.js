@@ -6,16 +6,18 @@ import Navbar from "../../component/Navbar/navbar";
 import Banner from "../../component/banner-profile/Banner";
 import Trending from "../../component/trending/Trending";
 import "./style/Account-detail.scss";
+import ThreadListAccountDetail from "../../component/threadListAccountDetail/threadListAccountDetail";
+import BannerUser from "../../component/bannerUser/BannerUser";
 
 export default function AccountDetail() {
     return (
         <React.Fragment>
             <Navbar />
             <div>
-                <Banner />
+                <BannerUser />
                 <div className="boxContentProfile">
                     <div className="threadContanerProfile">
-                        <Thread />
+                        <ThreadListAccountDetail />
                     </div>
                     <div className="likeRekomContanerProfile">
                         <Likerecomendation />

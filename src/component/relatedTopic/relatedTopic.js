@@ -55,10 +55,10 @@ export default function RelatedTopic() {
                             {/* <div className={styles.imgTopicContainer}> <img src={img1} alt="img1" /></div> */}
                             <Avatar
                                 className={styles.avatarAkun}
-                                src={topic.userId.avatar}
+                                src={topic?.userId?.avatar}
                                 alt="img1"
                             />
-                            <p className={styles.threadAccountName}>{topic.userId.name}</p>
+                            <p className={styles.threadAccountName}>{topic?.userId?.name}</p>
                         </div>
                         <div className={styles.threadActionContainer}>
                             <div className={styles.threadAction}>

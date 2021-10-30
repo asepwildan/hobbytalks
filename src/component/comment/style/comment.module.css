@@ -16,10 +16,11 @@
     width: 20%;
 }
 .avatar {
-    width: 5% !important;
-    height: 32px !important;
+    width: 36px !important;
+    height: 35px !important;
     margin-right: 10px;
     cursor: pointer;
+    margin-left: -5px;
 }
 
 .commentRightPart {
@@ -31,6 +32,7 @@
     font-weight: bold;
     margin-right: 5px;
     cursor: pointer;
+    color: black;
 }
 
 
