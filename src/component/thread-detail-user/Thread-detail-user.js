@@ -95,7 +95,7 @@ export default function ThreadUser() {
 
     for (var i = 0; i < likes.length; i++) {
         if (dislike[i]?.user === profileInfo._id) {
-            fillDown = "#1E8AC6";
+            fillDown = "red";
             break;
         }
     }
