@@ -1,4 +1,4 @@
-import { getProfileInfo, editProfile, commentList, getThreadList, getThreadDetail, getUser } from "../../services";
+import { getProfileInfo, editProfile, commentList, getThreadList, getThreadDetail, getUser, getThreadCategory} from "../../services";
 
 export const getProfileInfoAsync = (page) => {
     return (dispatch, getState) => {
@@ -147,6 +147,35 @@ export const getUserSucces = (getUser) => ({
 
 export const getUserFailed = (error) => ({
     type: "getthread/get-failed",
+    payload: {
+        error,
+    },
+});
+
+export const getThreadCategoryAsync = (shorting, page) => {
+    return (dispatch, getState) => {
+        dispatch({ type: "getThreadCategory/get-start" });
+        getThreadCategory(shorting, page)
+            .then((response) => {
+                console.log(response.data, "action category");
+                dispatch(getThreadCategorySucces(response.data));
+            })
+            .catch((error) => {
+                console.log(error.message, "error category");
+                dispatch(getThreadCategoryFailed(error));
+            });
+    };
+};
+
+export const getThreadCategorySucces = (getThreadCategory) => ({
+    type: "getThreadCategory/get-succsess",
+    payload: {
+        getThreadCategory,
+    },
+});
+
+export const getThreadCategoryFailed = (error) => ({
+    type: "getThreadCategory/get-failed",
     payload: {
         error,
     },

@@ -4,7 +4,8 @@ const initialState = {
    nextPage: null,
    currentPage: null,
    loading: false,
-   error: ""
+   error: "",
+   pagination: false
    
 };
 
@@ -25,6 +26,7 @@ function getThreadListReducer(state = initialState, action) {
                 currentPage: payload.getThreadList.currentPage,
                 loading: false,
                 error: "",
+                pagination:false
             };
         case "getthread/get-failed":
             return {
@@ -32,6 +34,28 @@ function getThreadListReducer(state = initialState, action) {
                 loading: false,
                 error: payload.error,
             };
+            case  "getThreadCategory/get-start":
+                return {
+                    ...state,
+                    loading: true,
+                };
+            case "getThreadCategory/get-succsess":
+                return {
+                    ...state,
+                    threadList: payload.getThreadCategory.data,
+                    totalPage: payload.getThreadCategory.totalPage,
+                    nextPage: payload.getThreadCategory.nextPage,
+                    currentPage: payload.getThreadCategory.currentPage,
+                    loading: false,
+                    error: "",
+                    pagination:true
+                };
+            case "getThreadCategory/get-failed":
+                return {
+                    ...state,
+                    loading: false,
+                    error: payload.error,
+                };
         default:
             return state;
     }
