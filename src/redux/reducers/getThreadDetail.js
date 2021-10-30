@@ -1,5 +1,5 @@
 const initialState = {
-    // threadDetail: {},
+    idThread: "",
     name: "",
     avatar: "",
     title: "",
@@ -11,6 +11,8 @@ const initialState = {
     dislikeCount: 0,
     commentCount: 0,
     date: "",
+    likes: [],
+    dislike: [],
     loading: false,
     error: "",
 };
@@ -26,6 +28,7 @@ function getThreadDetailReducer(state = initialState, action) {
         case "getThreadDetail/get-succsess":
             return {
                 ...state,
+                idThread: payload.getThreadDetail._id,
                 name: payload.getThreadDetail.userId.name,
                 avatar: payload.getThreadDetail.userId.avatar,
                 title: payload.getThreadDetail.title,
@@ -37,6 +40,8 @@ function getThreadDetailReducer(state = initialState, action) {
                 dislikeCount: payload.getThreadDetail.dislikeCount,
                 commentCount: payload.getThreadDetail.commentCount,
                 date: payload.getThreadDetail.date,
+                likes: payload.getThreadDetail.likes,
+                dislike: payload.getThreadDetail.dislike,
                 loading: false,
                 error: "",
             };

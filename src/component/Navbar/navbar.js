@@ -65,14 +65,18 @@ export default function Navbar() {
                         <img src={logo} alt="hobbytalk" />
                     </Link>
                 </div>
-                <div className={styles.searchBar}>
-                    <form className={styles.formSearchBar}>
-                        <input type="text" placeholder="What do you want to talk about?" />
-                        <button>
-                            <SearchIcon className={styles.navbarInputButton} />
-                        </button>
-                    </form>
-                </div>
+                {window.location.pathname === "/forum" ? (
+                    <div></div>
+                ) : (
+                    <div className={styles.searchBar}>
+                        <form className={styles.formSearchBar}>
+                            <input type="text" placeholder="What do you want to talk about?" />
+                            <button>
+                                <SearchIcon className={styles.navbarInputButton} />
+                            </button>
+                        </form>
+                    </div>
+                )}
             </div>
             {Token !== null ? (
                 <div className={styles.rightbar}>

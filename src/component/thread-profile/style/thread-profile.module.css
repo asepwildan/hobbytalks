@@ -180,6 +180,7 @@
     padding: 5px 0px;
     border-radius: 8px;
     margin: 10px 0px;
+    height: 30px;
 }
 
 .threadAction {
@@ -189,7 +190,37 @@
     padding: 3px 15px;
     gap: 5px;
     cursor: pointer;
+    overflow: hidden;
 }
+
+.loadervote {
+    padding: 0px 15px;
+    width: 56.5px;
+    /* border-style: solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadervote img {
+    height: 20px;
+}
+.loadervoteDown {
+    padding: 0px 15px;
+    width: 58px;
+    /* border-style: solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #b4c0de;
+    border-right: 1px solid #b4c0de;
+}
+
+.loadervoteDown img {
+    height: 20px;
+    transform: rotate(180deg);
+}
+
 .threadActionInfo {
     font-size: 12px;
     display: flex;
