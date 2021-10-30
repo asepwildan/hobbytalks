@@ -37,6 +37,7 @@ export default function Comment({ ava }) {
         dispatch(getCommentAsync(idThread, page, limit));
     };
 
+    console.log(idThread, "komenn");
     const CommentItem = ({ ...comment }) => {
         const [isOpen, setIsOpen] = useState(false);
         return (

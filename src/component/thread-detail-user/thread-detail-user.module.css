@@ -145,6 +145,62 @@ img {
     margin-top: 20px;
 }
 
+.threadActionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #f5f8fd;
+}
+
+.threadAction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.threadActionCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    gap: 5px;
+    border-left: 1px solid #b4c0de;
+    border-right: 1px solid #b4c0de;
+    padding: 3px;
+    cursor: pointer;
+}
+.loadervote {
+    padding: 0px 15px;
+    width: 75px;
+    /* border-style: solid; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadervote img {
+    height: 20px;
+}
+
+.loadervoteDown {
+    padding: 0px 15px;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #b4c0de;
+    border-right: 1px solid #b4c0de;
+}
+
+.loadervoteDown img {
+    height: 20px;
+    transform: rotate(180deg);
+}
+
 .btnVote {
     width: 31%;
     height: 30px;
@@ -160,18 +216,11 @@ img {
 }
 
 .angkaPanah {
-    color: #1e8ac6;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding-right: 8px;
+    font-size: 12px;
 }
 
 .dislike {
-    margin: auto;
-    color: #828282;
     font-size: 12px;
-    padding-right: 10px;
-    padding-left: 0px;
 }
 
 .panahBawah {
@@ -185,9 +234,7 @@ img {
 }
 
 .comment {
-    margin: auto 0px;
-    color: #828282;
-    margin-right: 0px;
+    font-size: 12px;
 }
 
 .dislikeGroup {
@@ -197,9 +244,9 @@ img {
     /* flex-wrap: wrap; */
 }
 
-.commentImage {
+/* .commentImage {
     padding-left: 8px;
-}
+} */
 
 .tanggal {
     font-family: "Nunito", sans-serif;

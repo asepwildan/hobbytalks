@@ -23,7 +23,7 @@ function Banner(props) {
     const { profileInfo, loading, error, bio, banner } = useSelector(
         (state) => state.getProfileReducer
     );
-    console.log(banner, "ini banner");
+
     const [isOpen, SetIsOpen] = useState();
     const [response, setResponse] = useState({});
 
@@ -140,7 +140,7 @@ function Banner(props) {
     const closeCover = () => {
         setUpdateOn(false);
     };
-
+    console.log(banner, "ini banner ");
     return (
         <div className="bannerContainer">
             {/* <div className="update-cover">

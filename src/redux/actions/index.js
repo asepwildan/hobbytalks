@@ -4,6 +4,7 @@ import {
     commentList,
     getThreadList,
     getThreadDetail,
+    voteThread,
 } from "../../services";
 
 export const getProfileInfoAsync = (page) => {
@@ -126,4 +127,33 @@ export const getThreadDetailFailed = (error) => ({
 export const addIndexThread = (indexThread) => ({
     type: "add-index-thread",
     payload: { indexThread },
+});
+
+export const voteThreadAsync = (vote, idThread) => {
+    return (dispatch) => {
+        dispatch({ type: "putVoteThread/get-start" });
+        voteThread(vote, idThread)
+            .then((response) => {
+                console.log(response, "respon vote redux");
+                dispatch(voteThreadSuccess(response));
+            })
+            .catch((error) => {
+                console.log(error, "error vote redux");
+                dispatch(voteThreadFailed(error));
+            });
+    };
+};
+
+export const voteThreadSuccess = (message) => ({
+    type: "voteThread/get-succsess",
+    payload: {
+        getThreadDetail,
+    },
+});
+
+export const voteThreadFailed = (error) => ({
+    type: "voteThread/get-failed",
+    payload: {
+        error,
+    },
 });
