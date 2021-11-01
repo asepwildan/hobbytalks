@@ -146,7 +146,13 @@ function Banner(props) {
             {/* <div className="update-cover">
                 <ModalUpdateCover />
             </div> */}
-            <img className="cover-banner" src={banner} alt="cover banner" />
+            {banner === undefined || loading === true ? (
+                <img className="cover-banner" src={bannerDefault} alt="test banner" />
+            ) : (
+                <img className="cover-banner" src={banner} alt="ujang" />
+            )}
+
+            {/* <img className="cover-banner" src={banner} alt="cover banner" /> */}
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (
@@ -163,7 +169,8 @@ function Banner(props) {
 
                     <div
                         id="loaderContainer"
-                        style={loader === true ? { display: "flex" } : { display: "none" }}>
+                        style={loader === true ? { display: "flex" } : { display: "none" }}
+                    >
                         <img src={Loader} alt="loader" />
                     </div>
 
@@ -212,7 +219,8 @@ function Banner(props) {
                                 height="16"
                                 viewBox="0 0 15 16"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
                                 <path
                                     fill-rule="evenodd"
                                     clip-rule="evenodd"
@@ -227,7 +235,8 @@ function Banner(props) {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description">
+                            aria-describedby="keep-mounted-modal-description"
+                        >
                             <Box>
                                 <div className={styles.profileUserContainer}>
                                     <div className={styles.profileTitle}>
@@ -236,7 +245,8 @@ function Banner(props) {
                                     <div className={styles.formEditWrapper}>
                                         <form
                                             className={styles.formEditProfile}
-                                            onSubmit={submitBioName}>
+                                            onSubmit={submitBioName}
+                                        >
                                             <label>Name</label>
                                             <input
                                                 type="text"
@@ -286,7 +296,8 @@ function Banner(props) {
                 open={updateOn}
                 onClose={closeCover}
                 aria-labelledby="keep-mounted-modal-title"
-                aria-describedby="keep-mounted-modal-description">
+                aria-describedby="keep-mounted-modal-description"
+            >
                 <Box>
                     <div className="basic-container">
                         <Basic />

@@ -14,7 +14,7 @@ import axios from "axios";
 import { getProfileInfoAsync, getThreadDetailAsync, getUserAsync } from "../../redux/actions";
 import arrow from "../thread-profile/img/arrow.gif";
 import CLickSOund from "./asset/click.mp3";
-import useSound from "use-sound";
+// import useSound from "use-sound";
 
 export default function ThreadUser() {
     const queryParams = new URLSearchParams(window.location.search);
@@ -32,6 +32,7 @@ export default function ThreadUser() {
     const {
         idThread,
         name,
+        idUser,
         avatar,
         title,
         content,
@@ -216,7 +217,7 @@ export default function ThreadUser() {
                     )}
                     <button className={styles.buttonMusic}>{category}</button>
                 </div>
-                <div className={styles.buttonFIlter2}>
+               {idUser === profileInfo._id? <div className={styles.buttonFIlter2}></div> : <div className={styles.buttonFIlter2}>
                     {userFollow === false ? (
                         <button className={styles.followButtonThread} onClick={followThread}>
                             <img className="gambarPlus" src={plus} />
@@ -228,7 +229,7 @@ export default function ThreadUser() {
                             {/* <img className="gambarPlus" src={plus} /> */}
                         </button>
                     )}
-                </div>
+                </div> }
             </div>
             <div className={styles.identitas}>
                 <img className={styles.foto} src={avatar}></img>
