@@ -120,12 +120,20 @@ export default function Register() {
                             </form>
                         </div>
                         <div className={styles.oAuth}>
-                            <button className={styles.authGoogle}>
-                                <img src={google} alt="google" /> Sign in with Google
-                            </button>
-                            <button className={styles.authFacebook}>
-                                <img src={facebook} alt="facebook" /> Login with Facebook
-                            </button>
+                        <a
+                        style={{textDecoration:"none", color:"black"}}
+                        href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google"
+                        className={styles.authGoogle}
+                    >
+                        <img src={google} alt="google" /> Sign in with Google
+                    </a>
+                    <a
+                        style={{textDecoration:"none", color:"black"}}
+                        href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/facebook"
+                        className={styles.authFacebook}
+                    >
+                        <img src={facebook} alt="facebook" /> Login with Facebook
+                    </a>
                         </div>
                     </div>
                 </div>

@@ -101,13 +101,19 @@ export default function Login() {
                 </div>
                 <div className={styles.oAuth}>
                     <a
+                        style={{textDecoration:"none", color:"black"}}
                         href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google"
-                        className={styles.authGoogle}>
+                        className={styles.authGoogle}
+                    >
                         <img src={google} alt="google" /> Sign in with Google
                     </a>
-                    <button className={styles.authFacebook}>
+                    <a
+                        style={{textDecoration:"none", color:"black"}}
+                        href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/facebook"
+                        className={styles.authFacebook}
+                    >
                         <img src={facebook} alt="facebook" /> Login with Facebook
-                    </button>
+                    </a>
                 </div>
             </div>
         </React.Fragment>

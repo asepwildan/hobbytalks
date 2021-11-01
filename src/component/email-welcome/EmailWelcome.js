@@ -16,7 +16,7 @@ export default function EmailWelcome() {
                 <Link to="/category" style={{ textDecoration: "none" }}>
                     <button>Browse Hobby</button>
                 </Link>
-                <Link to="/profile" style={{ textDecoration: "none" }}>
+                <Link to="/forum" style={{ textDecoration: "none" }}>
                     <button>Go to Dashboard</button>
                 </Link>
             </div>
