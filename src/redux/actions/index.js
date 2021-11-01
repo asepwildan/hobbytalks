@@ -6,6 +6,7 @@ import {
     getThreadDetail,
     getUser,
     getThreadCategory,
+    getSearchThread,
 } from "../../services";
 
 export const getProfileInfoAsync = (page) => {
@@ -183,6 +184,35 @@ export const getThreadCategorySucces = (getThreadCategory) => ({
 
 export const getThreadCategoryFailed = (error) => ({
     type: "getThreadCategory/get-failed",
+    payload: {
+        error,
+    },
+});
+
+export const getSearchAsync = (search) => {
+    return (dispatch, getState) => {
+        dispatch({ type: "getSearch/get-start" });
+        getSearchThread(search)
+            .then((response) => {
+                console.log(response.data.data, "action search");
+                dispatch(getSearchSuccess(response.data));
+            })
+            .catch((error) => {
+                console.log(error.message, "error category");
+                dispatch(getSearchFailed(error));
+            });
+    };
+};
+
+export const getSearchSuccess = (getSearchThread) => ({
+    type: "getSearch/get-succsess",
+    payload: {
+        getSearchThread,
+    },
+});
+
+export const getSearchFailed = (error) => ({
+    type: "getSearch/get-failed",
     payload: {
         error,
     },

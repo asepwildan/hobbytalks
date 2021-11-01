@@ -47,7 +47,7 @@ export default function RelatedTopic() {
                     <div className={styles.titleThreadTopic}>
                         <a
                             target="_blank"
-                            href={`https://dev-hoobytalks.herokuapp.com/thread-detail/?xyz=${topic._id}`}
+                            href={`http://localhost:3000/thread-detail/?xyz=${topic._id}`}
                             className={styles.authGoogle}>
                             <p className={styles.titleInfoText}>{topic.title}</p>
                         </a>

@@ -17,8 +17,10 @@ import Search from "@material-ui/icons/Search";
 import Modal from "@mui/material/Modal";
 import CreateThread from "../../component/createThread/createThread";
 import ThreadForum from "../../component/threadForum/ThreadForum";
-import { getThreadListAsync } from "../../redux/actions";
+import { getThreadListAsync, getSearchAsync } from "../../redux/actions";
 import axios from "axios";
+import ThreadSearch from "../../component/threadSearch/threadSearch";
+
 //  import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 export default function Forum() {
@@ -86,16 +88,16 @@ export default function Forum() {
     const [buttonActive, setButtonActive] = useState();
     const [buttonTopActive, setButtonTopActive] = useState();
     const [values, setValues] = useState("newest");
-    // const [category, setCategory] = useState
-    console.log(profileInfo, "test profil");
-    // const categoryLike = profileInfo.categoryLike;
-    // const [laman, setlaman] = useState(1);
-    // const {totalPage, nextPage, currentPage, loading, error } = useSelector(
-    // (state) => state.getThreadListReducer);
-    // console.log(categoryLike, "testcategory")
+    const [valuesSearch, setValuesSearch] = useState({
+        search: "",
+    });
+
     const handleChange = (e) => {
         const value = e.target.value;
         setValues(value);
+        setValuesSearch({
+            search: "",
+        });
     };
 
     const handleChangePage = (e) => {
@@ -103,14 +105,14 @@ export default function Forum() {
     };
     const buttonSelectedTesting = (e) => {
         dispatch(getThreadCategoryAsync(e));
+        setValuesSearch({
+            search: "",
+        });
     };
 
     useEffect(() => {
         dispatch(getThreadListAsync(values));
     }, [dispatch, values]);
-
-    // console.log(laman, "test page")
-    console.log(values, "ini newest");
 
     const openModal = () => {
         setIsOpen(true);
@@ -131,22 +133,17 @@ export default function Forum() {
         dispatch(getProfileInfoAsync());
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     axios.get('https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/threadscategory/6166ef8c98472010a2d7e988?page=1')
-    //     .then((response) => {
-    //         console.log(response.data.data, "test category")
+    const handleChangeSearch = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setValuesSearch({ ...valuesSearch, [name]: value });
+    };
 
-    //     })
-    //     .catch((error) => {
-    //         console.log(error, "test eror")
-    //     })
-
-    // },[])
-
-    // const temporary = category.map((category))
+    useEffect(() => {
+        dispatch(getSearchAsync(valuesSearch.search));
+    }, [dispatch, valuesSearch]);
 
     return (
-        // <Router >
         <React.Fragment>
             <Navbar />
             <div className={styles.boxContentForum}>
@@ -203,7 +200,13 @@ export default function Forum() {
                     <div className={styles.wrapperSearchBar}>
                         <div className={styles.searchForum}>
                             <form className={styles.formForum}>
-                                <input placeholder="What do you want to talk about" type="text" />
+                                <input
+                                    value={valuesSearch.search}
+                                    name="search"
+                                    onChange={handleChangeSearch}
+                                    placeholder="What do you want to talk about"
+                                    type="text"
+                                />
                                 <button>
                                     <Search />
                                 </button>
@@ -244,9 +247,14 @@ export default function Forum() {
                         </div>
                     </div>
                     <div className={styles.threaForumContainer}>
-                        <ThreadForum shorting={values} />
+                        {valuesSearch.search !== "" ? (
+                            <ThreadSearch />
+                        ) : (
+                            <ThreadForum shorting={values} />
+                        )}
                     </div>
                 </div>
+
                 <div className={styles.boxRightContainer}>
                     <Trending />
                 </div>

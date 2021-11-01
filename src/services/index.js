@@ -43,3 +43,10 @@ export const getThreadCategory = (category, page) => {
         `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/threadscategory/${category}?page=${page}`
     );
 };
+
+export const getSearchThread = (searchValue) => {
+    console.log(searchValue, "service search value");
+    return axios.get(
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/search/${searchValue}`
+    );
+};

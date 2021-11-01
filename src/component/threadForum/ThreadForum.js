@@ -6,12 +6,11 @@ import { Avatar } from "@material-ui/core";
 import Pagination from "@mui/material/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getThreadListAsync } from "../../redux/actions";
-import getProfileReducer from "../../redux/reducers/getProfile";
 
 export default function ThreadForum({ shorting }) {
     const [threadForum, setThreadForum] = useState([]);
     const [page, setPage] = useState("");
-    // const [totalPage, setTotalPage] = useState();
+
     const dispatch = useDispatch();
     const { threadList, totalPage, nextPage, curentPage, loading, error, pagination } = useSelector(
         (state) => state.getThreadListReducer
