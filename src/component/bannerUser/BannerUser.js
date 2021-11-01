@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getUserAsync } from "../../redux/actions";
 import getUserReducer from "../../redux/reducers/getUser";
-import "./BannerUser.scss"
-
+import "./BannerUser.scss";
+import bannerDefault from "../banner-profile/assets/bannerDefault.png";
 export default function BannerUser() {
     const dispatch = useDispatch();
     const { userInfo, threadUser, totalPage, nextPage, curentPage, loading, error } = useSelector(
@@ -14,14 +14,20 @@ export default function BannerUser() {
     const id = queryParams.get("xyz");
 
     useEffect(() => {
-        dispatch(getUserAsync( id));
+        dispatch(getUserAsync(id));
     }, [dispatch, id]);
     return (
         <div className="bannerContainer">
             {/* <div className="update-cover">
     <ModalUpdateCover />
 </div> */}
-            <img className="cover-banner" src={userInfo.banner} alt="cover banner" />
+
+            {userInfo.banner === undefined || loading === true ? (
+                <img className="cover-banner" src={bannerDefault} alt="banner" />
+            ) : (
+                <img className="cover-banner" src={userInfo.banner} alt="cover banner" />
+            )}
+
             <div className="bannerContent">
                 <div className="profileAva">
                     {/* {imageTes === null ? (
@@ -33,9 +39,9 @@ export default function BannerUser() {
                     {profileInfo.avatar === "" ? (
                         <img className="fp" src={AvaDefault} alt="profile" /> */}
                     {/* ) : ( */}
-                        <img src={userInfo.avatar} className="avaProfile" alt="ava" />
+                    <img src={userInfo.avatar} className="avaProfile" alt="ava" />
                     {/* )} */}
-{/* 
+                    {/* 
                     <div
                         id="loaderContainer"
                         style={loader === true ? { display: "flex" } : { display: "none" }}
@@ -160,6 +166,6 @@ export default function BannerUser() {
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     );
 }

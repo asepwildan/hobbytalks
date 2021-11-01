@@ -146,7 +146,11 @@ function Banner(props) {
             {/* <div className="update-cover">
                 <ModalUpdateCover />
             </div> */}
-            <img className="cover-banner" src={banner} alt="cover banner" />
+            {banner === undefined || loading === true ? (
+                <img className="cover-banner" src={bannerDefault} alt="test banner" />
+            ) : (
+                <img className="cover-banner" src={banner} alt="ujang" />
+            )}
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (

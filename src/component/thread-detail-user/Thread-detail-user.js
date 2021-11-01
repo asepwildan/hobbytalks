@@ -15,6 +15,8 @@ import { getProfileInfoAsync, getThreadDetailAsync, getUserAsync } from "../../r
 import arrow from "../thread-profile/img/arrow.gif";
 import CLickSOund from "./asset/click.mp3";
 import useSound from "use-sound";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 
 export default function ThreadUser() {
     const queryParams = new URLSearchParams(window.location.search);
@@ -28,6 +30,7 @@ export default function ThreadUser() {
     let fillVote = "#828282";
     let filloff = "#F5F8FD";
     let fillDown = "#828282";
+    let [isOpen, SetIsOpen] = useState(false);
     const { profileInfo, following } = useSelector((state) => state.getProfileReducer);
     const {
         idThread,
@@ -117,6 +120,7 @@ export default function ThreadUser() {
 
     const followThread = () => {
         setFollowLoad(true);
+
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow/${idThreadUrl}`,
@@ -131,6 +135,7 @@ export default function ThreadUser() {
             })
             .catch((err) => {
                 console.log(err);
+                SetIsOpen(true);
             });
     };
 
@@ -148,6 +153,7 @@ export default function ThreadUser() {
             })
             .catch((err) => {
                 console.log(err);
+                SetIsOpen(true);
             });
     };
 
@@ -162,6 +168,11 @@ export default function ThreadUser() {
     useEffect(() => {
         dispatch(getThreadDetailAsync(idThreadUrl));
     }, [dispatch, upVoteLoader, downVoteLoader]);
+
+    const closeModal = () => {
+        SetIsOpen(false);
+    };
+
     return (
         <div className={styles.threadDetailUserContainer}>
             <div className={styles.buttonActionProfileContainer}>
@@ -311,6 +322,16 @@ export default function ThreadUser() {
                 </div>
                 <date className={styles.tanggal}>{date}</date>
             </div>
+            <Modal
+                keepMounted
+                open={isOpen}
+                onClose={closeModal}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description">
+                <Box>
+                    <h1>LOGIN</h1>
+                </Box>
+            </Modal>
         </div>
     );
 }
