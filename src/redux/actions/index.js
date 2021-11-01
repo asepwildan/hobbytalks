@@ -1,4 +1,12 @@
-import { getProfileInfo, editProfile, commentList, getThreadList, getThreadDetail, getUser, getThreadCategory} from "../../services";
+import {
+    getProfileInfo,
+    editProfile,
+    commentList,
+    getThreadList,
+    getThreadDetail,
+    getUser,
+    getThreadCategory,
+} from "../../services";
 
 export const getProfileInfoAsync = (page) => {
     return (dispatch, getState) => {
@@ -121,7 +129,6 @@ export const addIndexThread = (indexThread) => ({
     type: "add-index-thread",
     payload: { indexThread },
 });
-
 
 export const getUserAsync = (id, page) => {
     return (dispatch, getState) => {

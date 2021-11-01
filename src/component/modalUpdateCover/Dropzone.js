@@ -72,10 +72,17 @@ export default function Basic() {
             onChange={handleAvatar}
           />
         </div>
-
-        <div className="field">
-          <input className="btn-upload-submit" type="submit" value="Simpan" />
-        </div>
+        {loaderCover === true ? (
+          <div className="loader-cover">
+            <img src={LoaderGif} alt="Loader" />
+          </div>
+        ) : (
+          <div className="field">
+            <button className="btn-upload-submit" type="submit">
+              Simpan
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );

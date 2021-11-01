@@ -175,8 +175,7 @@ export default function Forum() {
                                     <li
                                         tabindex="-1"
                                         className={styles.navBottomBtn}
-                                        onClick={() => buttonSelectedTesting(category.value)}
-                                    >
+                                        onClick={() => buttonSelectedTesting(category.value)}>
                                         {category.title}
                                     </li>
                                 </ul>
@@ -193,8 +192,7 @@ export default function Forum() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description"
-                        >
+                            aria-describedby="keep-mounted-modal-description">
                             <div className={styles.createThreadContainer}>
                                 <Box>
                                     <CreateThread />
@@ -218,8 +216,7 @@ export default function Forum() {
                                         name="category"
                                         value={values.shorting}
                                         onChange={handleChange}
-                                        required
-                                    >
+                                        required>
                                         <option value="newest">Newest</option>
                                         <option value="mostpopular">Most Popular</option>
                                         <option value="oldest">Oldest</option>
