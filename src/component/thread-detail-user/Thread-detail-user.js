@@ -93,7 +93,7 @@ export default function ThreadUser() {
             });
     };
 
-    for (var i = 0; i < likes.length; i++) {
+    for (var i = 0; i < dislike.length; i++) {
         if (dislike[i]?.user === profileInfo._id) {
             fillDown = "#1E8AC6";
             break;
