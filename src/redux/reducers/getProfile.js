@@ -6,6 +6,7 @@ const initialState = {
     error: "",
     bio: "",
     banner: "",
+    following: [],
 
     indexThreadUser: null,
 };
@@ -28,6 +29,7 @@ function getProfileReducer(state = initialState, action) {
                 error: "",
                 bio: payload.getprofile.data.bio,
                 banner: payload.getprofile.data.banner,
+                following: payload.getprofile.data.following,
             };
         case "getprofile/get-failed":
             return {
