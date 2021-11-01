@@ -24,6 +24,7 @@ export default function Profile() {
   if (Token === null) {
     return (window.location = "/");
   }
+
   return (
     <React.Fragment>
       <Navbar />
