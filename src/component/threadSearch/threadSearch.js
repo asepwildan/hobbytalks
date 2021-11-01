@@ -3,7 +3,7 @@ import styles from "./style/threadSearch.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar } from "@material-ui/core";
-
+import SerchNotFound from "../forum-search/Forum-search";
 export default function ThreadSearch() {
     const dispatch = useDispatch();
     const { threadSearch, totalPage, nextPage, curentPage, loading, error, pagination } =
@@ -16,7 +16,7 @@ export default function ThreadSearch() {
             {loading === true ? (
                 <div>loading</div>
             ) : error.message === "Request failed with status code 400" ? (
-                <div>error</div>
+                <SerchNotFound />
             ) : (
                 threadSearch?.map((thread) => (
                     <>
