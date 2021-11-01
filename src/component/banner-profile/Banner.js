@@ -140,18 +140,13 @@ function Banner(props) {
     const closeCover = () => {
         setUpdateOn(false);
     };
-    console.log(banner, "ini banner ");
+
     return (
         <div className="bannerContainer">
             {/* <div className="update-cover">
                 <ModalUpdateCover />
             </div> */}
-            {banner === undefined || loading === true ? (
-                <img className="cover-banner" src={bannerDefault} alt="cover banner" />
-            ) : (
-                <img className="cover-banner" src={banner} alt="cover banner" />
-            )}
-
+            <img className="cover-banner" src={banner} alt="cover banner" />
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (
@@ -244,7 +239,6 @@ function Banner(props) {
                                             onSubmit={submitBioName}>
                                             <label>Name</label>
                                             <input
-                                                style={{ color: "#333333" }}
                                                 type="text"
                                                 name="name"
                                                 value={values.name}
@@ -253,15 +247,12 @@ function Banner(props) {
                                             />
                                             <label>Email</label>
                                             <input
-                                                className={styles.emailDisabled}
                                                 type="text"
-                                                value={profileInfo.email}
                                                 placeholder={profileInfo.email}
                                                 disabled
                                             />
                                             <label>Bio</label>
                                             <input
-                                                style={{ color: "#333333" }}
                                                 type="text"
                                                 name="bio"
                                                 value={values.bio}
