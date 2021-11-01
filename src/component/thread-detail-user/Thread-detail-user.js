@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { getProfileInfoAsync, getThreadDetailAsync, getUserAsync } from "../../redux/actions";
 import arrow from "../thread-profile/img/arrow.gif";
+import click from "./asset/click.mp3"
 
 export default function ThreadUser() {
     const queryParams = new URLSearchParams(window.location.search);
@@ -161,6 +162,13 @@ export default function ThreadUser() {
     useEffect(() => {
         dispatch(getThreadDetailAsync(idThreadUrl));
     }, [dispatch, upVoteLoader, downVoteLoader]);
+
+    // var audio = new Audio(click);
+    // audio.oncanplaythrough = function(){
+    //     audio.play();
+    //     }
+        
+        
     return (
         <div className={styles.threadDetailUserContainer}>
             <div className={styles.buttonActionProfileContainer}>
