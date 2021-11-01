@@ -38,6 +38,7 @@
 .emailDisabled {
     background-color: #f2f2f2;
     color: #333333;
+    cursor: not-allowed;
 }
 /* .inputAva {
     visibility: hidden;

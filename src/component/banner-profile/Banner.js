@@ -252,6 +252,7 @@ function Banner(props) {
                                             <label>Email</label>
                                             <input
                                                 type="text"
+                                                className={styles.emailDisabled}
                                                 placeholder={profileInfo.email}
                                                 disabled
                                             />
