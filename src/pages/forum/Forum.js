@@ -3,7 +3,7 @@ import styles from "./style/Forum.module.css";
 import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import Trending from "../../component/trending/Trending";
-import { getProfileInfoAsync, getThreadCategoryAsync } from "../../redux/actions";
+import { getProfileInfoAsync, getThreadCategoryAsync, getFollowingThreadAsync } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import getProfileReducer from "../../redux/reducers/getProfile";
@@ -105,6 +105,11 @@ export default function Forum() {
         dispatch(getThreadCategoryAsync(e));
     };
 
+    const buttonListFollowingThread = () => {
+        dispatch(getFollowingThreadAsync());
+    };
+    
+
     useEffect(() => {
         dispatch(getThreadListAsync(values));
     }, [dispatch, values]);
@@ -161,7 +166,7 @@ export default function Forum() {
                             >
                                 Home
                             </li>
-                            <li className={styles.navTopBtn}>Following</li>
+                            <li className={styles.navTopBtn} onClick={() => buttonListFollowingThread()} tabIndex="-1">Following</li>
                         </ul>
                     </div>
                     <div className={styles.navBottom}>

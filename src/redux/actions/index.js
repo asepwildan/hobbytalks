@@ -6,6 +6,7 @@ import {
     getThreadDetail,
     getUser,
     getThreadCategory,
+    getFollowingThread,
 } from "../../services";
 
 export const getProfileInfoAsync = (page) => {
@@ -183,6 +184,36 @@ export const getThreadCategorySucces = (getThreadCategory) => ({
 
 export const getThreadCategoryFailed = (error) => ({
     type: "getThreadCategory/get-failed",
+    payload: {
+        error,
+    },
+});
+
+
+export const getFollowingThreadAsync = (page) => {
+    return (dispatch, getState) => {
+        dispatch({ type: "getFollowingThread/get-start" });
+        getFollowingThread(page)
+            .then((response) => {
+                console.log(response.data, "action Following threadList");
+                dispatch(getFollowingThreadSucces(response.data));
+            })
+            .catch((error) => {
+                console.log(error, "error thread");
+                dispatch(getFollowingThreadFailed(error));
+            });
+    };
+};
+
+export const getFollowingThreadSucces = (getFollowingThread) => ({
+    type: "getfollowingthread/get-succsess",
+    payload: {
+        getFollowingThread,
+    },
+});
+
+export const getFollowingThreadFailed = (error) => ({
+    type: "getfollowingthread/get-failed",
     payload: {
         error,
     },

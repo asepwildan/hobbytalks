@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getThreadDetailAsync } from "../../redux/actions";
 import getThreadDetailReducer from "../../redux/reducers/getThreadDetail";
+import { Link } from "react-router-dom";
 
 export default function MoreUserInfo() {
     const queryParams = new URLSearchParams(window.location.search);
@@ -46,7 +47,9 @@ export default function MoreUserInfo() {
     }, [idUser]);
 
     console.log(loading, "ini loading more user info")
-    
+    const changeThread = (e) => {
+      window.location.reload();
+  };
     return (
         <div className={styles.moreUserInfoContainer}>
             <div className={styles.headingWrapper}>
@@ -54,15 +57,15 @@ export default function MoreUserInfo() {
             </div>
             <div>
                 {moreUserInfo.map((moreInfoUser) => (
-                    <div className={styles.listUserInfoContainer}>
-                        <div className={styles.imageListUser}>
+                   <div className={styles.listUserInfoContainer}>
+                        <Link to={`/thread-detail/?xyz=${moreInfoUser._id}`} onClick={changeThread} style={{textDecoration:"none", color:"black"}}> <div className={styles.imageListUser}>
                             <img src={moreInfoUser.image} alt="img" />
-                        </div>
-                        <div className={styles.titleListUser}>
+                        </div> </Link>
+                        <Link to={`/thread-detail/?xyz=${moreInfoUser._id}`} onClick={changeThread} style={{textDecoration:"none", color:"black"}}>  <div className={styles.titleListUser}>
                             <p className={styles.titleUserText}>{moreInfoUser.title}</p>
-                        </div>
-                        <div className={styles.userInfoActionContainer}>
-                            <div className={styles.userInfoAction}>
+                        </div></Link>
+                        <Link to={`/thread-detail/?xyz=${moreInfoUser._id}`} onClick={changeThread} style={{textDecoration:"none", color:"#828282"}}><div className={styles.userInfoActionContainer}>
+                         <div className={styles.userInfoAction}>
                                 <svg
                                     width="14"
                                     height="16"
@@ -126,7 +129,7 @@ export default function MoreUserInfo() {
                                     {moreInfoUser.comment.length}
                                 </div>
                             </div>
-                        </div>
+                        </div> </Link>
                     </div>
                 ))}
                 {/* <div className={styles.listUserInfoContainer}>

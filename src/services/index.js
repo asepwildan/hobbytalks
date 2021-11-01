@@ -43,3 +43,15 @@ export const getThreadCategory = (category, page) => {
         `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/threadscategory/${category}?page=${page}`
     );
 };
+
+//---Service-get-thread-followed---//
+export const getFollowingThread = (page) => {
+    return axios.get(
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow?page=${page}`,
+        {
+            headers: {
+                Authorization: `Bearer ${Token}`,
+            },
+        }
+    );
+};
