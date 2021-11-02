@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
 import Pagination from "@mui/material/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { getThreadListAsync } from "../../redux/actions";
+import { getThreadListAsync, getFollowingThreadAsync } from "../../redux/actions";
 
 export default function ThreadForum({ shorting }) {
     const [threadForum, setThreadForum] = useState([]);
@@ -19,12 +19,15 @@ export default function ThreadForum({ shorting }) {
 
     const handleChange = (e, value) => {
         setPage(value);
-        console.log(value, "test page");
     };
 
     useEffect(() => {
         dispatch(getThreadListAsync(shorting, page));
     }, [dispatch, shorting, page]);
+
+    useEffect(() => {
+        console.log(threadList, "test threadlist")
+    }, [threadList])
     return (
         <div className={styles.threadContainer}>
             {threadList.map((thread) => (
@@ -223,7 +226,10 @@ export default function ThreadForum({ shorting }) {
                     <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
                 </div>
             ) : (
-                <p>category</p>
+                <div className={styles.paginationContainer}>
+                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
+                </div>
+                // <p>category</p>
             )}
         </div>
     );

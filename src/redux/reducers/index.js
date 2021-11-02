@@ -6,6 +6,7 @@ import getThreadDetail from "./getThreadDetail";
 import getUserReducer from "./getUser";
 import getThreadSearchReducer from "./getSearch";
 
+
 const rootReducer = combineReducers({
     getProfileReducer,
     getCommentReducer,

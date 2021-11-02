@@ -3,7 +3,11 @@ import styles from "./style/Forum.module.css";
 import Footer from "../../component/footer/footer";
 import Navbar from "../../component/Navbar/navbar";
 import Trending from "../../component/trending/Trending";
-import { getProfileInfoAsync, getThreadCategoryAsync } from "../../redux/actions";
+import {
+    getProfileInfoAsync,
+    getThreadCategoryAsync,
+    getFollowingThreadAsync,
+} from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import getProfileReducer from "../../redux/reducers/getProfile";
@@ -20,6 +24,7 @@ import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
 import imgGaris from "./img/garisSkeleton.svg";
 import Skeleton from "../../component/skeleton/skeleton";
+
 export default function Forum() {
     let [category, setCategory] = useState([
         {
@@ -82,14 +87,14 @@ export default function Forum() {
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
     const [isOpen, setIsOpen] = useState();
-    const [buttonActive, setButtonActive] = useState();
-    const [buttonTopActive, setButtonTopActive] = useState();
     const [values, setValues] = useState("newest");
+    const [categoryKondisi, setCategoryKondisi] = useState(false);
     const [valuesSearch, setValuesSearch] = useState({
         search: "",
     });
 
     const handleChange = (e) => {
+        setCategoryKondisi(false);
         const value = e.target.value;
         setValues(value);
         setValuesSearch({
@@ -98,6 +103,7 @@ export default function Forum() {
     };
 
     const handleChangePage = (e) => {
+        setCategoryKondisi(false);
         setValuesSearch({
             search: "",
         });
@@ -105,10 +111,16 @@ export default function Forum() {
     };
 
     const buttonSelectedTesting = (e) => {
+        setCategoryKondisi(true);
         dispatch(getThreadCategoryAsync(e));
         setValuesSearch({
             search: "",
         });
+    };
+    console.log(categoryKondisi, "kosndisi");
+    const buttonListFollowingThread = (page) => {
+        setCategoryKondisi(true);
+        dispatch(getFollowingThreadAsync(page));
     };
 
     useEffect(() => {
@@ -121,13 +133,6 @@ export default function Forum() {
 
     const closeModal = () => {
         setIsOpen(false);
-    };
-    const buttonSelected = (e) => {
-        setButtonActive(e.target.innerHTML);
-    };
-
-    const buttonTopSelected = (e) => {
-        setButtonTopActive(e.target.innerHTML);
     };
 
     useEffect(() => {
@@ -173,7 +178,12 @@ export default function Forum() {
                                 onClick={handleChangePage}>
                                 Home
                             </li>
-                            <li className={styles.navTopBtn}>Following</li>
+                            <li
+                                className={styles.navTopBtn}
+                                onClick={() => buttonListFollowingThread()}
+                                tabIndex="-1">
+                                Following
+                            </li>
                         </ul>
                     </div>
                     <div className={styles.navBottom}>
@@ -226,21 +236,25 @@ export default function Forum() {
                                     <Search />
                                 </button>
                             </form>
-                            <div className={styles.dropdownBar}>
-                                <form>
-                                    <select
-                                        id="category"
-                                        className={styles.createThreadOption}
-                                        name="category"
-                                        value={values.shorting}
-                                        onChange={handleChange}
-                                        required>
-                                        <option value="newest">Newest</option>
-                                        <option value="mostpopular">Most Popular</option>
-                                        <option value="oldest">Oldest</option>
-                                    </select>
-                                </form>
-                            </div>
+                            {categoryKondisi ? (
+                                <div></div>
+                            ) : (
+                                <div className={styles.dropdownBar}>
+                                    <form>
+                                        <select
+                                            id="category"
+                                            className={styles.createThreadOption}
+                                            name="category"
+                                            value={values.shorting}
+                                            onChange={handleChange}
+                                            required>
+                                            <option value="newest">Newest</option>
+                                            <option value="mostpopular">Most Popular</option>
+                                            <option value="oldest">Oldest</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            )}
                         </div>
                     </div>
 

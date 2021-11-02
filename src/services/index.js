@@ -44,9 +44,32 @@ export const getThreadCategory = (category, page) => {
     );
 };
 
+//---Service-get-Following-thread----////
+export const getFollowingThread = (page) => {
+    return axios.get(
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow?page=${page}`,
+        {
+            headers: {
+                Authorization: `Bearer ${Token}`,
+            },
+        }
+    );
+};
+
+//---Service-get-Seacrh-thread----////
 export const getSearchThread = (searchValue) => {
-    console.log(searchValue, "service search value");
     return axios.get(
         `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/search/${searchValue}`
     );
 };
+
+// export const deleteThread = (id) => {
+//     return axios.delete(
+//         `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow?page=${page}`,
+//         {
+//             headers: {
+//                 Authorization: `Bearer ${Token}`,
+//             },
+//         }
+//     );
+// };

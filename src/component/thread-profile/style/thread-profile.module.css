@@ -68,6 +68,11 @@
     cursor: pointer;
     margin-right: 20px;
 }
+.buttonFIlter2 {
+    display: flex;
+    gap: 5px;
+    width: 150px;
+}
 
 .editButtonThread {
     display: flex;
@@ -84,6 +89,24 @@
     cursor: pointer;
 }
 
+.deleteButtonThread {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px;
+    color: #fa314a;
+    padding: 7px 12px;
+    font-weight: normal;
+    font-family: "Nunito", sans-serif;
+    background-color: #ebf4fa;
+    border: 1px solid #fa314a;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deleteButtonThread img {
+    width: 20%;
+}
 .createThreadContainer {
     position: absolute;
     top: 50%;

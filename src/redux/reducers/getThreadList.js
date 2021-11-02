@@ -55,7 +55,42 @@ function getThreadListReducer(state = initialState, action) {
                 loading: false,
                 error: payload.error,
             };
+        case "getFollowingThread/get-start":
+            return {
+                ...state,
+                loading: true,
+            };
 
+        case "getFollowingThread/get-succsess":
+            return {
+                ...state,
+                threadList: payload.getThreadCategory.data,
+                totalPage: payload.getThreadCategory.totalPage,
+                nextPage: payload.getThreadCategory.nextPage,
+                currentPage: payload.getThreadCategory.currentPage,
+                loading: false,
+                error: "",
+                pagination: true,
+            };
+
+        // case "getFollowingThread/get-succsess":
+        //     return {
+        //         ...state,
+        //         threadList: payload.getFollowingThread.data,
+        //         totalPage: payload.getFollowingThread.totalPage,
+        //         nextPage: payload.getFollowingThread.nextPage,
+        //         currentPage: payload.getFollowingThread.currentPage,
+        //         loading: false,
+        //         error: "",
+        //         pagination: false,
+        //     };
+        
+        // case "getFollowingThread/get-failed":
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         error: payload.error,
+        //     };
         default:
             return state;
     }

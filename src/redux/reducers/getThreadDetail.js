@@ -1,6 +1,7 @@
 const initialState = {
     idThread: "",
     name: "",
+    idUser: "",
     avatar: "",
     title: "",
     content: "",
@@ -30,6 +31,7 @@ function getThreadDetailReducer(state = initialState, action) {
                 ...state,
                 idThread: payload.getThreadDetail._id,
                 name: payload.getThreadDetail.userId.name,
+                idUser: payload.getThreadDetail.userId._id,
                 avatar: payload.getThreadDetail.userId.avatar,
                 title: payload.getThreadDetail.title,
                 content: payload.getThreadDetail.content,

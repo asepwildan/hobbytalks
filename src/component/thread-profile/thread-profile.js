@@ -12,13 +12,15 @@ import Modal from "@mui/material/Modal";
 import EditThread from "../edit-thread/editThread";
 import Pagination from "@mui/material/Pagination";
 import arrow from "./img/arrow.gif";
+import trash from "./img/trash2.svg";
 
 export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
     const [name, setName] = useState("");
-    const token = localStorage.getItem("tokenLogin");
+    const Token = localStorage.getItem("tokenLogin");
     const [info, setInfo] = useState({});
     const [page, setPage] = useState("");
+    const [loadingDel, setLoadingDel] = useState(false);
 
     const dispatch = useDispatch();
     const {
@@ -52,14 +54,34 @@ export default function Thread() {
     };
     useEffect(() => {
         dispatch(getProfileInfoAsync(page));
-    }, [dispatch, page]);
+    }, [dispatch, page, loadingDel]);
 
+    const deleteThread = (id) => {
+        var confirmDel = window.confirm("are you sure want to delete?");
+        if (confirmDel === true) {
+            setLoadingDel(true);
+            axios({
+                method: "DELETE",
+                url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/delete/${id}`,
+                headers: {
+                    Authorization: `Bearer ${Token} `,
+                },
+            })
+                .then((response) => {
+                    setLoadingDel(false);
+                })
+                .catch((err) => {
+                    setLoadingDel(false);
+                });
+        } else {
+            return;
+        }
+    };
     return (
         <div className={styles.threadContainer}>
             <div className={styles.threadTitle}>
                 <p>Thread</p>
             </div>
-
             {threadListProfile.map((thread, index) => (
                 <>
                     <div key={thread._id} className={styles.buttonActionProfileContainer}>
@@ -109,6 +131,12 @@ export default function Thread() {
                             <button>{thread.category.name}</button>
                         </div>
                         <div className={styles.buttonFIlter2}>
+                            <button
+                                onClick={() => deleteThread(thread._id)}
+                                className={styles.deleteButtonThread}>
+                                <img src={trash} alt="trash" />
+                                <p>Delete</p>
+                            </button>
                             <button
                                 className={styles.editButtonThread}
                                 onClick={() => kirimData(index)}>
