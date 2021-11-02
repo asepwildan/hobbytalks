@@ -151,7 +151,11 @@
     font-size: 12px;
     color: #828282;
 }
-
+.threadActionanddate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .threadActionContainer {
     display: inline-flex;
     background-color: #f5f8fd;
@@ -159,7 +163,10 @@
     border-radius: 8px;
     margin: 10px 0px;
 }
-
+.dateThread {
+    font-size: 12px;
+    color: #828282;
+}
 .threadAction {
     display: flex;
     align-items: center;

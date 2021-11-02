@@ -13,11 +13,12 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { getProfileInfoAsync, getThreadDetailAsync, getUserAsync } from "../../redux/actions";
 import arrow from "../thread-profile/img/arrow.gif";
-import CLickSOund from "./asset/click.mp3";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
+
 import { Howl, Howler } from "howler";
 import cLickSound2 from "./asset/click.mp3";
-
 
 export default function ThreadUser() {
     const queryParams = new URLSearchParams(window.location.search);
@@ -25,14 +26,14 @@ export default function ThreadUser() {
     let Token = localStorage.getItem("tokenLogin");
     const dispatch = useDispatch();
     const [upVoteLoader, setUpVoteLoader] = useState(false);
-    const [downVoteLoader, setDownVoteLoader] = useState(false);
     const [followLoad, setFollowLoad] = useState(false);
-    const [unfollowLoad, setUnfollowLoad] = useState(false);
+    const [downVoteLoader, setDownVoteLoader] = useState(false);
     let userFollow = false;
     let fillVote = "#828282";
     let filloff = "#F5F8FD";
     let fillDown = "#828282";
     let [isOpen, SetIsOpen] = useState(false);
+
     const { profileInfo, following } = useSelector((state) => state.getProfileReducer);
     const {
         idThread,
@@ -299,7 +300,9 @@ export default function ThreadUser() {
                             <img src={arrow} alt="loader vote" />
                         </div>
                     ) : (
-                        <div className={styles.threadAction}  onClick={() => upVoteAction(cLickSound2)}>
+                        <div
+                            className={styles.threadAction}
+                            onClick={() => upVoteAction(cLickSound2)}>
                             <svg
                                 width="14"
                                 height="16"
@@ -325,7 +328,9 @@ export default function ThreadUser() {
                             <img src={arrow} alt="loader vote" />
                         </div>
                     ) : (
-                        <div className={styles.threadActionCenter} onClick={() => downVoteAction(cLickSound2)}>
+                        <div
+                            className={styles.threadActionCenter}
+                            onClick={() => downVoteAction(cLickSound2)}>
                             <svg
                                 width="14"
                                 height="16"

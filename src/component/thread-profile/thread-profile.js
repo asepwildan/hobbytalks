@@ -35,7 +35,6 @@ export default function Thread() {
     } = useSelector((state) => state.getProfileReducer);
 
     const [isOpen, setIsOpen] = useState();
-    console.log(profileInfo.threads, "ini thread");
 
     const openModal = () => {
         setIsOpen(true);
@@ -48,14 +47,10 @@ export default function Thread() {
     const kirimData = (value) => {
         dispatch(addIndexThread(value));
         setIsOpen(true);
-        console.log(indexThreadUser, "index dari profile");
     };
-    console.log(threadListProfile, "ini thread p");
 
     const handleChange = (e, value) => {
         setPage(value);
-
-        console.log(value, "test page");
     };
     useEffect(() => {
         dispatch(getProfileInfoAsync(page));
@@ -64,7 +59,6 @@ export default function Thread() {
     const deleteThread = (id) => {
         var confirmDel = window.confirm("are you sure want to delete?");
         if (confirmDel === true) {
-            console.log(id, "id thread");
             setLoadingDel(true);
             axios({
                 method: "DELETE",
@@ -74,15 +68,13 @@ export default function Thread() {
                 },
             })
                 .then((response) => {
-                    console.log(response);
                     setLoadingDel(false);
                 })
                 .catch((err) => {
-                    console.log(err);
                     setLoadingDel(false);
                 });
         } else {
-            return 
+            return;
         }
     };
     return (
@@ -90,9 +82,6 @@ export default function Thread() {
             <div className={styles.threadTitle}>
                 <p>Thread</p>
             </div>
-            {/* {loading === true ? (
-                <div>loading</div>
-            ) : ( */}
             {threadListProfile.map((thread, index) => (
                 <>
                     <div key={thread._id} className={styles.buttonActionProfileContainer}>

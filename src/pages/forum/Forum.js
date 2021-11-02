@@ -15,9 +15,7 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-// import Thread from "../../component/thread-profile/thread-profile";
 import Search from "@material-ui/icons/Search";
-// import { Menu, MenuItem } from "@material-ui/core";
 import Modal from "@mui/material/Modal";
 import CreateThread from "../../component/createThread/createThread";
 import ThreadForum from "../../component/threadForum/ThreadForum";
@@ -26,7 +24,6 @@ import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
 import imgGaris from "./img/garisSkeleton.svg";
 import Skeleton from "../../component/skeleton/skeleton";
-//  import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 export default function Forum() {
     let [category, setCategory] = useState([
@@ -111,6 +108,7 @@ export default function Forum() {
         });
         dispatch(getThreadListAsync(values));
     };
+
     const buttonSelectedTesting = (e) => {
         dispatch(getThreadCategoryAsync(e));
         setValuesSearch({
@@ -181,9 +179,7 @@ export default function Forum() {
                             <li
                                 tabIndex="-1"
                                 className={styles.navTopBtn}
-                                onClick={handleChangePage}
-                                // onClick={buttonTopSelected}
-                            >
+                                onClick={handleChangePage}>
                                 Home
                             </li>
                             <li
@@ -261,24 +257,6 @@ export default function Forum() {
                                         <option value="mostpopular">Most Popular</option>
                                         <option value="oldest">Oldest</option>
                                     </select>
-                                    {/* <Box sx={{ minWidth: 120 }}> */}
-                                    {/* <FormControl>
-                                        <InputLabel
-                                            className={styles.inputLabel}
-                                            variant="standart"
-                                            htmlFor="uncontrolled-native"
-                                        ></InputLabel>
-                                        <NativeSelect
-                                            className={styles.selectInput}
-                                            defaultValue={"30"}
-                                            
-                                        >
-                                            <option value="text">Newest</option>
-                                            <option value="tes">Most Popular</option>
-                                            <option value="text">Oldest</option>
-                                        </NativeSelect>
-                                    </FormControl>
-                                </Box> */}
                                 </form>
                             </div>
                         </div>

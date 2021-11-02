@@ -151,6 +151,7 @@ img {
     align-items: center;
     border-radius: 8px;
     background-color: #f5f8fd;
+    height: 35px;
 }
 
 .threadAction {
