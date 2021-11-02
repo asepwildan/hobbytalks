@@ -14,7 +14,6 @@ export function EditProfilUser({ modal, ceking }) {
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
 
-    console.log(ceking, "modal");
     useEffect(() => {
         dispatch(getProfileInfoAsync());
     }, [dispatch, response]);
@@ -30,12 +29,8 @@ export function EditProfilUser({ modal, ceking }) {
         setValues({ ...values, [name]: value });
     };
 
-    console.log(values);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const response = dispatch(editProfileAsync(values.name, values.bio));
-        // console.log(response, "edit profile");
 
         axios
             .put(
@@ -53,7 +48,6 @@ export function EditProfilUser({ modal, ceking }) {
                 }
             )
             .then((response) => {
-                console.log(response.data, "edit dulu nih");
                 setResponse(response.data.status);
                 setTesting(false);
                 modal(false);

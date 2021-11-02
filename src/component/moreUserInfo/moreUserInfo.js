@@ -16,18 +16,6 @@ export default function MoreUserInfo() {
         idThread,
         name,
         idUser,
-        avatar,
-        title,
-        content,
-        image,
-        category,
-        status,
-        likeCount,
-        dislikeCount,
-        commentCount,
-        date,
-        likes,
-        dislike,
         loading,
     } = useSelector((state) => state.getThreadDetail);
     console.log(idUser, "test id");
@@ -35,7 +23,7 @@ export default function MoreUserInfo() {
     useEffect(() => {
         axios
             .get(
-                `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/more/${idUser}/${idThreadUrl}`
+                `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/more/${idThreadUrl}`
             )
             .then((response) => {
                 console.log(response.data.data, "ini data user info ya");
@@ -44,10 +32,10 @@ export default function MoreUserInfo() {
             .catch((err) => {
                 console.log(err, "error dari more user info");
             });
-    }, [idUser]);
+    }, []);
 
     console.log(loading, "ini loading more user info")
-    const changeThread = (e) => {
+    const changeThread = () => {
       window.location.reload();
   };
     return (
@@ -58,13 +46,13 @@ export default function MoreUserInfo() {
             <div>
                 {moreUserInfo.map((moreInfoUser) => (
                    <div className={styles.listUserInfoContainer}>
-                        <Link to={`/thread-detail/?xyz=${moreInfoUser._id}`} onClick={changeThread} style={{textDecoration:"none", color:"black"}}> <div className={styles.imageListUser}>
+                        <a href={`/thread-detail/?xyz=${moreInfoUser._id}`} style={{textDecoration:"none", color:"black"}}> <div className={styles.imageListUser}>
                             <img src={moreInfoUser.image} alt="img" />
-                        </div> </Link>
-                        <Link to={`/thread-detail/?xyz=${moreInfoUser._id}`} onClick={changeThread} style={{textDecoration:"none", color:"black"}}>  <div className={styles.titleListUser}>
+                        </div> </a>
+                        <a href={`/thread-detail/?xyz=${moreInfoUser._id}`} style={{textDecoration:"none", color:"black"}}>  <div className={styles.titleListUser}>
                             <p className={styles.titleUserText}>{moreInfoUser.title}</p>
-                        </div></Link>
-                        <Link to={`/thread-detail/?xyz=${moreInfoUser._id}`} onClick={changeThread} style={{textDecoration:"none", color:"#828282"}}><div className={styles.userInfoActionContainer}>
+                        </div> </a>
+                        <a href={`/thread-detail/?xyz=${moreInfoUser._id}`} style={{textDecoration:"none", color:"black"}}><div className={styles.userInfoActionContainer}>
                          <div className={styles.userInfoAction}>
                                 <svg
                                     width="14"
@@ -129,7 +117,7 @@ export default function MoreUserInfo() {
                                     {moreInfoUser.comment.length}
                                 </div>
                             </div>
-                        </div> </Link>
+                        </div> </a>
                     </div>
                 ))}
                 {/* <div className={styles.listUserInfoContainer}>

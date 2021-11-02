@@ -151,8 +151,6 @@ function Banner(props) {
             ) : (
                 <img className="cover-banner" src={banner} alt="ujang" />
             )}
-
-            {/* <img className="cover-banner" src={banner} alt="cover banner" /> */}
             <div className="bannerContent">
                 <div className="profileAva">
                     {imageTes === null ? (
@@ -258,6 +256,7 @@ function Banner(props) {
                                             <label>Email</label>
                                             <input
                                                 type="text"
+                                                className={styles.emailDisabled}
                                                 placeholder={profileInfo.email}
                                                 disabled
                                             />
