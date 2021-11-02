@@ -15,17 +15,18 @@ import { getProfileInfoAsync, getThreadDetailAsync, getUserAsync } from "../../r
 import arrow from "../thread-profile/img/arrow.gif";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+
 import { Howl, Howler } from "howler";
-import cLickSound from "./asset/bahaya.mp3";
 import cLickSound2 from "./asset/click.mp3";
+
 export default function ThreadUser() {
     const queryParams = new URLSearchParams(window.location.search);
     const idThreadUrl = queryParams.get("xyz");
     let Token = localStorage.getItem("tokenLogin");
     const dispatch = useDispatch();
     const [upVoteLoader, setUpVoteLoader] = useState(false);
-    const [downVoteLoader, setDownVoteLoader] = useState(false);
     const [followLoad, setFollowLoad] = useState(false);
+    const [downVoteLoader, setDownVoteLoader] = useState(false);
     let userFollow = false;
     let fillVote = "#828282";
     let filloff = "#F5F8FD";

@@ -19,6 +19,7 @@ import { getThreadListAsync, getSearchAsync } from "../../redux/actions";
 import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
 import imgGaris from "./img/garisSkeleton.svg";
+import Skeleton from "../../component/skeleton/skeleton";
 export default function Forum() {
     let [category, setCategory] = useState([
         {
@@ -238,24 +239,6 @@ export default function Forum() {
                                         <option value="mostpopular">Most Popular</option>
                                         <option value="oldest">Oldest</option>
                                     </select>
-                                    {/* <Box sx={{ minWidth: 120 }}> */}
-                                    {/* <FormControl>
-                                        <InputLabel
-                                            className={styles.inputLabel}
-                                            variant="standart"
-                                            htmlFor="uncontrolled-native"
-                                        ></InputLabel>
-                                        <NativeSelect
-                                            className={styles.selectInput}
-                                            defaultValue={"30"}
-                                            
-                                        >
-                                            <option value="text">Newest</option>
-                                            <option value="tes">Most Popular</option>
-                                            <option value="text">Oldest</option>
-                                        </NativeSelect>
-                                    </FormControl>
-                                </Box> */}
                                 </form>
                             </div>
                         </div>
@@ -270,72 +253,7 @@ export default function Forum() {
                             )}
                         </div>
                     ) : (
-                        <div className={styles.parentSkeleton}>
-                            <div className={styles.skeletonA}>
-                                <div className={styles.skeleton1}></div>
-                                <div className={styles.skeleton2}>
-                                    <div className={styles.skeleton21}></div>
-                                    <div className={styles.skeleton22}></div>
-                                </div>
-                                <div className={styles.skeleton3}>
-                                    <div className={styles.bulat}></div>
-                                    <div className={styles.saudaraBulat}></div>
-                                </div>
-                                <div className={styles.skeleton4}></div>
-                                <img className={styles.imgGaris} src={imgGaris}></img>
-                            </div>
-                            <div className={styles.skeletonA}>
-                                <div className={styles.skeleton1}></div>
-                                <div className={styles.skeleton2}>
-                                    <div className={styles.skeleton21}></div>
-                                    <div className={styles.skeleton22}></div>
-                                </div>
-                                <div className={styles.skeleton3}>
-                                    <div className={styles.bulat}></div>
-                                    <div className={styles.saudaraBulat}></div>
-                                </div>
-                                <div className={styles.skeleton4}></div>
-                                <img className={styles.imgGaris} src={imgGaris}></img>
-                            </div>
-                            <div className={styles.skeletonA}>
-                                <div className={styles.skeleton1}></div>
-                                <div className={styles.skeleton2}>
-                                    <div className={styles.skeleton21}></div>
-                                    <div className={styles.skeleton22}></div>
-                                </div>
-                                <div className={styles.skeleton3}>
-                                    <div className={styles.bulat}></div>
-                                    <div className={styles.saudaraBulat}></div>
-                                </div>
-                                <div className={styles.skeleton4}></div>
-                                <img className={styles.imgGaris} src={imgGaris}></img>
-                            </div>
-                            <div className={styles.skeletonA}>
-                                <div className={styles.skeleton1}></div>
-                                <div className={styles.skeleton2}>
-                                    <div className={styles.skeleton21}></div>
-                                    <div className={styles.skeleton22}></div>
-                                </div>
-                                <div className={styles.skeleton3}>
-                                    <div className={styles.bulat}></div>
-                                    <div className={styles.saudaraBulat}></div>
-                                </div>
-                                <div className={styles.skeleton4}></div>
-                                <img className={styles.imgGaris} src={imgGaris}></img>
-                            </div>
-                            <div className={styles.skeletonA}>
-                                <div className={styles.skeleton1}></div>
-                                <div className={styles.skeleton2}>
-                                    <div className={styles.skeleton21}></div>
-                                    <div className={styles.skeleton22}></div>
-                                </div>
-                                <div className={styles.skeleton3}>
-                                    <div className={styles.bulat}></div>
-                                    <div className={styles.saudaraBulat}></div>
-                                </div>
-                                <div className={styles.skeleton5}></div>
-                            </div>
-                        </div>
+                        <Skeleton />
                     )}
                 </div>
 
