@@ -11,17 +11,13 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-// import Thread from "../../component/thread-profile/thread-profile";
 import Search from "@material-ui/icons/Search";
-// import { Menu, MenuItem } from "@material-ui/core";
 import Modal from "@mui/material/Modal";
 import CreateThread from "../../component/createThread/createThread";
 import ThreadForum from "../../component/threadForum/ThreadForum";
 import { getThreadListAsync, getSearchAsync } from "../../redux/actions";
 import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
-
-//  import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 export default function Forum() {
     let [category, setCategory] = useState([
@@ -101,8 +97,12 @@ export default function Forum() {
     };
 
     const handleChangePage = (e) => {
+        setValuesSearch({
+            search: "",
+        });
         dispatch(getThreadListAsync(values));
     };
+
     const buttonSelectedTesting = (e) => {
         dispatch(getThreadCategoryAsync(e));
         setValuesSearch({
@@ -133,6 +133,15 @@ export default function Forum() {
         dispatch(getProfileInfoAsync());
     }, [dispatch]);
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const valueNavbar = queryParams.get("valsearch");
+
+    useEffect(() => {
+        if (valueNavbar) {
+            setValuesSearch({ ...valuesSearch, ["search"]: valueNavbar });
+        }
+    }, []);
+
     const handleChangeSearch = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -153,9 +162,7 @@ export default function Forum() {
                             <li
                                 tabIndex="-1"
                                 className={styles.navTopBtn}
-                                onClick={handleChangePage}
-                                // onClick={buttonTopSelected}
-                            >
+                                onClick={handleChangePage}>
                                 Home
                             </li>
                             <li className={styles.navTopBtn}>Following</li>

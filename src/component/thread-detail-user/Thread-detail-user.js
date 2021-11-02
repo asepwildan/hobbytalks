@@ -13,11 +13,11 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { getProfileInfoAsync, getThreadDetailAsync, getUserAsync } from "../../redux/actions";
 import arrow from "../thread-profile/img/arrow.gif";
-import CLickSOund from "./asset/click.mp3";
-import useSound from "use-sound";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-
+import { Howl, Howler } from "howler";
+import cLickSound from "./asset/bahaya.mp3";
+import cLickSound2 from "./asset/click.mp3";
 export default function ThreadUser() {
     const queryParams = new URLSearchParams(window.location.search);
     const idThreadUrl = queryParams.get("xyz");
@@ -31,6 +31,7 @@ export default function ThreadUser() {
     let filloff = "#F5F8FD";
     let fillDown = "#828282";
     let [isOpen, SetIsOpen] = useState(false);
+
     const { profileInfo, following } = useSelector((state) => state.getProfileReducer);
     const {
         idThread,
@@ -51,9 +52,12 @@ export default function ThreadUser() {
 
     // const userFollow  = following?.indexOf(idThreadUrl);
     // console.log(userFollow, "test index")
-    const upVoteAction = () => {
+    const upVoteAction = (src) => {
         setUpVoteLoader(true);
-
+        const sound = new Howl({
+            src,
+        });
+        sound.play();
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/upvote/${idThreadUrl}`,
@@ -77,9 +81,12 @@ export default function ThreadUser() {
             });
     };
 
-    const downVoteAction = () => {
+    const downVoteAction = (src) => {
         setDownVoteLoader(true);
-
+        const sound = new Howl({
+            src,
+        });
+        sound.play();
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/downvote/${idThreadUrl}`,
@@ -254,7 +261,9 @@ export default function ThreadUser() {
                             <img src={arrow} alt="loader vote" />
                         </div>
                     ) : (
-                        <div className={styles.threadAction} onClick={upVoteAction}>
+                        <div
+                            className={styles.threadAction}
+                            onClick={() => upVoteAction(cLickSound2)}>
                             <svg
                                 width="14"
                                 height="16"
@@ -279,7 +288,9 @@ export default function ThreadUser() {
                             <img src={arrow} alt="loader vote" />
                         </div>
                     ) : (
-                        <div className={styles.threadActionCenter} onClick={downVoteAction}>
+                        <div
+                            className={styles.threadActionCenter}
+                            onClick={() => downVoteAction(cLickSound2)}>
                             <svg
                                 width="14"
                                 height="16"
@@ -320,7 +331,7 @@ export default function ThreadUser() {
                         <p className={styles.comment}>{commentCount}</p>
                     </div>
                 </div>
-                <date className={styles.tanggal}>{date}</date>
+                <date className={styles.tanggal}>{date.slice(0, 10)}</date>
             </div>
             <Modal
                 keepMounted

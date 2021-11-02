@@ -15,11 +15,13 @@
     "bootstrap": "5.1.1",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
+    "howler": "^2.2.3",
     "html-to-draftjs": "^1.5.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-rc.0",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
+    "react-howler": "^5.2.0",
     "react-modal": "^3.14.3",
     "react-notifications-menu": "^1.0.1",
     "react-redux": "^7.2.5",
@@ -28,7 +30,6 @@
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "sass": "^1.42.1",
-    "use-sound": "^4.0.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

@@ -59,6 +59,10 @@ export default function Thread() {
         dispatch(getProfileInfoAsync(page));
     }, [dispatch, page]);
 
+    const deleteThread = (id) => {
+        console.log(id, "id thread delete");
+    };
+
     return (
         <div className={styles.threadContainer}>
             <div className={styles.threadTitle}>
@@ -116,6 +120,7 @@ export default function Thread() {
                             <button>{thread.category.name}</button>
                         </div>
                         <div className={styles.buttonFIlter2}>
+                            <button onClick={() => deleteThread(thread._id)}>DELETE</button>
                             <button
                                 className={styles.editButtonThread}
                                 onClick={() => kirimData(index)}>
