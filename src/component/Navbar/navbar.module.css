@@ -3,7 +3,6 @@
     align-items: center;
     flex-wrap: wrap;
     position: sticky;
-    height: 50px;
     top: 0;
     z-index: 1;
     width: 100%;
@@ -11,47 +10,38 @@
     background-color: #f5f8fd;
     box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.1);
     border-bottom: 0.1px solid #bdbdbd;
+    justify-content: space-between;
 }
 
 .leftbar {
     display: flex;
-    flex: 4;
-    /* flex-wrap: wrap; */
-    margin-top: 5px;
+    align-items: center;
+    gap: 25px;
+    height: 50px;
 }
 
 .pictureBar {
-    width: 28%;
-    /* margin-right: 10px; */
-    margin: 5px 10px 5px 0px;
+    width: 125px;
 }
 
 .pictureBar img {
-    width: 80%;
-    margin-bottom: 10px;
-    margin-left: 15px;
+    width: 100%;
 }
 
 .searchBar {
-    width: 50%;
-    height: 30px;
+    width: 260px;
+    height: 32px;
     display: flex;
-    /* flex-wrap: nowrap; */
     align-items: center;
     background-color: white;
     border-radius: 10px;
-    /* border-style: solid; */
     border: 0.5px solid;
     border-color: #9f9f9f;
-    margin-bottom: 10px;
-    margin-top: 5px;
     box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
-    /* justify-content: space-between; */
 }
 
 .formSearchBar {
     display: flex;
-    /* justify-content: space-between; */
     width: 100%;
 }
 
@@ -72,47 +62,31 @@
     margin-right: -25px;
     border-style: none;
     cursor: pointer;
-    /* padding-left: 30px; */
-    /* position: absolute;
-    align-items: center; */
 }
 
-/* .navbarInputButton {
-    color: #c5c7cd;
-    /* margin-right: 5px; */
-/* cursor: pointer; */
-/* margin-top: 10px; */
-/* width: 30px !important; */
-/* margin-right: -70px; */
-/* } */
-
 .rightbar {
-    flex: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-left: 500px;
 
-    /* float: right; */
+    gap: 10px;
 }
 
 .buttonCreate {
     align-items: center;
-    padding-bottom: 10px;
 }
 
 .buttonCreate button {
     background-color: #1e8ac6 !important;
     border: none !important;
     color: #ffffff !important;
-    height: 25px !important;
     border-radius: 5px !important;
     box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.05) !important;
     font-size: 12px !important;
     transition-duration: 0.1s !important;
     transition-property: transform !important;
     cursor: pointer !important;
-    /* width: 70% !important; */
+    padding: 7px 10px;
 }
 .buttonCreate button:active {
     transform: scale(0.98) !important;
@@ -175,14 +149,13 @@
 }
 .notifBar {
     align-items: center;
-    margin-bottom: 5px;
+    margin-top: 5px;
     cursor: pointer;
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
-    /* border-style: solid; */
 }
 
 .dropdownctn {
@@ -211,20 +184,10 @@
     border-bottom: 0.2px solid;
     line-height: 40px;
 }
-/* .dropdownctn p:first-child{ */
-/* font-size: 22px; */
-/* border-bottom: 2px solid rgb(141, 141, 141); */
-/* } */
-/* .dropdownctn p:last-child{
-    color: black;
-    font-size: 18px;
-    cursor: pointer;
-  } */
 
 .avaBar {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .userAvatar {
@@ -241,6 +204,7 @@
 
 .profilDropdown {
     cursor: pointer;
+    margin-top: 7px;
 }
 
 .dropdownMenu MenuItem {

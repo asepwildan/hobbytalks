@@ -57,6 +57,17 @@ export default function Navbar() {
         localStorage.removeItem("tokenLogin");
         window.location.reload();
     };
+
+    const [valuesSearch, setValuesSearch] = useState({
+        search: "",
+    });
+
+    const handleChangeSearch = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setValuesSearch({ ...valuesSearch, [name]: value });
+    };
+
     return (
         <div className={styles.navbarContainer}>
             <div className={styles.leftbar}>
@@ -65,15 +76,25 @@ export default function Navbar() {
                         <img src={logo} alt="hobbytalk" />
                     </Link>
                 </div>
-                {window.location.pathname === "/forum" ? (
+                {window.location.pathname.includes("forum") ? (
                     <div></div>
                 ) : (
                     <div className={styles.searchBar}>
                         <form className={styles.formSearchBar}>
-                            <input type="text" placeholder="What do you want to talk about?" />
-                            <button>
-                                <SearchIcon className={styles.navbarInputButton} />
-                            </button>
+                            <input
+                                type="text"
+                                name="search"
+                                placeholder="What do you want to talk about?"
+                                value={valuesSearch.search}
+                                onChange={handleChangeSearch}
+                            />
+                            <Link
+                                to={`/forum/?valsearch=${valuesSearch.search}`}
+                                style={{ textDecoration: "none" }}>
+                                <button type="submit">
+                                    <SearchIcon className={styles.navbarInputButton} />
+                                </button>
+                            </Link>
                         </form>
                     </div>
                 )}

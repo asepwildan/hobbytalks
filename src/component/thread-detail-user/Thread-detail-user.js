@@ -15,7 +15,9 @@ import { getProfileInfoAsync, getThreadDetailAsync, getUserAsync } from "../../r
 import arrow from "../thread-profile/img/arrow.gif";
 import CLickSOund from "./asset/click.mp3";
 import { Link } from "react-router-dom";
-// import useSound from "use-sound";
+import { Howl, Howler } from "howler";
+import cLickSound2 from "./asset/click.mp3";
+
 
 export default function ThreadUser() {
     const queryParams = new URLSearchParams(window.location.search);
@@ -52,9 +54,12 @@ export default function ThreadUser() {
 
     // const userFollow  = following?.indexOf(idThreadUrl);
     // console.log(userFollow, "test index")
-    const upVoteAction = () => {
+    const upVoteAction = (src) => {
         setUpVoteLoader(true);
-
+        const sound = new Howl({
+            src,
+        });
+        sound.play();
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/upvote/${idThreadUrl}`,
@@ -78,9 +83,12 @@ export default function ThreadUser() {
             });
     };
 
-    const downVoteAction = () => {
+    const downVoteAction = (src) => {
         setDownVoteLoader(true);
-
+        const sound = new Howl({
+            src,
+        });
+        sound.play();
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/downvote/${idThreadUrl}`,
@@ -291,7 +299,7 @@ export default function ThreadUser() {
                             <img src={arrow} alt="loader vote" />
                         </div>
                     ) : (
-                        <div className={styles.threadAction} onClick={upVoteAction}>
+                        <div className={styles.threadAction}  onClick={() => upVoteAction(cLickSound2)}>
                             <svg
                                 width="14"
                                 height="16"
@@ -317,7 +325,7 @@ export default function ThreadUser() {
                             <img src={arrow} alt="loader vote" />
                         </div>
                     ) : (
-                        <div className={styles.threadActionCenter} onClick={downVoteAction}>
+                        <div className={styles.threadActionCenter} onClick={() => downVoteAction(cLickSound2)}>
                             <svg
                                 width="14"
                                 height="16"

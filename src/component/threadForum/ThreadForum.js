@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
 import Pagination from "@mui/material/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { getThreadListAsync } from "../../redux/actions";
+import { getThreadListAsync, getFollowingThreadAsync } from "../../redux/actions";
 
 export default function ThreadForum({ shorting }) {
     const [threadForum, setThreadForum] = useState([]);
@@ -21,6 +21,10 @@ export default function ThreadForum({ shorting }) {
         setPage(value);
         console.log(value, "test page");
     };
+
+    // useEffect(() => {
+    //     dispatch(getFollowingThreadAsync(page));
+    // }, [dispatch, page]);
 
     useEffect(() => {
         dispatch(getThreadListAsync(shorting, page));

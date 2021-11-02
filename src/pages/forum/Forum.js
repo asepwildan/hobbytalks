@@ -24,7 +24,8 @@ import ThreadForum from "../../component/threadForum/ThreadForum";
 import { getThreadListAsync, getSearchAsync } from "../../redux/actions";
 import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
-
+import imgGaris from "./img/garisSkeleton.svg";
+import Skeleton from "../../component/skeleton/skeleton";
 //  import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 export default function Forum() {
@@ -105,6 +106,9 @@ export default function Forum() {
     };
 
     const handleChangePage = (e) => {
+        setValuesSearch({
+            search: "",
+        });
         dispatch(getThreadListAsync(values));
     };
     const buttonSelectedTesting = (e) => {
@@ -141,6 +145,15 @@ export default function Forum() {
         dispatch(getProfileInfoAsync());
     }, [dispatch]);
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const valueNavbar = queryParams.get("valsearch");
+
+    useEffect(() => {
+        if (valueNavbar) {
+            setValuesSearch({ ...valuesSearch, ["search"]: valueNavbar });
+        }
+    }, []);
+
     const handleChangeSearch = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -150,6 +163,13 @@ export default function Forum() {
     useEffect(() => {
         dispatch(getSearchAsync(valuesSearch.search));
     }, [dispatch, valuesSearch]);
+
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 4000);
+    }, []);
 
     return (
         <React.Fragment>
@@ -263,13 +283,18 @@ export default function Forum() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.threaForumContainer}>
-                        {valuesSearch.search !== "" ? (
-                            <ThreadSearch />
-                        ) : (
-                            <ThreadForum shorting={values} />
-                        )}
-                    </div>
+
+                    {!loading ? (
+                        <div className={styles.threaForumContainer}>
+                            {valuesSearch.search !== "" ? (
+                                <ThreadSearch />
+                            ) : (
+                                <ThreadForum shorting={values} />
+                            )}
+                        </div>
+                    ) : (
+                        <Skeleton />
+                    )}
                 </div>
 
                 <div className={styles.boxRightContainer}>
