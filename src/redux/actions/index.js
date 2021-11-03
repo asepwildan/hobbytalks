@@ -190,10 +190,10 @@ export const getThreadCategoryFailed = (error) => ({
     },
 });
 
-export const getFollowingThreadAsync = (page) => {
+export const getFollowingThreadAsync = (isPage) => {
     return (dispatch, getState) => {
         dispatch({ type: "getFollowingThread/get-start" });
-        getFollowingThread(page)
+        getFollowingThread(isPage)
             .then((response) => {
                 console.log(response.data, "action Following threadList");
                 dispatch(getThreadCategorySucces(response.data));
@@ -246,4 +246,9 @@ export const getSearchFailed = (error) => ({
     payload: {
         error,
     },
+});
+
+export const paginationConditionAsync = (valueXXX) => ({
+    type: "add-pagination-forum",
+    payload: { valueXXX },
 });

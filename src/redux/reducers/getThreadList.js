@@ -5,7 +5,6 @@ const initialState = {
     currentPage: null,
     loading: false,
     error: "",
-    pagination: false,
 };
 
 function getThreadListReducer(state = initialState, action) {
@@ -25,7 +24,7 @@ function getThreadListReducer(state = initialState, action) {
                 currentPage: payload.getThreadList.currentPage,
                 loading: false,
                 error: "",
-                pagination: false,
+               
             };
         case "getthread/get-failed":
             return {
@@ -47,7 +46,7 @@ function getThreadListReducer(state = initialState, action) {
                 currentPage: payload.getThreadCategory.currentPage,
                 loading: false,
                 error: "",
-                pagination: true,
+                
             };
         case "getThreadCategory/get-failed":
             return {
@@ -70,7 +69,7 @@ function getThreadListReducer(state = initialState, action) {
                 currentPage: payload.getThreadCategory.currentPage,
                 loading: false,
                 error: "",
-                pagination: true,
+                
             };
 
         // case "getFollowingThread/get-succsess":

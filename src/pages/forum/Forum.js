@@ -19,7 +19,7 @@ import Search from "@material-ui/icons/Search";
 import Modal from "@mui/material/Modal";
 import CreateThread from "../../component/createThread/createThread";
 import ThreadForum from "../../component/threadForum/ThreadForum";
-import { getThreadListAsync, getSearchAsync } from "../../redux/actions";
+import { getThreadListAsync, getSearchAsync, paginationConditionAsync } from "../../redux/actions";
 import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
 import imgGaris from "./img/garisSkeleton.svg";
@@ -90,6 +90,7 @@ export default function Forum() {
     const [buttonActive, setButtonActive] = useState();
     const [buttonTopActive, setButtonTopActive] = useState();
     const [values, setValues] = useState("newest");
+    const [catValue, setCatValue] = useState("");
     const [valuesSearch, setValuesSearch] = useState({
         search: "",
     });
@@ -107,17 +108,21 @@ export default function Forum() {
             search: "",
         });
         dispatch(getThreadListAsync(values));
+        dispatch(paginationConditionAsync("home"))
+
     };
 
     const buttonSelectedTesting = (e) => {
+        dispatch(paginationConditionAsync("category"))
         dispatch(getThreadCategoryAsync(e));
         setValuesSearch({
             search: "",
         });
     };
 
-    const buttonListFollowingThread = (page) => {
-        dispatch(getFollowingThreadAsync(page));
+    const buttonListFollowingThread = (isPage) => {
+        dispatch(paginationConditionAsync("following"))
+        dispatch(getFollowingThreadAsync(isPage));
     };
 
     useEffect(() => {
@@ -267,7 +272,7 @@ export default function Forum() {
                             {valuesSearch.search !== "" ? (
                                 <ThreadSearch />
                             ) : (
-                                <ThreadForum shorting={values} />
+                                <ThreadForum shorting={values} category={category.value}/>
                             )}
                         </div>
                     ) : (
