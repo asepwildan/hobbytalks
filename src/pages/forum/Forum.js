@@ -7,7 +7,6 @@ import {
     getProfileInfoAsync,
     getThreadCategoryAsync,
     getFollowingThreadAsync,
-    paginationConditionAsync,
 } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -20,13 +19,14 @@ import Search from "@material-ui/icons/Search";
 import Modal from "@mui/material/Modal";
 import CreateThread from "../../component/createThread/createThread";
 import ThreadForum from "../../component/threadForum/ThreadForum";
-import { getThreadListAsync, getSearchAsync } from "../../redux/actions";
+import { getThreadListAsync, getSearchAsync, paginationConditionAsync } from "../../redux/actions";
 import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
 import imgGaris from "./img/garisSkeleton.svg";
 import Skeleton from "../../component/skeleton/skeleton";
 
 export default function Forum() {
+    let Token = localStorage.getItem("tokenLogin");
     let [category, setCategory] = useState([
         {
             value: "6166eed398472010a2d7e97e",
@@ -88,7 +88,11 @@ export default function Forum() {
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
     const [isOpen, setIsOpen] = useState();
+    const [buttonActive, setButtonActive] = useState();
+    const [buttonTopActive, setButtonTopActive] = useState();
     const [values, setValues] = useState("newest");
+    const [catValue, setCatValue] = useState("");
+    const [kategoriValue, setKategoriValue] = useState("");
     const [categoryKondisi, setCategoryKondisi] = useState(false);
     const [valuesSearch, setValuesSearch] = useState({
         search: "",
@@ -114,17 +118,19 @@ export default function Forum() {
 
     const buttonSelectedTesting = (e) => {
         setCategoryKondisi(true);
+        console.log(e, "kategori");
+        setKategoriValue(e);
         dispatch(paginationConditionAsync("category"));
         dispatch(getThreadCategoryAsync(e));
         setValuesSearch({
             search: "",
         });
     };
-    console.log(categoryKondisi, "kosndisi");
-    const buttonListFollowingThread = (page) => {
+
+    const buttonListFollowingThread = (isPage) => {
         setCategoryKondisi(true);
-        dispatch(getFollowingThreadAsync(page));
         dispatch(paginationConditionAsync("following"));
+        dispatch(getFollowingThreadAsync(isPage));
     };
 
     useEffect(() => {
@@ -137,6 +143,13 @@ export default function Forum() {
 
     const closeModal = () => {
         setIsOpen(false);
+    };
+    const buttonSelected = (e) => {
+        setButtonActive(e.target.innerHTML);
+    };
+
+    const buttonTopSelected = (e) => {
+        setButtonTopActive(e.target.innerHTML);
     };
 
     useEffect(() => {
@@ -166,7 +179,7 @@ export default function Forum() {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 4000);
+        }, 1000);
     }, []);
 
     return (
@@ -182,12 +195,16 @@ export default function Forum() {
                                 onClick={handleChangePage}>
                                 Home
                             </li>
-                            <li
-                                className={styles.navTopBtn}
-                                onClick={() => buttonListFollowingThread()}
-                                tabIndex="-1">
-                                Following
-                            </li>
+                            {Token ? (
+                                <li
+                                    className={styles.navTopBtn}
+                                    onClick={() => buttonListFollowingThread()}
+                                    tabIndex="-1">
+                                    Following
+                                </li>
+                            ) : (
+                                <></>
+                            )}
                         </ul>
                     </div>
                     <div className={styles.navBottom}>
@@ -267,7 +284,7 @@ export default function Forum() {
                             {valuesSearch.search !== "" ? (
                                 <ThreadSearch />
                             ) : (
-                                <ThreadForum shorting={values} />
+                                <ThreadForum shorting={values} kategoriValue={kategoriValue} />
                             )}
                         </div>
                     ) : (

@@ -5,22 +5,47 @@ import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
 import Pagination from "@mui/material/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { getThreadListAsync, getFollowingThreadAsync } from "../../redux/actions";
+import {
+    getThreadListAsync,
+    getFollowingThreadAsync,
+    getThreadCategoryAsync,
+} from "../../redux/actions";
 
-export default function ThreadForum({ shorting }) {
+export default function ThreadForum({ shorting, kategoriValue }) {
+    console.log(kategoriValue, "kategori thread forum");
     const [threadForum, setThreadForum] = useState([]);
     const [page, setPage] = useState("");
-
+    const [isPage, setIsPage] = useState("1");
+    const [catPage, setCatPage] = useState("");
     const dispatch = useDispatch();
-    const { threadList, totalPage, nextPage, curentPage, loading, error, pagination } = useSelector(
+    const { threadList, totalPage, nextPage, curentPage, loading, error } = useSelector(
         (state) => state.getThreadListReducer
     );
+
     const { paginationCon } = useSelector((state) => state.valueForumReducer);
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
 
     const handleChange = (e, value) => {
         setPage(value);
     };
+
+    const handleChangeFollow = (e, value) => {
+        setIsPage(value);
+    };
+    useEffect(() => {
+        if (paginationCon === "home" || paginationCon === "") {
+            return;
+        }
+        dispatch(getFollowingThreadAsync(isPage));
+    }, [isPage]);
+
+    const handleChangeCat = (e, value) => {
+        setCatPage(value);
+    };
+
+    useEffect(() => {
+        dispatch(getThreadCategoryAsync(kategoriValue, catPage));
+    }, [catPage]);
 
     useEffect(() => {
         dispatch(getThreadListAsync(shorting, page));
@@ -29,6 +54,7 @@ export default function ThreadForum({ shorting }) {
     useEffect(() => {
         console.log(threadList, "test threadlist");
     }, [threadList]);
+
     return (
         <div className={styles.threadContainer}>
             {threadList.map((thread) => (
@@ -222,31 +248,18 @@ export default function ThreadForum({ shorting }) {
                     </div>
                 </>
             ))}
-            {/* {pagination === false ? (
-                <div className={styles.paginationContainer}>
-                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
-                </div>
-            ) : (
-                <div className={styles.paginationContainer}>
-                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
-                </div>
-                // <p>category</p>
-            )} */}
 
             {paginationCon === "home" || paginationCon === "" ? (
                 <div className={styles.paginationContainer}>
-                    <p>home</p>
                     <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
                 </div>
             ) : paginationCon === "following" ? (
                 <div className={styles.paginationContainer}>
-                    <p>foolowing</p>
-                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
+                    <Pagination count={totalPage} page={curentPage} onChange={handleChangeFollow} />
                 </div>
             ) : (
                 <div className={styles.paginationContainer}>
-                    <p>category</p>
-                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
+                    <Pagination count={totalPage} page={curentPage} onChange={handleChangeCat} />
                 </div>
             )}
         </div>

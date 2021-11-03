@@ -1,5 +1,5 @@
 const initialState = {
-    paginationCon: "home",
+    paginationCon: "",
 };
 
 function valueForumReducer(state = initialState, action) {

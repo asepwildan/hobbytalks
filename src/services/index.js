@@ -43,16 +43,16 @@ export const getUser = (id, page) => {
 };
 
 //--- Service-get-categoryList------//
-export const getThreadCategory = (category, page) => {
+export const getThreadCategory = (category, catPage) => {
     return axios.get(
-        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/threadscategory/${category}?page=${page}`
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/threadscategory/${category}?page=${catPage}`
     );
 };
 
 //---Service-get-Following-thread----////
-export const getFollowingThread = (page) => {
+export const getFollowingThread = (isPage) => {
     return axios.get(
-        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow?page=${page}`,
+        `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow?page=${isPage}`,
         {
             headers: {
                 Authorization: `Bearer ${Token}`,
