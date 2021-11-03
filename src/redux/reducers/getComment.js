@@ -3,13 +3,12 @@ const initialState = {
     commentDetail: [],
     loading: false,
     error: "",
-    
 };
 
 function getCommentReducer(state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
-        case  "getcomment/get-start":
+        case "getcomment/get-start":
             return {
                 ...state,
                 loading: true,
@@ -26,7 +25,7 @@ function getCommentReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                error: payload.error,
+                error: payload.error.message,
             };
         default:
             return state;
