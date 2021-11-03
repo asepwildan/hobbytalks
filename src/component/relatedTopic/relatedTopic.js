@@ -32,8 +32,9 @@ export default function RelatedTopic() {
                 console.log(error, "error related topic");
             });
     }, []);
+
     const changeThread = (e) => {
-        window.location.load(`http://localhost:3000/thread-detail/?xyz=${e}`);
+        window.location.load(`https://dev-hoobytalks.herokuapp.com/thread-detail/?xyz=${e}`);
     };
 
     console.log(topicRelated, "data relate arr");
@@ -47,7 +48,7 @@ export default function RelatedTopic() {
                     <div className={styles.titleThreadTopic}>
                         <a
                             target="_blank"
-                            href={`http://localhost:3000/thread-detail/?xyz=${topic._id}`}
+                            href={`https://dev-hoobytalks.herokuapp.com/thread-detail/?xyz=${topic._id}`}
                             className={styles.authGoogle}>
                             <p className={styles.titleInfoText}>{topic.title}</p>
                         </a>

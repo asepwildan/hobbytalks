@@ -126,7 +126,7 @@ export default function Category() {
 
             .then((Response) => {
                 console.log(Response, "categori");
-                window.location = "/profile";
+                window.location = "/forum";
                 setLoading(false)
             })
             .catch((error) => {
