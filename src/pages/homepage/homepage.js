@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./img/logo.png";
 import Vector from "./img/Vector1.png";
@@ -20,6 +20,16 @@ export default function Hompepage() {
     // if (Token !== null) {
     //     window.location = "/forum";
     // }
+
+    const [valuesSearch, setValuesSearch] = useState({
+        search: "",
+    });
+
+    const handleChangeSearch = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setValuesSearch({ ...valuesSearch, [name]: value });
+    };
 
     return (
         <React.Fragment>
@@ -68,14 +78,21 @@ export default function Hompepage() {
                                     <div className={styles.homeInputContainer}>
                                         <input
                                             type="text"
-                                            name="home-input"
+                                            name="search"
                                             placeholder="What do you want to talk about?"
+                                            value={valuesSearch.search}
+                                            onChange={handleChangeSearch}
                                         />
-                                        <img
-                                            className={styles.iconSearch}
-                                            src={Search}
-                                            alt="searc icon"
-                                        />
+                                        <Link
+                                            to={`/forum/?valsearch=${valuesSearch.search}`}
+                                            style={{ textDecoration: "none" }}>
+                                            <img
+                                                className={styles.iconSearch}
+                                                src={Search}
+                                                alt="searc icon"
+                                                type="submit"
+                                            />
+                                        </Link>
                                     </div>
                                 </div>
                                 <Link to="/forum" style={{ textDecoration: "none" }}>

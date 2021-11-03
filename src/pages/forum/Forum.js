@@ -171,6 +171,11 @@ export default function Forum() {
         setValuesSearch({ ...valuesSearch, [name]: value });
     };
 
+    const handleSubmitSearch = (e) => {
+        e.preventDefault();
+        dispatch(getSearchAsync(valuesSearch.search));
+    };
+
     useEffect(() => {
         dispatch(getSearchAsync(valuesSearch.search));
     }, [dispatch, valuesSearch]);
@@ -179,7 +184,7 @@ export default function Forum() {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 1000);
+        }, 3000);
     }, []);
 
     return (
@@ -245,7 +250,7 @@ export default function Forum() {
                     </div>
                     <div className={styles.wrapperSearchBar}>
                         <div className={styles.searchForum}>
-                            <form className={styles.formForum}>
+                            <form className={styles.formForum} onSubmit={handleSubmitSearch}>
                                 <input
                                     value={valuesSearch.search}
                                     name="search"
