@@ -28,13 +28,10 @@ export default function ThreadDetail() {
 
     const idThread = queryParams.get("xyz");
 
-    console.log(idThread, "wayaghe");
-
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
-    // console.log(id, "id thread");
+
     const { error } = useSelector((state) => state.getCommentReducer);
-    console.log(error, "error komen");
 
     useEffect(() => {
         dispatch(getProfileInfoAsync());
@@ -68,7 +65,6 @@ export default function ThreadDetail() {
             .then(
                 (response) => {
                     setComment(response);
-                    console.log(response, "ini comment");
                     setLoad(false);
                     e.target.reset();
                     window.location.reload();
@@ -77,7 +73,6 @@ export default function ThreadDetail() {
             )
             .catch((message) => {
                 setStatus(message);
-                console.log(message, "ini error");
             });
     }
     useEffect(() => {

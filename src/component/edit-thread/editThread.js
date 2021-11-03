@@ -52,15 +52,11 @@ class EditTextEditor extends Component {
 
         this.handleChange = this.handleChange.bind(this);
     }
-    // setEditorReference = (ref) => {
-    //     this.editorReferece = ref;
-    //     ref.focus();
-    // };
 
     handleChange(e) {
         const value = e.target.value;
         const name = e.target.name;
-        console.log(e.target.value, "target");
+
         this.setState({ ...this.state, [name]: value });
     }
 
@@ -86,7 +82,6 @@ class EditTextEditor extends Component {
             loading: true,
         });
 
-        console.log(this.state.editorState, "editorstate");
         const testing = new FormData();
         testing.append("title", this.state.title);
         testing.append("content", this.state.editorState);
@@ -122,10 +117,6 @@ class EditTextEditor extends Component {
     };
     render() {
         const { editorState } = this.state;
-        // const setEditorReference = (ref) => {
-        //     this.editorReference = ref;
-        //     ref.focusEditor();
-        // };
 
         return (
             <div className="textEditorContainer">

@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
 import getUserReducer from "../../redux/reducers/getUser";
 import { Pagination } from "@mui/material";
-
+import Skeleton from "../skeleton/skeleton";
 export default function ThreadListAccountDetail() {
     const [page, setPage] = useState("");
     const dispatch = useDispatch();
@@ -24,12 +24,9 @@ export default function ThreadListAccountDetail() {
     );
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get("xyz");
-    console.log(userInfo, "user");
+
     const handleChange = (e, value) => {
-        // const value = e.target.innerText;
         setPage(value);
-        // dispatch(getThreadListAsync(shorting, page));
-        // console.log(page, "test page");
     };
 
     useEffect(() => {
@@ -42,7 +39,7 @@ export default function ThreadListAccountDetail() {
                 <p>Thread</p>
             </div>
             {loading === true ? (
-                <div>loading</div>
+                <Skeleton />
             ) : (
                 threadUser.map((thread) => (
                     <>

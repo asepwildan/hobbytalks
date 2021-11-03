@@ -21,8 +21,6 @@ export default function Login() {
         setValues({ ...values, [name]: value });
     };
 
-    console.log(values);
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoad(true);
@@ -34,26 +32,17 @@ export default function Login() {
             })
 
             .then((Response) => {
-                console.log(Response, "login");
                 const token = Response.data.data;
                 localStorage.setItem("tokenLogin", token);
                 setLoad(false);
                 window.location = "/account/welcome";
             })
             .catch((error) => {
-                console.log(error.response.data.message, "wah ini eror login");
-
                 alert(error.response.data.message);
                 setLoad(false);
             });
     };
 
-    // const googleSignin = () => {
-    //     axios
-    //         .get("https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google")
-    //         .then((res) => console.log(res, "google"))
-    //         .catch((err) => console.log(err, "google"));
-    // };
     return (
         <React.Fragment>
             {/* <BackgroundPage /> */}
@@ -101,17 +90,15 @@ export default function Login() {
                 </div>
                 <div className={styles.oAuth}>
                     <a
-                        style={{textDecoration:"none", color:"black"}}
+                        style={{ textDecoration: "none", color: "black" }}
                         href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google"
-                        className={styles.authGoogle}
-                    >
+                        className={styles.authGoogle}>
                         <img src={google} alt="google" /> Sign in with Google
                     </a>
                     <a
-                        style={{textDecoration:"none", color:"black"}}
+                        style={{ textDecoration: "none", color: "black" }}
                         href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/facebook"
-                        className={styles.authFacebook}
-                    >
+                        className={styles.authFacebook}>
                         <img src={facebook} alt="facebook" /> Login with Facebook
                     </a>
                 </div>

@@ -14,7 +14,7 @@ import Trending from "../../component/trending/Trending";
 export default function Profile() {
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
-    console.log(profileInfo);
+
     let Token = localStorage.getItem("tokenLogin");
 
     useEffect(() => {

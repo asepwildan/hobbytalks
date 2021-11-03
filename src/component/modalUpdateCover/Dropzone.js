@@ -8,82 +8,78 @@ import LoaderGif from "../Login/loader.gif";
 // 2. API integration
 
 export default function Basic() {
-  const [values, setValues] = useState({
-    name: "",
-  });
-  let Token = localStorage.getItem("tokenLogin");
-  //state untuk loader halaman
-  const [loaderCover, setLoaderCover] = useState(false);
+    const [values, setValues] = useState({
+        name: "",
+    });
+    let Token = localStorage.getItem("tokenLogin");
+    //state untuk loader halaman
+    const [loaderCover, setLoaderCover] = useState(false);
 
-  const [avatar, setAvatar] = useState(null);
+    const [avatar, setAvatar] = useState(null);
 
-  // Handle change
-  const handleChange = function (e) {
-    const name = e.target.name;
-    const value = e.target.value;
+    // Handle change
+    const handleChange = function (e) {
+        const name = e.target.name;
+        const value = e.target.value;
 
-    setValues({ ...values, [name]: value });
-  };
+        setValues({ ...values, [name]: value });
+    };
 
-  const handleAvatar = (e) => {
-    setAvatar(e.target.files[0]);
-  };
+    const handleAvatar = (e) => {
+        setAvatar(e.target.files[0]);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const formData = new FormData();
+        const formData = new FormData();
 
-    // formData.append("name", values.name);
-    formData.append("banner", avatar);
-    setLoaderCover(true);
+        // formData.append("name", values.name);
+        formData.append("banner", avatar);
+        setLoaderCover(true);
 
-    axios({
-      method: "PUT",
-      url: "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/banner",
-      data: formData,
-      headers: {
-        Authorization: `Bearer ${Token} `,
-      },
-    })
-      .then((res) => {
-        console.log(res, "ini banner");
-        window.location.reload();
-        setLoaderCover(false);
-      })
-      .catch((err) => {
-        console.log(JSON.stringify(err));
-        alert("gambar gagal di upload");
-        setLoaderCover(false);
-      });
-  };
+        axios({
+            method: "PUT",
+            url: "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/edit/banner",
+            data: formData,
+            headers: {
+                Authorization: `Bearer ${Token} `,
+            },
+        })
+            .then((res) => {
+                window.location.reload();
+                setLoaderCover(false);
+            })
+            .catch((err) => {
+                alert("gambar gagal di upload");
+                setLoaderCover(false);
+            });
+    };
 
-  console.log(avatar);
-
-  return (
-    <div className="container-dropzone">
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <div className="field">
-          <h6>Pilih Gambar: </h6>
-          <input
-            className="btn-upload"
-            type="file"
-            name="avatar"
-            onChange={handleAvatar}
-          />
+    return (
+        <div className="container-dropzone">
+            <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                <div className="field">
+                    <h6>Pilih Gambar: </h6>
+                    <input
+                        className="btn-upload"
+                        type="file"
+                        name="avatar"
+                        onChange={handleAvatar}
+                    />
+                </div>
+                {loaderCover === true ? (
+                    <div className="loader-cover">
+                        <img src={LoaderGif} alt="Loader" />
+                    </div>
+                ) : (
+                    <div className="field">
+                        <button className="btn-upload-submit" type="submit">
+                            Simpan
+                        </button>
+                    </div>
+                )}
+            </form>
         </div>
-        {loaderCover === true ? (
-          <div className="loader-cover">
-            <img src={LoaderGif} alt="Loader" />
-          </div>
-        ) : (
-          <div className="field">
-            <button className="btn-upload-submit" type="submit">
-              Simpan
-            </button>
-          </div>
-        )}
-      </form>
-    </div>
-  );
+    );
 }

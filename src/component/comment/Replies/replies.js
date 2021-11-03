@@ -13,7 +13,7 @@ import cLickSound2 from "../../thread-detail-user/asset/click.mp3";
 
 export default function SubComment({ replies, ava, updateComment }) {
     const reply = replies.reply;
-    console.log(reply, "ini props guys");
+
     const [login, setLogin] = useState(false);
     const token = localStorage.getItem("tokenLogin");
     const [postReplie, setPostReplie] = useState();
@@ -46,14 +46,13 @@ export default function SubComment({ replies, ava, updateComment }) {
             )
             .then((response) => {
                 setPostReplie(response);
-                console.log(response, "ini comment");
+
                 e.target.reset();
                 setLoad(false);
                 updateComment();
             })
             .catch((message) => {
                 setStatus(message);
-                console.log(message, "ini error");
             }, []);
     }
     useEffect(() => {
@@ -65,7 +64,7 @@ export default function SubComment({ replies, ava, updateComment }) {
             src,
         });
         sound.play();
-        console.log(idReplies, "id komen");
+
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/reply/upvote/${idReplies}`,
@@ -94,7 +93,7 @@ export default function SubComment({ replies, ava, updateComment }) {
             src,
         });
         sound.play();
-        console.log(idReplies, "id komen");
+
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/reply/downvote/${idReplies}`,

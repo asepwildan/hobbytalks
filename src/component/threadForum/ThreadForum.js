@@ -15,7 +15,6 @@ import {
 } from "../../redux/actions";
 
 export default function ThreadForum({ shorting, kategoriValue }) {
-    console.log(kategoriValue, "kategori thread forum");
     const [threadForum, setThreadForum] = useState([]);
     const [page, setPage] = useState("");
     const [isPage, setIsPage] = useState("1");
@@ -59,10 +58,6 @@ export default function ThreadForum({ shorting, kategoriValue }) {
     useEffect(() => {
         dispatch(getThreadListAsync(shorting, page));
     }, [dispatch, shorting, page]);
-
-    // useEffect(() => {
-    //     console.log(threadList, "test threadlist");
-    // }, [threadList]);
 
     return (
         <div className={styles.threadContainer}>

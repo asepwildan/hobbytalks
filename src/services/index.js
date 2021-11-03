@@ -14,7 +14,6 @@ export const getProfileInfo = (page) => {
 
 //--------Service-Comment-------//
 export const commentList = (id, page, limit) => {
-    console.log(id, "komen servce");
     if (page === undefined || limit === undefined) {
         page = 1;
         limit = 5;
@@ -70,14 +69,3 @@ export const getSearchThread = (searchValue) => {
         `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/search/${searchValue}`
     );
 };
-
-// export const deleteThread = (id) => {
-//     return axios.delete(
-//         `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow?page=${page}`,
-//         {
-//             headers: {
-//                 Authorization: `Bearer ${Token}`,
-//             },
-//         }
-//     );
-// };

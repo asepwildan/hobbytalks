@@ -21,7 +21,7 @@ export default function MoreUserInfo() {
                 setMoreUserInfo(response.data.data);
             })
             .catch((err) => {
-                console.log(err, "error dari more user info");
+                console.log(err, "error");
             });
     }, []);
 

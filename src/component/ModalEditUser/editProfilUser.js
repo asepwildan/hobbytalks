@@ -53,7 +53,7 @@ export function EditProfilUser({ modal, ceking }) {
                 modal(false);
             })
             .catch((error) => {
-                console.log(error, "ini error");
+                console.log(error, "error");
             });
     };
 

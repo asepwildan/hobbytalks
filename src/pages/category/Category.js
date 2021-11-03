@@ -96,20 +96,17 @@ export default function Category() {
         setCategory(temporary);
     };
 
-    console.log(cek, "cek nih");
     let Token = localStorage.getItem("tokenLogin");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         let filtered = category.filter((row) => row.isCheck === true);
-        console.log(filtered, "filter");
 
         var newArray = [];
         filtered.forEach((singleElement) => {
             newArray.push(singleElement.value);
         });
 
-        console.log(newArray);
         setLoading(true);
         axios
             .put(
@@ -125,12 +122,10 @@ export default function Category() {
             )
 
             .then((Response) => {
-                console.log(Response, "categori");
                 window.location = "/forum";
                 setLoading(false);
             })
             .catch((error) => {
-                console.log(error.response.data.message, "wah ini eror login");
                 setLoading(false);
             });
     };

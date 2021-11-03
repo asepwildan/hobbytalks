@@ -15,11 +15,11 @@ export const getProfileInfoAsync = (page) => {
         dispatch({ type: "getprofile/get-start" });
         getProfileInfo(page)
             .then((response) => {
-                console.log(response.data.data, "action");
+                // console.log(response.data.data, "action");
                 dispatch(getProfileSuccsess(response.data));
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
                 dispatch(getProfileFailed(error));
             });
     };
@@ -45,11 +45,11 @@ export const getCommentAsync = (id, page, limit) => {
         dispatch({ type: "getcomment/get-start" });
         commentList(id, page, limit)
             .then((response) => {
-                console.log(response.data, "action comment");
+                // console.log(response.data, "action comment");
                 dispatch(getCommentSucces(response.data));
             })
             .catch((error) => {
-                console.log(error, "error comment");
+                // console.log(error, "error comment");
                 dispatch(getCommentFailed(error));
             });
     };
@@ -74,11 +74,11 @@ export const getThreadListAsync = (shorting, page) => {
         dispatch({ type: "getthread/get-start" });
         getThreadList(shorting, page)
             .then((response) => {
-                console.log(response.data, "action threadList");
+                // console.log(response.data, "action threadList");
                 dispatch(getThreadListSucces(response.data));
             })
             .catch((error) => {
-                console.log(error, "error thread");
+                // console.log(error, "error thread");
                 dispatch(getThreadListFailed(error));
             });
     };
@@ -103,11 +103,11 @@ export const getThreadDetailAsync = (idThread) => {
         dispatch({ type: "getThreadDetail/get-start" });
         getThreadDetail(idThread)
             .then((response) => {
-                console.log(response.data.data, "action get thread Detail");
+                // console.log(response.data.data, "action get thread Detail");
                 dispatch(getThreadDetailSuccess(response.data.data));
             })
             .catch((error) => {
-                console.log(error, "error get thread detail");
+                // console.log(error, "error get thread detail");
                 dispatch(getThreadDetailFailed(error));
             });
     };
@@ -137,11 +137,11 @@ export const getUserAsync = (id, page) => {
         dispatch({ type: "getUser/get-start" });
         getUser(id, page)
             .then((response) => {
-                console.log(response.data, "action user");
+                // console.log(response.data, "action user");
                 dispatch(getUserSucces(response.data));
             })
             .catch((error) => {
-                console.log(error, "error thread");
+                // console.log(error, "error thread");
                 dispatch(getUserFailed(error));
             });
     };
@@ -166,11 +166,11 @@ export const getThreadCategoryAsync = (shorting, page) => {
         dispatch({ type: "getThreadCategory/get-start" });
         getThreadCategory(shorting, page)
             .then((response) => {
-                console.log(response.data, "action category");
+                // console.log(response.data, "action category");
                 dispatch(getThreadCategorySucces(response.data));
             })
             .catch((error) => {
-                console.log(error.message, "error category");
+                // console.log(error.message, "error category");
                 dispatch(getThreadCategoryFailed(error));
             });
     };
@@ -195,11 +195,11 @@ export const getFollowingThreadAsync = (isPage) => {
         dispatch({ type: "getFollowingThread/get-start" });
         getFollowingThread(isPage)
             .then((response) => {
-                console.log(response.data, "action Following threadList");
+                // console.log(response.data, "action Following threadList");
                 dispatch(getThreadCategorySucces(response.data));
             })
             .catch((error) => {
-                console.log(error, "error thread");
+                // console.log(error, "error thread");
                 dispatch(getFollowingThreadFailed(error));
             });
     };
@@ -224,11 +224,11 @@ export const getSearchAsync = (search) => {
         dispatch({ type: "getSearch/get-start" });
         getSearchThread(search)
             .then((response) => {
-                console.log(response.data.data, "action search");
+                // console.log(response.data.data, "action search");
                 dispatch(getSearchSuccess(response.data));
             })
             .catch((error) => {
-                console.log(error.message, "error category");
+                // console.log(error.message, "error category");
                 dispatch(getSearchFailed(error));
             });
     };

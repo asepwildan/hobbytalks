@@ -26,9 +26,6 @@ export default function Register() {
         setValues({ ...values, [name]: value });
     };
 
-    console.log(values, "values");
-    console.log(linkWelcome, "ini welcomes");
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoad(true);
@@ -48,19 +45,15 @@ export default function Register() {
             )
 
             .then((Response) => {
-                console.log(Response.data.message, "nanananana");
                 setLinkWelcome(Response.data.message);
                 setLoad(false);
             })
             .catch((error) => {
-                console.log(error.response.data.message, "wah ini eror register");
                 alert(error.response.data.message);
                 setLoad(false);
             });
         setEmailvalue(values.email);
     };
-
-    // console.log(register, " get url register");
 
     return (
         <React.Fragment>
@@ -120,20 +113,18 @@ export default function Register() {
                             </form>
                         </div>
                         <div className={styles.oAuth}>
-                        <a
-                        style={{textDecoration:"none", color:"black"}}
-                        href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google"
-                        className={styles.authGoogle}
-                    >
-                        <img src={google} alt="google" /> Sign in with Google
-                    </a>
-                    <a
-                        style={{textDecoration:"none", color:"black"}}
-                        href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/facebook"
-                        className={styles.authFacebook}
-                    >
-                        <img src={facebook} alt="facebook" /> Login with Facebook
-                    </a>
+                            <a
+                                style={{ textDecoration: "none", color: "black" }}
+                                href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/google"
+                                className={styles.authGoogle}>
+                                <img src={google} alt="google" /> Sign in with Google
+                            </a>
+                            <a
+                                style={{ textDecoration: "none", color: "black" }}
+                                href="https://hobbytalk-be-glints.herokuapp.com/api/v1/users/login/facebook"
+                                className={styles.authFacebook}>
+                                <img src={facebook} alt="facebook" /> Login with Facebook
+                            </a>
                         </div>
                     </div>
                 </div>

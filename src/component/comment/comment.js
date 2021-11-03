@@ -24,7 +24,6 @@ export default function Comment({ ava }) {
     const limit = 5;
     const queryParams = new URLSearchParams(window.location.search);
     const idThread = queryParams.get("xyz");
-    console.log(loading, "ini loading list redux");
 
     useEffect(() => {
         updateComment();
@@ -48,7 +47,7 @@ export default function Comment({ ava }) {
             src,
         });
         sound.play();
-        console.log(idComment, "id komen");
+
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/upvote/${idComment}`,
@@ -78,7 +77,7 @@ export default function Comment({ ava }) {
             src,
         });
         sound.play();
-        console.log(idComment, "id komen");
+
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/downvote/${idComment}`,

@@ -25,11 +25,10 @@ export default function RelatedTopic() {
                 // }
             )
             .then((response) => {
-                console.log(response.data, "related topic");
                 setTopicRelated(response.data.data);
             })
             .catch((error) => {
-                console.log(error, "error related topic");
+                console.log(error, "error");
             });
     }, []);
 
@@ -37,7 +36,6 @@ export default function RelatedTopic() {
         window.location.load(`https://dev-hoobytalks.herokuapp.com/thread-detail/?xyz=${e}`);
     };
 
-    console.log(topicRelated, "data relate arr");
     return (
         <div className={styles.relatedTopicContainer}>
             <div className={styles.relatedTopic}>

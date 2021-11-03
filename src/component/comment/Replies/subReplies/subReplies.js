@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function SubReplies({ subReplies, ava, updateComment }) {
     const subReplay = subReplies.subReply;
-    console.log(subReplay, "iniprop subreplay");
+
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
     const [login, setLogin] = useState(false);
     const token = localStorage.getItem("tokenLogin");
@@ -43,7 +43,7 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
             .then(
                 (response) => {
                     setPostSubReplie(response);
-                    console.log(response, "ini post sub replie");
+
                     e.target.reset();
                     updateComment();
                     setLoad(false);
@@ -53,7 +53,6 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
             .catch(
                 (message) => {
                     setStatus(message);
-                    console.log(message, "ini error");
                 },
                 [status]
             );
@@ -68,7 +67,7 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
             src,
         });
         sound.play();
-        console.log(idSubReplies, "id komen");
+
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/subReply/upvote/${idSubReplies}`,
@@ -97,7 +96,7 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
             src,
         });
         sound.play();
-        console.log(idSubReplies, "id komen");
+
         axios({
             method: "PUT",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/subReply/downvote/${idSubReplies}`,

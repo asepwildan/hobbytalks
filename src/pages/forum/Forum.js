@@ -118,7 +118,6 @@ export default function Forum() {
 
     const buttonSelectedTesting = (e) => {
         setCategoryKondisi(true);
-        console.log(e, "kategori");
         setKategoriValue(e);
         dispatch(paginationConditionAsync("category"));
         dispatch(getThreadCategoryAsync(e));
@@ -221,6 +220,7 @@ export default function Forum() {
                             {category.map((category) => (
                                 <ul>
                                     <li
+                                        key={category.id}
                                         tabindex="-1"
                                         className={styles.navBottomBtn}
                                         onClick={() => buttonSelectedTesting(category.value)}>

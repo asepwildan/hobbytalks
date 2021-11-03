@@ -51,7 +51,7 @@ class TextEditor extends Component {
     handleChange(e) {
         const value = e.target.value;
         const name = e.target.name;
-        console.log(e.target.value, "target");
+
         this.setState({ ...this.state, [name]: value });
     }
 
@@ -71,11 +71,11 @@ class TextEditor extends Component {
     };
     onSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.loading, "loading");
+
         this.setState({
             loading: true,
         });
-        console.log(this.state.loading, "loading");
+
         const testing = new FormData();
         testing.append("title", this.state.title);
         testing.append("content", this.state.editorState);
@@ -91,14 +91,13 @@ class TextEditor extends Component {
             },
         })
             .then((res) => {
-                console.log(res, "ini create thread");
+                console.log(res, "create thread");
                 this.setState({
                     loading: false,
                 });
                 window.location.reload();
             })
             .catch((err) => {
-                console.log(err.data, "error create thread");
                 alert("error create thread");
             });
     };

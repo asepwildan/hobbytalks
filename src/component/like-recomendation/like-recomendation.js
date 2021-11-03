@@ -8,6 +8,7 @@ import NotfoundTopic from "./img/notfound.png";
 export default function Likerekomendasi() {
     const Token = localStorage.getItem("tokenLogin");
     const [likerekomendasi, setLikerekomendasi] = useState([]);
+    const [errorYML, setErrorYML] = useState(false);
 
     useEffect(() => {
         axios
@@ -17,11 +18,10 @@ export default function Likerekomendasi() {
                 },
             })
             .then((response) => {
-                console.log(response.data.data, "respon mightlike");
                 setLikerekomendasi(response.data.data);
             })
             .catch((err) => {
-                console.log(err, "error");
+                setErrorYML(true);
             });
     }, []);
 
