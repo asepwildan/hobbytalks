@@ -11,7 +11,7 @@ import Tech from "./img/tech.jpg";
 import Category8 from "./img/category8.jpg";
 import Category9 from "./img/category9.jpg";
 import axios from "axios";
-import Loading from "./img/spinnerdelete.svg"
+import Loading from "./img/spinnerdelete.svg";
 import { useSelector, useDispatch } from "react-redux";
 // testing github
 export default function Category() {
@@ -62,7 +62,7 @@ export default function Category() {
         {
             img: Tech,
             value: "6166ef8c98472010a2d7e988",
-            title: "Electronics",
+            title: "Tech",
             isCheck: false,
             id: "7a",
         },
@@ -76,7 +76,7 @@ export default function Category() {
         {
             img: Category9,
             value: "6172d7ef0f79346bbb9db5ca",
-            title: "Cooking",
+            title: "Foods",
             isCheck: false,
             id: "9a",
         },
@@ -84,7 +84,7 @@ export default function Category() {
 
     const [cek, setCek] = useState([]);
     const [loading, setLoading] = useState(false);
-    const {profileInfo} =  useSelector((state) => state.getProfileReducer);
+    const { profileInfo } = useSelector((state) => state.getProfileReducer);
     var abc = [];
 
     const handleChange = (id) => {
@@ -110,7 +110,7 @@ export default function Category() {
         });
 
         console.log(newArray);
-        setLoading(true)
+        setLoading(true);
         axios
             .put(
                 "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/likecategories",
@@ -127,11 +127,11 @@ export default function Category() {
             .then((Response) => {
                 console.log(Response, "categori");
                 window.location = "/forum";
-                setLoading(false)
+                setLoading(false);
             })
             .catch((error) => {
                 console.log(error.response.data.message, "wah ini eror login");
-                setLoading(false)
+                setLoading(false);
             });
     };
     return (
@@ -140,7 +140,9 @@ export default function Category() {
             <div className="categoryContainer">
                 <form onSubmit={handleSubmit}>
                     <div className="box-category-container">
-                        <div className="categoryIntro">What do you want to like {profileInfo.name}..</div>
+                        <div className="categoryIntro">
+                            What do you want to like {profileInfo.name}..
+                        </div>
                         {category.map((category) => (
                             <div className="boxCategory">
                                 <img
@@ -159,11 +161,15 @@ export default function Category() {
                             </div>
                         ))}
                     </div>
-                  {loading === true ? <div className="buttonCategoryContainer">
-                        <img src={Loading}/>
-                    </div>: <div className="buttonCategoryContainer">
-                        <button className="buttonCategory">Submit your topic</button>
-                    </div>}  
+                    {loading === true ? (
+                        <div className="buttonCategoryContainer">
+                            <img src={Loading} />
+                        </div>
+                    ) : (
+                        <div className="buttonCategoryContainer">
+                            <button className="buttonCategory">Submit your topic</button>
+                        </div>
+                    )}
                     {/* <div className="buttonCategoryContainer">
                         <button className="buttonCategory">Kirim Topic ke Forum saya</button>
                     </div> */}

@@ -79,7 +79,7 @@ export default function Forum() {
         },
         {
             value: "6172d7ef0f79346bbb9db5ca",
-            title: "Cooking",
+            title: "Foods",
             isCheck: false,
             id: "9a",
         },
