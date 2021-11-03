@@ -255,20 +255,6 @@ export default function ThreadForum({ shorting, category }) {
                     </div>
                 </>
             ))}
-            {/* {pagination === "home" ? (
-                <div className={styles.paginationContainer}>
-                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
-                </div>
-            ) : pagination === "following" ? (
-                <div className={styles.paginationContainer}>
-                    <Pagination count={totalPage} page={curentPage} onChange={handleChangeFollow} />
-                </div>) : pagination === "category" ? (
-                <div className={styles.paginationContainer}>
-                   <p> category</p>
-                <Pagination count={totalPage} page={curentPage} onChange={handleChangeCat} />
-            </div>) : (<div></div>)
-                // <p>category</p>
-        } */}
 
             {paginationCon === "home" || paginationCon === "" ? (
                 <div className={styles.paginationContainer}>
