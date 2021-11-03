@@ -93,8 +93,7 @@ export default function Thread() {
                                         height="16"
                                         viewBox="0 0 16 16"
                                         fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M11.7734 7.46667C11.62 7.26667 11.4334 7.09333 11.26 6.92C10.8134 6.52 10.3067 6.23333 9.88003 5.81333C8.8867 4.84 8.6667 3.23333 9.30003 2C8.6667 2.15333 8.11337 2.5 7.64003 2.88C5.91337 4.26667 5.23337 6.71333 6.0467 8.81333C6.07337 8.88 6.10003 8.94667 6.10003 9.03333C6.10003 9.18 6.00003 9.31333 5.8667 9.36667C5.71337 9.43333 5.55337 9.39333 5.4267 9.28667C5.38864 9.2552 5.35695 9.21672 5.33337 9.17333C4.58003 8.22 4.46003 6.85333 4.9667 5.76C3.85337 6.66667 3.2467 8.2 3.33337 9.64667C3.37337 9.98 3.41337 10.3133 3.5267 10.6467C3.62003 11.0467 3.80003 11.4467 4.00003 11.8C4.72003 12.9533 5.9667 13.78 7.3067 13.9467C8.73337 14.1267 10.26 13.8667 11.3534 12.88C12.5734 11.7733 13 10 12.3734 8.48L12.2867 8.30667C12.1467 8 11.7734 7.46667 11.7734 7.46667ZM9.6667 11.6667C9.48003 11.8267 9.17337 12 8.93337 12.0667C8.1867 12.3333 7.44003 11.96 7.00003 11.52C7.79337 11.3333 8.2667 10.7467 8.4067 10.1533C8.52003 9.62 8.3067 9.18 8.22003 8.66667C8.14003 8.17333 8.15337 7.75333 8.33337 7.29333C8.46003 7.54667 8.59337 7.8 8.75337 8C9.2667 8.66667 10.0734 8.96 10.2467 9.86667C10.2734 9.96 10.2867 10.0533 10.2867 10.1533C10.3067 10.7 10.0667 11.3 9.6667 11.6667Z"
                                             fill="#E06044"
@@ -110,8 +109,7 @@ export default function Thread() {
                                         height="16"
                                         viewBox="0 0 16 16"
                                         fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0)">
                                             <path
                                                 d="M7.31185 1.0868C7.57296 0.484638 8.42691 0.484639 8.68803 1.0868L10.0916 4.32364C10.309 4.82487 10.7817 5.16829 11.3255 5.22011L14.8377 5.55478C15.4911 5.61704 15.7549 6.42919 15.2629 6.86361L12.6183 9.19875C12.2087 9.56036 12.0282 10.116 12.147 10.6493L12.914 14.093C13.0567 14.7336 12.3658 15.2355 11.8006 14.9019L8.76252 13.1082C8.29207 12.8305 7.70781 12.8305 7.23735 13.1082L4.19924 14.9019C3.63406 15.2355 2.9432 14.7336 3.08589 14.093L3.85292 10.6493C3.97169 10.116 3.79114 9.56036 3.38161 9.19875L0.736932 6.86361C0.244934 6.42919 0.508819 5.61704 1.1622 5.55478L4.67435 5.22011C5.21821 5.16829 5.69089 4.82487 5.90824 4.32364L7.31185 1.0868Z"
@@ -135,22 +133,19 @@ export default function Thread() {
                         <div className={styles.buttonFIlter2}>
                             <button
                                 onClick={() => deleteThread(thread._id)}
-                                className={styles.deleteButtonThread}
-                            >
+                                className={styles.deleteButtonThread}>
                                 <img src={trash} alt="trash" />
                                 <p>Delete</p>
                             </button>
                             <button
                                 className={styles.editButtonThread}
-                                onClick={() => kirimData(index)}
-                            >
+                                onClick={() => kirimData(index)}>
                                 <svg
                                     width="15"
                                     height="16"
                                     viewBox="0 0 15 16"
                                     fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         fill-rule="evenodd"
                                         clip-rule="evenodd"
@@ -166,8 +161,7 @@ export default function Thread() {
                         <div className={styles.titleThreadProfile}>
                             <Link
                                 to={`/thread-detail/?xyz=${thread._id}`}
-                                style={{ textDecoration: "none" }}
-                            >
+                                style={{ textDecoration: "none" }}>
                                 <div className={styles.threadInfo}>
                                     <div>
                                         <p className={styles.titleInfoText}>{thread.title}</p>
@@ -186,8 +180,7 @@ export default function Thread() {
                                             className={styles.threadTextAnchor}
                                             dangerouslySetInnerHTML={{
                                                 __html: thread.content,
-                                            }}
-                                        ></p>
+                                            }}></p>
                                     </div>
 
                                     <div className={styles.imgThread}>
@@ -202,8 +195,7 @@ export default function Thread() {
                                             height="16"
                                             viewBox="0 0 14 16"
                                             fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M13.3896 6.36L7.38965 0.240002C7.22965 0.0800025 7.02965 0 6.80965 0C6.58965 0 6.38965 0.0800025 6.22965 0.240002L0.229649 6.36C0.00964881 6.58 -0.0703512 6.98 0.0696488 7.26C0.189649 7.56 0.489649 7.78 0.809649 7.78H3.40965V15.18C3.40965 15.62 3.86965 15.98 4.30965 15.98H9.30965C9.74965 15.98 10.2096 15.62 10.2096 15.18V7.78H12.8096C13.1296 7.78 13.4296 7.54 13.5496 7.26C13.6696 6.98 13.6096 6.6 13.3896 6.36ZM9.30965 6.2C8.86965 6.2 8.60965 6.48 8.60965 6.92V14.4H5.00965V6.92C5.00965 6.48 4.74965 6.2 4.30965 6.2H2.70965L6.80965 2.02L10.9096 6.2H9.30965Z"
                                                 fill="#828282"
@@ -224,8 +216,7 @@ export default function Thread() {
                                             height="16"
                                             viewBox="0 0 14 16"
                                             fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M13.7449 8.72C13.6249 8.42 13.3249 8.2 13.0049 8.2H10.4049V0.8C10.4049 0.36 9.94486 0 9.50486 0H4.50486C4.06486 0 3.60486 0.36 3.60486 0.8V8.2H1.00486C0.684864 8.2 0.384864 8.44 0.264864 8.72C0.144864 9.02 0.204865 9.38 0.424865 9.6L6.42487 15.74C6.58487 15.9 6.78486 15.98 7.00486 15.98C7.22486 15.98 7.42486 15.9 7.58486 15.74L13.5849 9.6C13.8049 9.38 13.8649 9.02 13.7449 8.72ZM7.00486 13.98L2.90486 9.8H4.50486C4.94486 9.8 5.20486 9.52 5.20486 9.08V1.6H8.80486V9.08C8.80486 9.52 9.06486 9.8 9.50486 9.8H11.1049L7.00486 13.98Z"
                                                 // fill="#828282"
@@ -244,8 +235,7 @@ export default function Thread() {
                                             height="15"
                                             viewBox="0 0 16 15"
                                             fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
+                                            xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 fill-rule="evenodd"
                                                 clip-rule="evenodd"
@@ -281,8 +271,7 @@ export default function Thread() {
                 open={isOpen}
                 onClose={closeModal}
                 aria-labelledby="keep-mounted-modal-title"
-                aria-describedby="keep-mounted-modal-description"
-            >
+                aria-describedby="keep-mounted-modal-description">
                 <div className={styles.createThreadContainer}>
                     <Box>
                         <EditThread

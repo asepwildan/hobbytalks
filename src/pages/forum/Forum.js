@@ -26,6 +26,7 @@ import imgGaris from "./img/garisSkeleton.svg";
 import Skeleton from "../../component/skeleton/skeleton";
 
 export default function Forum() {
+    let Token = localStorage.getItem("tokenLogin");
     let [category, setCategory] = useState([
         {
             value: "6166eed398472010a2d7e97e",
@@ -91,11 +92,14 @@ export default function Forum() {
     const [buttonTopActive, setButtonTopActive] = useState();
     const [values, setValues] = useState("newest");
     const [catValue, setCatValue] = useState("");
+    const [kategoriValue, setKategoriValue] = useState("");
+    const [categoryKondisi, setCategoryKondisi] = useState(false);
     const [valuesSearch, setValuesSearch] = useState({
         search: "",
     });
 
     const handleChange = (e) => {
+        setCategoryKondisi(false);
         const value = e.target.value;
         setValues(value);
         setValuesSearch({
@@ -104,16 +108,19 @@ export default function Forum() {
     };
 
     const handleChangePage = (e) => {
+        setCategoryKondisi(false);
         setValuesSearch({
             search: "",
         });
         dispatch(getThreadListAsync(values));
-        dispatch(paginationConditionAsync("home"))
-
+        dispatch(paginationConditionAsync("home"));
     };
 
     const buttonSelectedTesting = (e) => {
-        dispatch(paginationConditionAsync("category"))
+        setCategoryKondisi(true);
+        console.log(e, "kategori");
+        setKategoriValue(e);
+        dispatch(paginationConditionAsync("category"));
         dispatch(getThreadCategoryAsync(e));
         setValuesSearch({
             search: "",
@@ -121,7 +128,8 @@ export default function Forum() {
     };
 
     const buttonListFollowingThread = (isPage) => {
-        dispatch(paginationConditionAsync("following"))
+        setCategoryKondisi(true);
+        dispatch(paginationConditionAsync("following"));
         dispatch(getFollowingThreadAsync(isPage));
     };
 
@@ -171,7 +179,7 @@ export default function Forum() {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 4000);
+        }, 1000);
     }, []);
 
     return (
@@ -187,13 +195,16 @@ export default function Forum() {
                                 onClick={handleChangePage}>
                                 Home
                             </li>
-                            <li
-                                className={styles.navTopBtn}
-                                onClick={() => buttonListFollowingThread()}
-                                tabIndex="-1"
-                            >
-                                Following
-                            </li>
+                            {Token ? (
+                                <li
+                                    className={styles.navTopBtn}
+                                    onClick={() => buttonListFollowingThread()}
+                                    tabIndex="-1">
+                                    Following
+                                </li>
+                            ) : (
+                                <></>
+                            )}
                         </ul>
                     </div>
                     <div className={styles.navBottom}>
@@ -207,8 +218,7 @@ export default function Forum() {
                                     <li
                                         tabindex="-1"
                                         className={styles.navBottomBtn}
-                                        onClick={() => buttonSelectedTesting(category.value)}
-                                    >
+                                        onClick={() => buttonSelectedTesting(category.value)}>
                                         {category.title}
                                     </li>
                                 </ul>
@@ -225,8 +235,7 @@ export default function Forum() {
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
-                            aria-describedby="keep-mounted-modal-description"
-                        >
+                            aria-describedby="keep-mounted-modal-description">
                             <div className={styles.createThreadContainer}>
                                 <Box>
                                     <CreateThread />
@@ -248,22 +257,25 @@ export default function Forum() {
                                     <Search />
                                 </button>
                             </form>
-                            <div className={styles.dropdownBar}>
-                                <form>
-                                    <select
-                                        id="category"
-                                        className={styles.createThreadOption}
-                                        name="category"
-                                        value={values.shorting}
-                                        onChange={handleChange}
-                                        required
-                                    >
-                                        <option value="newest">Newest</option>
-                                        <option value="mostpopular">Most Popular</option>
-                                        <option value="oldest">Oldest</option>
-                                    </select>
-                                </form>
-                            </div>
+                            {categoryKondisi ? (
+                                <div></div>
+                            ) : (
+                                <div className={styles.dropdownBar}>
+                                    <form>
+                                        <select
+                                            id="category"
+                                            className={styles.createThreadOption}
+                                            name="category"
+                                            value={values.shorting}
+                                            onChange={handleChange}
+                                            required>
+                                            <option value="newest">Newest</option>
+                                            <option value="mostpopular">Most Popular</option>
+                                            <option value="oldest">Oldest</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            )}
                         </div>
                     </div>
 
@@ -272,7 +284,7 @@ export default function Forum() {
                             {valuesSearch.search !== "" ? (
                                 <ThreadSearch />
                             ) : (
-                                <ThreadForum shorting={values} category={category.value}/>
+                                <ThreadForum shorting={values} kategoriValue={kategoriValue} />
                             )}
                         </div>
                     ) : (

@@ -7,7 +7,6 @@ import getUserReducer from "./getUser";
 import getThreadSearchReducer from "./getSearch";
 import valueForumReducer from "./valueForum";
 
-
 const rootReducer = combineReducers({
     getProfileReducer,
     getCommentReducer,
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
     getUserReducer,
     getThreadSearchReducer,
     valueForumReducer,
-
 });
 
 export default rootReducer;

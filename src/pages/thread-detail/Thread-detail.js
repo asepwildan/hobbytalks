@@ -11,7 +11,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import getProfileReducer from "../../redux/reducers/getProfile";
-import { getProfileInfoAsync, getThreadDetailAsync } from "../../redux/actions";
+import { getProfileInfoAsync, getThreadDetailAsync, getCommentAsync } from "../../redux/actions";
 import { Avatar } from "@material-ui/core";
 import Loading from "./img/loaderComment.gif";
 
@@ -33,8 +33,15 @@ export default function ThreadDetail() {
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
     // console.log(id, "id thread");
+    const { error } = useSelector((state) => state.getCommentReducer);
+    console.log(error, "error komen");
+
     useEffect(() => {
         dispatch(getProfileInfoAsync());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getCommentAsync(idThread));
     }, [dispatch]);
 
     function handleChange(e) {
@@ -125,9 +132,13 @@ export default function ThreadDetail() {
                                 </div>
                             )}
                         </div>
-                        <div className={styles.commentLineContainer}>
-                            <Comment ava={profileInfo.avatar} />
-                        </div>
+                        {error !== "" ? (
+                            <div></div>
+                        ) : (
+                            <div className={styles.commentLineContainer}>
+                                <Comment ava={profileInfo.avatar} />
+                            </div>
+                        )}
                     </div>
 
                     <div className={styles.likeRekomContanerThreadDetail}>

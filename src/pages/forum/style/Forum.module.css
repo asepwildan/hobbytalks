@@ -191,18 +191,16 @@
 
 .searchForum {
     display: flex;
-    /* flex-wrap: wrap; */
     align-items: center;
-    /* border-style: solid; */
     justify-content: space-between;
     height: 80px;
     background-color: white !important;
 }
 
 .formForum {
-    width: 75%;
+    width: 100%;
     display: flex;
-    /* border-style: solid; */
+    padding: 0px;
     /* justify-content: space-between; */
 }
 
@@ -211,7 +209,6 @@
     border-color: #9f9f9f;
     box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
     height: 40px;
-    margin-left: -30px;
 }
 
 .formForum button {

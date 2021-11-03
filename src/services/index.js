@@ -14,6 +14,11 @@ export const getProfileInfo = (page) => {
 
 //--------Service-Comment-------//
 export const commentList = (id, page, limit) => {
+    console.log(id, "komen servce");
+    if (page === undefined || limit === undefined) {
+        page = 1;
+        limit = 5;
+    }
     return axios.get(
         `https://hobbytalk-be-glints.herokuapp.com/api/v1/comments/${id}?page=${page}&limit=${limit}`
     );
