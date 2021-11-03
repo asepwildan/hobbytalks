@@ -11,6 +11,8 @@ import Tech from "./img/tech.jpg";
 import Category8 from "./img/category8.jpg";
 import Category9 from "./img/category9.jpg";
 import axios from "axios";
+import Loading from "./img/spinnerdelete.svg"
+import { useSelector, useDispatch } from "react-redux";
 // testing github
 export default function Category() {
     let [category, setCategory] = useState([
@@ -81,6 +83,8 @@ export default function Category() {
     ]);
 
     const [cek, setCek] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const {profileInfo} =  useSelector((state) => state.getProfileReducer);
     var abc = [];
 
     const handleChange = (id) => {
@@ -106,7 +110,7 @@ export default function Category() {
         });
 
         console.log(newArray);
-
+        setLoading(true)
         axios
             .put(
                 "https://hobbytalk-be-glints.herokuapp.com/api/v1/users/likecategories",
@@ -123,9 +127,11 @@ export default function Category() {
             .then((Response) => {
                 console.log(Response, "categori");
                 window.location = "/profile";
+                setLoading(false)
             })
             .catch((error) => {
                 console.log(error.response.data.message, "wah ini eror login");
+                setLoading(false)
             });
     };
     return (
@@ -134,7 +140,7 @@ export default function Category() {
             <div className="categoryContainer">
                 <form onSubmit={handleSubmit}>
                     <div className="box-category-container">
-                        <div className="categoryIntro">Find your</div>
+                        <div className="categoryIntro">What do you want to like {profileInfo.name}..</div>
                         {category.map((category) => (
                             <div className="boxCategory">
                                 <img
@@ -153,9 +159,14 @@ export default function Category() {
                             </div>
                         ))}
                     </div>
-                    <div className="buttonCategoryContainer">
+                  {loading === true ? <div className="buttonCategoryContainer">
+                        <img src={Loading}/>
+                    </div>: <div className="buttonCategoryContainer">
+                        <button className="buttonCategory">Submit your topic</button>
+                    </div>}  
+                    {/* <div className="buttonCategoryContainer">
                         <button className="buttonCategory">Kirim Topic ke Forum saya</button>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </React.Fragment>

@@ -13,6 +13,7 @@ import EditThread from "../edit-thread/editThread";
 import Pagination from "@mui/material/Pagination";
 import arrow from "./img/arrow.gif";
 import trash from "./img/trash2.svg";
+import loadingDelete from "./img/spinnerdelete.svg"
 
 export default function Thread() {
     const [threadUser, setThreadUser] = useState([]);
@@ -131,12 +132,15 @@ export default function Thread() {
                             <button>{thread.category.name}</button>
                         </div>
                         <div className={styles.buttonFIlter2}>
-                            <button
+                        {loadingDel === true ?  <button
                                 onClick={() => deleteThread(thread._id)}
                                 className={styles.deleteButtonThread}>
-                                <img src={trash} alt="trash" />
-                                <p>Delete</p>
-                            </button>
+                              <img src={loadingDelete} alt=""/> <p>Delete</p> 
+                            </button> :  <button
+                                onClick={() => deleteThread(thread._id)}
+                                className={styles.deleteButtonThread}>
+                               <img src={trash} alt="trash" />
+                                <p>Delete</p>  </button>}
                             <button
                                 className={styles.editButtonThread}
                                 onClick={() => kirimData(index)}>

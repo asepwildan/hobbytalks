@@ -80,10 +80,41 @@
     cursor: pointer;
     height: 30px;
     border: none;
+
 }
 
+.followBtnText img {
+    width: 5%;
+    margin-bottom: -10px;
+}
 .followText {
     padding: 0px 10px;
+}
+
+
+.buttonFollow {
+    width: 100%;
+    display: flex;
+}
+
+.buttonFollow img {
+    align-items: center;
+    width: 13px;
+}
+/* .followBtnText {
+    display: flex; */
+
+/* 
+.followBtnText img {
+    width: 1%;  */
+
+/* .followText img {
+    width: 50px;
+    margin-top: 5px;
+}  */
+
+.loadingDelete {
+    width: 50px;
 }
 
 .foto {

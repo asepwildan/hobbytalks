@@ -16,6 +16,7 @@ import arrow from "../thread-profile/img/arrow.gif";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
+import loadingDelete from "./asset/spinnerdelete.svg"
 
 import { Howl, Howler } from "howler";
 import cLickSound2 from "./asset/click.mp3";
@@ -27,6 +28,7 @@ export default function ThreadUser() {
     const dispatch = useDispatch();
     const [upVoteLoader, setUpVoteLoader] = useState(false);
     const [followLoad, setFollowLoad] = useState(false);
+    const [unfollowLoad, setUnfollowLoad] = useState(false);
     const [downVoteLoader, setDownVoteLoader] = useState(false);
     let userFollow = false;
     let fillVote = "#828282";
@@ -129,7 +131,7 @@ export default function ThreadUser() {
     }
 
     const followThread = () => {
-        // setFollowLoad(true);
+        setFollowLoad(true);
 
         axios({
             method: "PUT",
@@ -139,19 +141,19 @@ export default function ThreadUser() {
             },
         })
             .then((response) => {
-                // setFollowLoad(false);
+                setFollowLoad(false);
                 console.log(response);
                 // window.location.reload();
                 dispatch(getProfileInfoAsync());
             })
             .catch((err) => {
                 console.log(err);
-                // setFollowLoad(true);
+                setFollowLoad(true);
             });
     };
 
     const unFollowThread = () => {
-        // setUnfollowLoad(true)
+        setUnfollowLoad(true);
         axios({
             method: "DELETE",
             url: `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/unfollow/${idThreadUrl}`,
@@ -163,11 +165,11 @@ export default function ThreadUser() {
                 console.log(response);
                 dispatch(getProfileInfoAsync());
                 // window.location.reload();
-                // setUnfollowLoad(false)
+                setUnfollowLoad(false);
             })
             .catch((err) => {
                 console.log(err);
-                // setUnfollowLoad(false)
+                setUnfollowLoad(false);
             });
     };
 
@@ -257,25 +259,34 @@ export default function ThreadUser() {
                     <div className={styles.buttonFIlter2}>
                         {userFollow === false ? (
                             <button className={styles.followButtonThread} onClick={followThread}>
-                                <img className="gambarPlus" src={plus} />
-                                <p className={styles.followText}>Follow Thread</p>{" "}
+                                {followLoad === true ? (
+                                    <div className={styles.buttonFollow}>
+                                        <img className="gambarPlus" src={loadingDelete} /> Follow Thread
+                                    </div>
+                                ) : (
+                                    <div className={styles.buttonFollow}>
+                                        <img className="gambarPlus" src={plus} /> Follow Thread{" "}
+                                    </div>
+                                )}
                             </button>
                         ) : (
                             <button className={styles.followButtonThread} onClick={unFollowThread}>
-                                <p className={styles.followText}>Followed</p>
-                                {/* <img className="gambarPlus" src={plus} /> */}
+                                {unfollowLoad === true ? (
+                                    <div className={styles.buttonFollow}>
+                                        <img className="gambarPlus" src={loadingDelete} /> Followed
+                                    </div>
+                                ) : (
+                                    <div className={styles.buttonFollow}> Followed
+                                    </div>
+                                )}
                             </button>
                         )}
                     </div>
                 )}
             </div>
             <Link
-                to={
-                    idUser === profileInfo._id
-                        ? `/profile`
-                        : `/account-detail/?xyz=${idUser}`
-                }
-                style={{textDecoration:"none", color:"black"}}
+                to={idUser === profileInfo._id ? `/profile` : `/account-detail/?xyz=${idUser}`}
+                style={{ textDecoration: "none", color: "black" }}
             >
                 {" "}
                 <div className={styles.identitas}>
@@ -302,7 +313,8 @@ export default function ThreadUser() {
                     ) : (
                         <div
                             className={styles.threadAction}
-                            onClick={() => upVoteAction(cLickSound2)}>
+                            onClick={() => upVoteAction(cLickSound2)}
+                        >
                             <svg
                                 width="14"
                                 height="16"
@@ -330,7 +342,8 @@ export default function ThreadUser() {
                     ) : (
                         <div
                             className={styles.threadActionCenter}
-                            onClick={() => downVoteAction(cLickSound2)}>
+                            onClick={() => downVoteAction(cLickSound2)}
+                        >
                             <svg
                                 width="14"
                                 height="16"

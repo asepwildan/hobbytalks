@@ -87,6 +87,13 @@
     border: 1px solid #1e8ac6;
     border-radius: 4px;
     cursor: pointer;
+    transition-duration: 0.1s !important;
+    transition-property: transform !important;
+    cursor: pointer !important;
+    padding: 7px 10px;
+}
+.editButtonThread:active {
+    transform: scale(0.98) !important;
 }
 
 .deleteButtonThread {
@@ -102,10 +109,18 @@
     border: 1px solid #fa314a;
     border-radius: 4px;
     cursor: pointer;
+    transition-duration: 0.1s !important;
+    transition-property: transform !important;
+    cursor: pointer !important;
+    padding: 7px 10px;
+}
+.deleteButtonThread:active {
+    transform: scale(0.98) !important;
 }
 
+
 .deleteButtonThread img {
-    width: 20%;
+    width: 25%;
 }
 .createThreadContainer {
     position: absolute;
