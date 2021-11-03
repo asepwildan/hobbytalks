@@ -116,7 +116,7 @@ export default function Navbar() {
                             </div>
                         </Modal>
                     </div>
-                    <div className={styles.notifBar}>
+                    {/* <div className={styles.notifBar}>
                         <NotificationsNone onClick={dropDown} />
                         <div className={styles.dropdown}>
                             <div
@@ -132,38 +132,39 @@ export default function Navbar() {
                                 <p>My Journey into Piano: 1 year and still counting</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className={styles.avaBar}>
                         <Link to={"/profile"} style={{ textDecoration: "none" }}>
                             <Avatar className={styles.userAvatar} src={profileInfo.avatar} alt="" />
                         </Link>
                         <span className={styles.nameUser}>{profileInfo.name}</span>
-                    </div>
-
-                    <div className={styles.profilDropdown}>
-                        <ArrowDropDown
-                            aria-controls="basic-menu"
-                            aria-haspopup="true"
-                            aria-expanded={open ? "true" : undefined}
-                            onClick={handleClick}
-                        />
-                        <Menu
-                            className={styles.dropdownMenu}
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                                "aria-labelledby": "basic-button",
-                            }}>
-                            <Link to="/profile" style={{ textDecoration: "none" }}>
-                                <MenuItem onClick={handleClose} className={styles.dropdownProfile}>
-                                    Profile
-                                </MenuItem>
-                            </Link>
-                            <MenuItem onClick={handleClose}>Setting</MenuItem>
-                            <MenuItem onClick={signOut}>Logout</MenuItem>
-                        </Menu>
+                        <div className={styles.profilDropdown}>
+                            <ArrowDropDown
+                                aria-controls="basic-menu"
+                                aria-haspopup="true"
+                                aria-expanded={open ? "true" : undefined}
+                                onClick={handleClick}
+                            />
+                            <Menu
+                                className={styles.dropdownMenu}
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    "aria-labelledby": "basic-button",
+                                }}>
+                                <Link to="/profile" style={{ textDecoration: "none" }}>
+                                    <MenuItem
+                                        onClick={handleClose}
+                                        className={styles.dropdownProfile}>
+                                        Profile
+                                    </MenuItem>
+                                </Link>
+                                <MenuItem onClick={handleClose}>Setting</MenuItem>
+                                <MenuItem onClick={signOut}>Logout</MenuItem>
+                            </Menu>
+                        </div>
                     </div>
                 </div>
             ) : (

@@ -51,6 +51,9 @@ export const getThreadCategory = (category, catPage) => {
 
 //---Service-get-Following-thread----////
 export const getFollowingThread = (isPage) => {
+    if (isPage === undefined) {
+        isPage = 1;
+    }
     return axios.get(
         `https://hobbytalk-be-glints.herokuapp.com/api/v1/threads/follow?page=${isPage}`,
         {
