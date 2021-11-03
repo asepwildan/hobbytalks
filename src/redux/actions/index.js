@@ -247,3 +247,8 @@ export const getSearchFailed = (error) => ({
         error,
     },
 });
+
+export const paginationConditionAsync = (valueXXX) => ({
+    type: "add-pagination-forum",
+    payload: { valueXXX },
+});

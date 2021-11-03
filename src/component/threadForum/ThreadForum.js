@@ -15,6 +15,7 @@ export default function ThreadForum({ shorting }) {
     const { threadList, totalPage, nextPage, curentPage, loading, error, pagination } = useSelector(
         (state) => state.getThreadListReducer
     );
+    const { paginationCon } = useSelector((state) => state.valueForumReducer);
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
 
     const handleChange = (e, value) => {
@@ -26,8 +27,8 @@ export default function ThreadForum({ shorting }) {
     }, [dispatch, shorting, page]);
 
     useEffect(() => {
-        console.log(threadList, "test threadlist")
-    }, [threadList])
+        console.log(threadList, "test threadlist");
+    }, [threadList]);
     return (
         <div className={styles.threadContainer}>
             {threadList.map((thread) => (
@@ -221,7 +222,7 @@ export default function ThreadForum({ shorting }) {
                     </div>
                 </>
             ))}
-            {pagination === false ? (
+            {/* {pagination === false ? (
                 <div className={styles.paginationContainer}>
                     <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
                 </div>
@@ -230,6 +231,23 @@ export default function ThreadForum({ shorting }) {
                     <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
                 </div>
                 // <p>category</p>
+            )} */}
+
+            {paginationCon === "home" || paginationCon === "" ? (
+                <div className={styles.paginationContainer}>
+                    <p>home</p>
+                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
+                </div>
+            ) : paginationCon === "following" ? (
+                <div className={styles.paginationContainer}>
+                    <p>foolowing</p>
+                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
+                </div>
+            ) : (
+                <div className={styles.paginationContainer}>
+                    <p>category</p>
+                    <Pagination count={totalPage} page={curentPage} onChange={handleChange} />
+                </div>
             )}
         </div>
     );

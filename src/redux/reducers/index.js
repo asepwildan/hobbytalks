@@ -5,7 +5,7 @@ import getThreadListReducer from "./getThreadList";
 import getThreadDetail from "./getThreadDetail";
 import getUserReducer from "./getUser";
 import getThreadSearchReducer from "./getSearch";
-
+import valueForumReducer from "./valueForum";
 
 const rootReducer = combineReducers({
     getProfileReducer,
@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
     getThreadDetail,
     getUserReducer,
     getThreadSearchReducer,
+    valueForumReducer,
 });
 
 export default rootReducer;

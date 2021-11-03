@@ -7,6 +7,7 @@ import {
     getProfileInfoAsync,
     getThreadCategoryAsync,
     getFollowingThreadAsync,
+    paginationConditionAsync,
 } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -108,10 +109,12 @@ export default function Forum() {
             search: "",
         });
         dispatch(getThreadListAsync(values));
+        dispatch(paginationConditionAsync("home"));
     };
 
     const buttonSelectedTesting = (e) => {
         setCategoryKondisi(true);
+        dispatch(paginationConditionAsync("category"));
         dispatch(getThreadCategoryAsync(e));
         setValuesSearch({
             search: "",
@@ -121,6 +124,7 @@ export default function Forum() {
     const buttonListFollowingThread = (page) => {
         setCategoryKondisi(true);
         dispatch(getFollowingThreadAsync(page));
+        dispatch(paginationConditionAsync("following"));
     };
 
     useEffect(() => {

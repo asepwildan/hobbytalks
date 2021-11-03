@@ -84,13 +84,14 @@ function getThreadListReducer(state = initialState, action) {
         //         error: "",
         //         pagination: false,
         //     };
-        
+
         // case "getFollowingThread/get-failed":
         //     return {
         //         ...state,
         //         loading: false,
         //         error: payload.error,
         //     };
+
         default:
             return state;
     }
