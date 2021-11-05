@@ -1,6 +1,8 @@
 .backgroundPageContainer {
     width: 100%;
     /* padding:0px 20px; */
+    height: 100vh;
+    overflow: hidden;
 }
 
 .logo {

@@ -17,6 +17,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import loadingDelete from "./asset/spinnerdelete.svg";
+import LoginInside from "../loginInside/loginInside";
 
 import { Howl, Howler } from "howler";
 import cLickSound2 from "./asset/click.mp3";
@@ -30,11 +31,11 @@ export default function ThreadUser() {
     const [followLoad, setFollowLoad] = useState(false);
     const [unfollowLoad, setUnfollowLoad] = useState(false);
     const [downVoteLoader, setDownVoteLoader] = useState(false);
+    const [notLogin, setNotLogin] = useState(false);
     let userFollow = false;
     let fillVote = "#828282";
     let filloff = "#F5F8FD";
     let fillDown = "#828282";
-    let [isOpen, SetIsOpen] = useState(false);
 
     const { profileInfo, following } = useSelector((state) => state.getProfileReducer);
     const {
@@ -55,7 +56,19 @@ export default function ThreadUser() {
         dislike,
     } = useSelector((state) => state.getThreadDetail);
 
+    const openModal = () => {
+        setNotLogin(true);
+    };
+
+    const closeModal = () => {
+        setNotLogin(false);
+    };
+
     const upVoteAction = (src) => {
+        if (Token === null) {
+            return setNotLogin(true);
+        }
+
         setUpVoteLoader(true);
         const sound = new Howl({
             src,
@@ -70,6 +83,7 @@ export default function ThreadUser() {
         })
             .then((response) => {
                 setUpVoteLoader(false);
+                console.log(response);
             })
             .catch((err) => {
                 axios({
@@ -85,6 +99,10 @@ export default function ThreadUser() {
     };
 
     const downVoteAction = (src) => {
+        if (Token === null) {
+            return setNotLogin(true);
+        }
+
         setDownVoteLoader(true);
         const sound = new Howl({
             src,
@@ -129,6 +147,10 @@ export default function ThreadUser() {
     }
 
     const followThread = () => {
+        if (Token === null) {
+            return setNotLogin(true);
+        }
+
         setFollowLoad(true);
 
         axios({
@@ -364,6 +386,16 @@ export default function ThreadUser() {
                 </div>
                 <date className={styles.tanggal}>{date.slice(0, 10)}</date>
             </div>
+            <Modal
+                keepMounted
+                open={notLogin}
+                onClose={closeModal}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description">
+                <Box>
+                    <LoginInside />
+                </Box>
+            </Modal>
         </div>
     );
 }

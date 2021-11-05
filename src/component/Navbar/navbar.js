@@ -99,7 +99,18 @@ export default function Navbar() {
                     </div>
                 )}
             </div>
-            {Token !== null ? (
+            {Token === null || Token === "null" ? (
+                <div className={styles.rightbar}>
+                    <Link to={`/account/login`} style={{ textDecoration: "none" }}>
+                        <button className={styles.loginBtn} onClick={openModal}>
+                            Login
+                        </button>
+                    </Link>
+                    <Link to={`/account/register`} style={{ textDecoration: "none" }}>
+                        <button className={styles.signUpBtn}>Signup</button>
+                    </Link>
+                </div>
+            ) : (
                 <div className={styles.rightbar}>
                     <div className={styles.buttonCreate}>
                         <button onClick={openModal}>Create a thread</button>
@@ -166,17 +177,6 @@ export default function Navbar() {
                             </Menu>
                         </div>
                     </div>
-                </div>
-            ) : (
-                <div className={styles.rightbar}>
-                    <Link to={`/account/login`} style={{ textDecoration: "none" }}>
-                        <button className={styles.loginBtn} onClick={openModal}>
-                            Login
-                        </button>
-                    </Link>
-                    <Link to={`/account/register`} style={{ textDecoration: "none" }}>
-                        <button className={styles.signUpBtn}>Signup</button>
-                    </Link>
                 </div>
             )}
         </div>

@@ -82,6 +82,7 @@ export default function Register() {
                                     type="text"
                                     name="name"
                                     value={values.name}
+                                    maxLength="16"
                                     required
                                 />
                                 <label>Email</label>

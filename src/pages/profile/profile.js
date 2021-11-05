@@ -21,7 +21,7 @@ export default function Profile() {
         dispatch(getProfileInfoAsync());
     }, []);
 
-    if (Token === null) {
+    if (Token === null || Token === "null") {
         return (window.location = "/");
     }
 

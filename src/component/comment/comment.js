@@ -10,13 +10,16 @@ import { getCommentAsync } from "../../redux/actions";
 import { Link, useParams } from "react-router-dom";
 import { Howl, Howler } from "howler";
 import cLickSound2 from "../thread-detail-user/asset/click.mp3";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import LoginInside from "../loginInside/loginInside";
 
 export default function Comment({ ava }) {
     let Token = localStorage.getItem("tokenLogin");
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();
     const [upVoteLoader, setUpVoteLoader] = useState(false);
-
+    const [notLogin, setNotLogin] = useState(false);
     const { commentList, commentDetail, loading, error } = useSelector(
         (state) => state.getCommentReducer
     );
@@ -41,7 +44,19 @@ export default function Comment({ ava }) {
         dispatch(getCommentAsync(idThread, page, limit));
     };
 
+    const openModal = () => {
+        setNotLogin(true);
+    };
+
+    const closeModal = () => {
+        setNotLogin(false);
+    };
+
     const upVoteComment = (idComment, src) => {
+        if (Token === null) {
+            return setNotLogin(true);
+        }
+
         setUpVoteLoader(true);
         const sound = new Howl({
             src,
@@ -72,6 +87,10 @@ export default function Comment({ ava }) {
     };
 
     const downVoteComment = (idComment, src) => {
+        if (Token === null) {
+            return setNotLogin(true);
+        }
+
         setUpVoteLoader(true);
         const sound = new Howl({
             src,
@@ -247,6 +266,16 @@ export default function Comment({ ava }) {
                     </button>
                 )}
             </div>
+            <Modal
+                keepMounted
+                open={notLogin}
+                onClose={closeModal}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description">
+                <Box>
+                    <LoginInside />
+                </Box>
+            </Modal>
         </div>
     );
 }

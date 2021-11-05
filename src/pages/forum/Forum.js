@@ -24,6 +24,7 @@ import axios from "axios";
 import ThreadSearch from "../../component/threadSearch/threadSearch";
 import imgGaris from "./img/garisSkeleton.svg";
 import Skeleton from "../../component/skeleton/skeleton";
+import LoginInside from "../../component/loginInside/loginInside";
 
 export default function Forum() {
     let Token = localStorage.getItem("tokenLogin");
@@ -234,18 +235,25 @@ export default function Forum() {
                 <div className={styles.boxMiddleContainer}>
                     <div className={styles.wrapperCreateThread}>
                         <h4>Share your hobby</h4>
-                        <button onClick={openModal}>Create Thread</button>
+                        <button onClick={openModal} className={styles.buttonCreateThreadForum}>
+                            Create Thread
+                        </button>
                         <Modal
                             keepMounted
                             open={isOpen}
                             onClose={closeModal}
                             aria-labelledby="keep-mounted-modal-title"
                             aria-describedby="keep-mounted-modal-description">
-                            <div className={styles.createThreadContainer}>
-                                <Box>
-                                    <CreateThread />
-                                </Box>
-                            </div>
+                            <Box>
+                                {Token === null ? (
+                                    <LoginInside />
+                                ) : (
+                                    <div className={styles.createThreadContainer}>
+                                        {" "}
+                                        <CreateThread />{" "}
+                                    </div>
+                                )}
+                            </Box>
                         </Modal>
                     </div>
                     <div className={styles.wrapperSearchBar}>

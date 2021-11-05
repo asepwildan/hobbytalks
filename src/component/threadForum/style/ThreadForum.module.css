@@ -186,6 +186,7 @@
     font-size: 12px;
     display: flex;
     align-items: center;
+    color: #828282;
 }
 
 .threadActionContainer .threadAction:nth-child(2) {

@@ -14,6 +14,9 @@ import getProfileReducer from "../../redux/reducers/getProfile";
 import { getProfileInfoAsync, getThreadDetailAsync, getCommentAsync } from "../../redux/actions";
 import { Avatar } from "@material-ui/core";
 import Loading from "./img/loaderComment.gif";
+import LoginInside from "../../component/loginInside/loginInside";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
 
 export default function ThreadDetail() {
     const [login, setLogin] = useState(false);
@@ -22,16 +25,21 @@ export default function ThreadDetail() {
     const Token = localStorage.getItem("tokenLogin");
     const [status, setStatus] = useState();
     const [load, setLoad] = useState(false);
+    const [notLogin, setNotLogin] = useState(false);
     // let { id } = useParams();
-
     const queryParams = new URLSearchParams(window.location.search);
-
     const idThread = queryParams.get("xyz");
-
     const dispatch = useDispatch();
     const { profileInfo } = useSelector((state) => state.getProfileReducer);
-
     const { error } = useSelector((state) => state.getCommentReducer);
+
+    const openModal = () => {
+        setNotLogin(true);
+    };
+
+    const closeModal = () => {
+        setNotLogin(false);
+    };
 
     useEffect(() => {
         dispatch(getProfileInfoAsync());
@@ -119,11 +127,11 @@ export default function ThreadDetail() {
                                 </div>
                             ) : (
                                 <div className={styles.formCommentNoLogin}>
-                                    <Link to={`/account/login`} style={{ textDecoration: "none" }}>
-                                        <button className={styles.tombolThreadNoLogin}>
-                                            Login to add comment
-                                        </button>
-                                    </Link>
+                                    <button
+                                        className={styles.tombolThreadNoLogin}
+                                        onClick={openModal}>
+                                        Login to add comment
+                                    </button>
                                 </div>
                             )}
                         </div>
@@ -143,6 +151,16 @@ export default function ThreadDetail() {
                         </div>
                     </div>
                 </div>
+                <Modal
+                    keepMounted
+                    open={notLogin}
+                    onClose={closeModal}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description">
+                    <Box>
+                        <LoginInside />
+                    </Box>
+                </Modal>
             </div>
             <Footer />
         </React.Fragment>
