@@ -33,7 +33,7 @@ export default function RelatedTopic() {
     }, []);
 
     const changeThread = (e) => {
-        window.location.load(`https://dev-hoobytalks.herokuapp.com/thread-detail/?xyz=${e}`);
+        window.location.load(`https://hobbytalks.herokuapp.com/thread-detail/?xyz=${e}`);
     };
 
     return (
@@ -46,7 +46,7 @@ export default function RelatedTopic() {
                     <div className={styles.titleThreadTopic}>
                         <a
                             target="_blank"
-                            href={`https://dev-hoobytalks.herokuapp.com/thread-detail/?xyz=${topic._id}`}
+                            href={`https://hobbytalks.herokuapp.com/thread-detail/?xyz=${topic._id}`}
                             className={styles.authGoogle}>
                             <p className={styles.titleInfoText}>{topic.title}</p>
                         </a>
