@@ -245,6 +245,7 @@ function Banner(props) {
                                                 name="name"
                                                 value={values.name}
                                                 onChange={handlechange}
+                                                maxLength="16"
                                                 placeholder={profileInfo.name}
                                             />
                                             <label>Email</label>

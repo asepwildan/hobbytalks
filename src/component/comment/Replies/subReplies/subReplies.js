@@ -138,7 +138,7 @@ export default function SubReplies({ subReplies, ava, updateComment }) {
                     ) : (
                         <div className={styles.subRepliesAuthor}>{subRep.userId.name}</div>
                     )}
-                    <div className={styles.subRepliesTimes}> | {subRep.date}</div>
+                    <div className={styles.subRepliesTimes}> | {subRep.date.slice(0, 10)}</div>
                 </div>
                 <div className={styles.subRepliesContent}>
                     <div className={styles.subRepliesText}>{subRep.content}</div>

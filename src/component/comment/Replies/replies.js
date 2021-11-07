@@ -153,7 +153,7 @@ export default function SubComment({ replies, ava, updateComment }) {
                             <div className={styles.repliesAuthor}>{rep.userId.name}</div>{" "}
                         </Link>
                     )}
-                    <div className={styles.repliesTimes}> | {rep.date}</div>
+                    <div className={styles.repliesTimes}> | {rep.date.slice(0, 10)}</div>
                 </div>
                 <div className={styles.repliesContent}>
                     <div className={styles.repliesText}>{rep.content}</div>

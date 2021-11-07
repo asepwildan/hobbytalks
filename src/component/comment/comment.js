@@ -151,7 +151,7 @@ export default function Comment({ ava }) {
                             <div className={styles.commentAuthor}>{comment.userId.name}</div>
                         </Link>
                     )}
-                    <div className={styles.commentTimes}>| {comment.date} </div>
+                    <div className={styles.commentTimes}>| {comment.date.slice(0, 10)} </div>
                 </div>
                 <div className={styles.commentContent}>
                     <div className={styles.commentText}>{comment.content}</div>

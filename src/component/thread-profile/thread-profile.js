@@ -21,7 +21,7 @@ export default function Thread() {
     const [name, setName] = useState("");
     const Token = localStorage.getItem("tokenLogin");
     const [info, setInfo] = useState({});
-    const [page, setPage] = useState("");
+    const [page, setPage] = useState(1);
     const [loadingDel, setLoadingDel] = useState(false);
 
     const dispatch = useDispatch();
